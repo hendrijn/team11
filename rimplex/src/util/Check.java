@@ -4,7 +4,7 @@ package util;
  * A utility class that performs checks of various kinds.
  * 
  * @author Prof. David Bernstein, James Madison University
- * @version 1.0
+ * @version 1.2 See Git commit history - Bob
  */
 public class Check
 {
