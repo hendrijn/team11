@@ -27,7 +27,7 @@ public class Check
     }
     return false;
   }
-  
+   
   public boolean forContainsIgnoreCase(String[] strings, String string)
   {
     for (int i=0; i<strings.length; i++)
