@@ -4,14 +4,14 @@ package util;
  * A utility class that performs checks of various kinds.
  * 
  * @author Prof. David Bernstein, James Madison University
- * @version 1.0
+ * @version 1.2 See Git commit history - Bob
  */
 public class Check
 {
   /**
    * Check to see if an array of String objects contains a particular
    * String.
-   * See Git commit history - Bob
+   * 
    * @param haystack  The array of String objects to search through
    * @param needle The String object to search for
    * @return true if haystack contains needle; false otherwise
