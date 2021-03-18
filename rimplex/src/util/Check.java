@@ -1,7 +1,5 @@
 package util;
 
-import java.util.List;
-
 /**
  * A utility class that performs checks of various kinds.
  * 
@@ -29,16 +27,14 @@ public class Check
     }
     return false;
   }
-  //Create a method named forContains() that is passed a 
-  //List<String> and String and uses the equals() method.
-  public static boolean forContains(List<String> list, String s) 
+  
+  public boolean forContainsIgnoreCase(String[] strings, String string)
   {
-	  for (int i=0; i<list.size(); i++)
-	    {
-	      if (list.get(i).equals(s)) return true;
+    for (int i=0; i<strings.length; i++)
+    {
 
-	      if (list.get(i).equalsIgnoreCase(s)) return true;
-	    }
-	  return false;
+      if (strings[i].equalsIgnoreCase(string)) return true;
+    }
+    return false;
   }
 }
