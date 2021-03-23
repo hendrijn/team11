@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -22,12 +23,36 @@ public class ButtonListener implements ActionListener
   {
     MainInterface ui = MainInterface.getInstance();
     AbstractButton button = (AbstractButton) e.getSource();
-    
-    switch(button.getName())
+
+    switch (button.getText())
     {
-      
+      case "R":
+        System.out.println("Handle reset functionality");
+        break;
+      case "+":
+        System.out.println("Handle add functionality");
+        break;
+      case "-":
+        System.out.println("Handle subtract functionality");
+        break;
+      case "x":
+        System.out.println("Handle multiply functionality");
+        break;
+      case "÷":
+        System.out.println("Handle divide functionality");
+        break;
+      default:
+        closeApplication();
     }
 
+  }
+
+  /**
+   * closeApplication - handle all tasks at application close.
+   */
+  private void closeApplication()
+  {
+    System.exit(0);
   }
 
 }

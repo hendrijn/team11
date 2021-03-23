@@ -51,6 +51,8 @@ public class MainInterface extends JFrame
    */
   private void addButtons()
   {
+    ButtonListener listener = new ButtonListener();
+    
     JButton resetButton = new JButton("R");
     JButton addButton = new JButton("+");
     JButton subtractButton = new JButton("-");
@@ -58,6 +60,12 @@ public class MainInterface extends JFrame
     JButton divideButton = new JButton("÷");
 
     resetButton.setForeground(Color.RED);
+
+    resetButton.addActionListener(listener);
+    addButton.addActionListener(listener);
+    subtractButton.addActionListener(listener);
+    multiplyButton.addActionListener(listener);
+    divideButton.addActionListener(listener);
 
     buttonPanel.add(resetButton);
     buttonPanel.add(addButton);
