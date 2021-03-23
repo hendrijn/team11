@@ -4,7 +4,7 @@ package util;
  * A utility class that performs checks of various kinds.
  * 
  * @author Prof. David Bernstein, James Madison University
- * @version 1.0
+ * @version 1.2 See Git commit history - Bob
  */
 public class Check
 {
@@ -24,6 +24,16 @@ public class Check
       if (haystack[i].equals(needle)) return true;
 
       if (haystack[i].equalsIgnoreCase(needle)) return true;
+    }
+    return false;
+  }
+   
+  public boolean forContainsIgnoreCase(String[] strings, String string)
+  {
+    for (int i=0; i<strings.length; i++)
+    {
+
+      if (strings[i].equalsIgnoreCase(string)) return true;
     }
     return false;
   }
