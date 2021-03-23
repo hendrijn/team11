@@ -10,7 +10,7 @@ import javax.swing.JFrame;
  */
 public class MainInterface extends JFrame
 {
-
+  // The serial ID for serailization
   private static final long serialVersionUID = 1L;
   
 }
