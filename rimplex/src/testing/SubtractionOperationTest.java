@@ -4,7 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import util.Subtraction;
+import operations.SubtractionOperator;
+
 /**
  * Unit tests for the Subtraction class.
  * 
@@ -17,7 +18,7 @@ class SubtractionTest
   @Test
   void testCalculation()
   {
-    Subtraction s = new Subtraction();
+    SubtractionOperator s = new SubtractionOperator();
       /* 
         additions to make
           complex num:
