@@ -1,18 +1,18 @@
-package util;
+package operations;
 
 /**
- * Subtract Class
+ * Subtraction Operator Class
  * 
  * @author may4sa
  * @version Sprint 1
  */
-public class Subtraction
+public class SubtractionOperator
 {
-  public Subtraction() {
+  public SubtractionOperator() {
     
   }
   
-  public String calculate(String num1, String num2) throws IllegalArgumentException
+  public String evaluate(String leftOperand, String rightOperand) throws IllegalArgumentException
   {
     return "";
   }
