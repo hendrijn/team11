@@ -12,7 +12,7 @@ public class Subtraction
     
   }
   
-  public String calculate(String num1, String num2)
+  public String calculate(String num1, String num2) throws IllegalArgumentException
   {
     return "";
   }
