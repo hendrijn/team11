@@ -1,5 +1,7 @@
 package util;
-
+/*
+ * Uhh, Do we need to keep this class..?
+ */
 /**
  * A utility class that performs checks of various kinds.
  * 
