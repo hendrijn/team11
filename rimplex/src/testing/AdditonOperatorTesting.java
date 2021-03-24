@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import operations.AdditionOperator;
 import operations.TempContext;
 
-class AdditonTesting
+class AdditonOperatorTesting
 {
 
   @Test
