@@ -1,4 +1,4 @@
-package util;
+package operations;
 
 /**
  * Subtract Class
@@ -6,9 +6,9 @@ package util;
  * @author may4sa
  * @version Sprint 1
  */
-public class Subtraction
+public class SubtractionOperator
 {
-  public Subtraction() {
+  public SubtractionOperator() {
     
   }
   
