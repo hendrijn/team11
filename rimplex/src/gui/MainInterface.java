@@ -84,18 +84,17 @@ public class MainInterface extends JFrame
   
   /**
    * Adds all necessary components to the displayPane.
+   * 
    */
   private void addDisplay()
   {
 	  Border displayB = BorderFactory.createLineBorder(Color.BLUE, 3, true);
 	  displayPanel.setBorder(displayB);
 	  displayPanel.setLayout(new GridLayout(1,2));
-	  JLabel displayOps = new JLabel("Operands go here");
-	  JLabel displayRes = new JLabel("results go here");
+	  JLabel displayOps = new JLabel("Operands go here", JLabel.LEFT);
+	  JLabel displayRes = new JLabel("results go here", JLabel.RIGHT);
 	 
-	  //displayOps.setHorizontalTextPosition(SwingConstants.WEST);
-	  //displayRes.setHorizontalTextPosition(SwingConstants.EAST);
-	  //displayOps.setLayout(L);
+	  
 	  displayPanel.add(displayOps);
 	  displayPanel.add(displayRes);
 
