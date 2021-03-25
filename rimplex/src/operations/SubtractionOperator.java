@@ -6,7 +6,7 @@ package operations;
  * @author may4sa
  * @version Sprint 1
  */
-public class SubtractionOperator
+public class SubtractionOperator implements Operator
 {
   public SubtractionOperator() {
     
