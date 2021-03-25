@@ -16,6 +16,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.Border;
 
 /**
  * Serves as the main window for the interface.
@@ -29,7 +31,7 @@ public class MainInterface extends JFrame
   private static final long serialVersionUID = 1L;
   private static MainInterface frame;
 
-  private JLabel displayPanel;
+  private JPanel displayPanel;
   private JTextField inputPanel;
   private JPanel buttonPanel;
 
@@ -79,6 +81,25 @@ public class MainInterface extends JFrame
     buttonPanel.add(multiplyButton);
     buttonPanel.add(divideButton);
   }
+  
+  /**
+   * Adds all necessary components to the displayPane.
+   */
+  private void addDisplay()
+  {
+	  Border displayB = BorderFactory.createLineBorder(Color.BLUE, 3, true);
+	  displayPanel.setBorder(displayB);
+	  displayPanel.setLayout(new GridLayout(1,2));
+	  JLabel displayOps = new JLabel("Operands go here");
+	  JLabel displayRes = new JLabel("results go here");
+	 
+	  //displayOps.setHorizontalTextPosition(SwingConstants.WEST);
+	  //displayRes.setHorizontalTextPosition(SwingConstants.EAST);
+	  //displayOps.setLayout(L);
+	  displayPanel.add(displayOps);
+	  displayPanel.add(displayRes);
+
+  }
 
   /**
    * centerForm.
@@ -111,7 +132,7 @@ public class MainInterface extends JFrame
   private void createComponents()
   {
     buttonPanel = new JPanel();
-    displayPanel = new JLabel("Display Label is here");
+    displayPanel = new JPanel();
   }
 
   /**
@@ -124,40 +145,13 @@ public class MainInterface extends JFrame
 
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-   // contentPane.setLayout(new GridLayout(3, 1));
-    contentPane.setLayout(new GridBagLayout());
+    contentPane.setLayout(new GridLayout(3, 1));
     
-    GridBagConstraints gridC = new GridBagConstraints();
-    
-    
-    //-----------Display Pane--------------------//
-    gridC.weightx = 5;
-    gridC.weighty = 5;
-    
-    gridC.anchor = GridBagConstraints.FIRST_LINE_START;
-    
-    gridC.gridx = 0;
-    gridC.gridy = 0;
-    
-    addButtons();
-
-    displayPanel.setPreferredSize(new Dimension (500,60));
-    Font displayFont = displayPanel.getFont();
-    displayPanel.setFont(new Font(displayFont.getFontName(), Font.PLAIN, 14));
-    displayPanel.setBorder(BorderFactory.createLineBorder(Color.BLUE, 5, true));
-    
-    add (displayPanel, gridC);
-    
-    //--------Buttons----------------//
-    
+    addDisplay();
     addButtons();
     
-    gridC.gridx = 0;
-    gridC.gridy = 1;
-    
-    add (buttonPanel, gridC);
-    //contentPane.add(displayPanel);
-    //contentPane.add(buttonPanel);
+    contentPane.add(displayPanel);
+    contentPane.add(buttonPanel);
     
   }
 
