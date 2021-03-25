@@ -3,6 +3,8 @@ package gui;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 
@@ -120,12 +122,29 @@ public class MainInterface extends JFrame
 
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-    contentPane.setLayout(new GridLayout(3, 1));
-
+   // contentPane.setLayout(new GridLayout(3, 1));
+    contentPane.setLayout(new GridBagLayout());
+    
+    GridBagConstraints gridC = new GridBagConstraints();
+    
+    gridC.weightx = 5;
+    gridC.weighty = 5;
+    
+    gridC.anchor = GridBagConstraints.FIRST_LINE_START;
+    
+    gridC.gridx = 0;
+    gridC.gridy = 0;
+    
     addButtons();
 
-    contentPane.add(displayPanel);
-    contentPane.add(buttonPanel);
+    add (displayPanel, gridC);
+    
+    gridC.gridx = 0;
+    gridC.gridy = 1;
+    
+    add (buttonPanel, gridC);
+    //contentPane.add(displayPanel);
+    //contentPane.add(buttonPanel);
     
   }
 
