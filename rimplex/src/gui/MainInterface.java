@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 /**
@@ -59,6 +60,7 @@ public class MainInterface extends JFrame
     JButton multiplyButton = new JButton("x");
     JButton divideButton = new JButton("÷");
 
+    
     resetButton.setForeground(Color.RED);
 
     resetButton.addActionListener(listener);
@@ -105,6 +107,7 @@ public class MainInterface extends JFrame
   private void createComponents()
   {
     buttonPanel = new JPanel();
+    displayPanel = new JLabel("Display Label");
   }
 
   /**
@@ -121,7 +124,9 @@ public class MainInterface extends JFrame
 
     addButtons();
 
+    contentPane.add(displayPanel);
     contentPane.add(buttonPanel);
+    
   }
 
   /**
