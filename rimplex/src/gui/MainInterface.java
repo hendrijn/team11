@@ -3,11 +3,13 @@ package gui;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -109,7 +111,7 @@ public class MainInterface extends JFrame
   private void createComponents()
   {
     buttonPanel = new JPanel();
-    displayPanel = new JLabel("Display Label");
+    displayPanel = new JLabel("Display Label is here");
   }
 
   /**
@@ -127,6 +129,8 @@ public class MainInterface extends JFrame
     
     GridBagConstraints gridC = new GridBagConstraints();
     
+    
+    //-----------Display Pane--------------------//
     gridC.weightx = 5;
     gridC.weighty = 5;
     
@@ -137,7 +141,16 @@ public class MainInterface extends JFrame
     
     addButtons();
 
+    displayPanel.setPreferredSize(new Dimension (500,60));
+    Font displayFont = displayPanel.getFont();
+    displayPanel.setFont(new Font(displayFont.getFontName(), Font.PLAIN, 14));
+    displayPanel.setBorder(BorderFactory.createLineBorder(Color.BLUE, 5, true));
+    
     add (displayPanel, gridC);
+    
+    //--------Buttons----------------//
+    
+    addButtons();
     
     gridC.gridx = 0;
     gridC.gridy = 1;
