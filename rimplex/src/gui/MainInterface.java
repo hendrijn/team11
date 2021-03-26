@@ -149,15 +149,33 @@ public class MainInterface extends JFrame
 
   void updateDisplay(String text, String operator)
   {
+	  //checks if operand is valid before updating the display.
+	  if (badOperand(text))
+	  {
+		  //Display some sort of error message asking for a valid operand.
+		  //Maybe in its own hidden JLabel to be added??????
+		  return;
+	  }
 	  if (operator.equals("="))
 	  {
+		  //Will eventually display result
 		  ((JLabel) displayPanel.getComponent(1)).setText(text + operator);
+		  
+		  //should this be set to nothing or contain full equation???? 
 		  ((JLabel) displayPanel.getComponent(0)).setText("");
 	  } else {
 		  ((JLabel) displayPanel.getComponent(0)).setText(text + operator);
 	  }
 	  
   }
+  
+  
+  private boolean badOperand (String operand)
+  {
+	  return false;
+  }
+  
+  
   /**
    * Singleton that only returns one instance of the main frame.
    * 
