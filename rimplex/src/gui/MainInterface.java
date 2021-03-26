@@ -1,12 +1,8 @@
 package gui;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 
@@ -15,8 +11,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
+
+import javax.swing.border.Border;
 
 /**
  * Serves as the main window for the interface.
@@ -81,6 +77,23 @@ public class MainInterface extends JFrame
   }
 
   /**
+   * Adds all necessary components to the displayPane.
+   * 
+   */
+  private void addDisplay()
+  {
+    Border displayB = BorderFactory.createLineBorder(Color.BLUE, 3, true);
+    displayPanel.setBorder(displayB);
+    displayPanel.setLayout(new GridLayout(1, 2));
+    JLabel displayOps = new JLabel("Operands go here", JLabel.LEFT);
+    JLabel displayRes = new JLabel("results go here", JLabel.RIGHT);
+
+    displayPanel.add(displayOps);
+    displayPanel.add(displayRes);
+
+  }
+
+  /**
    * centerForm.
    *
    * center form on screen
@@ -126,10 +139,11 @@ public class MainInterface extends JFrame
 
     contentPane.setLayout(new GridLayout(3, 1));
 
+    addDisplay();
     addButtons();
 
+    contentPane.add(displayPanel);
     contentPane.add(buttonPanel);
-
   }
 
   /**

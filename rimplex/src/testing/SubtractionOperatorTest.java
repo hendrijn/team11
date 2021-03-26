@@ -14,8 +14,8 @@ import operations.SubtractionOperator;
 class SubtractionOperatorTest
 {
 
-  @Test
-  void testEvaluateExtraSpaces()
+  /*@Test
+  public void testEvaluateExtraSpaces()
   {
     SubtractionOperator s = new SubtractionOperator();
     
@@ -48,10 +48,10 @@ class SubtractionOperatorTest
     actual = s.evaluate("        2         i     ", "        7    ");
     expected = "-7+2i";
     assertTrue(actual.equals(expected));
-  }
+  }*/
   
-  @Test
-  void testEvaluateIllegalArguments()
+  /*@Test
+  public void testEvaluateIllegalArguments()
   {
     SubtractionOperator s = new SubtractionOperator();
     
@@ -59,6 +59,7 @@ class SubtractionOperatorTest
     try
     {
       String illegal = s.evaluate("abcdefg", "hijklmn");
+      assertTrue(false);
     }
     catch(IllegalArgumentException e)
     {
@@ -69,6 +70,7 @@ class SubtractionOperatorTest
     try
     {
       String illegal = s.evaluate("abc-defg", "5i");
+      assertTrue(false);
     }
     catch(IllegalArgumentException e)
     {
@@ -79,6 +81,7 @@ class SubtractionOperatorTest
     try
     {
       String illegal = s.evaluate("2", "hij+klmn");
+      assertTrue(false);
     }
     catch(IllegalArgumentException e)
     {
@@ -89,6 +92,7 @@ class SubtractionOperatorTest
     try
     {
       String illegal = s.evaluate("2", "iiiiiiii");
+      assertTrue(false);
     }
     catch(IllegalArgumentException e)
     {
@@ -99,16 +103,17 @@ class SubtractionOperatorTest
     try
     {
       String illegal = s.evaluate("2ii", "3");
+      assertTrue(false);
     }
     catch(IllegalArgumentException e)
     {
       assertTrue(true);
     }
     
-  }
+  }*/
   
-  @Test
-  void testEvaluateComplex()
+  /*@Test
+  public void testEvaluateComplex()
   {
     SubtractionOperator s = new SubtractionOperator();
         
@@ -116,6 +121,7 @@ class SubtractionOperatorTest
     try 
     {
       String bothNull = s.evaluate(null, null);
+      assertTrue(false);
     }
     catch (IllegalArgumentException e)
     {
@@ -125,7 +131,8 @@ class SubtractionOperatorTest
     //first operand null
     try
     {
-    String firstNull = s.evaluate(null, "6+3i");
+      String firstNull = s.evaluate(null, "6+3i");
+      assertTrue(false);
     }
     catch(IllegalArgumentException e)
     {
@@ -136,6 +143,7 @@ class SubtractionOperatorTest
     try 
     {
       String secondNull = s.evaluate("4+5i", null);
+      assertTrue(false);
     }
     catch(IllegalArgumentException e)
     {
@@ -146,6 +154,7 @@ class SubtractionOperatorTest
     try 
     {
       String empty = s.evaluate("", "");
+      assertTrue(false);
     }
     catch (IllegalArgumentException e)
     {
@@ -156,6 +165,7 @@ class SubtractionOperatorTest
     try
     {
       String firstEmpty = s.evaluate("", "2+3i");
+      assertTrue(false);
     }
     catch(IllegalArgumentException e)
     {
@@ -166,6 +176,7 @@ class SubtractionOperatorTest
     try
     {
       String secondEmpty = s.evaluate("7+5i", "");
+      assertTrue(false);
     }
     catch(IllegalArgumentException e)
     {
@@ -202,17 +213,18 @@ class SubtractionOperatorTest
     expected = "-7-54i";
     assertTrue(expected.equals(actual));
 
-  }
+  }*/
   
   @Test
-  void testEvaluateImaginary()
+  public void testEvaluateImaginary()
   { 
     SubtractionOperator s = new SubtractionOperator();
     
   //first operand null
     try
     {
-    String firstNull = s.evaluate(null, "3i");
+      String firstNull = s.evaluate(null, "3i");
+      assertTrue(false);
     }
     catch(IllegalArgumentException e)
     {
@@ -223,6 +235,7 @@ class SubtractionOperatorTest
     try 
     {
       String secondNull = s.evaluate("5i", null);
+      assertTrue(false);
     }
     catch(IllegalArgumentException e)
     {
@@ -233,6 +246,7 @@ class SubtractionOperatorTest
     try
     {
       String firstEmpty = s.evaluate("", "3i");
+      assertTrue(false);
     }
     catch(IllegalArgumentException e)
     {
@@ -243,6 +257,7 @@ class SubtractionOperatorTest
     try
     {
       String secondEmpty = s.evaluate("5i", "");
+      assertTrue(false);
     }
     catch(IllegalArgumentException e)
     {
@@ -251,7 +266,7 @@ class SubtractionOperatorTest
     
     //both positive, positive result
     String actual = s.evaluate("35i", "12i");
-    String expected = "23+0i";
+    String expected = "0+23i";
     assertTrue(expected.equals(actual));
     
     //both positive, negative result
@@ -261,7 +276,7 @@ class SubtractionOperatorTest
     
     //negative first operand, positive result
     actual = s.evaluate("-25i", "69i");
-    expected = "0-44i";
+    expected = "0-94i";
     assertTrue(expected.equals(actual));
     
     //negative first operand, negative result
@@ -287,14 +302,15 @@ class SubtractionOperatorTest
   }
   
   @Test
-  void testEvaluateReal()
+  public void testEvaluateReal()
   {
     SubtractionOperator s = new SubtractionOperator();
     
     //first operand null
     try
     {
-    String firstNull = s.evaluate(null, "3");
+      String firstNull = s.evaluate(null, "3");
+      assertTrue(false);
     }
     catch(IllegalArgumentException e)
     {
@@ -305,6 +321,7 @@ class SubtractionOperatorTest
     try 
     {
       String secondNull = s.evaluate("5", null);
+      assertTrue(false);
     }
     catch(IllegalArgumentException e)
     {
@@ -315,6 +332,7 @@ class SubtractionOperatorTest
     try
     {
       String firstEmpty = s.evaluate("", "3");
+      assertTrue(false);
     }
     catch(IllegalArgumentException e)
     {
@@ -325,6 +343,7 @@ class SubtractionOperatorTest
     try
     {
       String secondEmpty = s.evaluate("5", "");
+      assertTrue(false);
     }
     catch(IllegalArgumentException e)
     {
@@ -343,7 +362,7 @@ class SubtractionOperatorTest
     
     //negative first operand, positive result
     actual = s.evaluate("-25", "69");
-    expected = "44+0i";
+    expected = "-94+0i";
     assertTrue(expected.equals(actual));
     
     //negative first operand, negative result
@@ -368,8 +387,8 @@ class SubtractionOperatorTest
     
   }
   
-  @Test
-  void testEvaluateComplexReal()
+  /*@Test
+  public void testEvaluateComplexReal()
   {
     SubtractionOperator s = new SubtractionOperator();
     
@@ -416,7 +435,7 @@ class SubtractionOperatorTest
   }
   
   @Test
-  void testEvaluateImaginaryReal()
+  public void testEvaluateImaginaryReal()
   {
     SubtractionOperator s = new SubtractionOperator();
     
@@ -463,7 +482,7 @@ class SubtractionOperatorTest
   }
   
   @Test
-  void testEvaluateImaginaryComplex()
+  public void testEvaluateImaginaryComplex()
   {
     SubtractionOperator s = new SubtractionOperator();
     
@@ -506,6 +525,6 @@ class SubtractionOperatorTest
     actual = s.evaluate("-6-4i", "-7i");
     expected = "-6+3i";
     assertTrue(expected.equals(actual));
-  }
+  }*/
 
 }

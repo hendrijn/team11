@@ -23,13 +23,24 @@ class AdditonOperatorTesting
     assertEquals(expectedResult, actualResult);
   }
   
+  @Test
+  public void twoValidComplexNumbersDiffIPlacementTest()
+  {
+    String complexNumberOne = "3i + 4";
+    String complexNumberTwo = "4 + 2i";
+    String expectedResult = "8 + 5i";
+    TempContext tempContext = new TempContext(new AdditionOperator());
+    String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
+    assertEquals(expectedResult, actualResult);
+  }
+  
   
   @Test
   public void twoValidRealNumbersTest()
   {
     String complexNumberOne = "4";
     String complexNumberTwo = "7";
-    String expectedResult = "7 + 0i";
+    String expectedResult = "11 + 0i";
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);

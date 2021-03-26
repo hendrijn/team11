@@ -9,39 +9,75 @@ public class AdditionOperator implements Operator
   @Override
   public String evaluate(String leftOperand, String rightOperand)
   {
-    if (leftOperand == null || rightOperand == null) 
+    
+ 
+    if (leftOperand == null || rightOperand == null || leftOperand == "" || rightOperand == "") 
     {
-      throw new IllegalArgumentException("Left or right operand is null.");
+      throw new IllegalArgumentException("Please provide two operands");
     }
     
-    StringTokenizer leftTokenizer = new StringTokenizer(leftOperand, " + ");
-    StringTokenizer rightTokenizer = new StringTokenizer(rightOperand, " + ");
+    //Appending complex number units to non-complex numbers
+    if (!leftOperand.contains("i")) {
+      leftOperand = leftOperand + "+0i";
+    }
     
-    //Left side preliminary work
-    String leftNonIComplexN = leftTokenizer.nextToken();
-    String leftIComplexN = leftTokenizer.nextToken();
-    StringTokenizer leftTokenizerForI = new StringTokenizer(leftIComplexN, "i");
-    String leftIComplexNNoUnits = leftTokenizerForI.nextToken();
-    
-    //Right side preliminary work
-    String rightNonIComplexN = rightTokenizer.nextToken();
-    String rightIComplexN = rightTokenizer.nextToken();
-    StringTokenizer rightTokenizerForI = new StringTokenizer(rightIComplexN, "i");
-    String rightIComplexNNoUnits = rightTokenizerForI.nextToken();
+    if (!rightOperand.contains("i")) {
+      rightOperand = rightOperand + "+0i";
+    }
     
     
-    //Conversion from Strings to Ints
-    int nonILeftAdd = Integer.parseInt(leftNonIComplexN);
-    int iLeftAdd = Integer.parseInt(leftIComplexNNoUnits);
-    int nonIRightAdd = Integer.parseInt(rightNonIComplexN);
-    int iRightAdd = Integer.parseInt(rightIComplexNNoUnits);
+    String simplifedLeft  = leftOperand.replaceAll(" ", "");
+    String simplifedRight = rightOperand.replaceAll(" ", "");
+     
+    int leftPlusIndex  = simplifedLeft.indexOf("+");
+    int rightPlusIndex = simplifedRight.indexOf("+");
+   
+    //Getting the two parts of the complex number
+    String simplifedLeftAugend  = simplifedLeft.substring(0, leftPlusIndex);
+    String simplifedLeftAddend  = simplifedLeft.substring(leftPlusIndex + 1);
+    String simplifedRightAugend = simplifedRight.substring(0, rightPlusIndex);
+    String simplifedRightAddend = simplifedRight.substring(rightPlusIndex + 1);
     
-    //final addition
-    int finalNotITotal = nonILeftAdd + nonIRightAdd;
-    int finalItotal = iLeftAdd + iRightAdd;
+    String leftImaginaryNumber  = "";
+    String rightImaginaryNumber = "";
+    String leftRegularNumber    = "";
+    String rightRegularNumber   = "";
     
-    //final string
-    return finalNotITotal + " + " + finalItotal + "i";
+    //Figuring out which part is the i units
+    if (simplifedLeftAugend.contains("i")) 
+    {
+      leftImaginaryNumber = simplifedLeftAugend.replaceAll("i", "");
+      leftRegularNumber   = simplifedLeftAddend;
+    }
+    else 
+    {
+      leftImaginaryNumber = simplifedLeftAddend.replaceAll("i", "");
+      leftRegularNumber  = simplifedLeftAugend;
+    }
+    
+    
+    if (simplifedRightAugend.contains("i")) 
+    {
+      rightImaginaryNumber = simplifedRightAugend.replaceAll("i", "");
+      rightRegularNumber   = simplifedRightAddend;
+    }
+    else 
+    {
+      rightImaginaryNumber = simplifedRightAddend.replaceAll("i", "");
+      rightRegularNumber   = simplifedRightAugend;
+    }
+    
+    //Integer processing
+    int leftImagNumInt  = Integer.parseInt(leftImaginaryNumber);
+    int leftRegNumInt   = Integer.parseInt(leftRegularNumber);
+    int rightImagNumInt = Integer.parseInt(rightImaginaryNumber);
+    int rightRegNumInt  = Integer.parseInt(rightRegularNumber);
+    
+    int finalRegTotal =  leftRegNumInt + rightRegNumInt;
+    int finalImagTotal = rightImagNumInt + leftImagNumInt;
+    
+    return finalRegTotal + " + " + finalImagTotal + "i";
+   
   }
 
 }
