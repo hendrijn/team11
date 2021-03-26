@@ -24,13 +24,16 @@ public class ButtonListener implements ActionListener
     MainInterface ui = MainInterface.getInstance();
     AbstractButton button = (AbstractButton) e.getSource();
 
+    
     switch (button.getText())
     {
       case "R":
         System.out.println("Handle reset functionality");
         break;
       case "+":
-        System.out.println("Handle add functionality");
+    	//Temporary code to tests updateDisplay functionality
+        ui.updateDisplay("(1 + 2i)", " + ");
+    	System.out.println("Handle add functionality");
         break;
       case "-":
         System.out.println("Handle subtract functionality");
@@ -44,6 +47,7 @@ public class ButtonListener implements ActionListener
       default:
         closeApplication();
     }
+    
 
   }
 
@@ -54,5 +58,9 @@ public class ButtonListener implements ActionListener
   {
     System.exit(0);
   }
+  
+  
+  
+  
 
 }

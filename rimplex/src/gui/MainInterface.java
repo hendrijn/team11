@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 
+import javax.swing.AbstractButton;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -146,6 +147,17 @@ public class MainInterface extends JFrame
     contentPane.add(buttonPanel);
   }
 
+  void updateDisplay(String text, String operator)
+  {
+	  if (operator.equals("="))
+	  {
+		  ((JLabel) displayPanel.getComponent(1)).setText(text + operator);
+		  ((JLabel) displayPanel.getComponent(0)).setText("");
+	  } else {
+		  ((JLabel) displayPanel.getComponent(0)).setText(text + operator);
+	  }
+	  
+  }
   /**
    * Singleton that only returns one instance of the main frame.
    * 
