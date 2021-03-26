@@ -32,6 +32,16 @@ public class AdditionOperator implements Operator
     {
       rightOperand = "1i+0";
     }
+    
+    if (leftOperand.equals("-i")) 
+    {
+      leftOperand = "-1i+0";
+    }
+    
+    if (rightOperand.equals("-i")) 
+    {
+      rightOperand = "-1i+0";
+    }
         
     if (!leftOperand.contains("i")) {
       leftOperand  = leftOperand + "+0i";
@@ -99,6 +109,14 @@ public class AdditionOperator implements Operator
     {
       rightImaginaryNumber = simplifedRightAddend.replaceAll("i", "");
       rightRegularNumber   = simplifedRightAugend;
+    }
+    
+    if (leftImaginaryNumber.equals("")) {
+      leftImaginaryNumber = "1";
+    }
+    
+    if (rightImaginaryNumber.equals("")) {
+      rightImaginaryNumber = "1";
     }
     
     //Integer processing
