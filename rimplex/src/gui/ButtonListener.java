@@ -1,8 +1,7 @@
 package gui;
 
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 import javax.swing.AbstractButton;
 
@@ -12,9 +11,8 @@ import javax.swing.AbstractButton;
  * @author Jacquelyn Hendricks
  * @version March 23 2021
  */
-public class ButtonListener implements ActionListener
+public class ButtonListener implements Finals, ActionListener, KeyListener
 {
-
   /**
    * Handles all button operations.
    */
@@ -24,30 +22,31 @@ public class ButtonListener implements ActionListener
     MainInterface ui = MainInterface.getInstance();
     AbstractButton button = (AbstractButton) e.getSource();
 
-    
     switch (button.getText())
     {
       case "R":
         System.out.println("Handle reset functionality");
         break;
-      case "+":
-    	//Temporary code to tests updateDisplay functionality
+      case ADD:
+        // Temporary code to tests updateDisplay functionality
         ui.updateDisplay("(1 + 2i)", " + ");
-    	System.out.println("Handle add functionality");
+        System.out.println("Handle add functionality");
         break;
-      case "-":
+      case SUBTRACT:
         System.out.println("Handle subtract functionality");
         break;
-      case "x":
+      case MULTIPLY:
         System.out.println("Handle multiply functionality");
         break;
-      case "÷":
+      case DIVIDE:
         System.out.println("Handle divide functionality");
+        break;
+      case EQUALS:
+        System.out.println("Handle equals functionality");
         break;
       default:
         closeApplication();
     }
-    
 
   }
 
@@ -58,9 +57,28 @@ public class ButtonListener implements ActionListener
   {
     System.exit(0);
   }
-  
-  
-  
-  
+
+  /**
+   * Handles when something is typed in the text box.
+   */
+  @Override
+  public void keyTyped(KeyEvent e)
+  {
+    System.out.println("you typed");
+
+  }
+
+  // ----------------- Unimplemented -------------//
+  @Override
+  public void keyPressed(KeyEvent e)
+  {
+  }
+
+  @Override
+  public void keyReleased(KeyEvent e)
+  {
+    // TODO Auto-generated method stub
+
+  }
 
 }

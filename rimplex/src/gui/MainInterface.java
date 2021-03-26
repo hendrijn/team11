@@ -1,18 +1,7 @@
 package gui;
 
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.Toolkit;
-
-import javax.swing.AbstractButton;
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
+import java.awt.*;
+import javax.swing.*;
 import javax.swing.border.Border;
 
 /**
@@ -21,7 +10,7 @@ import javax.swing.border.Border;
  * @author Jacquelyn Hendricks
  * @version March 23 2021
  */
-public class MainInterface extends JFrame
+public class MainInterface extends JFrame implements Finals
 {
   // The serial ID for serailization
   private static final long serialVersionUID = 1L;
@@ -31,6 +20,8 @@ public class MainInterface extends JFrame
   private JPanel inputPanel;
   private JPanel buttonPanel;
 
+  private ButtonListener listener = new ButtonListener();
+
   /**
    * Default constructor.
    */
@@ -38,7 +29,7 @@ public class MainInterface extends JFrame
   {
     createComponents();
     setupFrame();
-    setSize(600, 300);
+    setSize(500, 200);
     setVisible(true); // display this
     centerForm();
 
@@ -54,13 +45,12 @@ public class MainInterface extends JFrame
    */
   private void addButtons()
   {
-    ButtonListener listener = new ButtonListener();
-
     JButton resetButton = new JButton("R");
-    JButton addButton = new JButton("+");
-    JButton subtractButton = new JButton("-");
-    JButton multiplyButton = new JButton("x");
-    JButton divideButton = new JButton("÷");
+    JButton addButton = new JButton(ADD);
+    JButton subtractButton = new JButton(SUBTRACT);
+    JButton multiplyButton = new JButton(MULTIPLY);
+    JButton divideButton = new JButton(DIVIDE);
+    JButton equalsButton = new JButton(EQUALS);
 
     resetButton.setForeground(Color.RED);
 
@@ -69,12 +59,14 @@ public class MainInterface extends JFrame
     subtractButton.addActionListener(listener);
     multiplyButton.addActionListener(listener);
     divideButton.addActionListener(listener);
+    equalsButton.addActionListener(listener);
 
     buttonPanel.add(resetButton);
     buttonPanel.add(addButton);
     buttonPanel.add(subtractButton);
     buttonPanel.add(multiplyButton);
     buttonPanel.add(divideButton);
+    buttonPanel.add(equalsButton);
   }
 
   /**
@@ -92,6 +84,19 @@ public class MainInterface extends JFrame
     displayPanel.add(displayOps);
     displayPanel.add(displayRes);
 
+  }
+
+  /**
+   * Sets up input field.
+   */
+  private void addInputField()
+  {
+    JTextField input = new JTextField();
+    input.setHorizontalAlignment(JTextField.RIGHT);
+    input.addKeyListener(listener);
+
+    inputPanel.setLayout(new BorderLayout());
+    inputPanel.add(input, BorderLayout.NORTH);
   }
 
   /**
@@ -126,6 +131,7 @@ public class MainInterface extends JFrame
   {
     buttonPanel = new JPanel();
     displayPanel = new JPanel();
+    inputPanel = new JPanel();
   }
 
   /**
@@ -141,41 +147,43 @@ public class MainInterface extends JFrame
     contentPane.setLayout(new GridLayout(3, 1));
 
     addDisplay();
+    addInputField();
     addButtons();
 
     contentPane.add(displayPanel);
+    contentPane.add(inputPanel);
     contentPane.add(buttonPanel);
   }
 
   void updateDisplay(String text, String operator)
   {
-	  //checks if operand is valid before updating the display.
-	  if (badOperand(text))
-	  {
-		  //Display some sort of error message asking for a valid operand.
-		  //Maybe in its own hidden JLabel to be added??????
-		  return;
-	  }
-	  if (operator.equals("="))
-	  {
-		  //Will eventually display result
-		  ((JLabel) displayPanel.getComponent(1)).setText(text + operator);
-		  
-		  //should this be set to nothing or contain full equation???? 
-		  ((JLabel) displayPanel.getComponent(0)).setText("");
-	  } else {
-		  ((JLabel) displayPanel.getComponent(0)).setText(text + operator);
-	  }
-	  
+    // checks if operand is valid before updating the display.
+    if (badOperand(text))
+    {
+      // Display some sort of error message asking for a valid operand.
+      // Maybe in its own hidden JLabel to be added??????
+      return;
+    }
+    if (operator.equals("="))
+    {
+      // Will eventually display result
+      ((JLabel) displayPanel.getComponent(1)).setText(text + operator);
+
+      // should this be set to nothing or contain full equation????
+      ((JLabel) displayPanel.getComponent(0)).setText("");
+    }
+    else
+    {
+      ((JLabel) displayPanel.getComponent(0)).setText(text + operator);
+    }
+
   }
-  
-  
-  private boolean badOperand (String operand)
+
+  private boolean badOperand(String operand)
   {
-	  return false;
+    return false;
   }
-  
-  
+
   /**
    * Singleton that only returns one instance of the main frame.
    * 
