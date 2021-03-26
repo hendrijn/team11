@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -29,8 +30,8 @@ public class MainInterface extends JFrame
   private static final long serialVersionUID = 1L;
   private static MainInterface frame;
 
-  private JLabel displayPanel;
-  private JTextField inputPanel;
+  private JPanel displayPanel;
+  private JPanel inputPanel;
   private JPanel buttonPanel;
 
   /**
@@ -57,14 +58,13 @@ public class MainInterface extends JFrame
   private void addButtons()
   {
     ButtonListener listener = new ButtonListener();
-    
+
     JButton resetButton = new JButton("R");
     JButton addButton = new JButton("+");
     JButton subtractButton = new JButton("-");
     JButton multiplyButton = new JButton("x");
     JButton divideButton = new JButton("÷");
 
-    
     resetButton.setForeground(Color.RED);
 
     resetButton.addActionListener(listener);
@@ -111,7 +111,7 @@ public class MainInterface extends JFrame
   private void createComponents()
   {
     buttonPanel = new JPanel();
-    displayPanel = new JLabel("Display Label is here");
+    displayPanel = new JPanel();
   }
 
   /**
@@ -124,41 +124,12 @@ public class MainInterface extends JFrame
 
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-   // contentPane.setLayout(new GridLayout(3, 1));
-    contentPane.setLayout(new GridBagLayout());
-    
-    GridBagConstraints gridC = new GridBagConstraints();
-    
-    
-    //-----------Display Pane--------------------//
-    gridC.weightx = 5;
-    gridC.weighty = 5;
-    
-    gridC.anchor = GridBagConstraints.FIRST_LINE_START;
-    
-    gridC.gridx = 0;
-    gridC.gridy = 0;
-    
+    contentPane.setLayout(new GridLayout(3, 1));
+
     addButtons();
 
-    displayPanel.setPreferredSize(new Dimension (500,60));
-    Font displayFont = displayPanel.getFont();
-    displayPanel.setFont(new Font(displayFont.getFontName(), Font.PLAIN, 14));
-    displayPanel.setBorder(BorderFactory.createLineBorder(Color.BLUE, 5, true));
-    
-    add (displayPanel, gridC);
-    
-    //--------Buttons----------------//
-    
-    addButtons();
-    
-    gridC.gridx = 0;
-    gridC.gridy = 1;
-    
-    add (buttonPanel, gridC);
-    //contentPane.add(displayPanel);
-    //contentPane.add(buttonPanel);
-    
+    contentPane.add(buttonPanel);
+
   }
 
   /**
