@@ -29,10 +29,12 @@ public class ButtonListener implements Finals, ActionListener, KeyListener
         break;
       case ADD:
         // Temporary code to tests updateDisplay functionality
-        ui.updateDisplay("(1 + 2i)", " + ");
+    	  ui.updateDisplay(" + ", null);
         System.out.println("Handle add functionality");
         break;
       case SUBTRACT:
+    	// Temporary code to tests updateDisplay functionality
+    	ui.updateDisplay(" - ", null);
         System.out.println("Handle subtract functionality");
         break;
       case MULTIPLY:
@@ -42,6 +44,9 @@ public class ButtonListener implements Finals, ActionListener, KeyListener
         System.out.println("Handle divide functionality");
         break;
       case EQUALS:
+    	  //calculate result here???
+    	  //need to save last operator for use in calculation???
+    	  ui.updateDisplay(" =", "correct result");
         System.out.println("Handle equals functionality");
         break;
       default:
