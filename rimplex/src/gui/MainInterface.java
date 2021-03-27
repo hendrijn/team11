@@ -146,16 +146,14 @@ public class MainInterface extends JFrame
     contentPane.add(displayPanel);
     contentPane.add(buttonPanel);
   }
-
-  void updateDisplay(String text, String operator)
+/**
+ * 
+ * @param currExpression the current expression to be displayed
+ * @param result the result to be displayed. null if operator button push.
+ */
+  void updateDisplay(String currExpression, String result)
   {
-	  //checks if operand is valid before updating the display.
-	  if (badOperand(text))
-	  {
-		  //Display some sort of error message asking for a valid operand.
-		  //Maybe in its own hidden JLabel to be added??????
-		  return;
-	  }
+	  /**
 	  if (operator.equals("="))
 	  {
 		  //Will eventually display result
@@ -165,7 +163,7 @@ public class MainInterface extends JFrame
 		  ((JLabel) displayPanel.getComponent(0)).setText("");
 	  } else {
 		  ((JLabel) displayPanel.getComponent(0)).setText(text + operator);
-	  }
+	  } */
 	  
   }
   
