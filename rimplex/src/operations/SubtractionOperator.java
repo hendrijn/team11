@@ -16,92 +16,134 @@ public class SubtractionOperator implements Operator
   public String evaluate(final String leftOperand, final String rightOperand)
       throws IllegalArgumentException
   {
-    boolean real = false;
-    boolean complex = false;
-    boolean imaginary = false;
 
-    String result = "";
-    int resultOfSub = -1;
-
+    // error checking
     if (leftOperand == null || rightOperand == null || leftOperand == "" || rightOperand == "")
     {
       throw new IllegalArgumentException("Please provide two operands");
     }
 
-    String noSpLeft = leftOperand.replaceAll(" ", "");
-    String noSpRight = rightOperand.replaceAll(" ", "");
+    // remove spaces
+    String noSpL = leftOperand.replaceAll(" ", ""); 
+    String noSpR = rightOperand.replaceAll(" ", "");
 
-    int iIndexL = noSpLeft.indexOf("i");
-    int iIndexR = noSpRight.indexOf("i");
+    // put left Operand in +- form if negative
+    String distribute = this.distribute(noSpR);
+    String alteredLOp = this.format(noSpL);
+    String alteredROp = this.format(distribute);
 
-    if (noSpLeft.indexOf("i", iIndexL + 1) != -1)
+    // distribute and fix +- form to - form
+    
+    String result = new AdditionOperator().evaluate(alteredLOp, distribute);
+    if (result.contains("+-"))
     {
-      throw new IllegalArgumentException("Not a valid operand");
-    }
-    if (noSpRight.indexOf("i", iIndexR + 1) != -1)
-    {
-      throw new IllegalArgumentException("Not a valid operand");
-    }
-
-    // real num processing
-    int realL;
-    int realR;
-    try
-    {
-      realL = Integer.parseInt(noSpLeft);
-    }
-    catch (NumberFormatException nfe)
-    {
-      realL = -1;
+      result = result.substring(0, result.indexOf("+")) + "-"
+          + result.substring(result.indexOf("+") + 2);
     }
 
-    try
+    // return
+    return result;
+  }
+
+  public String distribute(String rightOperand)
+  {
+    // add non-complex cases
+    int indexOfNeg = rightOperand.indexOf("-");
+    String distribute = "";
+    if (rightOperand.indexOf("+") != -1)
     {
-      realR = Integer.parseInt(noSpRight);
-    }
-    catch (NumberFormatException nfe)
-    {
-      realR = -1;
+      if (rightOperand.charAt(0) == '-')
+      {
+        distribute = rightOperand.substring(0, rightOperand.indexOf("+")) + "-"
+            + rightOperand.substring(rightOperand.indexOf("+") + 1);
+      }
+      else
+      {
+        distribute = "-" + rightOperand.substring(0, rightOperand.indexOf("+")) + "+-"
+            + rightOperand.substring(rightOperand.indexOf("+") + 1) + "";
+      }
+    } 
+    else {
+      if(rightOperand.charAt(0) == '-')
+      {
+        distribute = rightOperand.substring(1);
+      }
+      else 
+      {
+        distribute = "-" + rightOperand;
+      }
     }
 
-    if (realR != -1 && realL != -1)
+    if (rightOperand.indexOf("-", indexOfNeg+1) != -1)
     {
-      real = true;
-      resultOfSub = realL - realR;
+      if (rightOperand.charAt(0) == '-')
+      {
+        distribute = rightOperand.substring(1, rightOperand.indexOf("-", indexOfNeg + 1)) + "+"
+            + rightOperand.substring(rightOperand.indexOf("-", indexOfNeg + 1) + 1);
+      }
+      else
+      {
+        distribute = "-" + rightOperand.substring(0, rightOperand.indexOf("-", indexOfNeg + 1))
+            + "+" + rightOperand.substring(rightOperand.indexOf("-", indexOfNeg + 1) + 1);
+      }
     }
+    return distribute;
+  }
 
-    if (noSpRight.indexOf("i") != -1 && noSpLeft.indexOf("i") != -1)
+  public String format(String operand)
+  {
+    boolean complex = false;
+    boolean imaginary = false;
+    boolean real = false;
+    String result = "";
+
+    int negative = operand.indexOf("-");
+    int minus = operand.indexOf("-", negative + 1);
+
+    if (operand.contains("+"))
+    {
+      complex = true;
+    }
+    else if (operand.charAt(0) == '-' && minus != -1)
+    {
+      complex = true;
+    }
+    else if (operand.charAt(0) != '-' && negative != -1)
+    {
+      complex = true;
+    }
+    else if (operand.contains("i"))
     {
       imaginary = true;
-      String left = noSpLeft.substring(0, noSpLeft.indexOf("i"));
-      String right = noSpRight.substring(0, noSpRight.indexOf("i"));
-
-      int leftInt = Integer.parseInt(left);
-      int rightInt = Integer.parseInt(right);
-
-      resultOfSub = leftInt - rightInt;
+    }
+    else
+    {
+      real = true;
     }
 
-    // imaginary num processing
-
-    // final conversion toString
-    if (real)
+    if (complex)
     {
-      result = ((Integer) resultOfSub).toString() + "+0i";
+      if (operand.contains("-"))
+      {
+          result = operand.substring(0, operand.indexOf("-", minus)) + "+-"
+              + operand.substring(operand.indexOf("-", minus) + 1);
+      }
+      else
+      {
+        result = operand;
+      }
     }
 
     if (imaginary)
     {
-      if (resultOfSub < 0)
-      {
-        result = "0" + ((Integer) resultOfSub).toString() + "i";
-      }
-      else
-      {
-        result = "0+" + ((Integer) resultOfSub).toString() + "i";
-      }
+      result = "0+" + operand;
     }
-    // System.out.println(result);
+
+    if (real)
+    {
+      result = operand + "+0i";
+    }
+
     return result;
   }
 }

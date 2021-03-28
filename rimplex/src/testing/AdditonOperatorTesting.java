@@ -18,7 +18,7 @@ class AdditonOperatorTesting
   {
     String complexNumberOne = "3 + 2i";
     String complexNumberTwo = "4 + 2i";
-    String expectedResult = "7 + 4i";
+    String expectedResult = "7+4i";
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -29,7 +29,7 @@ class AdditonOperatorTesting
   {
     String complexNumberOne = "3 + -2i";
     String complexNumberTwo = "4 + 2i";
-    String expectedResult = "7 + 0i";
+    String expectedResult = "7+0i";
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -40,7 +40,7 @@ class AdditonOperatorTesting
   {
     String complexNumberOne = "3+2i";
     String complexNumberTwo = "4 + 2i";
-    String expectedResult = "7 + 4i";
+    String expectedResult = "7+4i";
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -52,7 +52,7 @@ class AdditonOperatorTesting
   {
     String complexNumberOne = "3 + 2i";
     String complexNumberTwo = "2i";
-    String expectedResult = "3 + 4i";
+    String expectedResult = "3+4i";
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -63,7 +63,7 @@ class AdditonOperatorTesting
   {
     String complexNumberOne = "42";
     String complexNumberTwo = "1 + 2i";
-    String expectedResult = "43 + 2i";
+    String expectedResult = "43+2i";
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -74,7 +74,7 @@ class AdditonOperatorTesting
   {
     String complexNumberOne = "-3 + 2i";
     String complexNumberTwo = "4 + 2i";
-    String expectedResult = "1 + 4i";
+    String expectedResult = "1+4i";
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -86,7 +86,7 @@ class AdditonOperatorTesting
   {
     String complexNumberOne = "-3 + -2i";
     String complexNumberTwo = "4 + 2i";
-    String expectedResult = "1 + 0i";
+    String expectedResult = "1+0i";
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -97,7 +97,7 @@ class AdditonOperatorTesting
   {
     String complexNumberOne = "3i + 4";
     String complexNumberTwo = "4 + 2i";
-    String expectedResult = "8 + 5i";
+    String expectedResult = "8+5i";
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -108,7 +108,7 @@ class AdditonOperatorTesting
   {
     String complexNumberOne = "3i + 4";
     String complexNumberTwo = "4i + 2";
-    String expectedResult = "6 + 7i";
+    String expectedResult = "6+7i";
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -120,7 +120,7 @@ class AdditonOperatorTesting
   {
     String complexNumberOne = "4";
     String complexNumberTwo = "7";
-    String expectedResult = "11 + 0i";
+    String expectedResult = "11+0i";
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -132,7 +132,7 @@ class AdditonOperatorTesting
   {
     String complexNumberOne = "-4";
     String complexNumberTwo = "7";
-    String expectedResult = "3 + 0i";
+    String expectedResult = "3+0i";
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -143,7 +143,7 @@ class AdditonOperatorTesting
   {
     String complexNumberOne = "4";
     String complexNumberTwo = "-7";
-    String expectedResult = "-3 + 0i";
+    String expectedResult = "-3+0i";
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -154,7 +154,7 @@ class AdditonOperatorTesting
   {
     String complexNumberOne = "4";
     String complexNumberTwo = "7 + 9i";
-    String expectedResult = "11 + 9i";
+    String expectedResult = "11+9i";
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -168,12 +168,12 @@ class AdditonOperatorTesting
     int secondRandomNum = random.nextInt();
     int firstRandomI = random.nextInt();
     int secondRandomI = random.nextInt();
-    String complexNumberOne = String.valueOf(firstRandomNum) + " + " 
+    String complexNumberOne = String.valueOf(firstRandomNum) + "+" 
         + String.valueOf(firstRandomI) + "i";
-    String complexNumberTwo = String.valueOf(secondRandomNum) + " + " 
+    String complexNumberTwo = String.valueOf(secondRandomNum) + "+" 
         + String.valueOf(secondRandomI) + "i";
     String expectedResult = String.valueOf(firstRandomNum + secondRandomNum) + 
-        " + " + String.valueOf(firstRandomI + secondRandomI) + "i";
+        "+" + String.valueOf(firstRandomI + secondRandomI) + "i";
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -188,7 +188,7 @@ class AdditonOperatorTesting
     String firstStringRandomNum = String.valueOf(firstRandomNum);
     String secondStringRandomNum = String.valueOf(secondRandomNum);
     String expectedResult = String.valueOf(firstRandomNum + secondRandomNum) + 
-        " + 0i";
+        "+0i";
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(firstStringRandomNum, secondStringRandomNum);
     assertEquals(expectedResult, actualResult);
@@ -417,7 +417,7 @@ class AdditonOperatorTesting
   {
     String complexNumberOne = "i";
     String complexNumberTwo = "i";
-    String expectedResult = "0 + 2i";
+    String expectedResult = "0+2i";
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -429,7 +429,7 @@ class AdditonOperatorTesting
   {
     String complexNumberOne = "i";
     String complexNumberTwo = "2 + 2i";
-    String expectedResult = "2 + 3i";
+    String expectedResult = "2+3i";
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -441,7 +441,7 @@ class AdditonOperatorTesting
   {
     String complexNumberOne = "2 + i";
     String complexNumberTwo = "2 + 2i";
-    String expectedResult = "4 + 3i";
+    String expectedResult = "4+3i";
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -453,7 +453,7 @@ class AdditonOperatorTesting
   {
     String complexNumberOne = "2 + i";
     String complexNumberTwo = "2 + i";
-    String expectedResult = "4 + 2i";
+    String expectedResult = "4+2i";
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -466,7 +466,7 @@ class AdditonOperatorTesting
   {
     String complexNumberOne = "i";
     String complexNumberTwo = "3 + 2i";
-    String expectedResult = "3 + 3i";
+    String expectedResult = "3+3i";
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -478,7 +478,7 @@ class AdditonOperatorTesting
   {
     String complexNumberOne = "2 + 3i";
     String complexNumberTwo = "i";
-    String expectedResult = "2 + 4i";
+    String expectedResult = "2+4i";
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -491,7 +491,7 @@ class AdditonOperatorTesting
   {
     String complexNumberOne = "-i";
     String complexNumberTwo = "2i + 2";
-    String expectedResult = "2 + 1i";
+    String expectedResult = "2+1i";
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -503,7 +503,7 @@ class AdditonOperatorTesting
   {
     String complexNumberOne = "2 + 3i";
     String complexNumberTwo = "-i";
-    String expectedResult = "2 + 2i";
+    String expectedResult = "2+2i";
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);

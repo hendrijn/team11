@@ -1,18 +1,9 @@
 package gui;
 
-import java.awt.Color;
-import java.awt.Container;
-import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.Toolkit;
+import java.awt.*;
+import java.util.ArrayList;
 
-import javax.swing.AbstractButton;
-import javax.swing.BorderFactory;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
+import javax.swing.*;
 import javax.swing.border.Border;
 
 /**
@@ -21,7 +12,7 @@ import javax.swing.border.Border;
  * @author Jacquelyn Hendricks
  * @version March 23 2021
  */
-public class MainInterface extends JFrame
+public class MainInterface extends JFrame implements Finals
 {
   // The serial ID for serailization
   private static final long serialVersionUID = 1L;
@@ -31,6 +22,20 @@ public class MainInterface extends JFrame
   private JPanel inputPanel;
   private JPanel buttonPanel;
 
+  JButton resetButton;
+  JButton addButton;
+  JButton subtractButton;
+  JButton multiplyButton;
+  JButton divideButton;
+  JButton equalsButton;
+
+  JTextField inputField = new JTextField();
+
+  private ButtonListener listener = new ButtonListener();
+
+  private String input;
+  private String result;
+
   /**
    * Default constructor.
    */
@@ -38,7 +43,7 @@ public class MainInterface extends JFrame
   {
     createComponents();
     setupFrame();
-    setSize(600, 300);
+    setSize(600, 200);
     setVisible(true); // display this
     centerForm();
 
@@ -47,34 +52,34 @@ public class MainInterface extends JFrame
   /**
    * Adds the buttons to the button panel. We'll need to add the clear and equals button as well.
    * Order adding to the panel matters.
-   * 
-   * Note: I might redesign how this is done later. Maybe make an abstract kind of button? Put them
-   * in an arraylist to avoid so much code duplication? Something like that cuz I feel this might be
-   * noncohesive.
    */
   private void addButtons()
   {
-    ButtonListener listener = new ButtonListener();
-
-    JButton resetButton = new JButton("R");
-    JButton addButton = new JButton("+");
-    JButton subtractButton = new JButton("-");
-    JButton multiplyButton = new JButton("x");
-    JButton divideButton = new JButton("÷");
-
-    resetButton.setForeground(Color.RED);
-
-    resetButton.addActionListener(listener);
-    addButton.addActionListener(listener);
-    subtractButton.addActionListener(listener);
-    multiplyButton.addActionListener(listener);
-    divideButton.addActionListener(listener);
-
-    buttonPanel.add(resetButton);
-    buttonPanel.add(addButton);
-    buttonPanel.add(subtractButton);
-    buttonPanel.add(multiplyButton);
-    buttonPanel.add(divideButton);
+     resetButton = new JButton(RESET);
+     addButton = new JButton(ADD);
+     subtractButton = new JButton(SUBTRACT);
+     multiplyButton = new JButton(MULTIPLY);
+     divideButton = new JButton(DIVIDE);
+     equalsButton = new JButton(EQUALS);
+    
+     resetButton.setForeground(Color.RED);
+    
+     resetButton.addActionListener(listener);
+     addButton.addActionListener(listener);
+     subtractButton.addActionListener(listener);
+     multiplyButton.addActionListener(listener);
+     divideButton.addActionListener(listener);
+     equalsButton.addActionListener(listener);
+     
+     multiplyButton.setEnabled(false);
+     divideButton.setEnabled(false);
+    
+     buttonPanel.add(resetButton);
+     buttonPanel.add(addButton);
+     buttonPanel.add(subtractButton);
+     buttonPanel.add(multiplyButton);
+     buttonPanel.add(divideButton);
+     buttonPanel.add(equalsButton);
   }
 
   /**
@@ -92,6 +97,18 @@ public class MainInterface extends JFrame
     displayPanel.add(displayOps);
     displayPanel.add(displayRes);
 
+  }
+
+  /**
+   * Sets up input field.
+   */
+  private void addInputField()
+  {
+    inputField.setHorizontalAlignment(JTextField.RIGHT);
+    inputField.addKeyListener(listener);
+
+    inputPanel.setLayout(new BorderLayout());
+    inputPanel.add(inputField, BorderLayout.NORTH);
   }
 
   /**
@@ -126,6 +143,7 @@ public class MainInterface extends JFrame
   {
     buttonPanel = new JPanel();
     displayPanel = new JPanel();
+    inputPanel = new JPanel();
   }
 
   /**
@@ -141,41 +159,44 @@ public class MainInterface extends JFrame
     contentPane.setLayout(new GridLayout(3, 1));
 
     addDisplay();
+    addInputField();
     addButtons();
 
     contentPane.add(displayPanel);
+    contentPane.add(inputPanel);
     contentPane.add(buttonPanel);
   }
 
-  void updateDisplay(String text, String operator)
+  /**
+   * Updates the display with user input and results.
+   * 
+   * @param buttonText
+   *          a string containing an operator or '='
+   * @param result
+   *          a string containing the result of an equation
+   */
+  void updateDisplay(String buttonText, String result)
   {
-	  //checks if operand is valid before updating the display.
-	  if (badOperand(text))
-	  {
-		  //Display some sort of error message asking for a valid operand.
-		  //Maybe in its own hidden JLabel to be added??????
-		  return;
-	  }
-	  if (operator.equals("="))
-	  {
-		  //Will eventually display result
-		  ((JLabel) displayPanel.getComponent(1)).setText(text + operator);
-		  
-		  //should this be set to nothing or contain full equation???? 
-		  ((JLabel) displayPanel.getComponent(0)).setText("");
-	  } else {
-		  ((JLabel) displayPanel.getComponent(0)).setText(text + operator);
-	  }
-	  
+
+    if (result == null && input == null)
+    {
+      input = ((JTextField) inputPanel.getComponent(0)).getText();
+      input = input.concat(buttonText);
+      ((JTextField) inputPanel.getComponent(0)).setText("");
+      ((JLabel) displayPanel.getComponent(0)).setText(input);
+    }
+    else
+    {
+      input = input.concat(((JTextField) inputPanel.getComponent(0)).getText());
+      input = input.concat(buttonText);
+      ((JTextField) inputPanel.getComponent(0)).setText("");
+      ((JLabel) displayPanel.getComponent(0)).setText(input);
+      ((JLabel) displayPanel.getComponent(1)).setText(result);
+      input = null;
+    }
+
   }
-  
-  
-  private boolean badOperand (String operand)
-  {
-	  return false;
-  }
-  
-  
+
   /**
    * Singleton that only returns one instance of the main frame.
    * 

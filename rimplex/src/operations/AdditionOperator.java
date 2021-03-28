@@ -168,7 +168,9 @@ public class AdditionOperator implements Operator
     
     int finalRegTotal  =  leftRegNumInt + rightRegNumInt;
     int finalImagTotal = rightImagNumInt + leftImagNumInt;
-    
+
+    // hi, Sydney here, I took out the spaces here because I was testing something. Hope that's alright! :)
+    // I can fix you're tests for you since it was my fault for not clarifying this earlier. Just let me know!
     return finalRegTotal + "+" + finalImagTotal + "i";
    
   }
