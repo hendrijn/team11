@@ -22,6 +22,13 @@ public class MainInterface extends JFrame implements Finals
   private JPanel inputPanel;
   private JPanel buttonPanel;
 
+  JButton resetButton;
+  JButton addButton;
+  JButton subtractButton;
+  JButton multiplyButton;
+  JButton divideButton;
+  JButton equalsButton;
+
   JTextField inputField = new JTextField();
 
   private ButtonListener listener = new ButtonListener();
@@ -48,29 +55,31 @@ public class MainInterface extends JFrame implements Finals
    */
   private void addButtons()
   {
-    ArrayList<JButton> buttons = new ArrayList<>();
-    for (int i = 0; i < 7; i++)
-    {
-      buttons.add(new JButton());
-      buttons.get(i).addActionListener(listener);
-    }
-    buttons.get(0).setText(RESET);
-    buttons.get(0).setForeground(Color.RED);
-    buttons.get(1).setText(CLEAR);
-    buttons.get(1).setForeground(Color.RED);
-    buttons.get(2).setText(ADD);
-    buttons.get(3).setText(SUBTRACT);
-    buttons.get(4).setText(MULTIPLY);
-    buttons.get(4).setEnabled(false);
-    buttons.get(5).setText(DIVIDE);
-    buttons.get(5).setEnabled(false);
-    buttons.get(6).setText(EQUALS);
-
-    for (JButton button : buttons)
-    {
-      buttonPanel.add(button);
-    }
-
+     resetButton = new JButton(RESET);
+     addButton = new JButton(ADD);
+     subtractButton = new JButton(SUBTRACT);
+     multiplyButton = new JButton(MULTIPLY);
+     divideButton = new JButton(DIVIDE);
+     equalsButton = new JButton(EQUALS);
+    
+     resetButton.setForeground(Color.RED);
+    
+     resetButton.addActionListener(listener);
+     addButton.addActionListener(listener);
+     subtractButton.addActionListener(listener);
+     multiplyButton.addActionListener(listener);
+     divideButton.addActionListener(listener);
+     equalsButton.addActionListener(listener);
+     
+     multiplyButton.setEnabled(false);
+     divideButton.setEnabled(false);
+    
+     buttonPanel.add(resetButton);
+     buttonPanel.add(addButton);
+     buttonPanel.add(subtractButton);
+     buttonPanel.add(multiplyButton);
+     buttonPanel.add(divideButton);
+     buttonPanel.add(equalsButton);
   }
 
   /**

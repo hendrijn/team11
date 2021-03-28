@@ -31,9 +31,6 @@ public class ButtonListener implements Finals, ActionListener, KeyListener
       case RESET:
         System.out.println("Handle reset functionality");
         break;
-      case CLEAR:
-        System.out.println("Handle reset functionality");
-        break;        
       case ADD:
         ui.updateDisplay(ADD, null);
         context = new TempContext(new AdditionOperator());
