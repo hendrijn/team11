@@ -96,7 +96,7 @@ public class AdditionOperator implements Operator
     else 
     {
       leftImaginaryNumber = simplifedLeftAddend.replaceAll("i", "");
-      leftRegularNumber  = simplifedLeftAugend;
+      leftRegularNumber   = simplifedLeftAugend;
     }
     
     
@@ -169,7 +169,7 @@ public class AdditionOperator implements Operator
     int finalRegTotal  =  leftRegNumInt + rightRegNumInt;
     int finalImagTotal = rightImagNumInt + leftImagNumInt;
     
-    return finalRegTotal + " + " + finalImagTotal + "i";
+    return finalRegTotal + "+" + finalImagTotal + "i";
    
   }
 

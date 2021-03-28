@@ -25,6 +25,17 @@ class AdditonOperatorTesting
   }
   
   @Test
+  public void twoValidComplex2NumbersTest()
+  {
+    String complexNumberOne = "3 + -2i";
+    String complexNumberTwo = "4 + 2i";
+    String expectedResult = "7 + 0i";
+    TempContext tempContext = new TempContext(new AdditionOperator());
+    String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
+    assertEquals(expectedResult, actualResult);
+  }
+  
+  @Test
   public void twoValidNoSpaceComplexNumbersTest()
   {
     String complexNumberOne = "3+2i";
@@ -42,6 +53,17 @@ class AdditonOperatorTesting
     String complexNumberOne = "3 + 2i";
     String complexNumberTwo = "2i";
     String expectedResult = "3 + 4i";
+    TempContext tempContext = new TempContext(new AdditionOperator());
+    String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
+    assertEquals(expectedResult, actualResult);
+  }
+  
+  @Test
+  public void twoValidNumbersCombinedTest()
+  {
+    String complexNumberOne = "42";
+    String complexNumberTwo = "1 + 2i";
+    String expectedResult = "43 + 2i";
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
