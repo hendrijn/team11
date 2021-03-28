@@ -16,6 +16,8 @@ import operations.*;
 public class ButtonListener implements Finals, ActionListener, KeyListener
 {
   private TempContext context = null;
+  
+  String firstInput = "";
 
   /**
    * Handles all button operations.
@@ -25,18 +27,20 @@ public class ButtonListener implements Finals, ActionListener, KeyListener
   {
     MainInterface ui = MainInterface.getInstance();
     AbstractButton button = (AbstractButton) e.getSource();
-
+    
     switch (button.getText())
     {
       case RESET:
         System.out.println("Handle reset functionality");
         break;
       case ADD:
+        firstInput = ui.inputField.getText();
         ui.updateDisplay(ADD, null);
         context = new TempContext(new AdditionOperator());
         break;
       case SUBTRACT:
         // Temporary code to tests updateDisplay functionality
+        firstInput = ui.inputField.getText();
         ui.updateDisplay(SUBTRACT, null);
         context = new TempContext(new SubtractionOperator());
         break;
@@ -47,9 +51,12 @@ public class ButtonListener implements Finals, ActionListener, KeyListener
         System.out.println("Divide is disabled");
         break;
       case EQUALS:
-        // calculate result here???
+        String currentInput = ui.inputField.getText();
+        System.out.println(firstInput);
+        System.out.println(currentInput);
         // need to save last operator for use in calculation???
-        ui.updateDisplay(" =", "correct result");
+        String finalResult = context.evaluate(firstInput, currentInput);
+        ui.updateDisplay(" =", finalResult);
         System.out.println("Handle equals functionality");
         break;
       default:
@@ -88,5 +95,8 @@ public class ButtonListener implements Finals, ActionListener, KeyListener
     // TODO Auto-generated method stub
 
   }
+  
+  
+   
 
 }
