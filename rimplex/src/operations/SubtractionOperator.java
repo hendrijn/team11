@@ -16,92 +16,67 @@ public class SubtractionOperator implements Operator
   public String evaluate(final String leftOperand, final String rightOperand)
       throws IllegalArgumentException
   {
-    boolean real = false;
-    boolean complex = false;
-    boolean imaginary = false;
-
-    String result = "";
-    int resultOfSub = -1;
-
+    
+    // need to put imaginary into 0+xi form
+    // need to put real into x+0i form
+    // can;t figure out where to do it
     if (leftOperand == null || rightOperand == null || leftOperand == "" || rightOperand == "")
     {
       throw new IllegalArgumentException("Please provide two operands");
     }
-
-    String noSpLeft = leftOperand.replaceAll(" ", "");
-    String noSpRight = rightOperand.replaceAll(" ", "");
-
-    int iIndexL = noSpLeft.indexOf("i");
-    int iIndexR = noSpRight.indexOf("i");
-
-    if (noSpLeft.indexOf("i", iIndexL + 1) != -1)
+    
+    String noSpL = leftOperand.replaceAll(" ", "");
+    String noSpR = rightOperand.replaceAll(" ", "");
+    
+    String alteredLOp = noSpL;
+    int indexOfNeg = noSpL.indexOf("-");
+    int subSign = noSpL.indexOf("-", indexOfNeg+1);
+    if(subSign != -1)
     {
-      throw new IllegalArgumentException("Not a valid operand");
-    }
-    if (noSpRight.indexOf("i", iIndexR + 1) != -1)
-    {
-      throw new IllegalArgumentException("Not a valid operand");
+      alteredLOp = noSpL.substring(0, noSpL.indexOf("-", subSign)) + "+-" + noSpL.substring(noSpL.indexOf("-", subSign) + 1);
     }
 
-    // real num processing
-    int realL;
-    int realR;
-    try
+    String distribute = this.distribute(noSpR);
+    String result = new AdditionOperator().evaluate(alteredLOp, distribute);
+    if(result.contains("+-"))
     {
-      realL = Integer.parseInt(noSpLeft);
+      result = result.substring(0, result.indexOf("+")) + "-" + result.substring(result.indexOf("+") + 2);
     }
-    catch (NumberFormatException nfe)
+    return result;
+  }
+
+  public String distribute(String rightOperand)
+  {
+    // add non-complex cases
+    int indexOfNeg = rightOperand.indexOf("-");
+    String distribute = "";
+    if (rightOperand.indexOf("+") != -1)
     {
-      realL = -1;
-    }
-
-    try
-    {
-      realR = Integer.parseInt(noSpRight);
-    }
-    catch (NumberFormatException nfe)
-    {
-      realR = -1;
-    }
-
-    if (realR != -1 && realL != -1)
-    {
-      real = true;
-      resultOfSub = realL - realR;
-    }
-
-    if (noSpRight.indexOf("i") != -1 && noSpLeft.indexOf("i") != -1)
-    {
-      imaginary = true;
-      String left = noSpLeft.substring(0, noSpLeft.indexOf("i"));
-      String right = noSpRight.substring(0, noSpRight.indexOf("i"));
-
-      int leftInt = Integer.parseInt(left);
-      int rightInt = Integer.parseInt(right);
-
-      resultOfSub = leftInt - rightInt;
-    }
-
-    // imaginary num processing
-
-    // final conversion toString
-    if (real)
-    {
-      result = ((Integer) resultOfSub).toString() + "+0i";
-    }
-
-    if (imaginary)
-    {
-      if (resultOfSub < 0)
+      if (rightOperand.charAt(0) == '-')
       {
-        result = "0" + ((Integer) resultOfSub).toString() + "i";
+        distribute = rightOperand.substring(0, rightOperand.indexOf("+")) + "-"
+            + rightOperand.substring(rightOperand.indexOf("+") + 1);
       }
       else
       {
-        result = "0+" + ((Integer) resultOfSub).toString() + "i";
+        distribute = "-" + rightOperand.substring(0, rightOperand.indexOf("+")) + "+-"
+            + rightOperand.substring(rightOperand.indexOf("+") + 1) + "";
       }
     }
-    // System.out.println(result);
-    return result;
+
+    if (rightOperand.indexOf("-", indexOfNeg++) != -1)
+    {
+      if (rightOperand.charAt(0) == '-')
+      {
+        distribute = rightOperand.substring(1, rightOperand.indexOf("-", indexOfNeg++)) + "+"
+            + rightOperand.substring(rightOperand.indexOf("-", indexOfNeg++) + 1);
+      }
+      else
+      {
+        distribute = "-" + rightOperand.substring(0, rightOperand.indexOf("-", indexOfNeg++)) + "+"
+            + rightOperand.substring(rightOperand.indexOf("-", indexOfNeg++) + 1);
+      }
+    }
+    return distribute;
   }
 }
