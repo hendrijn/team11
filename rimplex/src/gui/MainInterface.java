@@ -23,6 +23,7 @@ public class MainInterface extends JFrame implements Finals
   private JPanel buttonPanel;
 
   JButton resetButton;
+  JButton clearButton;
   JButton addButton;
   JButton subtractButton;
   JButton multiplyButton;
@@ -59,6 +60,7 @@ public class MainInterface extends JFrame implements Finals
   private void addButtons()
   {
     resetButton = new JButton(RESET);
+    clearButton = new JButton(CLEAR);
     addButton = new JButton(ADD);
     subtractButton = new JButton(SUBTRACT);
     multiplyButton = new JButton(MULTIPLY);
@@ -66,8 +68,10 @@ public class MainInterface extends JFrame implements Finals
     equalsButton = new JButton(EQUALS);
 
     resetButton.setForeground(Color.RED);
+    clearButton.setForeground(Color.GREEN);
 
     resetButton.addActionListener(listener);
+    clearButton.addActionListener(listener);
     addButton.addActionListener(listener);
     subtractButton.addActionListener(listener);
     multiplyButton.addActionListener(listener);
@@ -78,6 +82,7 @@ public class MainInterface extends JFrame implements Finals
     divideButton.setEnabled(false);
 
     buttonPanel.add(resetButton);
+    buttonPanel.add(clearButton);
     buttonPanel.add(addButton);
     buttonPanel.add(subtractButton);
     buttonPanel.add(multiplyButton);

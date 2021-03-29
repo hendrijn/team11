@@ -16,7 +16,7 @@ import operations.*;
 public class ButtonListener implements Finals, ActionListener, KeyListener
 {
   private TempContext context = null;
-  
+
   String firstInput = "";
 
   /**
@@ -27,11 +27,16 @@ public class ButtonListener implements Finals, ActionListener, KeyListener
   {
     MainInterface ui = MainInterface.getInstance();
     AbstractButton button = (AbstractButton) e.getSource();
-    
+
     switch (button.getText())
     {
       case RESET:
-        System.out.println("Handle reset functionality");
+        ui.inputField.setText("");
+        ui.updateDisplay("", null);
+        ui.updateDisplay("", null);
+        break;
+      case CLEAR:
+        ui.inputField.setText("");
         break;
       case ADD:
         firstInput = ui.inputField.getText();
@@ -95,8 +100,5 @@ public class ButtonListener implements Finals, ActionListener, KeyListener
     // TODO Auto-generated method stub
 
   }
-  
-  
-   
 
 }
