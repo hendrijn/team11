@@ -14,7 +14,7 @@ import javax.swing.border.Border;
  */
 public class MainInterface extends JFrame implements Finals
 {
-  // The serial ID for serailization
+  // The serial ID for serialization
   private static final long serialVersionUID = 1L;
   private static MainInterface frame;
 
