@@ -22,7 +22,7 @@ public class AdditionOperator implements Operator
 //    }
       
       
-    //Appending complex number units to non-complex numbers
+    /*//Appending complex number units to non-complex numbers
     if (leftOperand.equals("i")) 
     {
       leftOperand = "1i+0";
@@ -57,30 +57,31 @@ public class AdditionOperator implements Operator
     
     if (!rightOperand.contains("+")) {
       rightOperand = rightOperand + "+0";
-    }
+    }*/
+    String simplifedLeft  = leftOperand.replaceAll(" ", "");
+    String simplifedRight = rightOperand.replaceAll(" ", "");
     
-    
-    
+    String alterROp = TempContext.format(simplifedRight);
+    String alteredLOp = TempContext.format(simplifedLeft);
     //Method for counting i's in a string from: https://www.baeldung.com/java-count-chars 
-    long iCountLeft = leftOperand.chars().filter(ch -> ch == 'i').count();
-    long iCountRight = rightOperand.chars().filter(ch -> ch == 'i').count();
+    long iCountLeft = alteredLOp.chars().filter(ch -> ch == 'i').count();
+    long iCountRight = alterROp.chars().filter(ch -> ch == 'i').count();
     
     if (iCountLeft > 1 || iCountRight > 1) 
     {
       throw new IllegalArgumentException("Please provide two valid operands, or simplify them.");
     }
     
-    String simplifedLeft  = leftOperand.replaceAll(" ", "");
-    String simplifedRight = rightOperand.replaceAll(" ", "");
+    
      
-    int leftPlusIndex  = simplifedLeft.indexOf("+");
-    int rightPlusIndex = simplifedRight.indexOf("+");
+    int leftPlusIndex  = alteredLOp.indexOf("+");
+    int rightPlusIndex = alterROp.indexOf("+");
    
     //Getting the two parts of the complex number
-    String simplifedLeftAugend  = simplifedLeft.substring(0, leftPlusIndex);
-    String simplifedLeftAddend  = simplifedLeft.substring(leftPlusIndex + 1);
-    String simplifedRightAugend = simplifedRight.substring(0, rightPlusIndex);
-    String simplifedRightAddend = simplifedRight.substring(rightPlusIndex + 1);
+    String simplifedLeftAugend  = alteredLOp.substring(0, leftPlusIndex);
+    String simplifedLeftAddend  = alteredLOp.substring(leftPlusIndex + 1);
+    String simplifedRightAugend = alterROp.substring(0, rightPlusIndex);
+    String simplifedRightAddend = alterROp.substring(rightPlusIndex + 1);
     
     String leftImaginaryNumber  = "";
     String rightImaginaryNumber = "";

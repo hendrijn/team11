@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import operations.SubtractionOperator;
+import operations.TempContext;
 
 /**
  * Unit tests for the Subtraction class.
@@ -15,7 +16,7 @@ import operations.SubtractionOperator;
 class SubtractionOperatorTest
 {
 
-  /*@Test
+  @Test
   public void testEvaluateExtraSpaces()
   {
     SubtractionOperator s = new SubtractionOperator();
@@ -122,14 +123,14 @@ class SubtractionOperatorTest
       assertTrue(true);
     }
 
-  }*/
+  }
 
   @Test
   public void testEvaluateComplex()
   {
     SubtractionOperator s = new SubtractionOperator();
 
-    /*// both operands null
+    // both operands null
     try
     {
       String bothNull = s.evaluate(null, null);
@@ -223,15 +224,15 @@ class SubtractionOperatorTest
     // both negative, negative result
     actual = s.evaluate("-9-96i", "-2-42i");
     expected = "-7-54i";
-    assertTrue(expected.equals(actual));*/
-    
-    String actual = s.evaluate("3+2i", "2-i");
-    String expected = "1-i";
     assertTrue(expected.equals(actual));
+    
+    /*actual = s.evaluate("3+2i", "2-i");
+    expected = "1-i";
+    assertTrue(expected.equals(actual));*/
 
   }
 
-  /*@Test
+  @Test
   public void testEvaluateImaginary()
   {
     SubtractionOperator s = new SubtractionOperator();
@@ -559,29 +560,29 @@ class SubtractionOperatorTest
   {
     SubtractionOperator s = new SubtractionOperator();
 
-    String actual = s.format("3-6i");
+    String actual = TempContext.format("3-6i");
     String expected = "3+-6i";
     assertTrue(actual.equals(expected));
 
-    actual = s.format("3+6i");
+    actual = TempContext.format("3+6i");
     expected = "3+6i";
     assertTrue(actual.equals(expected));
 
-    actual = s.format("3");
+    actual = TempContext.format("3");
     expected = "3+0i";
     assertTrue(actual.equals(expected));
 
-    actual = s.format("3i");
+    actual = TempContext.format("3i");
     expected = "0+3i";
     assertTrue(actual.equals(expected));
 
-    actual = s.format("-3");
+    actual = TempContext.format("-3");
     expected = "-3+0i";
     assertTrue(actual.equals(expected));
 
-    actual = s.format("-3i");
+    actual = TempContext.format("-3i");
     expected = "0+-3i";
     assertTrue(actual.equals(expected));
-  }*/
+  }
 
 }
