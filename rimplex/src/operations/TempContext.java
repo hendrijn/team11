@@ -35,5 +35,63 @@ public class TempContext
   {
     return operator.evaluate(leftOperand, rightOperand);
   }
+  
+  public static String format(String operand)
+  {
+
+    boolean complex = false;
+    boolean imaginary = false;
+    boolean real = false;
+    String result = "";
+
+    int negative = operand.indexOf("-");
+    int minus = operand.indexOf("-", negative + 1);
+
+    if (operand.contains("+"))
+    {
+      complex = true;
+    }
+    else if (operand.charAt(0) == '-' && minus != -1)
+    {
+      complex = true;
+    }
+    else if (operand.charAt(0) != '-' && negative != -1)
+    {
+      complex = true;
+    }
+    else if (operand.contains("i"))
+    {
+      imaginary = true;
+    }
+    else
+    {
+      real = true;
+    }
+
+    if (complex)
+    {
+      if (operand.contains("-") && !operand.contains("+-"))
+      {
+          result = operand.substring(0, operand.indexOf("-", minus)) + "+-"
+              + operand.substring(operand.indexOf("-", minus) + 1);
+      }
+      else
+      {
+        result = operand;
+      }
+    }
+
+    if (imaginary)
+    {
+      result = "0+" + operand;
+    }
+
+    if (real)
+    {
+      result = operand + "+0i";
+    }
+    System.out.println(result);
+    return result;
+  }
 
 }
