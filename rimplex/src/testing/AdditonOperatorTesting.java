@@ -512,6 +512,35 @@ class AdditonOperatorTesting
   
   
   
+  @Test
+  public void singleNegMIRightTest()
+  {
+    String complexNumberOne = "2 + 3i";
+    String complexNumberTwo = "-6i";
+    String expectedResult = "2+-3i";
+    TempContext tempContext = new TempContext(new AdditionOperator());
+    String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
+    assertEquals(expectedResult, actualResult);
+    
+  }
+  
+  
+
+  
+  
+  @Test
+  public void operandsWithSubtractionTest()
+  {
+    String complexNumberOne = "2 + 3i";
+    String complexNumberTwo = "2 - 2i";
+    String expectedResult = "4 + -1i";
+    TempContext tempContext = new TempContext(new AdditionOperator());
+    String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
+    assertEquals(expectedResult, actualResult);
+ 
+  }
+  
+  
   
   
   
