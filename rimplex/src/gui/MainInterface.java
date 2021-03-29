@@ -53,6 +53,8 @@ public class MainInterface extends JFrame implements Finals
   /**
    * Adds the buttons to the button panel. We'll need to add the clear and equals button as well.
    * Order adding to the panel matters.
+   * 
+   * Will I change to use a loop?
    */
   private void addButtons()
   {
