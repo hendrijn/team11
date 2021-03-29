@@ -31,11 +31,11 @@ public class ButtonListener implements Finals, ActionListener, KeyListener
     switch (button.getText())
     {
       case RESET:
-        System.out.println("Handle reset functionality");
+        ui.inputField.setText("");
+        ui.updateDisplay("", null);
         break;
       case CLEAR:
         ui.inputField.setText("");
-        // System.out.println("Handle reset functionality");
         break;
       case ADD:
         firstInput = ui.inputField.getText();
