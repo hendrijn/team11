@@ -33,6 +33,7 @@ public class ButtonListener implements Finals, ActionListener, KeyListener
       case RESET:
         ui.inputField.setText("");
         ui.updateDisplay("", null);
+        ui.updateDisplay("", null);
         break;
       case CLEAR:
         ui.inputField.setText("");
