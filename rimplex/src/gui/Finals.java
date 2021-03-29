@@ -15,5 +15,6 @@ public interface Finals
   static final String MULTIPLY = "x";
   static final String DIVIDE = "÷";
   static final String EQUALS = "=";
+  static final String SP = " ";
 
 }

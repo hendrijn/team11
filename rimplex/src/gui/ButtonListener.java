@@ -35,13 +35,13 @@ public class ButtonListener implements Finals, ActionListener, KeyListener
         break;
       case ADD:
         firstInput = ui.inputField.getText();
-        ui.updateDisplay(ADD, null);
+        ui.updateDisplay(SP + ADD + SP, null);
         context = new TempContext(new AdditionOperator());
         break;
       case SUBTRACT:
         // Temporary code to tests updateDisplay functionality
         firstInput = ui.inputField.getText();
-        ui.updateDisplay(SUBTRACT, null);
+        ui.updateDisplay(SP + SUBTRACT + SP, null);
         context = new TempContext(new SubtractionOperator());
         break;
       case MULTIPLY:
