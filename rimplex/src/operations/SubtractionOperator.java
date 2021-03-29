@@ -40,8 +40,7 @@ public class SubtractionOperator implements Operator
       result = result.substring(0, result.indexOf("+")) + "-"
           + result.substring(result.indexOf("+") + 2);
     }
-
-    // return
+ 
     return result;
   }
 
