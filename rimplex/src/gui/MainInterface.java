@@ -99,8 +99,8 @@ public class MainInterface extends JFrame implements Finals
     Border displayB = BorderFactory.createLineBorder(Color.BLUE, 3, true);
     displayPanel.setBorder(displayB);
     displayPanel.setLayout(new GridLayout(1, 2));
-    JLabel displayOps = new JLabel("Operands go here", JLabel.LEFT);
-    JLabel displayRes = new JLabel("results go here", JLabel.RIGHT);
+    JLabel displayOps = new JLabel("", JLabel.LEFT);
+    JLabel displayRes = new JLabel("", JLabel.RIGHT);
 
     displayPanel.add(displayOps);
     displayPanel.add(displayRes);
@@ -188,14 +188,19 @@ public class MainInterface extends JFrame implements Finals
 
     if (result == null && input == null)
     {
-      input = ((JTextField) inputPanel.getComponent(0)).getText();
+      input = "(";
+      input = input.concat(((JTextField) inputPanel.getComponent(0)).getText());
+      input = input.concat(")");
       input = input.concat(buttonText);
       ((JTextField) inputPanel.getComponent(0)).setText("");
+      
       ((JLabel) displayPanel.getComponent(0)).setText(input);
     }
     else
     {
+      input = input.concat("(");
       input = input.concat(((JTextField) inputPanel.getComponent(0)).getText());
+      input = input.concat(")");
       input = input.concat(buttonText);
       ((JTextField) inputPanel.getComponent(0)).setText("");
       ((JLabel) displayPanel.getComponent(0)).setText(input);
