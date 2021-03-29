@@ -44,6 +44,7 @@ public class MainInterface extends JFrame implements Finals
     createComponents();
     setupFrame();
     setSize(600, 200);
+    setTitle("Rimplex");
     setVisible(true); // display this
     centerForm();
 
@@ -55,31 +56,31 @@ public class MainInterface extends JFrame implements Finals
    */
   private void addButtons()
   {
-     resetButton = new JButton(RESET);
-     addButton = new JButton(ADD);
-     subtractButton = new JButton(SUBTRACT);
-     multiplyButton = new JButton(MULTIPLY);
-     divideButton = new JButton(DIVIDE);
-     equalsButton = new JButton(EQUALS);
-    
-     resetButton.setForeground(Color.RED);
-    
-     resetButton.addActionListener(listener);
-     addButton.addActionListener(listener);
-     subtractButton.addActionListener(listener);
-     multiplyButton.addActionListener(listener);
-     divideButton.addActionListener(listener);
-     equalsButton.addActionListener(listener);
-     
-     multiplyButton.setEnabled(false);
-     divideButton.setEnabled(false);
-    
-     buttonPanel.add(resetButton);
-     buttonPanel.add(addButton);
-     buttonPanel.add(subtractButton);
-     buttonPanel.add(multiplyButton);
-     buttonPanel.add(divideButton);
-     buttonPanel.add(equalsButton);
+    resetButton = new JButton(RESET);
+    addButton = new JButton(ADD);
+    subtractButton = new JButton(SUBTRACT);
+    multiplyButton = new JButton(MULTIPLY);
+    divideButton = new JButton(DIVIDE);
+    equalsButton = new JButton(EQUALS);
+
+    resetButton.setForeground(Color.RED);
+
+    resetButton.addActionListener(listener);
+    addButton.addActionListener(listener);
+    subtractButton.addActionListener(listener);
+    multiplyButton.addActionListener(listener);
+    divideButton.addActionListener(listener);
+    equalsButton.addActionListener(listener);
+
+    multiplyButton.setEnabled(false);
+    divideButton.setEnabled(false);
+
+    buttonPanel.add(resetButton);
+    buttonPanel.add(addButton);
+    buttonPanel.add(subtractButton);
+    buttonPanel.add(multiplyButton);
+    buttonPanel.add(divideButton);
+    buttonPanel.add(equalsButton);
   }
 
   /**
