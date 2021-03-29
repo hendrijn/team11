@@ -204,6 +204,15 @@ public class MainInterface extends JFrame implements Finals
     }
 
   }
+  
+  /**
+   * Handles error message prompting.
+   * @param errorMessage The error message from the relevant exception.
+   */
+  protected void errorMessage(String errorMessage) 
+  {
+    JOptionPane.showMessageDialog(null, errorMessage, errorMessage, JOptionPane.ERROR_MESSAGE);
+  }
 
   /**
    * Singleton that only returns one instance of the main frame.

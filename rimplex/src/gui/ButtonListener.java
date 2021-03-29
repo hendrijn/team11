@@ -17,7 +17,7 @@ public class ButtonListener implements Finals, ActionListener, KeyListener
 {
   private TempContext context = null;
 
-  String firstInput = "";
+  private String firstInput = "";
 
   /**
    * Handles all button operations.
@@ -56,13 +56,17 @@ public class ButtonListener implements Finals, ActionListener, KeyListener
         System.out.println("Divide is disabled");
         break;
       case EQUALS:
-        String currentInput = ui.inputField.getText();
-        System.out.println(firstInput);
-        System.out.println(currentInput);
-        // need to save last operator for use in calculation???
-        String finalResult = context.evaluate(firstInput, currentInput);
-        ui.updateDisplay(" =", finalResult);
-        System.out.println("Handle equals functionality");
+        try
+        {
+          equalsButtonHandling(ui);
+        }
+        catch (NullPointerException nullP)
+        {
+          ui.errorMessage("Please input two valid operands.");
+          ui.inputField.setText("");
+          ui.updateDisplay("", null);
+          ui.updateDisplay("", null);
+        }  
         break;
       default:
         closeApplication();
@@ -99,6 +103,32 @@ public class ButtonListener implements Finals, ActionListener, KeyListener
   {
     // TODO Auto-generated method stub
 
+  }
+  
+  
+  
+  /**
+   * A private helper method for dealing with equalsButtonHandling.
+   * @param ui The ui of the entire rimplex program.
+   */
+  private void equalsButtonHandling(MainInterface ui) {
+    
+    String currentInput = ui.inputField.getText();  
+    String finalResult = "";
+    try
+    {
+      finalResult = context.evaluate(firstInput, currentInput);
+    }
+    catch (IllegalArgumentException e)
+    {
+      ui.errorMessage(e.getMessage());
+      ui.inputField.setText("");
+      ui.updateDisplay("", null);
+      ui.updateDisplay("", null);
+      return;
+    }
+    ui.updateDisplay(" =", finalResult);
+    System.out.println("Handle equals functionality");
   }
 
 }
