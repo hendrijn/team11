@@ -541,6 +541,29 @@ class AdditonOperatorTesting
   }
   
   
+  @Test
+  public void largeNumberTest()
+  {
+    String complexNumberOne = "100000000i";
+    String complexNumberTwo = "100000000i";
+    String expectedResult = "0+200000000i";
+    TempContext tempContext = new TempContext(new AdditionOperator());
+    String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
+    assertEquals(expectedResult, actualResult);
+ 
+  }
+  
+  @Test
+  public void largeNumber2Test()
+  {
+    String complexNumberOne = "100000000000i";
+    String complexNumberTwo = "10000000000i";
+    String expectedResult = "0+200000000000i";
+    TempContext tempContext = new TempContext(new AdditionOperator());
+    String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
+    assertEquals(expectedResult, actualResult);
+ 
+  }
   
   
   

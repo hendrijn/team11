@@ -120,10 +120,10 @@ public class AdditionOperator implements Operator
     }
     
     //Integer processing
-    int leftImagNumInt = 0;
+    long leftImagNumLong = 0;
     try
     {
-      leftImagNumInt = Integer.parseInt(leftImaginaryNumber);
+      leftImagNumLong = Long.parseLong(leftImaginaryNumber);
     }
     catch (NumberFormatException e)
     {
@@ -131,22 +131,10 @@ public class AdditionOperator implements Operator
     }
     
     
-    int leftRegNumInt = 0;
+    long leftRegNumLong = 0;
     try
     {
-      leftRegNumInt = Integer.parseInt(leftRegularNumber);
-    }
-    catch (NumberFormatException e)
-    {
-      
-      throw new IllegalArgumentException("Not a valid operand.");
-    }
-    
-    
-    int rightImagNumInt = 0;
-    try
-    {
-      rightImagNumInt = Integer.parseInt(rightImaginaryNumber);
+      leftRegNumLong = Long.parseLong(leftRegularNumber);
     }
     catch (NumberFormatException e)
     {
@@ -155,10 +143,10 @@ public class AdditionOperator implements Operator
     }
     
     
-    int rightRegNumInt = 0;
+    long rightImagNumLong = 0;
     try
     {
-      rightRegNumInt = Integer.parseInt(rightRegularNumber);
+      rightImagNumLong = Long.parseLong(rightImaginaryNumber);
     }
     catch (NumberFormatException e)
     {
@@ -166,11 +154,21 @@ public class AdditionOperator implements Operator
       throw new IllegalArgumentException("Not a valid operand.");
     }
     
-    int finalRegTotal  =  leftRegNumInt + rightRegNumInt;
-    int finalImagTotal = rightImagNumInt + leftImagNumInt;
+    
+    long rightRegNumLong = 0;
+    try
+    {
+      rightRegNumLong = Long.parseLong(rightRegularNumber);
+    }
+    catch (NumberFormatException e)
+    {
+      
+      throw new IllegalArgumentException("Not a valid operand.");
+    }
+    
+    long finalRegTotal  =  leftRegNumLong + rightRegNumLong;
+    long finalImagTotal =  leftImagNumLong + rightImagNumLong;
 
-    // hi, Sydney here, I took out the spaces here because I was testing something. Hope that's alright! :)
-    // I can fix you're tests for you since it was my fault for not clarifying this earlier. Just let me know!
     return finalRegTotal + "+" + finalImagTotal + "i";
    
   }
