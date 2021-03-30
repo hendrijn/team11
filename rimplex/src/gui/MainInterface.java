@@ -32,7 +32,7 @@ public class MainInterface extends JFrame implements Finals
 
   JTextField inputField = new JTextField();
 
-  private ButtonListener listener = new ButtonListener();
+  private InterfaceController listener = new InterfaceController();
 
   private String input;
   private String result;

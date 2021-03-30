@@ -13,7 +13,7 @@ import operations.*;
  * @author Jacquelyn Hendricks
  * @version March 23 2021
  */
-public class ButtonListener implements Finals, ActionListener, KeyListener
+public class InterfaceController implements Finals, ActionListener, KeyListener
 {
   private TempContext context = null;
 
