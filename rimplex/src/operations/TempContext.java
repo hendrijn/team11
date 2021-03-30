@@ -70,10 +70,15 @@ public class TempContext
 
     if (complex)
     {
-      if (operand.contains("-") && !operand.contains("+-"))
+      if (operand.charAt(0) == '-' && !operand.contains("+-") && minus != -1)
       {
           result = operand.substring(0, operand.indexOf("-", minus)) + "+-"
               + operand.substring(operand.indexOf("-", minus) + 1);
+      } 
+      else if(negative != -1 && !operand.contains("+-") && !operand.contains("+"))
+      {
+        result = operand.substring(0, operand.indexOf("-", minus)) + "+-"
+            + operand.substring(operand.indexOf("-", minus) + 1);
       }
       else
       {

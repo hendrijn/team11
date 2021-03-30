@@ -29,12 +29,12 @@ public class SubtractionOperator implements Operator
 
     // put left Operand in +- form if negative
     String distribute = this.distribute(noSpR);
-    String alteredLOp = this.format(noSpL);
-    String alteredROp = this.format(distribute);
+    //String alteredLOp = this.format(noSpL);
+    //String alteredROp = this.format(distribute);
 
     // distribute and fix +- form to - form
     
-    String result = new AdditionOperator().evaluate(alteredLOp, distribute);
+    String result = new AdditionOperator().evaluate(noSpL, distribute);
     if (result.contains("+-"))
     {
       result = result.substring(0, result.indexOf("+")) + "-"

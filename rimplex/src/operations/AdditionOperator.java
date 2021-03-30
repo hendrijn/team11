@@ -61,11 +61,13 @@ public class AdditionOperator implements Operator
     String simplifedLeft  = leftOperand.replaceAll(" ", "");
     String simplifedRight = rightOperand.replaceAll(" ", "");
     
-    String alterROp = TempContext.format(simplifedRight);
+    String alteredROp = TempContext.format(simplifedRight);
     String alteredLOp = TempContext.format(simplifedLeft);
+    
+    
     //Method for counting i's in a string from: https://www.baeldung.com/java-count-chars 
     long iCountLeft = alteredLOp.chars().filter(ch -> ch == 'i').count();
-    long iCountRight = alterROp.chars().filter(ch -> ch == 'i').count();
+    long iCountRight = alteredROp.chars().filter(ch -> ch == 'i').count();
     
     if (iCountLeft > 1 || iCountRight > 1) 
     {
@@ -75,13 +77,13 @@ public class AdditionOperator implements Operator
     
      
     int leftPlusIndex  = alteredLOp.indexOf("+");
-    int rightPlusIndex = alterROp.indexOf("+");
+    int rightPlusIndex = alteredROp.indexOf("+");
    
     //Getting the two parts of the complex number
     String simplifedLeftAugend  = alteredLOp.substring(0, leftPlusIndex);
     String simplifedLeftAddend  = alteredLOp.substring(leftPlusIndex + 1);
-    String simplifedRightAugend = alterROp.substring(0, rightPlusIndex);
-    String simplifedRightAddend = alterROp.substring(rightPlusIndex + 1);
+    String simplifedRightAugend = alteredROp.substring(0, rightPlusIndex);
+    String simplifedRightAddend = alteredROp.substring(rightPlusIndex + 1);
     
     String leftImaginaryNumber  = "";
     String rightImaginaryNumber = "";
@@ -116,10 +118,19 @@ public class AdditionOperator implements Operator
       leftImaginaryNumber = "1";
     }
     
+    if (leftImaginaryNumber.equals("-"))
+    {
+      leftImaginaryNumber = "-1";
+    }
+    
     if (rightImaginaryNumber.equals("")) {
       rightImaginaryNumber = "1";
     }
     
+    if (rightImaginaryNumber.equals("-"))
+    {
+      rightImaginaryNumber = "-1";
+    }
     //Integer processing
     long leftImagNumLong = 0;
     try
