@@ -31,12 +31,10 @@ public class ButtonListener implements Finals, ActionListener, KeyListener
     switch (button.getText())
     {
       case RESET:
-        ui.inputField.setText("");
-        ui.updateDisplay("", null);
-        ui.updateDisplay("", null);
+        resetInterface(ui);
         break;
       case CLEAR:
-        ui.inputField.setText("");
+        ui.inputField.setText(EMPTY);
         break;
       case ADD:
         firstInput = ui.inputField.getText();
@@ -63,15 +61,20 @@ public class ButtonListener implements Finals, ActionListener, KeyListener
         catch (NullPointerException nullP)
         {
           ui.errorMessage("Please input two valid operands.");
-          ui.inputField.setText("");
-          ui.updateDisplay("", null);
-          ui.updateDisplay("", null);
-        }  
+          resetInterface(ui);
+        }
         break;
       default:
         closeApplication();
     }
 
+  }
+
+  private void resetInterface(MainInterface ui)
+  {
+    ui.inputField.setText("");
+    ui.updateDisplay("", null);
+    ui.updateDisplay("", null);
   }
 
   /**
@@ -80,6 +83,31 @@ public class ButtonListener implements Finals, ActionListener, KeyListener
   private void closeApplication()
   {
     System.exit(0);
+  }
+
+  /**
+   * A private helper method for dealing with equalsButtonHandling.
+   * 
+   * @param ui
+   *          The ui of the entire rimplex program.
+   */
+  private void equalsButtonHandling(MainInterface ui)
+  {
+
+    String currentInput = ui.inputField.getText();
+    String finalResult = "";
+    try
+    {
+      finalResult = context.evaluate(firstInput, currentInput);
+    }
+    catch (IllegalArgumentException e)
+    {
+      ui.errorMessage(e.getMessage());
+      resetInterface(ui);
+      return;
+    }
+    ui.updateDisplay(SP + EQUALS, finalResult);
+    System.out.println("Handle equals functionality");
   }
 
   /**
@@ -103,32 +131,6 @@ public class ButtonListener implements Finals, ActionListener, KeyListener
   {
     // TODO Auto-generated method stub
 
-  }
-  
-  
-  
-  /**
-   * A private helper method for dealing with equalsButtonHandling.
-   * @param ui The ui of the entire rimplex program.
-   */
-  private void equalsButtonHandling(MainInterface ui) {
-    
-    String currentInput = ui.inputField.getText();  
-    String finalResult = "";
-    try
-    {
-      finalResult = context.evaluate(firstInput, currentInput);
-    }
-    catch (IllegalArgumentException e)
-    {
-      ui.errorMessage(e.getMessage());
-      ui.inputField.setText("");
-      ui.updateDisplay("", null);
-      ui.updateDisplay("", null);
-      return;
-    }
-    ui.updateDisplay(" =", finalResult);
-    System.out.println("Handle equals functionality");
   }
 
 }

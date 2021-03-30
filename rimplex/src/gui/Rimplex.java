@@ -6,7 +6,7 @@ package gui;
  * @author Jacquelyn Hendricks
  * @version March 23 2021
  */
-public class TestDriver
+public class Rimplex
 {  
   public static void main(String[] args)
   {
