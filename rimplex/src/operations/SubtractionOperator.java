@@ -26,7 +26,7 @@ public class SubtractionOperator implements Operator
   {
 
     // error checking
-    if (leftOperand == null || rightOperand == null || leftOperand == "" || rightOperand == "")
+    if (leftOperand == null || rightOperand == null || leftOperand.equals("") || rightOperand.equals(""))
     {
       throw new IllegalArgumentException("Please provide two operands");
     }
