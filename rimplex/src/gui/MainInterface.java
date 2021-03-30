@@ -188,16 +188,16 @@ public class MainInterface extends JFrame implements Finals
 
     if (result == null && input == null)
     {
-      input = ((JTextField) inputPanel.getComponent(0)).getText();
+      input = inputField.getText();
       input = input.concat(buttonText);
-      ((JTextField) inputPanel.getComponent(0)).setText("");
+      inputField.setText("");
       ((JLabel) displayPanel.getComponent(0)).setText(input);
     }
     else
     {
       input = input.concat(((JTextField) inputPanel.getComponent(0)).getText());
       input = input.concat(buttonText);
-      ((JTextField) inputPanel.getComponent(0)).setText("");
+      inputField.setText("");
       ((JLabel) displayPanel.getComponent(0)).setText(input);
       ((JLabel) displayPanel.getComponent(1)).setText(result);
       input = null;

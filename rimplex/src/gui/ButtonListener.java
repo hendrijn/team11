@@ -70,6 +70,12 @@ public class ButtonListener implements Finals, ActionListener, KeyListener
 
   }
 
+  /**
+   * Resets the input field and display.
+   * 
+   * @param ui
+   *          the main interface
+   */
   private void resetInterface(MainInterface ui)
   {
     ui.inputField.setText("");
