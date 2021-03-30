@@ -1,5 +1,11 @@
 package testing;
 
+/**
+ * Unit tests for the Addition Operator Class.
+ * 
+ * @author team 11 - pgleb
+ * @version Sprint 1
+ */
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Random;
@@ -13,7 +19,7 @@ import operations.TempContext;
 class AdditonOperatorTesting
 {
 
- @Test
+  @Test
   public void twoValidComplexNumbersTest()
   {
     String complexNumberOne = "3 + 2i";
@@ -23,7 +29,7 @@ class AdditonOperatorTesting
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
   }
-  
+
   @Test
   public void twoValidComplex2NumbersTest()
   {
@@ -34,7 +40,7 @@ class AdditonOperatorTesting
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
   }
-  
+
   @Test
   public void twoValidNoSpaceComplexNumbersTest()
   {
@@ -45,8 +51,7 @@ class AdditonOperatorTesting
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
   }
-  
-  
+
   @Test
   public void twoValidComplexNumbersOnlyTest()
   {
@@ -57,7 +62,7 @@ class AdditonOperatorTesting
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
   }
-  
+
   @Test
   public void twoValidNumbersCombinedTest()
   {
@@ -68,7 +73,7 @@ class AdditonOperatorTesting
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
   }
-  
+
   @Test
   public void twoValidComplexNumbersNegTest()
   {
@@ -79,8 +84,7 @@ class AdditonOperatorTesting
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
   }
-  
-  
+
   @Test
   public void twoValidComplexNumbersNegITest()
   {
@@ -91,7 +95,7 @@ class AdditonOperatorTesting
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
   }
-  
+
   @Test
   public void twoValidComplexNumbersDiffIPlacementTest()
   {
@@ -102,7 +106,7 @@ class AdditonOperatorTesting
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
   }
-  
+
   @Test
   public void twoValidComplexNumbersDiffIPlacementTest2()
   {
@@ -113,8 +117,7 @@ class AdditonOperatorTesting
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
   }
-  
-  
+
   @Test
   public void twoValidRealNumbersTest()
   {
@@ -125,8 +128,7 @@ class AdditonOperatorTesting
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
   }
-  
-  
+
   @Test
   public void twoValidRealNegNumbersTest()
   {
@@ -137,7 +139,7 @@ class AdditonOperatorTesting
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
   }
-  
+
   @Test
   public void twoValidRealNegNumbers2Test()
   {
@@ -148,7 +150,7 @@ class AdditonOperatorTesting
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
   }
-  
+
   @Test
   public void validOneRealOneComplexNumbersTest()
   {
@@ -159,259 +161,238 @@ class AdditonOperatorTesting
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
   }
-  
-  @Test
-  public void twoRandomComplexNumbersTest()
-  {
-    Random random = new Random();
-    int firstRandomNum = random.nextInt();
-    int secondRandomNum = random.nextInt();
-    int firstRandomI = random.nextInt();
-    int secondRandomI = random.nextInt();
-    String complexNumberOne = String.valueOf(firstRandomNum) + "+" 
-        + String.valueOf(firstRandomI) + "i";
-    String complexNumberTwo = String.valueOf(secondRandomNum) + "+" 
-        + String.valueOf(secondRandomI) + "i";
-    String expectedResult = String.valueOf(firstRandomNum + secondRandomNum) + 
-        "+" + String.valueOf(firstRandomI + secondRandomI) + "i";
-    TempContext tempContext = new TempContext(new AdditionOperator());
-    String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
-    assertEquals(expectedResult, actualResult);
-  }
-  
-  @Test
-  public void twoRandomRealNumbersTest()
-  {
-    Random random = new Random();
-    int firstRandomNum = random.nextInt();
-    int secondRandomNum = random.nextInt();
-    String firstStringRandomNum = String.valueOf(firstRandomNum);
-    String secondStringRandomNum = String.valueOf(secondRandomNum);
-    String expectedResult = String.valueOf(firstRandomNum + secondRandomNum) + 
-        "+0i";
-    TempContext tempContext = new TempContext(new AdditionOperator());
-    String actualResult = tempContext.evaluate(firstStringRandomNum, secondStringRandomNum);
-    assertEquals(expectedResult, actualResult);
-  }
 
-  
+  /*
+   * @Test public void twoRandomComplexNumbersTest() { Random random = new Random(); int
+   * firstRandomNum = random.nextInt(); int secondRandomNum = random.nextInt(); int firstRandomI =
+   * random.nextInt(); int secondRandomI = random.nextInt(); String complexNumberOne =
+   * String.valueOf(firstRandomNum) + "+" + String.valueOf(firstRandomI) + "i"; String
+   * complexNumberTwo = String.valueOf(secondRandomNum) + "+" + String.valueOf(secondRandomI) + "i";
+   * String expectedResult = String.valueOf(firstRandomNum + secondRandomNum) + "+" +
+   * String.valueOf(firstRandomI + secondRandomI) + "i"; TempContext tempContext = new
+   * TempContext(new AdditionOperator()); String actualResult =
+   * tempContext.evaluate(complexNumberOne, complexNumberTwo); assertEquals(expectedResult,
+   * actualResult); }
+   * 
+   * @Test public void twoRandomRealNumbersTest() { Random random = new Random(); int firstRandomNum
+   * = random.nextInt(); int secondRandomNum = random.nextInt(); String firstStringRandomNum =
+   * String.valueOf(firstRandomNum); String secondStringRandomNum = String.valueOf(secondRandomNum);
+   * String expectedResult = String.valueOf(firstRandomNum + secondRandomNum) + "+0i"; TempContext
+   * tempContext = new TempContext(new AdditionOperator()); String actualResult =
+   * tempContext.evaluate(firstStringRandomNum, secondStringRandomNum); assertEquals(expectedResult,
+   * actualResult); }
+   */
+
   @Test
   public void inValidNullLeftOperandTest()
   {
-    
+
     String complexNumberOne = null;
     String complexNumberTwo = "4 + 2i";
     TempContext tempContext = new TempContext(new AdditionOperator());
     Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-      tempContext.evaluate(complexNumberOne, complexNumberTwo); 
+      tempContext.evaluate(complexNumberOne, complexNumberTwo);
     });
     String expectedException = "Please provide two valid operands.";
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
-  
+
   @Test
   public void inValidNullRightOperandTest()
   {
-    
+
     String complexNumberOne = "4 + 2i";
     String complexNumberTwo = null;
     TempContext tempContext = new TempContext(new AdditionOperator());
     Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-      tempContext.evaluate(complexNumberOne, complexNumberTwo); 
+      tempContext.evaluate(complexNumberOne, complexNumberTwo);
     });
     String expectedException = "Please provide two valid operands.";
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
-  
+
   @Test
   public void inValidEmptyLeftOperandTest()
   {
-    
+
     String complexNumberOne = "";
     String complexNumberTwo = "4 + 2i";
     TempContext tempContext = new TempContext(new AdditionOperator());
     Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-      tempContext.evaluate(complexNumberOne, complexNumberTwo); 
+      tempContext.evaluate(complexNumberOne, complexNumberTwo);
     });
     String expectedException = "Please provide two valid operands.";
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
-  
-  
+
   @Test
   public void inValidEmptyRightOperandTest()
   {
-    
+
     String complexNumberOne = "4 + 3i";
     String complexNumberTwo = "";
     TempContext tempContext = new TempContext(new AdditionOperator());
     Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-      tempContext.evaluate(complexNumberOne, complexNumberTwo); 
+      tempContext.evaluate(complexNumberOne, complexNumberTwo);
     });
     String expectedException = "Please provide two valid operands.";
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
-  
-  
+
   @Test
   public void inValidRegLeftOperandTest()
   {
-    
+
     String complexNumberOne = "4b + 3i";
     String complexNumberTwo = "3 + 3i";
     TempContext tempContext = new TempContext(new AdditionOperator());
     Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-      tempContext.evaluate(complexNumberOne, complexNumberTwo); 
+      tempContext.evaluate(complexNumberOne, complexNumberTwo);
     });
     String expectedException = "Not a valid operand.";
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
-  
+
   @Test
   public void inValidImagLeftOperandTest()
   {
-    
+
     String complexNumberOne = "4b + 3iiabc";
     String complexNumberTwo = "3 + 3i";
     TempContext tempContext = new TempContext(new AdditionOperator());
     Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-      tempContext.evaluate(complexNumberOne, complexNumberTwo); 
+      tempContext.evaluate(complexNumberOne, complexNumberTwo);
     });
     String expectedException = "Please provide two valid operands, or simplify them.";
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
-  
+
   @Test
   public void inValidRegRightOperandTest()
   {
-    
+
     String complexNumberOne = "4 + 3i";
     String complexNumberTwo = "bvxc + 3i";
     TempContext tempContext = new TempContext(new AdditionOperator());
     Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-      tempContext.evaluate(complexNumberOne, complexNumberTwo); 
+      tempContext.evaluate(complexNumberOne, complexNumberTwo);
     });
     String expectedException = "Not a valid operand.";
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
-  
-  
+
   @Test
   public void inValidImagRightOperandTest()
   {
-    
+
     String complexNumberOne = "4 + 3i";
     String complexNumberTwo = "4 + 3iasdsads";
     TempContext tempContext = new TempContext(new AdditionOperator());
     Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-      tempContext.evaluate(complexNumberOne, complexNumberTwo); 
+      tempContext.evaluate(complexNumberOne, complexNumberTwo);
     });
     String expectedException = "Not a valid operand.";
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
-  
-  
+
   @Test
   public void inValidGibberishLeftOperandTest()
   {
-    
+
     String complexNumberOne = "dsfgfdsgdsfg";
     String complexNumberTwo = "4 + 3i";
     TempContext tempContext = new TempContext(new AdditionOperator());
     Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-      tempContext.evaluate(complexNumberOne, complexNumberTwo); 
+      tempContext.evaluate(complexNumberOne, complexNumberTwo);
     });
     String expectedException = "Not a valid operand.";
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
-  
-  
-  
+
   @Test
   public void inValidGibberishRightOperandTest()
   {
-    
+
     String complexNumberOne = "4 + 3i";
     String complexNumberTwo = "iLoveCS345";
     TempContext tempContext = new TempContext(new AdditionOperator());
     Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-      tempContext.evaluate(complexNumberOne, complexNumberTwo); 
+      tempContext.evaluate(complexNumberOne, complexNumberTwo);
     });
     String expectedException = "Not a valid operand.";
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
-  
+
   @Test
   public void tooManyIsLeftTest()
   {
-    
+
     String complexNumberOne = "4 + 3iiiiiiiii";
     String complexNumberTwo = "iLoveCS345";
     TempContext tempContext = new TempContext(new AdditionOperator());
     Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-      tempContext.evaluate(complexNumberOne, complexNumberTwo); 
+      tempContext.evaluate(complexNumberOne, complexNumberTwo);
     });
     String expectedException = "Please provide two valid operands, or simplify them.";
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
-  
+
   @Test
   public void tooManyIsRightTest()
   {
-    
+
     String complexNumberOne = "4 + 3i";
     String complexNumberTwo = "4iiiiii + 3i";
     TempContext tempContext = new TempContext(new AdditionOperator());
     Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-      tempContext.evaluate(complexNumberOne, complexNumberTwo); 
+      tempContext.evaluate(complexNumberOne, complexNumberTwo);
     });
     String expectedException = "Please provide two valid operands, or simplify them.";
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
-  
+
   @Test
   public void oneIInvalidLeftOperandTest()
   {
-    
+
     String complexNumberOne = "iLoveCS345";
     String complexNumberTwo = "4 + 3i";
     TempContext tempContext = new TempContext(new AdditionOperator());
     Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-      tempContext.evaluate(complexNumberOne, complexNumberTwo); 
+      tempContext.evaluate(complexNumberOne, complexNumberTwo);
     });
     String expectedException = "Not a valid operand.";
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
-  
+
   @Test
   public void oneIInvalidRightOperandTest()
   {
-    
+
     String complexNumberOne = "4 + 3i";
     String complexNumberTwo = "iLoveCS345";
     TempContext tempContext = new TempContext(new AdditionOperator());
     Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-      tempContext.evaluate(complexNumberOne, complexNumberTwo); 
+      tempContext.evaluate(complexNumberOne, complexNumberTwo);
     });
     String expectedException = "Not a valid operand.";
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
-  
-  
+
   @Test
   public void iPlusI1Test()
   {
@@ -421,9 +402,9 @@ class AdditonOperatorTesting
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
-    
+
   }
-  
+
   @Test
   public void iPlusI2Test()
   {
@@ -433,9 +414,9 @@ class AdditonOperatorTesting
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
-    
+
   }
-  
+
   @Test
   public void iPlusILeftTest()
   {
@@ -445,9 +426,9 @@ class AdditonOperatorTesting
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
-    
+
   }
-  
+
   @Test
   public void iPlusIRightTest()
   {
@@ -457,10 +438,9 @@ class AdditonOperatorTesting
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
-    
+
   }
-  
-  
+
   @Test
   public void singleILeftTest()
   {
@@ -470,9 +450,9 @@ class AdditonOperatorTesting
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
-    
+
   }
-  
+
   @Test
   public void singleIRightTest()
   {
@@ -482,10 +462,9 @@ class AdditonOperatorTesting
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
-    
+
   }
-  
-  
+
   @Test
   public void singleNegILeftTest()
   {
@@ -495,9 +474,9 @@ class AdditonOperatorTesting
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
-    
+
   }
-  
+
   @Test
   public void singleNegIRightTest()
   {
@@ -508,20 +487,20 @@ class AdditonOperatorTesting
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
 
-  } 
+  }
 
   @Test
   public void singleNegMIRightTest()
   {
     String complexNumberOne = "2 + 3i";
     String complexNumberTwo = "-6i";
-    String expectedResult = "2+-3i";
+    String expectedResult = "2-3i";
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
-    
+
   }
-  
+
   @Test
   public void operandsWithSubtractionTest()
   {
@@ -531,10 +510,9 @@ class AdditonOperatorTesting
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
- 
+
   }
-  
-  
+
   @Test
   public void largeNumberTest()
   {
@@ -544,9 +522,9 @@ class AdditonOperatorTesting
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
- 
+
   }
-  
+
   @Test
   public void largeNumber2Test()
   {
@@ -557,5 +535,5 @@ class AdditonOperatorTesting
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
   }
-  
-}  
+
+}

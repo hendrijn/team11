@@ -1,137 +1,106 @@
 package operations;
 
-
+/**
+ * Addition Operator Class.
+ * 
+ * @author team 11 - pgleb and may4sa
+ * @version Sprint 1
+ */
 public class AdditionOperator implements Operator
 {
 
-  
+  /**
+   * Evaluates an addition of two operands.
+   * 
+   * @param leftOperand
+   *          the operand that the rightOperand will be added to.
+   * @param rightOperand
+   *          the operand that will be added to the leftOperand.
+   * @return the sum of the two operands.
+   * @throws IllegalArgumentException
+   *           thrown if operands are null or empty.
+   */
   @Override
   public String evaluate(String leftOperand, String rightOperand)
   {
-    
- 
-    if (leftOperand == null || rightOperand == null || leftOperand == "" || rightOperand == "") 
+
+    if (leftOperand == null || rightOperand == null || leftOperand == "" || rightOperand == "")
     {
       throw new IllegalArgumentException("Please provide two valid operands.");
     }
-    
-    
-//    if (leftOperand.equals("i")) 
-//    { 
-//      leftOperand 
-//    }
-      
-      
-    /*//Appending complex number units to non-complex numbers
-    if (leftOperand.equals("i")) 
-    {
-      leftOperand = "1i+0";
-    }
-    
-    if (rightOperand.equals("i")) 
-    {
-      rightOperand = "1i+0";
-    }
-    
-    if (leftOperand.equals("-i")) 
-    {
-      leftOperand = "-1i+0";
-    }
-    
-    if (rightOperand.equals("-i")) 
-    {
-      rightOperand = "-1i+0";
-    }
-        
-    if (!leftOperand.contains("i")) {
-      leftOperand  = leftOperand + "+0i";
-    }
-    
-    if (!rightOperand.contains("i")) {
-      rightOperand = rightOperand + "+0i";
-    }
-    
-    if (!leftOperand.contains("+")) {
-      leftOperand  = leftOperand + "+0";
-    }
-    
-    if (!rightOperand.contains("+")) {
-      rightOperand = rightOperand + "+0";
-    }*/
-    String simplifedLeft  = leftOperand.replaceAll(" ", "");
+
+    String simplifedLeft = leftOperand.replaceAll(" ", "");
     String simplifedRight = rightOperand.replaceAll(" ", "");
-    
+
     String alteredROp = TempContext.format(simplifedRight);
     String alteredLOp = TempContext.format(simplifedLeft);
-    
-    
-    //Method for counting i's in a string from: https://www.baeldung.com/java-count-chars 
+
+    // Method for counting i's in a string from: https://www.baeldung.com/java-count-chars
     long iCountLeft = alteredLOp.chars().filter(ch -> ch == 'i').count();
     long iCountRight = alteredROp.chars().filter(ch -> ch == 'i').count();
-    
-    if (iCountLeft > 1 || iCountRight > 1) 
+
+    if (iCountLeft > 1 || iCountRight > 1)
     {
       throw new IllegalArgumentException("Please provide two valid operands, or simplify them.");
     }
-    
-    
-     
-    int leftPlusIndex  = alteredLOp.indexOf("+");
+
+    int leftPlusIndex = alteredLOp.indexOf("+");
     int rightPlusIndex = alteredROp.indexOf("+");
-   
-    //Getting the two parts of the complex number
-    String simplifedLeftAugend  = alteredLOp.substring(0, leftPlusIndex);
-    String simplifedLeftAddend  = alteredLOp.substring(leftPlusIndex + 1);
+
+    // Getting the two parts of the complex number
+    String simplifedLeftAugend = alteredLOp.substring(0, leftPlusIndex);
+    String simplifedLeftAddend = alteredLOp.substring(leftPlusIndex + 1);
     String simplifedRightAugend = alteredROp.substring(0, rightPlusIndex);
     String simplifedRightAddend = alteredROp.substring(rightPlusIndex + 1);
-    
-    String leftImaginaryNumber  = "";
+
+    String leftImaginaryNumber = "";
     String rightImaginaryNumber = "";
-    String leftRegularNumber    = "";
-    String rightRegularNumber   = "";
-    
-    //Figuring out which part is the i units
-    if (simplifedLeftAugend.contains("i")) 
+    String leftRegularNumber = "";
+    String rightRegularNumber = "";
+
+    // Figuring out which part is the i units
+    if (simplifedLeftAugend.contains("i"))
     {
       leftImaginaryNumber = simplifedLeftAugend.replaceAll("i", "");
-      leftRegularNumber   = simplifedLeftAddend;
+      leftRegularNumber = simplifedLeftAddend;
     }
-    else 
+    else
     {
       leftImaginaryNumber = simplifedLeftAddend.replaceAll("i", "");
-      leftRegularNumber   = simplifedLeftAugend;
+      leftRegularNumber = simplifedLeftAugend;
     }
-    
-    
-    if (simplifedRightAugend.contains("i")) 
+
+    if (simplifedRightAugend.contains("i"))
     {
       rightImaginaryNumber = simplifedRightAugend.replaceAll("i", "");
-      rightRegularNumber   = simplifedRightAddend;
+      rightRegularNumber = simplifedRightAddend;
     }
-    else 
+    else
     {
       rightImaginaryNumber = simplifedRightAddend.replaceAll("i", "");
-      rightRegularNumber   = simplifedRightAugend;
+      rightRegularNumber = simplifedRightAugend;
     }
-    
-    if (leftImaginaryNumber.equals("")) {
+
+    if (leftImaginaryNumber.equals(""))
+    {
       leftImaginaryNumber = "1";
     }
-    
+
     if (leftImaginaryNumber.equals("-"))
     {
       leftImaginaryNumber = "-1";
     }
-    
-    if (rightImaginaryNumber.equals("")) {
+
+    if (rightImaginaryNumber.equals(""))
+    {
       rightImaginaryNumber = "1";
     }
-    
+
     if (rightImaginaryNumber.equals("-"))
     {
       rightImaginaryNumber = "-1";
     }
-    //Integer processing
+    // Integer processing
     long leftImagNumLong = 0;
     try
     {
@@ -141,8 +110,7 @@ public class AdditionOperator implements Operator
     {
       throw new IllegalArgumentException("Not a valid operand.");
     }
-    
-    
+
     long leftRegNumLong = 0;
     try
     {
@@ -150,11 +118,10 @@ public class AdditionOperator implements Operator
     }
     catch (NumberFormatException e)
     {
-      
+
       throw new IllegalArgumentException("Not a valid operand.");
     }
-    
-    
+
     long rightImagNumLong = 0;
     try
     {
@@ -162,11 +129,10 @@ public class AdditionOperator implements Operator
     }
     catch (NumberFormatException e)
     {
-      
+
       throw new IllegalArgumentException("Not a valid operand.");
     }
-    
-    
+
     long rightRegNumLong = 0;
     try
     {
@@ -174,15 +140,20 @@ public class AdditionOperator implements Operator
     }
     catch (NumberFormatException e)
     {
-      
+
       throw new IllegalArgumentException("Not a valid operand.");
     }
-    
-    long finalRegTotal  =  leftRegNumLong + rightRegNumLong;
-    long finalImagTotal =  leftImagNumLong + rightImagNumLong;
 
-    return finalRegTotal + "+" + finalImagTotal + "i";
-   
+    long finalRegTotal = leftRegNumLong + rightRegNumLong;
+    long finalImagTotal = leftImagNumLong + rightImagNumLong;
+
+    String result = finalRegTotal + "+" + finalImagTotal + "i";
+
+    if (result.contains("+-"))
+    {
+      result = result.substring(0, result.indexOf("+")) + "-"
+          + result.substring(result.indexOf("+") + 2);
+    }
+    return result;
   }
-
 }

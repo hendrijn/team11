@@ -15,6 +15,9 @@ import operations.SubtractionOperator;
 class SubtractionOperatorTest
 {
 
+  /**
+   * tests for operands with spaces.
+   */
   @Test
   public void testEvaluateExtraSpaces()
   {
@@ -51,6 +54,9 @@ class SubtractionOperatorTest
     assertTrue(actual.equals(expected));
   }
 
+  /**
+   * tests for illegal arguments.
+   */
   @Test
   public void testEvaluateIllegalArguments()
   {
@@ -124,6 +130,9 @@ class SubtractionOperatorTest
 
   }
 
+  /**
+   * tests for complex numbers as operands.
+   */
   @Test
   public void testEvaluateComplex()
   {
@@ -227,6 +236,9 @@ class SubtractionOperatorTest
 
   }
 
+  /**
+   * tests for imaginary numbers as operands.
+   */
   @Test
   public void testEvaluateImaginary()
   {
@@ -313,6 +325,9 @@ class SubtractionOperatorTest
 
   }
 
+  /**
+   * tests for real numbers as operands.
+   */
   @Test
   public void testEvaluateReal()
   {
@@ -399,6 +414,9 @@ class SubtractionOperatorTest
 
   }
 
+  /**
+   * tests for complex numbers and real numbers as operands.
+   */
   @Test
   public void testEvaluateComplexReal()
   {
@@ -446,6 +464,9 @@ class SubtractionOperatorTest
 
   }
 
+  /**
+   * tests for imaginary numbers and real numbers as operands.
+   */
   @Test
   public void testEvaluateImaginaryReal()
   {
@@ -493,6 +514,9 @@ class SubtractionOperatorTest
 
   }
 
+  /**
+   * tests for complex numbers and imaginary numbers as operands.
+   */
   @Test
   public void testEvaluateImaginaryComplex()
   {
@@ -539,6 +563,9 @@ class SubtractionOperatorTest
     assertTrue(expected.equals(actual));
   }
 
+  /**
+   * tests for the distribute method.
+   */
   @Test
   public void testDistribute()
   {
@@ -548,36 +575,6 @@ class SubtractionOperatorTest
     String actual = s.distribute("6+3i");
     String expected = "-6+-3i";
     assertTrue(expected.equals(actual));
-  }
-
-  @Test
-  public void testFormat()
-  {
-    SubtractionOperator s = new SubtractionOperator();
-
-    String actual = s.format("3-6i");
-    String expected = "3+-6i";
-    assertTrue(actual.equals(expected));
-
-    actual = s.format("3+6i");
-    expected = "3+6i";
-    assertTrue(actual.equals(expected));
-
-    actual = s.format("3");
-    expected = "3+0i";
-    assertTrue(actual.equals(expected));
-
-    actual = s.format("3i");
-    expected = "0+3i";
-    assertTrue(actual.equals(expected));
-
-    actual = s.format("-3");
-    expected = "-3+0i";
-    assertTrue(actual.equals(expected));
-
-    actual = s.format("-3i");
-    expected = "0+-3i";
-    assertTrue(actual.equals(expected));
   }
 
 }

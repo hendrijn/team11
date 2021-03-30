@@ -1,18 +1,26 @@
 package operations;
 
 /**
- * Subtraction Operator Class
+ * Subtraction Operator Class. 
  * 
- * @author may4sa
+ * @author team 11 - may4sa
  * @version Sprint 1
  */
 public class SubtractionOperator implements Operator
 {
-  public SubtractionOperator()
-  {
 
-  }
-
+  /**
+   * Evaluates a subtraction of two operands.
+   * 
+   * @param leftOperand
+   *          the operand that the rightOperand will be subtracted from.
+   * @param rightOperand
+   *          the operand that will be subtracted from the leftOperand.
+   * @return the result of the subtraction.
+   * @throws IllegalArgumentException
+   *           thrown if operands are null or empty.
+   */
+  @Override
   public String evaluate(final String leftOperand, final String rightOperand)
       throws IllegalArgumentException
   {
@@ -29,25 +37,15 @@ public class SubtractionOperator implements Operator
 
     // put left Operand in +- form if negative
     String distribute = this.distribute(noSpR);
-    //String alteredLOp = this.format(noSpL);
-    //String alteredROp = this.format(distribute);
 
     // distribute and fix +- form to - form
-    
     String result = new AdditionOperator().evaluate(noSpL, distribute);
-    if (result.contains("+-"))
-    {
-      result = result.substring(0, result.indexOf("+")) + "-"
-          + result.substring(result.indexOf("+") + 2);
-    }
-
-    // return
+    
     return result;
   }
 
   public String distribute(String rightOperand)
   {
-    // add non-complex cases
     int indexOfNeg = rightOperand.indexOf("-");
     String distribute = "";
     if (rightOperand.indexOf("+") != -1)
