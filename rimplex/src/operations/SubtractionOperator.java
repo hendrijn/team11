@@ -34,11 +34,8 @@ public class SubtractionOperator implements Operator
     // remove spaces
     String noSpL = leftOperand.replaceAll(" ", ""); 
     String noSpR = rightOperand.replaceAll(" ", "");
-
-    // put left Operand in +- form if negative
+    
     String distribute = this.distribute(noSpR);
-
-    // distribute and fix +- form to - form
     String result = new AdditionOperator().evaluate(noSpL, distribute);
     
     return result;
@@ -68,7 +65,7 @@ public class SubtractionOperator implements Operator
       }
       else 
       {
-        distribute = "-" + rightOperand;
+        distribute = "-" + rightOperand; 
       }
     }
 
@@ -85,63 +82,7 @@ public class SubtractionOperator implements Operator
             + "+" + rightOperand.substring(rightOperand.indexOf("-", indexOfNeg + 1) + 1);
       }
     }
+    System.out.println(distribute);
     return distribute;
-  }
-
-  public String format(String operand)
-  {
-    boolean complex = false;
-    boolean imaginary = false;
-    boolean real = false;
-    String result = "";
-
-    int negative = operand.indexOf("-");
-    int minus = operand.indexOf("-", negative + 1);
-
-    if (operand.contains("+"))
-    {
-      complex = true;
-    }
-    else if (operand.charAt(0) == '-' && minus != -1)
-    {
-      complex = true;
-    }
-    else if (operand.charAt(0) != '-' && negative != -1)
-    {
-      complex = true;
-    }
-    else if (operand.contains("i"))
-    {
-      imaginary = true;
-    }
-    else
-    {
-      real = true;
-    }
-
-    if (complex)
-    {
-      if (operand.contains("-"))
-      {
-          result = operand.substring(0, operand.indexOf("-", minus)) + "+-"
-              + operand.substring(operand.indexOf("-", minus) + 1);
-      }
-      else
-      {
-        result = operand;
-      }
-    }
-
-    if (imaginary)
-    {
-      result = "0+" + operand;
-    }
-
-    if (real)
-    {
-      result = operand + "+0i";
-    }
-
-    return result;
   }
 }
