@@ -64,7 +64,7 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
         catch (NullPointerException nullP)
         {
           ui.errorMessage("Please input two valid operands.");
-          resetInterface(ui);
+          ui.clearAll();
         }
         ui.inputField.requestFocusInWindow();
         break;
