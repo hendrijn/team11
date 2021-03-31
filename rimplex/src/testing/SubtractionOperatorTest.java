@@ -13,7 +13,7 @@ import operations.SubtractionOperator;
  * @version Sprint 1
  */
 class SubtractionOperatorTest
-{
+{ 
 
   /**
    * tests for operands with spaces.

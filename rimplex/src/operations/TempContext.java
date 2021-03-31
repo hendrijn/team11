@@ -105,7 +105,6 @@ public class TempContext
     {
       result = operand + "+0i";
     }
-    System.out.println(result);
     return result;
   }
 }

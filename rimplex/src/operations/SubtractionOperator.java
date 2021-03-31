@@ -8,7 +8,7 @@ package operations;
  */
 public class SubtractionOperator implements Operator
 {
-
+ 
   /**
    * Evaluates a subtraction of two operands.
    * 
