@@ -143,8 +143,10 @@ public class AdditionOperator implements Operator
 
       throw new IllegalArgumentException("Not a valid operand.");
     }
+
     long finalRegTotal = leftRegNumLong + rightRegNumLong;
     long finalImagTotal = leftImagNumLong + rightImagNumLong;
+
     String result = finalRegTotal + "+" + finalImagTotal + "i";
 
     if (result.contains("+-"))

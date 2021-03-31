@@ -98,7 +98,7 @@ public class MainInterface extends JFrame implements Finals
     Border displayB = BorderFactory.createLineBorder(Color.BLUE, 3, true);
     displayPanel.setBorder(displayB);
     displayPanel.setLayout(new GridLayout(1, 2));
-    JLabel displayOps = new JLabel("<html> <i>test</i>", JLabel.LEFT);
+    JLabel displayOps = new JLabel("", JLabel.LEFT);
     JLabel displayRes = new JLabel("", JLabel.RIGHT);
 
     displayPanel.add(displayOps);
@@ -204,11 +204,13 @@ public class MainInterface extends JFrame implements Finals
       ((JLabel) displayPanel.getComponent(0)).setText(input);
       ((JLabel) displayPanel.getComponent(1)).setText("");
     }
-    else
+    else if (result != null)
     {
     	if (parenthesis)
       	  input = input.concat("(");
-      input = input.concat(((JTextField) inputPanel.getComponent(0)).getText());
+      String inputText = ((JTextField) inputPanel.getComponent(0)).getText();
+      inputText = italicizeI(inputText);
+      input = input.concat(inputText);
       if (parenthesis)
     	  input = input.concat(")");
       input = input.concat(buttonText);
@@ -224,6 +226,11 @@ public class MainInterface extends JFrame implements Finals
 
   }
   
+  /**
+   * Makes i italic
+   * @param text
+   * @return the input with italic i
+   */
   private static String italicizeI (String text)
   {
 	String ret = text;
@@ -241,6 +248,8 @@ public class MainInterface extends JFrame implements Finals
 		index = text.indexOf("i");
 		ret = text.substring(0, index);
 		ret = ret.concat("<i>i</i>");
+		if (text.substring(index + 1) != null) 
+			ret = ret.concat(text.substring(index + 1));
 		count--;
 	}
 	return ret;
