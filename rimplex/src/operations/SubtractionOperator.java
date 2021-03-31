@@ -41,6 +41,12 @@ public class SubtractionOperator implements Operator
     return result;
   }
 
+  /**
+   * Distributes the minus sign to the right operand of a subtraction computation.
+   * 
+   * @param rightOperand the operand to be distributed to.
+   * @return the new operand to be used in an addition computation.
+   */
   public String distribute(String rightOperand)
   {
     int indexOfNeg = rightOperand.indexOf("-");
@@ -58,31 +64,26 @@ public class SubtractionOperator implements Operator
             + rightOperand.substring(rightOperand.indexOf("+") + 1) + "";
       }
     } 
-    else {
-      if(rightOperand.charAt(0) == '-')
-      {
-        distribute = rightOperand.substring(1);
-      }
-      else 
-      {
-        distribute = "-" + rightOperand; 
-      }
-    }
-
-    if (rightOperand.indexOf("-", indexOfNeg+1) != -1)
-    {
-      if (rightOperand.charAt(0) == '-')
+    else if(rightOperand.contains("-")){
+      if(rightOperand.charAt(0) == '-' && rightOperand.indexOf("-", indexOfNeg+1) != -1)
       {
         distribute = rightOperand.substring(1, rightOperand.indexOf("-", indexOfNeg + 1)) + "+"
             + rightOperand.substring(rightOperand.indexOf("-", indexOfNeg + 1) + 1);
       }
+      else if(rightOperand.charAt(0) == '-' && rightOperand.indexOf("-", indexOfNeg+1) == -1)
+      {
+        distribute = rightOperand.substring(1);
+      }
       else
       {
-        distribute = "-" + rightOperand.substring(0, rightOperand.indexOf("-", indexOfNeg + 1))
-            + "+" + rightOperand.substring(rightOperand.indexOf("-", indexOfNeg + 1) + 1);
+        distribute = "-" + rightOperand.substring(0, rightOperand.indexOf("-")) + "+"
+            + rightOperand.substring(rightOperand.indexOf("-") + 1);
       }
     }
-    System.out.println(distribute);
+    else
+    {
+      distribute = "-" + rightOperand;
+    }
     return distribute;
   }
 }

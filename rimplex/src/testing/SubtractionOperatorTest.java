@@ -18,7 +18,7 @@ class SubtractionOperatorTest
   /**
    * tests for operands with spaces.
    */
-  /*@Test
+  @Test
   public void testEvaluateExtraSpaces()
   {
     SubtractionOperator s = new SubtractionOperator();
@@ -52,12 +52,12 @@ class SubtractionOperatorTest
     actual = s.evaluate("        2         i     ", "        7    ");
     expected = "-7+2i";
     assertTrue(actual.equals(expected));
-  }*/
+  }
 
   /**
    * tests for illegal arguments.
    */
-  /*@Test
+  @Test
   public void testEvaluateIllegalArguments()
   {
     SubtractionOperator s = new SubtractionOperator();
@@ -128,7 +128,7 @@ class SubtractionOperatorTest
       assertTrue(true);
     }
 
-  }*/
+  }
 
   /**
    * tests for complex numbers as operands.
@@ -138,7 +138,7 @@ class SubtractionOperatorTest
   {
     SubtractionOperator s = new SubtractionOperator();
 
-    /*// both operands null
+    // both operands null
     try
     {
       String bothNull = s.evaluate(null, null);
@@ -232,11 +232,11 @@ class SubtractionOperatorTest
     // both negative, negative result
     actual = s.evaluate("-9-96i", "-2-42i");
     expected = "-7-54i";
-    assertTrue(expected.equals(actual));*/
+    assertTrue(expected.equals(actual));
     
     //extra case that seems to be failing
-    String actual = s.evaluate("3+2i", "2-i");
-    String expected = "1+3i";
+    actual = s.evaluate("3+2i", "2-i");
+    expected = "1+3i";
     assertTrue(expected.equals(actual));
 
   }
@@ -244,7 +244,7 @@ class SubtractionOperatorTest
   /**
    * tests for imaginary numbers as operands.
    */
-  /*@Test
+  @Test
   public void testEvaluateImaginary()
   {
     SubtractionOperator s = new SubtractionOperator();
@@ -328,12 +328,12 @@ class SubtractionOperatorTest
     expected = "0-54i";
     assertTrue(expected.equals(actual));
 
-  }*/
+  }
 
   /**
    * tests for real numbers as operands.
    */
-  /*@Test
+  @Test
   public void testEvaluateReal()
   {
     SubtractionOperator s = new SubtractionOperator();
@@ -417,12 +417,12 @@ class SubtractionOperatorTest
     expected = "-54+0i";
     assertTrue(expected.equals(actual));
 
-  }*/
+  }
 
   /**
    * tests for complex numbers and real numbers as operands.
    */
-  /*@Test
+  @Test
   public void testEvaluateComplexReal()
   {
     SubtractionOperator s = new SubtractionOperator();
@@ -467,12 +467,12 @@ class SubtractionOperatorTest
     expected = "-4+7i";
     assertTrue(expected.equals(actual));
 
-  }*/
+  }
 
   /**
    * tests for imaginary numbers and real numbers as operands.
    */
-  /*@Test
+  @Test
   public void testEvaluateImaginaryReal()
   {
     SubtractionOperator s = new SubtractionOperator();
@@ -516,12 +516,12 @@ class SubtractionOperatorTest
     actual = s.evaluate("-6", "-7i");
     expected = "-6+7i";
     assertTrue(expected.equals(actual));
-  }*/
+  }
 
   /**
    * tests for complex numbers and imaginary numbers as operands.
    */
-  /*@Test
+  @Test
   public void testEvaluateImaginaryComplex()
   {
     SubtractionOperator s = new SubtractionOperator();
@@ -565,12 +565,12 @@ class SubtractionOperatorTest
     actual = s.evaluate("-6-4i", "-7i");
     expected = "-6+3i";
     assertTrue(expected.equals(actual));
-  }*/
+  }
 
   /**
    * tests for the distribute method.
    */
-  /*@Test
+  @Test
   public void testDistribute()
   {
     SubtractionOperator s = new SubtractionOperator();
@@ -579,6 +579,6 @@ class SubtractionOperatorTest
     String actual = s.distribute("6+3i");
     String expected = "-6+-3i";
     assertTrue(expected.equals(actual));
-  }*/
+  }
 
 }
