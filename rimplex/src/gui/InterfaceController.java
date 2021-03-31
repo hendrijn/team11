@@ -66,6 +66,7 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
           ui.errorMessage("Please input two valid operands.");
           resetInterface(ui);
         }
+        ui.inputField.requestFocusInWindow();
         break;
       default:
         closeApplication();
