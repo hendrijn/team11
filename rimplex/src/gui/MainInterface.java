@@ -208,22 +208,13 @@ public class MainInterface extends JFrame implements Finals
     }
     else if (result != null)
     {
-
-      try
-      {
-        input = input.concat(((JTextField) inputPanel.getComponent(0)).getText());
-      }
-      catch (NullPointerException e)
-      {
-        input = "";
-        input = input.concat(((JTextField) inputPanel.getComponent(0)).getText());
-      }
-    	if (parenthesis)
-      	  input = input.concat("(");
-
-      input = input.concat(((JTextField) inputPanel.getComponent(0)).getText());
       if (parenthesis)
-    	  input = input.concat(")");
+          input = input.concat("(");
+      String inputText = ((JTextField) inputPanel.getComponent(0)).getText();
+      inputText = italicizeI(inputText);
+      input = input.concat(inputText);
+      if (parenthesis)
+        input = input.concat(")");
       input = input.concat(buttonText);
       inputField.setText("");
       ((JLabel) displayPanel.getComponent(0)).setText(input);
@@ -254,6 +245,8 @@ public class MainInterface extends JFrame implements Finals
 		index = text.indexOf("i");
 		ret = text.substring(0, index);
 		ret = ret.concat("<i>i</i>");
+		if (text.substring(index + 1) != null) 
+			ret = ret.concat(text.substring(index + 1));
 		count--;
 	}
 	return ret;
