@@ -42,7 +42,6 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
         context = new TempContext(new AdditionOperator());
         break;
       case SUBTRACT:
-        // Temporary code to tests updateDisplay functionality
         firstInput = ui.inputField.getText();
         ui.updateDisplay(SP + SUBTRACT + SP, null);
         context = new TempContext(new SubtractionOperator());
