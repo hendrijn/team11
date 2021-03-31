@@ -4,6 +4,8 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.Border;
 
+import org.junit.platform.commons.util.StringUtils;
+
 /**
  * Serves as the main window for the interface.
  *
@@ -96,7 +98,7 @@ public class MainInterface extends JFrame implements Finals
     Border displayB = BorderFactory.createLineBorder(Color.BLUE, 3, true);
     displayPanel.setBorder(displayB);
     displayPanel.setLayout(new GridLayout(1, 2));
-    JLabel displayOps = new JLabel("", JLabel.LEFT);
+    JLabel displayOps = new JLabel("<html> <i>test</i>", JLabel.LEFT);
     JLabel displayRes = new JLabel("", JLabel.RIGHT);
 
     displayPanel.add(displayOps);
@@ -183,10 +185,12 @@ public class MainInterface extends JFrame implements Finals
   void updateDisplay(String buttonText, String result)
   {
 
-    if (result == null && input == null)
+    if (result == null && (input == null || input.isEmpty()))
     {
-      input = "(";
+      input = "<html>";
+      input = input.concat("(");
       input = input.concat(inputField.getText());
+      input = italicizeI(input);
       input = input.concat(")");
       input = input.concat(buttonText);
       inputField.setText("");
@@ -196,16 +200,46 @@ public class MainInterface extends JFrame implements Finals
     }
     else
     {
-    	input = input.concat("(");
+      
+      input = input.concat("(");
       input = input.concat(((JTextField) inputPanel.getComponent(0)).getText());
       input = input.concat(")");
       input = input.concat(buttonText);
       inputField.setText("");
       ((JLabel) displayPanel.getComponent(0)).setText(input);
       ((JLabel) displayPanel.getComponent(1)).setText(result);
-      input = null;
+      input = "";
     }
 
+  }
+  
+  private String italicizeI (String text)
+  {
+	String ret = text;
+	System.out.println("Runnng???");
+	int index;
+	int count = 0;
+	for (int i = 0; i < text.length() - 1; i++)
+	{
+		if (text.charAt(i) == 'i')
+		{
+			count++;
+		}
+	}
+	while (count > 0)
+	{
+		index = text.indexOf("i");
+		ret = text.substring(0, index);
+		System.out.println(ret);
+		String after = text.substring(index, text.length() - 1);
+		System.out.println(after);
+		ret.concat("<i>)");
+		ret.concat(text.substring(index));
+		ret.concat("</i>");
+		count--;
+	}
+	return ret;
+	  
   }
   
   /**
