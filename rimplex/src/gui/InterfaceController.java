@@ -18,6 +18,8 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
   private TempContext context = null;
 
   private String firstInput = "";
+  
+  private boolean shownError = false;
 
   /**
    * Handles all button operations.
@@ -57,6 +59,7 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
         try
         {
           equalsButtonHandling(ui);
+          
         }
         catch (NullPointerException nullP)
         {
@@ -112,6 +115,7 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
       resetInterface(ui);
       return;
     }
+ 
     ui.updateDisplay(SP + EQUALS, finalResult);
     System.out.println("Handle equals functionality");
   }

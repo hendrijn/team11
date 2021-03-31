@@ -185,9 +185,11 @@ public class MainInterface extends JFrame implements Finals
    */
   void updateDisplay(String buttonText, String result)
   {
-
+    
+    
     if (result == null && input == null)
     {
+  
       input = inputField.getText();
       input = input.concat(buttonText);
       inputField.setText("");
@@ -195,6 +197,8 @@ public class MainInterface extends JFrame implements Finals
     }
     else
     {
+   
+      input = input.concat(((JTextField) inputPanel.getComponent(0)).getText());
       input = input.concat(((JTextField) inputPanel.getComponent(0)).getText());
       input = input.concat(buttonText);
       inputField.setText("");
