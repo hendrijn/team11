@@ -192,6 +192,7 @@ public class MainInterface extends JFrame implements Finals
       input = input.concat("(");
       input = input.concat(inputField.getText());
       input = italicizeI(input);
+      input = input.concat(")");
       input = input.concat(buttonText);
       inputField.setText("");
       
@@ -212,6 +213,7 @@ public class MainInterface extends JFrame implements Finals
       displayResult = italicizeI(displayResult);
       displayResult = displayResult.substring(0, displayResult.length() - 1);
       ((JLabel) displayPanel.getComponent(1)).setText(displayResult);
+      System.out.println("input " + input);
       input = "";
     }
 
@@ -224,7 +226,7 @@ public class MainInterface extends JFrame implements Finals
 	int count = 0;
 	for (int i = 0; i < text.length(); i++)
 	{
-		if (text.charAt(i) == 'i')
+		if (text.charAt(i) == 'i' && text.charAt(i - 1) != '>')
 		{
 			count++;
 		}
@@ -233,7 +235,7 @@ public class MainInterface extends JFrame implements Finals
 	{
 		index = text.indexOf("i");
 		ret = text.substring(0, index);
-		ret = ret.concat("<i>i<i>)");
+		ret = ret.concat("<i>i</i>");
 		count--;
 	}
 	return ret;
