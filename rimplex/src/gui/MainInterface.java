@@ -1,10 +1,10 @@
 package gui;
 
 import java.awt.*;
-import java.util.ArrayList;
-
 import javax.swing.*;
 import javax.swing.border.Border;
+
+import org.junit.platform.commons.util.StringUtils;
 
 /**
  * Serves as the main window for the interface.
@@ -35,7 +35,6 @@ public class MainInterface extends JFrame implements Finals
   private InterfaceController listener = new InterfaceController();
 
   private String input;
-  private String result;
 
   /**
    * Default constructor.
@@ -99,8 +98,8 @@ public class MainInterface extends JFrame implements Finals
     Border displayB = BorderFactory.createLineBorder(Color.BLUE, 3, true);
     displayPanel.setBorder(displayB);
     displayPanel.setLayout(new GridLayout(1, 2));
-    JLabel displayOps = new JLabel("Operands go here", JLabel.LEFT);
-    JLabel displayRes = new JLabel("results go here", JLabel.RIGHT);
+    JLabel displayOps = new JLabel("<html> <i>test</i>", JLabel.LEFT);
+    JLabel displayRes = new JLabel("", JLabel.RIGHT);
 
     displayPanel.add(displayOps);
     displayPanel.add(displayRes);
@@ -186,23 +185,61 @@ public class MainInterface extends JFrame implements Finals
   void updateDisplay(String buttonText, String result)
   {
 
-    if (result == null && input == null)
+    if (result == null && (input == null || input.isEmpty()))
     {
-      input = inputField.getText();
+      
+      input = "<html>";
+      input = input.concat("(");
+      input = input.concat(inputField.getText());
+      input = italicizeI(input);
+      input = input.concat(")");
       input = input.concat(buttonText);
       inputField.setText("");
+      
       ((JLabel) displayPanel.getComponent(0)).setText(input);
+      ((JLabel) displayPanel.getComponent(1)).setText("");
     }
     else
     {
+      
+      input = input.concat("(");
       input = input.concat(((JTextField) inputPanel.getComponent(0)).getText());
+      input = input.concat(")");
       input = input.concat(buttonText);
       inputField.setText("");
       ((JLabel) displayPanel.getComponent(0)).setText(input);
-      ((JLabel) displayPanel.getComponent(1)).setText(result);
-      input = null;
+      String displayResult = "<html>";
+      displayResult = displayResult.concat(result);
+      displayResult = italicizeI(displayResult);
+      displayResult = displayResult.substring(0, displayResult.length() - 1);
+      ((JLabel) displayPanel.getComponent(1)).setText(displayResult);
+      System.out.println("input " + input);
+      input = "";
     }
 
+  }
+  
+  private static String italicizeI (String text)
+  {
+	String ret = text;
+	int index;
+	int count = 0;
+	for (int i = 0; i < text.length(); i++)
+	{
+		if (text.charAt(i) == 'i' && text.charAt(i - 1) != '>')
+		{
+			count++;
+		}
+	}
+	while (count > 0)
+	{
+		index = text.indexOf("i");
+		ret = text.substring(0, index);
+		ret = ret.concat("<i>i</i>");
+		count--;
+	}
+	return ret;
+	  
   }
   
   /**
