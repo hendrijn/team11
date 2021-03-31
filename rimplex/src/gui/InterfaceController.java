@@ -116,7 +116,8 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
     catch (IllegalArgumentException e)
     {
       ui.errorMessage(e.getMessage());
-      resetInterface(ui);
+      ui.clearAll();
+      ui.inputField.requestFocusInWindow();
       return;
     }
  

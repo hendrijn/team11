@@ -24,14 +24,20 @@ public class AdditionOperator implements Operator
   public String evaluate(String leftOperand, String rightOperand)
   {
 
-    if (leftOperand == null || rightOperand == null || leftOperand.equals("") || rightOperand.equals(""))
+    if (leftOperand == null || rightOperand == null)
+    {
+      throw new IllegalArgumentException("Please provide two valid operands.");
+    }
+    
+    String simplifedLeft = leftOperand.replaceAll(" ", "");
+    String simplifedRight = rightOperand.replaceAll(" ", "");
+    
+    if (leftOperand.equals("") || rightOperand.equals(""))
     {
       throw new IllegalArgumentException("Please provide two valid operands.");
     }
 
-    String simplifedLeft = leftOperand.replaceAll(" ", "");
-    String simplifedRight = rightOperand.replaceAll(" ", "");
-
+   
     String alteredROp = TempContext.format(simplifedRight);
     String alteredLOp = TempContext.format(simplifedLeft);
 
