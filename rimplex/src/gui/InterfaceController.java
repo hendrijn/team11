@@ -35,17 +35,20 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
         break;
       case CLEAR:
         ui.inputField.setText(EMPTY);
+        ui.inputField.requestFocusInWindow();
         break;
       case ADD:
         firstInput = ui.inputField.getText();
         ui.updateDisplay(SP + ADD + SP, null);
         context = new TempContext(new AdditionOperator());
+        ui.inputField.requestFocusInWindow();
         break;
       case SUBTRACT:
         // Temporary code to tests updateDisplay functionality
         firstInput = ui.inputField.getText();
         ui.updateDisplay(SP + SUBTRACT + SP, null);
         context = new TempContext(new SubtractionOperator());
+        ui.inputField.requestFocusInWindow();
         break;
       case MULTIPLY:
         System.out.println("Multiply is disabled");
@@ -81,6 +84,7 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
     ui.inputField.setText("");
     ui.updateDisplay("", null);
     ui.updateDisplay("", null);
+    ui.inputField.requestFocusInWindow();
   }
 
   /**
