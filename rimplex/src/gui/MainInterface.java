@@ -98,7 +98,7 @@ public class MainInterface extends JFrame implements Finals
     Border displayB = BorderFactory.createLineBorder(Color.BLUE, 3, true);
     displayPanel.setBorder(displayB);
     displayPanel.setLayout(new GridLayout(1, 2));
-    JLabel displayOps = new JLabel("<html> <i>test</i>", JLabel.LEFT);
+    JLabel displayOps = new JLabel("", JLabel.LEFT);
     JLabel displayRes = new JLabel("", JLabel.RIGHT);
 
     displayPanel.add(displayOps);
@@ -204,7 +204,7 @@ public class MainInterface extends JFrame implements Finals
       ((JLabel) displayPanel.getComponent(0)).setText(input);
       ((JLabel) displayPanel.getComponent(1)).setText("");
     }
-    else
+    else if (result != null)
     {
     	if (parenthesis)
       	  input = input.concat("(");
