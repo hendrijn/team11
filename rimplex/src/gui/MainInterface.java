@@ -209,7 +209,15 @@ public class MainInterface extends JFrame implements Finals
     else
     {
 
-      input = input.concat(((JTextField) inputPanel.getComponent(0)).getText());
+      try
+      {
+        input = input.concat(((JTextField) inputPanel.getComponent(0)).getText());
+      }
+      catch (NullPointerException e)
+      {
+        input = "";
+        input = input.concat(((JTextField) inputPanel.getComponent(0)).getText());
+      }
     	if (parenthesis)
       	  input = input.concat("(");
 
