@@ -84,6 +84,7 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
     ui.inputField.setText("");
     ui.updateDisplay("", null);
     //Accidentally written twice?????
+    // not accidental it's to clear the operand side and the result side
     ui.updateDisplay("", null);
     ui.inputField.requestFocusInWindow();
   }
