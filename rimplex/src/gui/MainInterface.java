@@ -208,7 +208,9 @@ public class MainInterface extends JFrame implements Finals
     {
     	if (parenthesis)
       	  input = input.concat("(");
-      input = input.concat(((JTextField) inputPanel.getComponent(0)).getText());
+      String inputText = ((JTextField) inputPanel.getComponent(0)).getText();
+      inputText = italicizeI(inputText);
+      input = input.concat(inputText);
       if (parenthesis)
     	  input = input.concat(")");
       input = input.concat(buttonText);
@@ -241,6 +243,8 @@ public class MainInterface extends JFrame implements Finals
 		index = text.indexOf("i");
 		ret = text.substring(0, index);
 		ret = ret.concat("<i>i</i>");
+		if (text.substring(index + 1) != null) 
+			ret = ret.concat(text.substring(index + 1));
 		count--;
 	}
 	return ret;
