@@ -187,11 +187,11 @@ public class MainInterface extends JFrame implements Finals
 
     if (result == null && (input == null || input.isEmpty()))
     {
+      
       input = "<html>";
       input = input.concat("(");
       input = input.concat(inputField.getText());
       input = italicizeI(input);
-      input = input.concat(")");
       input = input.concat(buttonText);
       inputField.setText("");
       
@@ -207,19 +207,22 @@ public class MainInterface extends JFrame implements Finals
       input = input.concat(buttonText);
       inputField.setText("");
       ((JLabel) displayPanel.getComponent(0)).setText(input);
-      ((JLabel) displayPanel.getComponent(1)).setText(result);
+      String displayResult = "<html>";
+      displayResult = displayResult.concat(result);
+      displayResult = italicizeI(displayResult);
+      displayResult = displayResult.substring(0, displayResult.length() - 1);
+      ((JLabel) displayPanel.getComponent(1)).setText(displayResult);
       input = "";
     }
 
   }
   
-  private String italicizeI (String text)
+  private static String italicizeI (String text)
   {
 	String ret = text;
-	System.out.println("Runnng???");
 	int index;
 	int count = 0;
-	for (int i = 0; i < text.length() - 1; i++)
+	for (int i = 0; i < text.length(); i++)
 	{
 		if (text.charAt(i) == 'i')
 		{
@@ -230,12 +233,7 @@ public class MainInterface extends JFrame implements Finals
 	{
 		index = text.indexOf("i");
 		ret = text.substring(0, index);
-		System.out.println(ret);
-		String after = text.substring(index, text.length() - 1);
-		System.out.println(after);
-		ret.concat("<i>)");
-		ret.concat(text.substring(index));
-		ret.concat("</i>");
+		ret = ret.concat("<i>i<i>)");
 		count--;
 	}
 	return ret;
