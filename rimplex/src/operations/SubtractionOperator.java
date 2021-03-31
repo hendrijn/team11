@@ -8,7 +8,7 @@ package operations;
  */
 public class SubtractionOperator implements Operator
 {
- 
+
   /**
    * Evaluates a subtraction of two operands.
    * 
@@ -34,19 +34,16 @@ public class SubtractionOperator implements Operator
     // remove spaces
     String noSpL = leftOperand.replaceAll(" ", ""); 
     String noSpR = rightOperand.replaceAll(" ", "");
-    
+
+    // put left Operand in +- form if negative
     String distribute = this.distribute(noSpR);
+
+    // distribute and fix +- form to - form
     String result = new AdditionOperator().evaluate(noSpL, distribute);
     
     return result;
   }
 
-  /**
-   * Distributes the minus sign to the right operand of a subtraction computation.
-   * 
-   * @param rightOperand the operand to be distributed to.
-   * @return the new operand to be used in an addition computation.
-   */
   public String distribute(String rightOperand)
   {
     int indexOfNeg = rightOperand.indexOf("-");
@@ -64,26 +61,87 @@ public class SubtractionOperator implements Operator
             + rightOperand.substring(rightOperand.indexOf("+") + 1) + "";
       }
     } 
-    else if(rightOperand.contains("-")){
-      if(rightOperand.charAt(0) == '-' && rightOperand.indexOf("-", indexOfNeg+1) != -1)
+    else {
+      if(rightOperand.charAt(0) == '-')
+      {
+        distribute = rightOperand.substring(1);
+      }
+      else 
+      {
+        distribute = "-" + rightOperand;
+      }
+    }
+
+    if (rightOperand.indexOf("-", indexOfNeg+1) != -1)
+    {
+      if (rightOperand.charAt(0) == '-')
       {
         distribute = rightOperand.substring(1, rightOperand.indexOf("-", indexOfNeg + 1)) + "+"
             + rightOperand.substring(rightOperand.indexOf("-", indexOfNeg + 1) + 1);
       }
-      else if(rightOperand.charAt(0) == '-' && rightOperand.indexOf("-", indexOfNeg+1) == -1)
-      {
-        distribute = rightOperand.substring(1);
-      }
       else
       {
-        distribute = "-" + rightOperand.substring(0, rightOperand.indexOf("-")) + "+"
-            + rightOperand.substring(rightOperand.indexOf("-") + 1);
+        distribute = "-" + rightOperand.substring(0, rightOperand.indexOf("-", indexOfNeg + 1))
+            + "+" + rightOperand.substring(rightOperand.indexOf("-", indexOfNeg + 1) + 1);
       }
+    }
+    return distribute;
+  }
+
+  public String format(String operand)
+  {
+    boolean complex = false;
+    boolean imaginary = false;
+    boolean real = false;
+    String result = "";
+
+    int negative = operand.indexOf("-");
+    int minus = operand.indexOf("-", negative + 1);
+
+    if (operand.contains("+"))
+    {
+      complex = true;
+    }
+    else if (operand.charAt(0) == '-' && minus != -1)
+    {
+      complex = true;
+    }
+    else if (operand.charAt(0) != '-' && negative != -1)
+    {
+      complex = true;
+    }
+    else if (operand.contains("i"))
+    {
+      imaginary = true;
     }
     else
     {
-      distribute = "-" + rightOperand;
+      real = true;
     }
-    return distribute;
+
+    if (complex)
+    {
+      if (operand.contains("-"))
+      {
+          result = operand.substring(0, operand.indexOf("-", minus)) + "+-"
+              + operand.substring(operand.indexOf("-", minus) + 1);
+      }
+      else
+      {
+        result = operand;
+      }
+    }
+
+    if (imaginary)
+    {
+      result = "0+" + operand;
+    }
+
+    if (real)
+    {
+      result = operand + "+0i";
+    }
+
+    return result;
   }
 }
