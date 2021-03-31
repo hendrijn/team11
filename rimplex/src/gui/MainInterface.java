@@ -228,6 +228,11 @@ public class MainInterface extends JFrame implements Finals
 
   }
   
+  /**
+   * Makes i italic
+   * @param text
+   * @return the input with italic i
+   */
   private static String italicizeI (String text)
   {
 	String ret = text;
