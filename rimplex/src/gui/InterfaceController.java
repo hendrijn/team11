@@ -17,7 +17,7 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
 {
   private TempContext context = null;
 
-  private String firstInput = "";
+  private String firstInput = EMPTY;
   
 
   /**
@@ -77,19 +77,6 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
   }
 
   /**
-   * Resets the input field and display.
-   * 
-   * @param ui
-   *          the main interface
-   */
-  private void resetInterface(MainInterface ui)
-  {
-    ui.inputField.setText("");
-    ui.updateDisplay("", null);
-    ui.inputField.requestFocusInWindow();
-  }
-
-  /**
    * closeApplication - handle all tasks at application close.
    */
   private void closeApplication()
@@ -107,7 +94,7 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
   {
 
     String currentInput = ui.inputField.getText();
-    String finalResult = "";
+    String finalResult = EMPTY;
     try
     {
       finalResult = context.evaluate(firstInput, currentInput);
@@ -123,7 +110,6 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
       return;
     }
     ui.updateDisplay(SP + EQUALS, finalResult);
-    System.out.println("Handle equals functionality");
   }
 
   /**
@@ -132,8 +118,9 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
   @Override
   public void keyTyped(KeyEvent e)
   {
-    System.out.println("you typed");
-
+    MainInterface inst = MainInterface.getInstance();
+    inst.addButton.setEnabled(true);
+    inst.subtractButton.setEnabled(true);
   }
 
   // ----------------- Unimplemented -------------//
