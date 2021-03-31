@@ -257,6 +257,15 @@ public class MainInterface extends JFrame implements Finals
   }
   
   /**
+   * Resets the display and input fields.
+   */
+  void clearAll() {
+    inputField.setText("");
+    ((JLabel) displayPanel.getComponent(0)).setText("");
+    ((JLabel) displayPanel.getComponent(1)).setText("");
+  }
+  
+  /**
    * Handles error message prompting.
    * @param errorMessage The error message from the relevant exception.
    */

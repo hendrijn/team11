@@ -31,7 +31,8 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
     switch (button.getText())
     {
       case RESET:
-        resetInterface(ui);
+        ui.clearAll();
+        ui.inputField.requestFocusInWindow();
         break;
       case CLEAR:
         ui.inputField.setText(EMPTY);
