@@ -162,26 +162,40 @@ class AdditonOperatorTesting
     assertEquals(expectedResult, actualResult);
   }
 
-  /*
-   * @Test public void twoRandomComplexNumbersTest() { Random random = new Random(); int
-   * firstRandomNum = random.nextInt(); int secondRandomNum = random.nextInt(); int firstRandomI =
-   * random.nextInt(); int secondRandomI = random.nextInt(); String complexNumberOne =
-   * String.valueOf(firstRandomNum) + "+" + String.valueOf(firstRandomI) + "i"; String
-   * complexNumberTwo = String.valueOf(secondRandomNum) + "+" + String.valueOf(secondRandomI) + "i";
-   * String expectedResult = String.valueOf(firstRandomNum + secondRandomNum) + "+" +
-   * String.valueOf(firstRandomI + secondRandomI) + "i"; TempContext tempContext = new
-   * TempContext(new AdditionOperator()); String actualResult =
-   * tempContext.evaluate(complexNumberOne, complexNumberTwo); assertEquals(expectedResult,
-   * actualResult); }
-   * 
-   * @Test public void twoRandomRealNumbersTest() { Random random = new Random(); int firstRandomNum
-   * = random.nextInt(); int secondRandomNum = random.nextInt(); String firstStringRandomNum =
-   * String.valueOf(firstRandomNum); String secondStringRandomNum = String.valueOf(secondRandomNum);
-   * String expectedResult = String.valueOf(firstRandomNum + secondRandomNum) + "+0i"; TempContext
-   * tempContext = new TempContext(new AdditionOperator()); String actualResult =
-   * tempContext.evaluate(firstStringRandomNum, secondStringRandomNum); assertEquals(expectedResult,
-   * actualResult); }
-   */
+  // had to comment out because sometimes works and sometimes doesn't 
+  // and was not able to get a standard result during this sprint
+  /*@Test
+  public void twoRandomComplexNumbersTest()
+  {
+    Random random = new Random();
+    int firstRandomNum = random.nextInt();
+    int secondRandomNum = random.nextInt();
+    int firstRandomI = random.nextInt();
+    int secondRandomI = random.nextInt();
+    String complexNumberOne = String.valueOf(firstRandomNum) + "+" + String.valueOf(firstRandomI)
+        + "i";
+    String complexNumberTwo = String.valueOf(secondRandomNum) + "+" + String.valueOf(secondRandomI)
+        + "i";
+    String expectedResult = String.valueOf(firstRandomNum + secondRandomNum) + "+"
+        + String.valueOf(firstRandomI + secondRandomI) + "i";
+    TempContext tempContext = new TempContext(new AdditionOperator());
+    String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
+    assertEquals(expectedResult, actualResult);
+  }
+
+  @Test
+  public void twoRandomRealNumbersTest()
+  {
+    Random random = new Random();
+    int firstRandomNum = random.nextInt();
+    int secondRandomNum = random.nextInt();
+    String firstStringRandomNum = String.valueOf(firstRandomNum);
+    String secondStringRandomNum = String.valueOf(secondRandomNum);
+    String expectedResult = String.valueOf(firstRandomNum + secondRandomNum) + "+0i";
+    TempContext tempContext = new TempContext(new AdditionOperator());
+    String actualResult = tempContext.evaluate(firstStringRandomNum, secondStringRandomNum);
+    assertEquals(expectedResult, actualResult);
+  }*/
 
   @Test
   public void inValidNullLeftOperandTest()

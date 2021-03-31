@@ -13,7 +13,7 @@ import operations.SubtractionOperator;
  * @version Sprint 1
  */
 class SubtractionOperatorTest
-{
+{ 
 
   /**
    * tests for operands with spaces.
@@ -232,6 +232,11 @@ class SubtractionOperatorTest
     // both negative, negative result
     actual = s.evaluate("-9-96i", "-2-42i");
     expected = "-7-54i";
+    assertTrue(expected.equals(actual));
+    
+    //extra case that seems to be failing
+    actual = s.evaluate("3+2i", "2-i");
+    expected = "1+3i";
     assertTrue(expected.equals(actual));
 
   }
@@ -511,7 +516,6 @@ class SubtractionOperatorTest
     actual = s.evaluate("-6", "-7i");
     expected = "-6+7i";
     assertTrue(expected.equals(actual));
-
   }
 
   /**
