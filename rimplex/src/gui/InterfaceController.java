@@ -19,7 +19,6 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
 
   private String firstInput = "";
   
-  private boolean shownError = false;
 
   /**
    * Handles all button operations.
@@ -34,6 +33,7 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
     {
       case RESET:
         ui.clearAll();
+        firstInput = "";
         ui.inputField.requestFocusInWindow();
         break;
       case CLEAR:
@@ -62,7 +62,6 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
         try
         {
           equalsButtonHandling(ui);
-          
         }
         catch (NullPointerException nullP)
         {
@@ -116,11 +115,13 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
     catch (IllegalArgumentException e)
     {
       ui.errorMessage(e.getMessage());
+      firstInput = "";
       ui.clearAll();
+      finalResult = "";
+      currentInput = "";
       ui.inputField.requestFocusInWindow();
       return;
     }
- 
     ui.updateDisplay(SP + EQUALS, finalResult);
     System.out.println("Handle equals functionality");
   }
@@ -147,5 +148,6 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
     // TODO Auto-generated method stub
 
   }
+  
 
 }
