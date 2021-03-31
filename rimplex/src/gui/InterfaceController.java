@@ -108,10 +108,10 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
       ui.errorMessage(e.getMessage());
       finalResult = "";
       shownError = true;
-      
     }
     ui.updateDisplay(SP + EQUALS, finalResult);
-    if (shownError) {
+    if (shownError) 
+    {
       ui.clearAll();
     }
     else 
