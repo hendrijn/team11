@@ -77,6 +77,8 @@ public class MainInterface extends JFrame implements Finals
     divideButton.addActionListener(listener);
     equalsButton.addActionListener(listener);
 
+    addButton.setEnabled(false);
+    subtractButton.setEnabled(false);
     multiplyButton.setEnabled(false);
     divideButton.setEnabled(false);
 
@@ -98,8 +100,8 @@ public class MainInterface extends JFrame implements Finals
     Border displayB = BorderFactory.createLineBorder(Color.BLUE, 3, true);
     displayPanel.setBorder(displayB);
     displayPanel.setLayout(new GridLayout(1, 2));
-    JLabel displayOps = new JLabel("", JLabel.LEFT);
-    JLabel displayRes = new JLabel("", JLabel.RIGHT);
+    JLabel displayOps = new JLabel(EMPTY, JLabel.LEFT);
+    JLabel displayRes = new JLabel(EMPTY, JLabel.RIGHT);
 
     displayPanel.add(displayOps);
     displayPanel.add(displayRes);
@@ -195,28 +197,28 @@ public class MainInterface extends JFrame implements Finals
       input = inputField.getText();
       input = "<html>";
       if (parenthesis)
-    	  input = input.concat("(");
+        input = input.concat("(");
       input = input.concat(inputField.getText());
       input = italicizeI(input);
       if (parenthesis)
-    	  input = input.concat(")");
+        input = input.concat(")");
       input = input.concat(buttonText);
-      inputField.setText("");
-      
+      inputField.setText(EMPTY);
+
       ((JLabel) displayPanel.getComponent(0)).setText(input);
-      ((JLabel) displayPanel.getComponent(1)).setText("");
+      ((JLabel) displayPanel.getComponent(1)).setText(EMPTY);
     }
     else if (result != null)
     {
       if (parenthesis)
-          input = input.concat("(");
+        input = input.concat("(");
       String inputText = ((JTextField) inputPanel.getComponent(0)).getText();
       inputText = italicizeI(inputText);
       input = input.concat(inputText);
       if (parenthesis)
         input = input.concat(")");
       input = input.concat(buttonText);
-      inputField.setText("");
+      inputField.setText(EMPTY);
       ((JLabel) displayPanel.getComponent(0)).setText(input);
       String displayResult = "<html>";
       displayResult = displayResult.concat(result);
@@ -227,51 +229,55 @@ public class MainInterface extends JFrame implements Finals
     }
 
   }
-  
+
   /**
    * Makes i italic
+   * 
    * @param text
    * @return the input with italic i
    */
-  private static String italicizeI (String text)
+  private static String italicizeI(String text)
   {
-	String ret = text;
-	int index;
-	int count = 0;
-	for (int i = 0; i < text.length(); i++)
-	{
-		if (text.charAt(i) == 'i' && text.charAt(i - 1) != '>')
-		{
-			count++;
-		}
-	}
-	while (count > 0)
-	{
-		index = text.indexOf("i");
-		ret = text.substring(0, index);
-		ret = ret.concat("<i>i</i>");
-		if (text.substring(index + 1) != null) 
-			ret = ret.concat(text.substring(index + 1));
-		count--;
-	}
-	return ret;
-	  
+    String ret = text;
+    int index;
+    int count = 0;
+    for (int i = 0; i < text.length(); i++)
+    {
+      if (text.charAt(i) == 'i' && text.charAt(i - 1) != '>')
+      {
+        count++;
+      }
+    }
+    while (count > 0)
+    {
+      index = text.indexOf("i");
+      ret = text.substring(0, index);
+      ret = ret.concat("<i>i</i>");
+      if (text.substring(index + 1) != null)
+        ret = ret.concat(text.substring(index + 1));
+      count--;
+    }
+    return ret;
+
   }
-  
+
   /**
    * Resets the display and input fields.
    */
-  void clearAll() {
-    inputField.setText("");
-    ((JLabel) displayPanel.getComponent(0)).setText("");
-    ((JLabel) displayPanel.getComponent(1)).setText("");
+  void clearAll()
+  {
+    inputField.setText(EMPTY);
+    ((JLabel) displayPanel.getComponent(0)).setText(EMPTY);
+    ((JLabel) displayPanel.getComponent(1)).setText(EMPTY);
   }
-  
+
   /**
    * Handles error message prompting.
-   * @param errorMessage The error message from the relevant exception.
+   * 
+   * @param errorMessage
+   *          The error message from the relevant exception.
    */
-  protected void errorMessage(String errorMessage) 
+  protected void errorMessage(String errorMessage)
   {
     JOptionPane.showMessageDialog(null, errorMessage, errorMessage, JOptionPane.ERROR_MESSAGE);
   }
