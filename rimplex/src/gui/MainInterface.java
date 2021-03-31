@@ -184,15 +184,20 @@ public class MainInterface extends JFrame implements Finals
    */
   void updateDisplay(String buttonText, String result)
   {
+	boolean parenthesis = false;
+	if (inputField.getText().contains(ADD) || inputField.getText().contains(SUBTRACT))
+		parenthesis = true;
 
     if (result == null && (input == null || input.isEmpty()))
     {
       
       input = "<html>";
-      input = input.concat("(");
+      if (parenthesis)
+    	  input = input.concat("(");
       input = input.concat(inputField.getText());
       input = italicizeI(input);
-      input = input.concat(")");
+      if (parenthesis)
+    	  input = input.concat(")");
       input = input.concat(buttonText);
       inputField.setText("");
       
@@ -201,10 +206,11 @@ public class MainInterface extends JFrame implements Finals
     }
     else
     {
-      
-      input = input.concat("(");
+    	if (parenthesis)
+      	  input = input.concat("(");
       input = input.concat(((JTextField) inputPanel.getComponent(0)).getText());
-      input = input.concat(")");
+      if (parenthesis)
+    	  input = input.concat(")");
       input = input.concat(buttonText);
       inputField.setText("");
       ((JLabel) displayPanel.getComponent(0)).setText(input);
@@ -213,8 +219,7 @@ public class MainInterface extends JFrame implements Finals
       displayResult = italicizeI(displayResult);
       displayResult = displayResult.substring(0, displayResult.length() - 1);
       ((JLabel) displayPanel.getComponent(1)).setText(displayResult);
-      System.out.println("input " + input);
-      input = "";
+      input = EMPTY;
     }
 
   }

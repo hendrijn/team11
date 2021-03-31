@@ -83,7 +83,8 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
   {
     ui.inputField.setText("");
     ui.updateDisplay("", null);
-    ui.updateDisplay("", null);
+    //Accidentally written twice?????
+    //ui.updateDisplay("", null);
     ui.inputField.requestFocusInWindow();
   }
 
