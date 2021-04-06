@@ -26,6 +26,8 @@ public interface Finals
   static final String DECIMAL = ".";
   static final String SP = " ";
   static final String EMPTY = "";
+  static final String I = "<i>i</i>";
+  static final String HTML = "<html>";
 
   static final String[] FUNCTIONS = {ADD, RESET, SUBTRACT, INVERSE, MULTIPLY, LPAREN, DIVIDE,
       RPAREN, EQUALS, DECIMAL};
