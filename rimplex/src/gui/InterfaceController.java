@@ -16,11 +16,12 @@ import operations.*;
 public class InterfaceController implements Finals, ActionListener, KeyListener
 {
   private TempContext context = null;
+  
+  private String firstOperand = EMPTY;
+  private String secondOperand = EMPTY;
+  private String result = EMPTY;
 
-  private String firstInput = "";
-  
   private boolean shownError = false;
-  
 
   /**
    * Handles all button operations.
@@ -28,68 +29,55 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
   @Override
   public void actionPerformed(ActionEvent e)
   {
-    MainInterface ui = MainInterface.getInstance();
+    NewMainInterface ui = NewMainInterface.getInstance();
     AbstractButton button = (AbstractButton) e.getSource();
 
-    switch (button.getText())
+    try
     {
-      case RESET:
-        firstInput = "";
-        ui.clearAll();        
-        ui.inputField.requestFocusInWindow();
-        break;
-      case CLEAR:
-        ui.inputField.setText(EMPTY);
-        ui.inputField.requestFocusInWindow();
-        break;
-      case ADD:
-        firstInput = ui.inputField.getText();
-        ui.updateDisplay(SP + ADD + SP, null);
-        context = new TempContext(new AdditionOperator());
-        ui.inputField.requestFocusInWindow();
-        break;
-      case SUBTRACT:
-        firstInput = ui.inputField.getText();
-        ui.updateDisplay(SP + SUBTRACT + SP, null);
-        context = new TempContext(new SubtractionOperator());
-        ui.inputField.requestFocusInWindow();
-        break;
-      case MULTIPLY:
-        System.out.println("Multiply is disabled");
-        break;
-      case DIVIDE:
-        System.out.println("Divide is disabled");
-        break;
-      case EQUALS:
-        try
-        {
-          equalsButtonHandling(ui);
-        }
-        catch (NullPointerException nullP)
-        {
-          firstInput = "";
-          ui.errorMessage("Please input two valid operands.");
-          ui.clearAll();
-        }
-        ui.inputField.requestFocusInWindow();
-        break;
-      default:
-        closeApplication();
+      int num = Integer.parseInt(button.getText());
+      System.out.println(num); // send to update display
+    }
+    catch (Throwable t)
+    {
+      switch (button.getText())
+      {
+        case RESET:
+          resetInterface();
+          break;
+        case CLEAR:
+          // just clear the lower label
+          break;
+        case ADD:
+          handleOperators(ADD);
+          break;
+        case SUBTRACT:
+          handleOperators(SUBTRACT);
+          break;
+        case MULTIPLY:
+          handleOperators(MULTIPLY);
+          break;
+        case DIVIDE:
+          handleOperators(DIVIDE);
+          break;
+        case EQUALS:
+          // try
+          // {
+          // equalsButtonHandling(ui);
+          // }
+          // catch (NullPointerException nullP)
+          // {
+          // firstOperand = "";
+          // ui.errorMessage("Please input two valid operands.");
+          // ui.clearAll();
+          // }
+          // ui.inputField.requestFocusInWindow();
+          // break;
+        default:
+          closeApplication();
+
+      }
     }
 
-  }
-
-  /**
-   * Resets the input field and display.
-   * 
-   * @param ui
-   *          the main interface
-   */
-  private void resetInterface(MainInterface ui)
-  {
-    ui.inputField.setText("");
-    ui.updateDisplay("", null);
-    ui.inputField.requestFocusInWindow();
   }
 
   /**
@@ -113,7 +101,7 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
     String finalResult = "";
     try
     {
-      finalResult = context.evaluate(firstInput, currentInput);
+      finalResult = context.evaluate(firstOperand, currentInput);
       shownError = false;
     }
     catch (IllegalArgumentException e)
@@ -123,15 +111,53 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
       shownError = true;
     }
     ui.updateDisplay(SP + EQUALS, finalResult);
-    if (shownError) 
+    if (shownError)
     {
       ui.clearAll();
     }
-    else 
+    else
     {
       shownError = false;
     }
     System.out.println("Handle equals functionality");
+  }
+
+  private void handleOperators(String operation)
+  {
+    NewMainInterface ui = NewMainInterface.getInstance();
+
+    // if (isInsideParenthesis) ...
+    // here, don't add a space between the prev char and operator
+    switch (operation)
+    {
+      case ADD:
+        context = new TempContext(new AdditionOperator());
+        // here, update display with space between prev char and operator
+        break;
+      case SUBTRACT:
+        context = new TempContext(new SubtractionOperator());
+        // here, update display with space between prev char and operator
+        break;
+      case MULTIPLY:
+        // context = new TempContext(new AdditionOperator());
+        // here, update display with space between prev char and operator
+        break;
+      case DIVIDE:
+        // context = new TempContext(new SubtractionOperator());
+        // here, update display with space between prev char and operator
+        break;
+      default:
+        ui.errorMessage("Not a valid operator");
+    }
+  }
+
+  private void resetInterface()
+  {
+    context = null;
+    firstOperand = EMPTY;
+    secondOperand = EMPTY;
+    result = EMPTY;
+    // clear text of both labels
   }
 
   /**
@@ -156,6 +182,5 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
     // TODO Auto-generated method stub
 
   }
-  
 
 }
