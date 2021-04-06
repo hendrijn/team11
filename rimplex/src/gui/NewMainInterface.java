@@ -71,7 +71,7 @@ public class NewMainInterface extends JFrame implements Finals
     for (String function : FUNCTIONS)
     {
       JButton btn = new JButton(function);
-      btn.setForeground(Color.CYAN);
+      btn.setForeground(Color.BLUE);
       btn.addActionListener(listener);
       eastPanel.add(btn);
     }
@@ -93,7 +93,7 @@ public class NewMainInterface extends JFrame implements Finals
     for (JButton btn : btns)
     {
       btn.addActionListener(listener);
-      btn.setForeground(Color.ORANGE);
+      btn.setForeground(Color.MAGENTA);
       centerPanel.add(btn);
     }
 
