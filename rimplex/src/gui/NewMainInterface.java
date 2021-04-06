@@ -112,6 +112,9 @@ public class NewMainInterface extends JFrame implements Finals
     centerPanel.add(zeroBtn);
 
     JButton imagBtn = new JButton(HTML + I);
+    Font oldFont = imagBtn.getFont();
+    Font newFont = new Font(oldFont.getName(), oldFont.getStyle(), 18);
+    imagBtn.setFont(newFont);
     imagBtn.addActionListener(listener);
     centerPanel.add(imagBtn);
   }
