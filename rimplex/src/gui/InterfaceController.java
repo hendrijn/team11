@@ -17,10 +17,11 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
 {
   private TempContext context = null;
 
-  private String firstInput = EMPTY;
-  
+  private String firstOperand = EMPTY;
+  private String secondOperand = EMPTY;
+  private String result = EMPTY;
+
   private boolean shownError = false;
-  
 
   /**
    * Handles all button operations.
@@ -34,8 +35,8 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
     switch (button.getText())
     {
       case RESET:
-        firstInput = "";
-        ui.clearAll();        
+        firstOperand = "";
+        ui.clearAll();
         ui.inputField.requestFocusInWindow();
         break;
       case CLEAR:
@@ -43,13 +44,13 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
         ui.inputField.requestFocusInWindow();
         break;
       case ADD:
-        firstInput = ui.inputField.getText();
+        firstOperand = ui.inputField.getText();
         ui.updateDisplay(SP + ADD + SP, null);
         context = new TempContext(new AdditionOperator());
         ui.inputField.requestFocusInWindow();
         break;
       case SUBTRACT:
-        firstInput = ui.inputField.getText();
+        firstOperand = ui.inputField.getText();
         ui.updateDisplay(SP + SUBTRACT + SP, null);
         context = new TempContext(new SubtractionOperator());
         ui.inputField.requestFocusInWindow();
@@ -67,7 +68,7 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
         }
         catch (NullPointerException nullP)
         {
-          firstInput = "";
+          firstOperand = "";
           ui.errorMessage("Please input two valid operands.");
           ui.clearAll();
         }
@@ -100,7 +101,7 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
     String finalResult = EMPTY;
     try
     {
-      finalResult = context.evaluate(firstInput, currentInput);
+      finalResult = context.evaluate(firstOperand, currentInput);
       shownError = false;
     }
     catch (IllegalArgumentException e)
@@ -110,11 +111,11 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
       shownError = true;
     }
     ui.updateDisplay(SP + EQUALS, finalResult);
-    if (shownError) 
+    if (shownError)
     {
       ui.clearAll();
     }
-    else 
+    else
     {
       shownError = false;
     }
@@ -143,6 +144,5 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
     // TODO Auto-generated method stub
 
   }
-  
 
 }

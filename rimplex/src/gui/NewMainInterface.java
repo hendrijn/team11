@@ -9,6 +9,7 @@ public class NewMainInterface extends JFrame implements Finals
 {
   private static final long serialVersionUID = 5691196863267451960L;
 
+  private static NewMainInterface ui;
   private InterfaceController listener;
   private JPanel northPanel;
   private JPanel eastPanel;
@@ -17,9 +18,8 @@ public class NewMainInterface extends JFrame implements Finals
   /**
    * Default constructor.
    */
-  public NewMainInterface()
+  private NewMainInterface()
   {
-    createComponents();
     setupFrame();
     setSize(400, 500);
     setTitle("Rimplex");
@@ -124,9 +124,16 @@ public class NewMainInterface extends JFrame implements Finals
     northPanel = new JPanel();
   }
 
-  private void createComponents()
+  /**
+   * Singleton.
+   * 
+   * @return the one instance of NewMainInterface
+   */
+  public static NewMainInterface getInstance()
   {
-    // TODO Auto-generated method stub
-
+    if (ui == null)
+      ui = new NewMainInterface();
+    return ui;
   }
+
 }

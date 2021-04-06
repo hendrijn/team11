@@ -7,11 +7,11 @@ package gui;
  * @version March 23 2021
  */
 public class Rimplex
-{  
+{
   public static void main(String[] args)
   {
-        NewMainInterface ui = new NewMainInterface();
-        
+    NewMainInterface ui = NewMainInterface.getInstance();
+
   }
 
 }
