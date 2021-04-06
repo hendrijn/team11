@@ -111,7 +111,7 @@ public class NewMainInterface extends JFrame implements Finals
     zeroBtn.addActionListener(listener);
     centerPanel.add(zeroBtn);
 
-    JButton imagBtn = new JButton("i");
+    JButton imagBtn = new JButton(HTML + I);
     imagBtn.addActionListener(listener);
     centerPanel.add(imagBtn);
   }
