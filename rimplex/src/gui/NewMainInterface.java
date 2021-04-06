@@ -72,6 +72,7 @@ public class NewMainInterface extends JFrame implements Finals
     {
       JButton btn = new JButton(function);
       btn.setForeground(Color.BLUE);
+      increaseSize(btn);
       btn.addActionListener(listener);
       eastPanel.add(btn);
     }
@@ -92,6 +93,7 @@ public class NewMainInterface extends JFrame implements Finals
 
     for (JButton btn : btns)
     {
+      increaseSize(btn);
       btn.addActionListener(listener);
       btn.setForeground(Color.MAGENTA);
       centerPanel.add(btn);
@@ -101,6 +103,7 @@ public class NewMainInterface extends JFrame implements Finals
     {
       JButton btn = new JButton(String.valueOf(i));
       centerPanel.add(btn);
+      increaseSize(btn);
       btn.addActionListener(listener);
       centerPanel.add(btn);
     }
@@ -108,15 +111,27 @@ public class NewMainInterface extends JFrame implements Finals
     centerPanel.add(new JPanel());
 
     JButton zeroBtn = new JButton("0");
+    increaseSize(zeroBtn);
     zeroBtn.addActionListener(listener);
     centerPanel.add(zeroBtn);
 
     JButton imagBtn = new JButton(HTML + I);
-    Font oldFont = imagBtn.getFont();
-    Font newFont = new Font(oldFont.getName(), oldFont.getStyle(), 18);
-    imagBtn.setFont(newFont);
+    increaseSize(imagBtn);
     imagBtn.addActionListener(listener);
     centerPanel.add(imagBtn);
+  }
+
+  /**
+   * Increases the font size of the button text.
+   * 
+   * @param button
+   *          the button on the calculator
+   */
+  private void increaseSize(JButton button)
+  {
+    Font oldFont = button.getFont();
+    Font newFont = new Font("Times New Roman", oldFont.getStyle(), 20);
+    button.setFont(newFont);
   }
 
   /**
