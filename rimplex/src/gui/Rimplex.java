@@ -10,7 +10,7 @@ public class Rimplex
 {  
   public static void main(String[] args)
   {
-        MainInterface ui = MainInterface.getInstance();
+        NewMainInterface ui = new NewMainInterface();
         
   }
 
