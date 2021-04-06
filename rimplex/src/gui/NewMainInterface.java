@@ -45,6 +45,18 @@ public class NewMainInterface extends JFrame implements Finals
     setLocation((dimScreenSize.width - dimFrameSize.width) / 2,
         (dimScreenSize.height - dimFrameSize.height) / 2);
   }
+  
+  /**
+   * Handles error message prompting.
+   * 
+   * @param errorMessage
+   *          The error message from the relevant exception.
+   */
+  protected void errorMessage(String errorMessage)
+  {
+    JOptionPane.showMessageDialog(null, errorMessage, errorMessage, JOptionPane.ERROR_MESSAGE);
+  }
+
 
   private void setupFrame()
   {
