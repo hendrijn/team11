@@ -71,13 +71,15 @@ public class NewMainInterface extends JFrame implements Finals {
 	private void setUpEastPanel() {
 		eastPanel = new JPanel(new GridLayout(5, 2));
 
-		for (String function : FUNCTIONS) {
-			JButton btn = new JButton(function);
-			btn.setForeground(Color.BLUE);
-			btn.addActionListener(listener);
-			eastPanel.add(btn);
-		}
-	}
+	for (String function : FUNCTIONS)
+    {
+      JButton btn = new JButton(function);
+      btn.setForeground(Color.BLUE);
+      increaseSize(btn);
+      btn.addActionListener(listener);
+      eastPanel.add(btn);
+    }
+  }
 
 	private void setupCenterPanel() {
 		centerPanel = new JPanel(new GridLayout(5, 3));
@@ -91,36 +93,61 @@ public class NewMainInterface extends JFrame implements Finals {
 		btns.add(clearBtn);
 		btns.add(backBtn);
 
-		for (JButton btn : btns) {
-			btn.addActionListener(listener);
-			btn.setForeground(Color.MAGENTA);
-			centerPanel.add(btn);
-		}
+	
+    for (JButton btn : btns)
+    {
+      increaseSize(btn);
+      btn.addActionListener(listener);
+      btn.setForeground(Color.MAGENTA);
+      centerPanel.add(btn);
+    }
 
-		for (int i = 1; i < 10; i++) {
-			JButton btn = new JButton(String.valueOf(i));
-			centerPanel.add(btn);
-			btn.addActionListener(listener);
-			centerPanel.add(btn);
-		}
+		
+    for (int i = 1; i < 10; i++)
+    {
+      JButton btn = new JButton(String.valueOf(i));
+      centerPanel.add(btn);
+      increaseSize(btn);
+      btn.addActionListener(listener);
+      centerPanel.add(btn);
+    }
 
 		centerPanel.add(new JPanel());
 
-		JButton zeroBtn = new JButton("0");
-		zeroBtn.addActionListener(listener);
-		centerPanel.add(zeroBtn);
+		
+    JButton zeroBtn = new JButton("0");
+    increaseSize(zeroBtn);
+    zeroBtn.addActionListener(listener);
+    centerPanel.add(zeroBtn);
 
-		JButton imagBtn = new JButton(HTML + I);
-		imagBtn.addActionListener(listener);
-		centerPanel.add(imagBtn);
-	}
 
-	/**
-	 * Corwin adds the north items.
-	 */
-	private void setupNorthPanel() {
-		northPanel = new JPanel();
-	}
+    JButton imagBtn = new JButton(HTML + I);
+    increaseSize(imagBtn);
+    imagBtn.addActionListener(listener);
+    centerPanel.add(imagBtn);
+  }
+
+	
+  /**
+   * Increases the font size of the button text.
+   * 
+   * @param button
+   *          the button on the calculator
+   */
+  private void increaseSize(JButton button)
+  {
+    Font oldFont = button.getFont();
+    Font newFont = new Font("Times New Roman", oldFont.getStyle(), 20);
+    button.setFont(newFont);
+  }
+
+  /**
+   * Corwin adds the north items.
+   */
+  private void setupNorthPanel()
+  {
+    northPanel = new JPanel();
+  }
 
 	/**
 	 * Singleton.
