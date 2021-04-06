@@ -4,6 +4,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 
 public class NewMainInterface extends JFrame implements Finals {
 	private static final long serialVersionUID = 5691196863267451960L;
@@ -64,6 +65,7 @@ public class NewMainInterface extends JFrame implements Finals {
 		setupCenterPanel();
 		setUpEastPanel();
 
+		contentPane.add(northPanel, BorderLayout.NORTH);
 		contentPane.add(centerPanel, BorderLayout.CENTER);
 		contentPane.add(eastPanel, BorderLayout.EAST);
 	}
@@ -146,9 +148,45 @@ public class NewMainInterface extends JFrame implements Finals {
    */
   private void setupNorthPanel()
   {
-    northPanel = new JPanel();
+    northPanel = new JPanel(new GridLayout(2, 2));
+    northPanel.setBackground(Color.lightGray);
+    
+    Border displayB = BorderFactory.createLineBorder(Color.BLUE, 3, true);
+    northPanel.setBorder(displayB);
+    
+    
+    JLabel expressionDisplay = new JLabel(HTML, JLabel.LEFT);
+    JLabel resultDisplay = new JLabel(HTML, JLabel.RIGHT);
+    JLabel inputDisplay = new JLabel(HTML, JLabel.RIGHT);
+    
+    Font oldFont = expressionDisplay.getFont();
+    Font newFont = new Font("Times New Roman", oldFont.getStyle(), 20);
+    expressionDisplay.setFont(newFont);
+    resultDisplay.setFont(newFont);
+    inputDisplay.setFont(newFont);
+    
+    northPanel.add(expressionDisplay);
+    northPanel.add(resultDisplay);
+    //Filler label to make layout work
+    northPanel.add(new JLabel());
+    northPanel.add(inputDisplay);
   }
 
+  public JLabel getExpressionLabel()
+  {
+	  return (JLabel) northPanel.getComponent(0);
+  }
+  
+  public JLabel getResultLabel()
+  {
+	  return (JLabel) northPanel.getComponent(1);
+  }
+  
+  public JLabel getInputLabel()
+  {
+	  return (JLabel) northPanel.getComponent(3);
+  }
+  
 	/**
 	 * Singleton.
 	 * 
