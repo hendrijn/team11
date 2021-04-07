@@ -13,10 +13,10 @@ public interface Finals
 {
   static final String RESET = "R";
   static final String CLEAR = "C";
-  static final String BACKSPACE = "<-";
   static final String ADD = "+";
+  static final String BACKSPACE = "←";
   static final String SUBTRACT = "-";
-  static final String MULTIPLY = "x";
+  static final String MULTIPLY = "×";
   static final String PMULTIPLY = "*";
   static final String DIVIDE = "÷";
   static final String PDIVIDE = "/";
