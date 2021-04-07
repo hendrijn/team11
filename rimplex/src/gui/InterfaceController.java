@@ -59,6 +59,9 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
         case DIVIDE:
           handleOperators(DIVIDE);
           break;
+        case HTML + I:
+          handleInput(I);
+          break;
         case EQUALS:
           // try
           // {
