@@ -91,13 +91,13 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
   {
     NewMainInterface ui = NewMainInterface.getInstance();
     System.out.println("you typed");
-    int keyCode = e.getKeyCode();
-    String keyText = KeyEvent.getKeyText(keyCode);
+    char keyChar = e.getKeyChar();
+    String keyText = Character.toString(keyChar);
+    System.out.println(keyText);
     try
     {
-      int num = Integer.parseInt(KeyEvent.getKeyText(keyCode));
+      int num = Integer.parseInt(keyText);
       handleInput(keyText);
-      System.out.println(num); // send to update display
     }
     catch (Throwable t)
     {
@@ -128,8 +128,11 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
           // }
           // ui.inputField.requestFocusInWindow();
           break;
+        case "i":
+        	handleInput(I);
+        	break;
         default:
-          closeApplication();
+          
 
       }
     }

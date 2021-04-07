@@ -165,7 +165,9 @@ public class NewMainInterface extends JFrame implements Finals
     expressionDisplay = new JLabel(HTML, JLabel.LEFT);
     resultDisplay = new JLabel(HTML, JLabel.RIGHT);
     inputDisplay = new JLabel(HTML, JLabel.RIGHT);
-
+    inputDisplay.setFocusable(true); 
+    inputDisplay.addKeyListener(listener);
+    
     Font oldFont = expressionDisplay.getFont();
     Font newFont = new Font("Times New Roman", oldFont.getStyle(), 20);
     expressionDisplay.setFont(newFont);
