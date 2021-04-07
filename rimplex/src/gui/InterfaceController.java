@@ -35,7 +35,7 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
     try
     {
       int num = Integer.parseInt(button.getText());
-      handleInput("a");
+      handleInput(button.getText());
     }
     catch (Throwable t)
     {
@@ -210,15 +210,14 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
   {
     NewMainInterface ui = NewMainInterface.getInstance();
 
-    String displayText = ui.getExpressionLabel().getText();
+    String displayText = ui.getInputLabel().getText();
     switch (input)
     {
       case I:
         ui.getInputLabel().setText(displayText + I);
         break;
       default:
-        // ui.getInputLabel().setText(displayText + input);
-        ui.getInputLabel().setText("Hello");
+        ui.getInputLabel().setText(displayText + input);
         break;
 
     }
