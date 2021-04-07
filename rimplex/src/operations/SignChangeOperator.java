@@ -11,6 +11,6 @@ public class SignChangeOperator
     
     
     
-    return "";
+    return "0+0i";
   }
 }
