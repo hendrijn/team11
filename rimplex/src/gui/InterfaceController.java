@@ -232,6 +232,28 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
     result = EMPTY;
     // clear text of both labels
   }
+  
+  /**
+   * Takes a String and returns true if there are more open brackets than closed brackets.
+   * @param input the String to search
+   * @return true if there are more open brackets, false if not
+   */
+  public static boolean inParentheses(String input)
+  {
+	  int left = 0;
+	  int right = 0;
+	  for (int i = 0; i < input.length(); i++) {
+		  if (input.charAt(i) == '(')
+			  left++;
+		  else if (input.charAt(i) == ')')
+			  right++;
+	  }
+	  if (left > right) 
+		  return true;
+	  
+	  return false;
+  }
+  
 
   // ----------------- Unimplemented -------------//
   @Override
