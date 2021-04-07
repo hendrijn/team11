@@ -16,7 +16,7 @@ import operations.*;
 public class InterfaceController implements Finals, ActionListener, KeyListener
 {
   private TempContext context = null;
-  
+
   private String firstOperand = EMPTY;
   private String secondOperand = EMPTY;
   private String result = EMPTY;
@@ -35,7 +35,7 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
     try
     {
       int num = Integer.parseInt(button.getText());
-      System.out.println(num); // send to update display
+      handleInput(button.getText());
     }
     catch (Throwable t)
     {
@@ -59,6 +59,9 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
         case DIVIDE:
           handleOperators(DIVIDE);
           break;
+        case HTML + I:
+          handleInput(I);
+          break;
         case EQUALS:
           // try
           // {
@@ -80,7 +83,6 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
 
   }
 
-  
   /**
    * Handles when something is typed in the text box.
    */
@@ -89,13 +91,13 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
   {
     NewMainInterface ui = NewMainInterface.getInstance();
     System.out.println("you typed");
-    int keyCode = e.getKeyCode();
-    String keyText = KeyEvent.getKeyText(keyCode);
+    char keyChar = e.getKeyChar();
+    String keyText = Character.toString(keyChar);
+    System.out.println(keyText);
     try
     {
-      int num = Integer.parseInt(KeyEvent.getKeyText(keyCode));
+      int num = Integer.parseInt(keyText);
       handleInput(keyText);
-      System.out.println(num); // send to update display
     }
     catch (Throwable t)
     {
@@ -125,15 +127,17 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
           // ui.clearAll();
           // }
           // ui.inputField.requestFocusInWindow();
-          // break;
+          break;
+        case "i":
+        	handleInput(I);
+        	break;
         default:
-          closeApplication();
+          
 
       }
     }
   }
-  
-  
+
   /**
    * closeApplication - handle all tasks at application close.
    */
@@ -204,25 +208,25 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
         ui.errorMessage("Not a valid operator");
     }
   }
-  
+
   /**
    * Adds soft or physical keyboard input to the display.
    */
   private void handleInput(String input)
   {
-	  NewMainInterface ui = NewMainInterface.getInstance();
-	  
-	  String displayText = ui.getExpressionLabel().getText();
-	  switch(input)
-	  {
-	  case I:
-		  ui.getInputLabel().setText(displayText + I);
-		  break;
-	  default:
-		  ui.getInputLabel().setText(displayText + input);
-		  break;
-	  
-	  }
+    NewMainInterface ui = NewMainInterface.getInstance();
+
+    String displayText = ui.getInputLabel().getText();
+    switch (input)
+    {
+      case I:
+        ui.getInputLabel().setText(displayText + I);
+        break;
+      default:
+        ui.getInputLabel().setText(displayText + input);
+        break;
+
+    }
   }
 
   private void resetInterface()
@@ -233,7 +237,28 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
     result = EMPTY;
     // clear text of both labels
   }
-
+  
+  /**
+   * Takes a String and returns true if there are more open brackets than closed brackets.
+   * @param input the String to search
+   * @return true if there are more open brackets, false if not
+   */
+  public static boolean inParentheses(String input)
+  {
+	  int left = 0;
+	  int right = 0;
+	  for (int i = 0; i < input.length(); i++) {
+		  if (input.charAt(i) == '(')
+			  left++;
+		  else if (input.charAt(i) == ')')
+			  right++;
+	  }
+	  if (left > right) 
+		  return true;
+	  
+	  return false;
+  }
+  
 
   // ----------------- Unimplemented -------------//
   @Override
