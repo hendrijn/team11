@@ -29,8 +29,14 @@ public class AdditionOperator implements Operator
       throw new IllegalArgumentException("Please provide two valid operands.");
     }
     
-    String simplifedLeft = leftOperand.replaceAll(" ", "");
-    String simplifedRight = rightOperand.replaceAll(" ", "");
+    /*String simplifiedLeft = leftOperand.replaceAll(" ", "");
+    String simplifiedRight = rightOperand.replaceAll(" ", "");
+    
+    String noLParenLeft = simplifiedLeft.replace("(", "");
+    String noLParenRight = simplifiedRight.replace("(", "");
+    
+    String noParenLeft = noLParenLeft.replace(")", "");
+    String noParenRight = noLParenRight.replace(")", "");*/
     
     if (leftOperand.equals("") || rightOperand.equals(""))
     {
@@ -38,8 +44,8 @@ public class AdditionOperator implements Operator
     }
 
    
-    String alteredROp = TempContext.format(simplifedRight);
-    String alteredLOp = TempContext.format(simplifedLeft);
+    String alteredROp = TempContext.format(rightOperand);
+    String alteredLOp = TempContext.format(leftOperand);
 
     // Method for counting i's in a string from: https://www.baeldung.com/java-count-chars
     long iCountLeft = alteredLOp.chars().filter(ch -> ch == 'i').count();

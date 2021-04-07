@@ -22,8 +22,7 @@ class TempContextTest
   @Test
   public void testFormat()
   {
-    SubtractionOperator s = new SubtractionOperator();
-
+    //without parens
     String actual = TempContext.format("3-6i");
     String expected = "3+-6i";
     assertTrue(actual.equals(expected));
@@ -47,6 +46,16 @@ class TempContextTest
     actual = TempContext.format("-3i");
     expected = "0+-3i";
     assertTrue(actual.equals(expected));
+    
+    //with parens
+    actual = TempContext.format("(3-6i)");
+    expected = "3+-6i";
+    assertTrue(actual.equals(expected));
+
+    actual = TempContext.format("(3+6i)");
+    expected = "3+6i";
+    assertTrue(actual.equals(expected));
+
   }
 
 }

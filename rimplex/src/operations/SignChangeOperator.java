@@ -9,8 +9,6 @@ public class SignChangeOperator
       throw new IllegalArgumentException("Please Enter an Operand.");
     }
     
-    
-    
     return "0+0i";
   }
 }

@@ -53,23 +53,24 @@ public class TempContext
     boolean imaginary = false;
     boolean real = false;
     String result = "";
+    
+    String alteredOp = operand.replaceAll(" ", "");
+    int negative = alteredOp.indexOf("-");
+    int minus = alteredOp.indexOf("-", negative + 1);
 
-    int negative = operand.indexOf("-");
-    int minus = operand.indexOf("-", negative + 1);
-
-    if (operand.contains("+"))
+    if (alteredOp.contains("+"))
     {
       complex = true;
     }
-    else if (operand.charAt(0) == '-' && minus != -1)
+    else if (alteredOp.charAt(0) == '-' && minus != -1)
     {
       complex = true;
     }
-    else if (operand.charAt(0) != '-' && negative != -1)
+    else if (alteredOp.charAt(0) != '-' && negative != -1)
     {
       complex = true;
     }
-    else if (operand.contains("i"))
+    else if (alteredOp.contains("i"))
     {
       imaginary = true;
     }
@@ -80,30 +81,31 @@ public class TempContext
 
     if (complex)
     {
-      if (operand.charAt(0) == '-' && !operand.contains("+-") && minus != -1)
+      String noParenOp = (alteredOp.replace("(", "")).replace(")", "");
+      if (noParenOp.charAt(0) == '-' && !noParenOp.contains("+-") && minus != -1)
       {
-        result = operand.substring(0, operand.indexOf("-", minus)) + "+-"
-            + operand.substring(operand.indexOf("-", minus) + 1);
+        result = noParenOp.substring(0, noParenOp.indexOf("-", minus)) + "+-"
+            + noParenOp.substring(noParenOp.indexOf("-", minus) + 1);
       }
-      else if (negative != -1 && !operand.contains("+-") && !operand.contains("+"))
+      else if (negative != -1 && !noParenOp.contains("+-") && !noParenOp.contains("+"))
       {
-        result = operand.substring(0, operand.indexOf("-", minus)) + "+-"
-            + operand.substring(operand.indexOf("-", minus) + 1);
+        result = noParenOp.substring(0, noParenOp.indexOf("-", minus)) + "+-"
+            + noParenOp.substring(noParenOp.indexOf("-", minus) + 1);
       }
       else
       {
-        result = operand;
+        result = noParenOp;
       }
     }
 
     if (imaginary)
     {
-      result = "0+" + operand;
+      result = "0+" + alteredOp;
     }
 
     if (real)
     {
-      result = operand + "+0i";
+      result = alteredOp + "+0i";
     }
     return result;
   }
