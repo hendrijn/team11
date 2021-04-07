@@ -16,9 +16,9 @@ public class NewMainInterface extends JFrame implements Finals
   private JPanel eastPanel;
   private JPanel centerPanel;
 
-  JLabel expressionDisplay = new JLabel(HTML, JLabel.LEFT);
-  JLabel resultDisplay = new JLabel(HTML, JLabel.RIGHT);
-  JLabel inputDisplay = new JLabel(HTML, JLabel.RIGHT);
+  JLabel expressionDisplay;
+  JLabel resultDisplay;
+  JLabel inputDisplay;
 
   /**
    * Default constructor.
