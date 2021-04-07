@@ -124,7 +124,7 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
           // ui.clearAll();
           // }
           // ui.inputField.requestFocusInWindow();
-          // break;
+          break;
         default:
           closeApplication();
 
