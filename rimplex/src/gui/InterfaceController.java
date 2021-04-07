@@ -16,7 +16,7 @@ import operations.*;
 public class InterfaceController implements Finals, ActionListener, KeyListener
 {
   private TempContext context = null;
-
+  
   private String firstOperand = EMPTY;
   private String secondOperand = EMPTY;
   private String result = EMPTY;
@@ -80,6 +80,59 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
 
   }
 
+  
+  /**
+   * Handles when something is typed in the text box.
+   */
+  @Override
+  public void keyTyped(KeyEvent e)
+  {
+    NewMainInterface ui = NewMainInterface.getInstance();
+    System.out.println("you typed");
+    int keyCode = e.getKeyCode();
+    String keyText = KeyEvent.getKeyText(keyCode);
+    try
+    {
+      int num = Integer.parseInt(KeyEvent.getKeyText(keyCode));
+      System.out.println(num); // send to update display
+    }
+    catch (Throwable t)
+    {
+      switch (keyText)
+      {
+        case ADD:
+          handleOperators(ADD);
+          break;
+        case SUBTRACT:
+          handleOperators(SUBTRACT);
+          break;
+        case PMULTIPLY:
+          handleOperators(MULTIPLY);
+          break;
+        case PDIVIDE:
+          handleOperators(DIVIDE);
+          break;
+        case EQUALS:
+          // try
+          // {
+          // equalsButtonHandling(ui);
+          // }
+          // catch (NullPointerException nullP)
+          // {
+          // firstOperand = "";
+          // ui.errorMessage("Please input two valid operands.");
+          // ui.clearAll();
+          // }
+          // ui.inputField.requestFocusInWindow();
+          // break;
+        default:
+          closeApplication();
+
+      }
+    }
+  }
+  
+  
   /**
    * closeApplication - handle all tasks at application close.
    */
@@ -98,7 +151,7 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
   {
 
     String currentInput = ui.inputField.getText();
-    String finalResult = EMPTY;
+    String finalResult = "";
     try
     {
       finalResult = context.evaluate(firstOperand, currentInput);
@@ -119,6 +172,7 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
     {
       shownError = false;
     }
+    System.out.println("Handle equals functionality");
   }
 
   private void handleOperators(String operation)
@@ -149,6 +203,15 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
         ui.errorMessage("Not a valid operator");
     }
   }
+  
+  /**
+   * Adds soft or physical keyboard input to the display.
+   */
+  private void handleInput(String input)
+  {
+	  NewMainInterface ui = NewMainInterface.getInstance();
+	  //switch(input)
+  }
 
   private void resetInterface()
   {
@@ -159,16 +222,6 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
     // clear text of both labels
   }
 
-  /**
-   * Handles when something is typed in the text box.
-   */
-  @Override
-  public void keyTyped(KeyEvent e)
-  {
-    MainInterface inst = MainInterface.getInstance();
-    inst.addButton.setEnabled(true);
-    inst.subtractButton.setEnabled(true);
-  }
 
   // ----------------- Unimplemented -------------//
   @Override

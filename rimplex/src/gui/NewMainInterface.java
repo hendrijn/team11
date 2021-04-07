@@ -4,6 +4,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 
 public class NewMainInterface extends JFrame implements Finals
 {
@@ -71,6 +72,7 @@ public class NewMainInterface extends JFrame implements Finals
     setupCenterPanel();
     setUpEastPanel();
 
+    contentPane.add(northPanel, BorderLayout.NORTH);
     contentPane.add(centerPanel, BorderLayout.CENTER);
     contentPane.add(eastPanel, BorderLayout.EAST);
   }
@@ -83,6 +85,7 @@ public class NewMainInterface extends JFrame implements Finals
     {
       JButton btn = new JButton(function);
       btn.setForeground(Color.BLUE);
+      increaseSize(btn);
       btn.addActionListener(listener);
       eastPanel.add(btn);
     }
@@ -103,6 +106,7 @@ public class NewMainInterface extends JFrame implements Finals
 
     for (JButton btn : btns)
     {
+      increaseSize(btn);
       btn.addActionListener(listener);
       btn.setForeground(Color.MAGENTA);
       centerPanel.add(btn);
@@ -112,6 +116,7 @@ public class NewMainInterface extends JFrame implements Finals
     {
       JButton btn = new JButton(String.valueOf(i));
       centerPanel.add(btn);
+      increaseSize(btn);
       btn.addActionListener(listener);
       centerPanel.add(btn);
     }
@@ -119,12 +124,27 @@ public class NewMainInterface extends JFrame implements Finals
     centerPanel.add(new JPanel());
 
     JButton zeroBtn = new JButton("0");
+    increaseSize(zeroBtn);
     zeroBtn.addActionListener(listener);
     centerPanel.add(zeroBtn);
 
-    JButton imagBtn = new JButton("i");
+    JButton imagBtn = new JButton(HTML + I);
+    increaseSize(imagBtn);
     imagBtn.addActionListener(listener);
     centerPanel.add(imagBtn);
+  }
+
+  /**
+   * Increases the font size of the button text.
+   * 
+   * @param button
+   *          the button on the calculator
+   */
+  private void increaseSize(JButton button)
+  {
+    Font oldFont = button.getFont();
+    Font newFont = new Font("Times New Roman", oldFont.getStyle(), 20);
+    button.setFont(newFont);
   }
 
   /**
@@ -132,7 +152,42 @@ public class NewMainInterface extends JFrame implements Finals
    */
   private void setupNorthPanel()
   {
-    northPanel = new JPanel();
+    northPanel = new JPanel(new GridLayout(2, 2));
+    northPanel.setBackground(Color.lightGray);
+
+    Border displayB = BorderFactory.createLineBorder(Color.BLUE, 3, true);
+    northPanel.setBorder(displayB);
+
+    JLabel expressionDisplay = new JLabel(HTML, JLabel.LEFT);
+    JLabel resultDisplay = new JLabel(HTML, JLabel.RIGHT);
+    JLabel inputDisplay = new JLabel(HTML, JLabel.RIGHT);
+
+    Font oldFont = expressionDisplay.getFont();
+    Font newFont = new Font("Times New Roman", oldFont.getStyle(), 20);
+    expressionDisplay.setFont(newFont);
+    resultDisplay.setFont(newFont);
+    inputDisplay.setFont(newFont);
+
+    northPanel.add(expressionDisplay);
+    northPanel.add(resultDisplay);
+    // Filler label to make layout work
+    northPanel.add(new JLabel());
+    northPanel.add(inputDisplay);
+  }
+
+  public JLabel getExpressionLabel()
+  {
+    return (JLabel) northPanel.getComponent(0);
+  }
+
+  public JLabel getResultLabel()
+  {
+    return (JLabel) northPanel.getComponent(1);
+  }
+
+  public JLabel getInputLabel()
+  {
+    return (JLabel) northPanel.getComponent(3);
   }
 
   /**
@@ -145,6 +200,6 @@ public class NewMainInterface extends JFrame implements Finals
     if (ui == null)
       ui = new NewMainInterface();
     return ui;
-  }
 
+  }
 }

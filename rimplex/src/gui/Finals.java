@@ -17,7 +17,9 @@ public interface Finals
   static final String ADD = "+";
   static final String SUBTRACT = "-";
   static final String MULTIPLY = "x";
+  static final String PMULTIPLY = "*";
   static final String DIVIDE = "÷";
+  static final String PDIVIDE = "/";
   static final String EQUALS = "=";
   static final String SIGN = "±";
   static final String INVERSE = "Inv";
