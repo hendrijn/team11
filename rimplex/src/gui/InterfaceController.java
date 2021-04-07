@@ -94,6 +94,7 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
     try
     {
       int num = Integer.parseInt(KeyEvent.getKeyText(keyCode));
+      handleInput(keyText);
       System.out.println(num); // send to update display
     }
     catch (Throwable t)
@@ -210,7 +211,18 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
   private void handleInput(String input)
   {
 	  NewMainInterface ui = NewMainInterface.getInstance();
-	  //switch(input)
+	  
+	  String displayText = ui.getExpressionLabel().getText();
+	  switch(input)
+	  {
+	  case I:
+		  ui.getInputLabel().setText(displayText + I);
+		  break;
+	  default:
+		  ui.getInputLabel().setText(displayText + input);
+		  break;
+	  
+	  }
   }
 
   private void resetInterface()
