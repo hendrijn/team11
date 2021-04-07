@@ -16,7 +16,7 @@ import operations.*;
 public class InterfaceController implements Finals, ActionListener, KeyListener
 {
   private TempContext context = null;
-  
+
   private String firstOperand = EMPTY;
   private String secondOperand = EMPTY;
   private String result = EMPTY;
@@ -35,7 +35,7 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
     try
     {
       int num = Integer.parseInt(button.getText());
-      System.out.println(num); // send to update display
+      handleInput("a");
     }
     catch (Throwable t)
     {
@@ -80,7 +80,6 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
 
   }
 
-  
   /**
    * Handles when something is typed in the text box.
    */
@@ -132,8 +131,7 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
       }
     }
   }
-  
-  
+
   /**
    * closeApplication - handle all tasks at application close.
    */
@@ -204,25 +202,26 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
         ui.errorMessage("Not a valid operator");
     }
   }
-  
+
   /**
    * Adds soft or physical keyboard input to the display.
    */
   private void handleInput(String input)
   {
-	  NewMainInterface ui = NewMainInterface.getInstance();
-	  
-	  String displayText = ui.getExpressionLabel().getText();
-	  switch(input)
-	  {
-	  case I:
-		  ui.getInputLabel().setText(displayText + I);
-		  break;
-	  default:
-		  ui.getInputLabel().setText(displayText + input);
-		  break;
-	  
-	  }
+    NewMainInterface ui = NewMainInterface.getInstance();
+
+    String displayText = ui.getExpressionLabel().getText();
+    switch (input)
+    {
+      case I:
+        ui.getInputLabel().setText(displayText + I);
+        break;
+      default:
+        // ui.getInputLabel().setText(displayText + input);
+        ui.getInputLabel().setText("Hello");
+        break;
+
+    }
   }
 
   private void resetInterface()
@@ -233,7 +232,6 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
     result = EMPTY;
     // clear text of both labels
   }
-
 
   // ----------------- Unimplemented -------------//
   @Override

@@ -16,6 +16,10 @@ public class NewMainInterface extends JFrame implements Finals
   private JPanel eastPanel;
   private JPanel centerPanel;
 
+  JLabel expressionDisplay = new JLabel(HTML, JLabel.LEFT);
+  JLabel resultDisplay = new JLabel(HTML, JLabel.RIGHT);
+  JLabel inputDisplay = new JLabel(HTML, JLabel.RIGHT);
+
   /**
    * Default constructor.
    */
@@ -158,9 +162,9 @@ public class NewMainInterface extends JFrame implements Finals
     Border displayB = BorderFactory.createLineBorder(Color.BLUE, 3, true);
     northPanel.setBorder(displayB);
 
-    JLabel expressionDisplay = new JLabel(HTML, JLabel.LEFT);
-    JLabel resultDisplay = new JLabel(HTML, JLabel.RIGHT);
-    JLabel inputDisplay = new JLabel(HTML, JLabel.RIGHT);
+    expressionDisplay = new JLabel(HTML, JLabel.LEFT);
+    resultDisplay = new JLabel(HTML, JLabel.RIGHT);
+    inputDisplay = new JLabel(HTML, JLabel.RIGHT);
 
     Font oldFont = expressionDisplay.getFont();
     Font newFont = new Font("Times New Roman", oldFont.getStyle(), 20);
@@ -177,17 +181,17 @@ public class NewMainInterface extends JFrame implements Finals
 
   public JLabel getExpressionLabel()
   {
-    return (JLabel) northPanel.getComponent(0);
+    return expressionDisplay;
   }
 
   public JLabel getResultLabel()
   {
-    return (JLabel) northPanel.getComponent(1);
+    return resultDisplay;
   }
 
   public JLabel getInputLabel()
   {
-    return (JLabel) northPanel.getComponent(3);
+    return inputDisplay;
   }
 
   /**
