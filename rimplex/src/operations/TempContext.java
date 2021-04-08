@@ -46,9 +46,13 @@ public class TempContext
    *          the operand to be formated.
    * @return a complex number formatted string.
    */
-  public static String format(String operand)
+  public static String format(String operand) throws IllegalArgumentException
   {
-
+    if(operand == null || operand.equals(""))
+    {
+      throw new IllegalArgumentException("Please provide two valid operands.");
+    }
+    
     boolean complex = false;
     boolean imaginary = false;
     boolean real = false;

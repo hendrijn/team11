@@ -23,27 +23,6 @@ public class AdditionOperator implements Operator
   @Override
   public String evaluate(String leftOperand, String rightOperand)
   {
-
-    if (leftOperand == null || rightOperand == null)
-    {
-      throw new IllegalArgumentException("Please provide two valid operands.");
-    }
-    
-    /*String simplifiedLeft = leftOperand.replaceAll(" ", "");
-    String simplifiedRight = rightOperand.replaceAll(" ", "");
-    
-    String noLParenLeft = simplifiedLeft.replace("(", "");
-    String noLParenRight = simplifiedRight.replace("(", "");
-    
-    String noParenLeft = noLParenLeft.replace(")", "");
-    String noParenRight = noLParenRight.replace(")", "");*/
-    
-    if (leftOperand.equals("") || rightOperand.equals(""))
-    {
-      throw new IllegalArgumentException("Please provide two valid operands.");
-    }
-
-   
     String alteredROp = TempContext.format(rightOperand);
     String alteredLOp = TempContext.format(leftOperand);
 

@@ -567,6 +567,4 @@ class SubtractionOperatorTest
     assertTrue(expected.equals(actual));
   }
 
-  
-
 }

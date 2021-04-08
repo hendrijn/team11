@@ -45,7 +45,7 @@ public class SubtractionOperator implements Operator
     return result;
   }
 
-  public static String distribute(String rightOperand)
+  private static String distribute(String rightOperand)
   {
     int indexOfNeg = rightOperand.indexOf("-");
     String distribute = "";
