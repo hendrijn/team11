@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.*;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -99,12 +100,11 @@ public class NewMainInterface extends JFrame implements Finals
   {
     centerPanel = new JPanel(new GridLayout(5, 3));
 
-    JButton sign = new JButton(SIGN);
+    JToggleButton sign = new JToggleButton(SIGN);
     JButton clearBtn = new JButton(CLEAR);
     JButton backBtn = new JButton(BACKSPACE);
 
     ArrayList<JButton> btns = new ArrayList<>();
-    btns.add(sign);
     btns.add(clearBtn);
     btns.add(backBtn);
 
@@ -115,6 +115,7 @@ public class NewMainInterface extends JFrame implements Finals
       btn.setForeground(Color.MAGENTA);
       centerPanel.add(btn);
     }
+    sign(sign);
 
     for (int i = 1; i < 10; i++)
     {
@@ -136,6 +137,17 @@ public class NewMainInterface extends JFrame implements Finals
     increaseSize(imagBtn);
     imagBtn.addActionListener(listener);
     centerPanel.add(imagBtn);
+  }
+
+  private void sign(JToggleButton button)
+  {
+    Font oldFont = button.getFont();
+    Font newFont = new Font("Times New Roman", oldFont.getStyle(), 20);
+    button.setFont(newFont);
+
+    button.addActionListener(listener);
+    button.setForeground(Color.MAGENTA);
+    centerPanel.add(button);
   }
 
   /**
@@ -165,9 +177,9 @@ public class NewMainInterface extends JFrame implements Finals
     expressionDisplay = new JLabel(HTML, JLabel.LEFT);
     resultDisplay = new JLabel(HTML, JLabel.RIGHT);
     inputDisplay = new JLabel(HTML, JLabel.RIGHT);
-    inputDisplay.setFocusable(true); 
+    inputDisplay.setFocusable(true);
     inputDisplay.addKeyListener(listener);
-    
+
     Font oldFont = expressionDisplay.getFont();
     Font newFont = new Font("Times New Roman", oldFont.getStyle(), 20);
     expressionDisplay.setFont(newFont);
