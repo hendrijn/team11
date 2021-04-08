@@ -1,6 +1,5 @@
 package gui;
 
-import java.awt.Color;
 import java.awt.event.*;
 
 import javax.swing.AbstractButton;
@@ -35,7 +34,7 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
 
     try
     {
-      int num = Integer.parseInt(button.getText());
+      Integer.parseInt(button.getText());
       handleInput(button.getText());
     }
     catch (Throwable t)
@@ -89,14 +88,13 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
   @Override
   public void keyTyped(KeyEvent e)
   {
-    NewMainInterface ui = NewMainInterface.getInstance();
     System.out.println("you typed");
     char keyChar = e.getKeyChar();
     String keyText = Character.toString(keyChar);
     System.out.println(keyText);
     try
     {
-      int num = Integer.parseInt(keyText);
+      Integer.parseInt(keyText);
       handleInput(keyText);
     }
     catch (Throwable t)
@@ -160,7 +158,8 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
     {
       result = context.evaluate(firstOperand, secondOperand);
       ui.getInputLabel().setText(HTML);
-      exLabel.setText(exLabel.getText() + secondOperand);
+      exLabel.setText(exLabel.getText() + secondOperand + SP + EQUALS);
+      ui.getResultLabel().setText(result);
       shownError = false;
     }
     catch (IllegalArgumentException e)
@@ -169,7 +168,11 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
       result = "";
       shownError = true;
     }
-    ui.getResultLabel().setText(EQUALS + result);
+    finally
+    {
+      firstOperand = EMPTY;
+      secondOperand = EMPTY;
+    }
     if (shownError)
     {
       resetInterface();
@@ -185,16 +188,22 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
     NewMainInterface ui = NewMainInterface.getInstance();
     JLabel exLabel = ui.getExpressionLabel();
     JLabel inLabel = ui.getInputLabel();
+    JLabel resLabel = ui.getResultLabel();
 
-    // if (firstOperand.isEmpty())
-    // {
     if (inParentheses(operation))
     {
       inLabel.setText(ui.getInputLabel().getText() + operation);
     }
-    else
+    else // this is the running calc section. All that doesn't work is ending rn
     {
-      firstOperand = inLabel.getText().replace(HTML, EMPTY);
+      if (result.equals(EMPTY)) // takes user input as firstOperand
+      {
+        firstOperand = inLabel.getText().replace(HTML, EMPTY);
+      }
+      else // takes prev result as firstOperand
+      {
+        firstOperand = result;
+      }
     }
     switch (operation)
     {
@@ -202,26 +211,29 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
         context = new TempContext(new AdditionOperator());
         exLabel.setText(firstOperand + SP + operation + SP);
         inLabel.setText(HTML);
+        resLabel.setText(HTML);
         break;
       case SUBTRACT:
         context = new TempContext(new SubtractionOperator());
         exLabel.setText(firstOperand + SP + operation + SP);
         inLabel.setText(HTML);
+        resLabel.setText(HTML);
         break;
       case MULTIPLY:
         context = new TempContext(new MultiplicationOperator());
         exLabel.setText(firstOperand + SP + operation + SP);
         inLabel.setText(HTML);
+        resLabel.setText(HTML);
         break;
       case DIVIDE:
         context = new TempContext(new DivisionOperator());
         exLabel.setText(firstOperand + SP + operation + SP);
+        resLabel.setText(HTML);
         inLabel.setText(HTML);
         break;
       default:
         ui.errorMessage("Not a valid operator");
     }
-    // }
   }
 
   /**
