@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.event.*;
 
 import javax.swing.AbstractButton;
+import javax.swing.JLabel;
 
 import operations.*;
 
@@ -45,7 +46,7 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
           resetInterface();
           break;
         case CLEAR:
-          // just clear the lower label
+          ui.getInputLabel().setText(EMPTY);
           break;
         case ADD:
           handleOperators(ADD);
@@ -63,18 +64,17 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
           handleInput(I);
           break;
         case EQUALS:
-          // try
-          // {
-          // equalsButtonHandling(ui);
-          // }
-          // catch (NullPointerException nullP)
-          // {
-          // firstOperand = "";
-          // ui.errorMessage("Please input two valid operands.");
-          // ui.clearAll();
-          // }
-          // ui.inputField.requestFocusInWindow();
-          // break;
+          try
+          {
+            equalsButtonHandling(ui);
+          }
+          catch (NullPointerException nullP)
+          {
+            firstOperand = EMPTY;
+            ui.errorMessage("Please input two valid operands.");
+            resetInterface();
+          }
+          break;
         default:
           closeApplication();
 
@@ -129,10 +129,9 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
           // ui.inputField.requestFocusInWindow();
           break;
         case "i":
-        	handleInput(I);
-        	break;
+          handleInput(I);
+          break;
         default:
-          
 
       }
     }
@@ -152,61 +151,77 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
    * @param ui
    *          The ui of the entire rimplex program.
    */
-  private void equalsButtonHandling(MainInterface ui)
+  private void equalsButtonHandling(NewMainInterface ui)
   {
+    JLabel exLabel = ui.getExpressionLabel();
+    secondOperand = ui.getInputLabel().getText().replace(HTML, EMPTY);
 
-    String currentInput = ui.inputField.getText();
-    String finalResult = "";
     try
     {
-      finalResult = context.evaluate(firstOperand, currentInput);
+      result = context.evaluate(firstOperand, secondOperand);
+      ui.getInputLabel().setText(HTML);
+      exLabel.setText(exLabel.getText() + secondOperand);
       shownError = false;
     }
     catch (IllegalArgumentException e)
     {
       ui.errorMessage(e.getMessage());
-      finalResult = "";
+      result = "";
       shownError = true;
     }
-    ui.updateDisplay(SP + EQUALS, finalResult);
+    ui.getResultLabel().setText(EQUALS + result);
     if (shownError)
     {
-      ui.clearAll();
+      resetInterface();
     }
     else
     {
       shownError = false;
     }
-    System.out.println("Handle equals functionality");
   }
 
   private void handleOperators(String operation)
   {
     NewMainInterface ui = NewMainInterface.getInstance();
+    JLabel exLabel = ui.getExpressionLabel();
+    JLabel inLabel = ui.getInputLabel();
 
-    // if (isInsideParenthesis) ...
-    // here, don't add a space between the prev char and operator
+    // if (firstOperand.isEmpty())
+    // {
+    if (inParentheses(operation))
+    {
+      inLabel.setText(ui.getInputLabel().getText() + operation);
+    }
+    else
+    {
+      firstOperand = inLabel.getText().replace(HTML, EMPTY);
+    }
     switch (operation)
     {
       case ADD:
         context = new TempContext(new AdditionOperator());
-        // here, update display with space between prev char and operator
+        exLabel.setText(firstOperand + SP + operation + SP);
+        inLabel.setText(HTML);
         break;
       case SUBTRACT:
         context = new TempContext(new SubtractionOperator());
-        // here, update display with space between prev char and operator
+        exLabel.setText(firstOperand + SP + operation + SP);
+        inLabel.setText(HTML);
         break;
       case MULTIPLY:
-        // context = new TempContext(new AdditionOperator());
-        // here, update display with space between prev char and operator
+        context = new TempContext(new MultiplicationOperator());
+        exLabel.setText(firstOperand + SP + operation + SP);
+        inLabel.setText(HTML);
         break;
       case DIVIDE:
-        // context = new TempContext(new SubtractionOperator());
-        // here, update display with space between prev char and operator
+        context = new TempContext(new DivisionOperator());
+        exLabel.setText(firstOperand + SP + operation + SP);
+        inLabel.setText(HTML);
         break;
       default:
         ui.errorMessage("Not a valid operator");
     }
+    // }
   }
 
   /**
@@ -231,34 +246,39 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
 
   private void resetInterface()
   {
+    NewMainInterface ui = NewMainInterface.getInstance();
     context = null;
     firstOperand = EMPTY;
     secondOperand = EMPTY;
     result = EMPTY;
-    // clear text of both labels
+    ui.getInputLabel().setText(HTML);
+    ui.getExpressionLabel().setText(HTML);
+    ui.getResultLabel().setText(HTML);
   }
-  
+
   /**
    * Takes a String and returns true if there are more open brackets than closed brackets.
-   * @param input the String to search
+   * 
+   * @param input
+   *          the String to search
    * @return true if there are more open brackets, false if not
    */
   public static boolean inParentheses(String input)
   {
-	  int left = 0;
-	  int right = 0;
-	  for (int i = 0; i < input.length(); i++) {
-		  if (input.charAt(i) == '(')
-			  left++;
-		  else if (input.charAt(i) == ')')
-			  right++;
-	  }
-	  if (left > right) 
-		  return true;
-	  
-	  return false;
+    int left = 0;
+    int right = 0;
+    for (int i = 0; i < input.length(); i++)
+    {
+      if (input.charAt(i) == '(')
+        left++;
+      else if (input.charAt(i) == ')')
+        right++;
+    }
+    if (left > right)
+      return true;
+
+    return false;
   }
-  
 
   // ----------------- Unimplemented -------------//
   @Override
