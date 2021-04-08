@@ -549,5 +549,42 @@ class AdditonOperatorTesting
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
   }
+  
+  @Test
+  public void testDecimalOperands()
+  {
+    TempContext a = new TempContext(new AdditionOperator());
+
+    //TODO: implement
+    //complex
+    String actual = a.evaluate("3.45+7.56i", "2.98+5.04i");
+    String expected = "6.43+12.60i";
+    assertTrue(actual.equals(expected));
+    
+    //imaginary
+    actual = a.evaluate("6.42i", "7.75i");
+    expected = "0.00+14.17i";
+    assertTrue(actual.equals(expected));
+    
+    //real
+    actual = a.evaluate("3.88", "2.94");
+    expected = "6.82+0.00i";
+    assertTrue(actual.equals(expected));
+    
+    //complex imaginary
+    actual = a.evaluate("0.89+7.25i", "3.56i");
+    expected = "0.89+10.81i";
+    assertTrue(actual.equals(expected));
+    
+    //complex real
+    actual = a.evaluate("3.39+6.89i", "2.09");
+    expected = "5.48+6.89i";
+    assertTrue(actual.equals(expected));
+    
+    //real imaginary
+    actual = a.evaluate("9.06", "2.66i");
+    expected = "9.06+2.66i";
+    assertTrue(actual.equals(expected));
+  }
 
 }
