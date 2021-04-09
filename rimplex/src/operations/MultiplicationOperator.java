@@ -2,92 +2,29 @@ package operations;
 
 public class MultiplicationOperator implements Operator
 {
+  
+  final int I_SQUARED = -1;
 
   @Override
   public String evaluate(String leftOperand, String rightOperand)
   {
-    if (leftOperand == null || rightOperand == null)
+    
+    String[] decomposedOperands = new String[3];
+    try
     {
-      throw new IllegalArgumentException("Please provide two valid operands.");
+      decomposedOperands = TempContext.decomposeOperands(leftOperand, rightOperand);
+    }
+    catch (Exception e1)
+    {
+      throw new IllegalArgumentException(e1.getMessage());
     }
     
-    String simplifedLeft = leftOperand.replaceAll(" ", "");
-    String simplifedRight = rightOperand.replaceAll(" ", "");
+    String leftRegularNumber     = decomposedOperands[0];
+    String leftImaginaryNumber   = decomposedOperands[1];
+    String rightRegularNumber    = decomposedOperands[2];
+    String rightImaginaryNumber  = decomposedOperands[3];
     
-    if (leftOperand.equals("") || rightOperand.equals(""))
-    {
-      throw new IllegalArgumentException("Please provide two valid operands.");
-    }
-
-   
-    String alteredROp = TempContext.format(simplifedRight);
-    String alteredLOp = TempContext.format(simplifedLeft);
-
-    // Method for counting i's in a string from: https://www.baeldung.com/java-count-chars
-    long iCountLeft = alteredLOp.chars().filter(ch -> ch == 'i').count();
-    long iCountRight = alteredROp.chars().filter(ch -> ch == 'i').count();
-
-    if (iCountLeft > 1 || iCountRight > 1)
-    {
-      throw new IllegalArgumentException("Please provide two valid operands, or simplify them.");
-    }
-
-    int leftPlusIndex = alteredLOp.indexOf("+");
-    int rightPlusIndex = alteredROp.indexOf("+");
-
-    // Getting the two parts of the complex number
-    String simplifedLeftMultiplicand = alteredLOp.substring(0, leftPlusIndex);
-    String simplifedLeftMultiplier = alteredLOp.substring(leftPlusIndex + 1);
-    String simplifedRightMultiplicand = alteredROp.substring(0, rightPlusIndex);
-    String simplifedRightMultiplier= alteredROp.substring(rightPlusIndex + 1);
-
-    String leftImaginaryNumber = "";
-    String rightImaginaryNumber = "";
-    String leftRegularNumber = "";
-    String rightRegularNumber = "";
-
-    // Figuring out which part is the i units
-    if (simplifedLeftMultiplicand.contains("i"))
-    {
-      leftImaginaryNumber = simplifedLeftMultiplicand.replaceAll("i", "");
-      leftRegularNumber = simplifedLeftMultiplier;
-    }
-    else
-    {
-      leftImaginaryNumber = simplifedLeftMultiplier.replaceAll("i", "");
-      leftRegularNumber = simplifedLeftMultiplicand;
-    }
-
-    if (simplifedRightMultiplicand.contains("i"))
-    {
-      rightImaginaryNumber = simplifedRightMultiplicand.replaceAll("i", "");
-      rightRegularNumber = simplifedRightMultiplier;
-    }
-    else
-    {
-      rightImaginaryNumber = simplifedRightMultiplier.replaceAll("i", "");
-      rightRegularNumber = simplifedRightMultiplicand;
-    }
-
-    if (leftImaginaryNumber.equals(""))
-    {
-      leftImaginaryNumber = "1";
-    }
-
-    if (leftImaginaryNumber.equals("-"))
-    {
-      leftImaginaryNumber = "-1";
-    }
-
-    if (rightImaginaryNumber.equals(""))
-    {
-      rightImaginaryNumber = "1";
-    }
-
-    if (rightImaginaryNumber.equals("-"))
-    {
-      rightImaginaryNumber = "-1";
-    }
+    
     // Integer processing
     long leftImagNumLong = 0;
     try
@@ -132,12 +69,12 @@ public class MultiplicationOperator implements Operator
       throw new IllegalArgumentException("Not a valid operand.");
     }
 
-    double fOILFirst = leftRegNumLong * rightRegNumLong;
+    double fOILFirst  = leftRegNumLong * rightRegNumLong;
     double fOILOuters = leftRegNumLong * rightImagNumLong;
     double fOILInners = leftImagNumLong * rightRegNumLong;
-    double fOILLasts = leftImagNumLong * rightImagNumLong * -1;
+    double fOILLasts  = leftImagNumLong * rightImagNumLong *  I_SQUARED;
     
-    double finalRegTotal = fOILFirst + fOILLasts;
+    double finalRegTotal  = fOILFirst + fOILLasts;
     double finalImagTotal = fOILOuters + fOILInners;
 
     String result = finalRegTotal + "+" + finalImagTotal + "i";
@@ -145,7 +82,7 @@ public class MultiplicationOperator implements Operator
     if (result.contains("+-"))
     {
       result = result.substring(0, result.indexOf("+")) + "-"
-          + result.substring(result.indexOf("+") + 2);
+             + result.substring(result.indexOf("+") + 2);
     }
     return result;
   }

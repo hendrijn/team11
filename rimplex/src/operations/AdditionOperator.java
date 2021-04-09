@@ -23,74 +23,22 @@ public class AdditionOperator implements Operator
   @Override
   public String evaluate(String leftOperand, String rightOperand)
   {
-    String alteredROp = TempContext.format(rightOperand);
-    String alteredLOp = TempContext.format(leftOperand);
 
-    // Method for counting i's in a string from: https://www.baeldung.com/java-count-chars
-    long iCountLeft = alteredLOp.chars().filter(ch -> ch == 'i').count();
-    long iCountRight = alteredROp.chars().filter(ch -> ch == 'i').count();
-
-    if (iCountLeft > 1 || iCountRight > 1)
+    String[] decomposedOperands = new String[3];
+    try
     {
-      throw new IllegalArgumentException("Please provide two valid operands, or simplify them.");
+      decomposedOperands = TempContext.decomposeOperands(leftOperand, rightOperand);
     }
-
-    int leftPlusIndex = alteredLOp.indexOf("+");
-    int rightPlusIndex = alteredROp.indexOf("+");
-
-    // Getting the two parts of the complex number
-    String simplifedLeftAugend = alteredLOp.substring(0, leftPlusIndex);
-    String simplifedLeftAddend = alteredLOp.substring(leftPlusIndex + 1);
-    String simplifedRightAugend = alteredROp.substring(0, rightPlusIndex);
-    String simplifedRightAddend = alteredROp.substring(rightPlusIndex + 1);
-
-    String leftImaginaryNumber = "";
-    String rightImaginaryNumber = "";
-    String leftRegularNumber = "";
-    String rightRegularNumber = "";
-
-    // Figuring out which part is the i units
-    if (simplifedLeftAugend.contains("i"))
+    catch (Exception e1)
     {
-      leftImaginaryNumber = simplifedLeftAugend.replaceAll("i", "");
-      leftRegularNumber = simplifedLeftAddend;
+      throw new IllegalArgumentException(e1.getMessage());
     }
-    else
-    {
-      leftImaginaryNumber = simplifedLeftAddend.replaceAll("i", "");
-      leftRegularNumber = simplifedLeftAugend;
-    }
-
-    if (simplifedRightAugend.contains("i"))
-    {
-      rightImaginaryNumber = simplifedRightAugend.replaceAll("i", "");
-      rightRegularNumber = simplifedRightAddend;
-    }
-    else
-    {
-      rightImaginaryNumber = simplifedRightAddend.replaceAll("i", "");
-      rightRegularNumber = simplifedRightAugend;
-    }
-
-    if (leftImaginaryNumber.equals(""))
-    {
-      leftImaginaryNumber = "1";
-    }
-
-    if (leftImaginaryNumber.equals("-"))
-    {
-      leftImaginaryNumber = "-1";
-    }
-
-    if (rightImaginaryNumber.equals(""))
-    {
-      rightImaginaryNumber = "1";
-    }
-
-    if (rightImaginaryNumber.equals("-"))
-    {
-      rightImaginaryNumber = "-1";
-    }
+    
+    String leftRegularNumber     = decomposedOperands[0];
+    String leftImaginaryNumber   = decomposedOperands[1];
+    String rightRegularNumber    = decomposedOperands[2];
+    String rightImaginaryNumber  = decomposedOperands[3];
+    
     // Integer processing
     long leftImagNumLong = 0;
     try

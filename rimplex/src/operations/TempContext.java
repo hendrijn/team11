@@ -113,4 +113,85 @@ public class TempContext
     }
     return result;
   }
+  
+  
+  public static String[] decomposeOperands(String leftOperand, String rightOperand) 
+  {
+    
+    
+    String alteredROp = TempContext.format(rightOperand);
+    String alteredLOp = TempContext.format(leftOperand);
+
+    // Method for counting i's in a string from: https://www.baeldung.com/java-count-chars
+    long iCountLeft  = alteredLOp.chars().filter(ch -> ch == 'i').count();
+    long iCountRight = alteredROp.chars().filter(ch -> ch == 'i').count();
+
+    if (iCountLeft > 1 || iCountRight > 1)
+    {
+      throw new IllegalArgumentException("Please provide two valid operands, or simplify them.");
+    }
+
+    int leftPlusIndex  = alteredLOp.indexOf("+");
+    int rightPlusIndex = alteredROp.indexOf("+");
+
+    // Getting the two parts of the complex number
+    String simplifedLeftOperand1  = alteredLOp.substring(0, leftPlusIndex);
+    String simplifedLeftOperand2  = alteredLOp.substring(leftPlusIndex + 1);
+    String simplifedRightOperand1 = alteredROp.substring(0, rightPlusIndex);
+    String simplifedRightOperand2 = alteredROp.substring(rightPlusIndex + 1);
+
+    String leftImaginaryNumber  = "";
+    String rightImaginaryNumber = "";
+    String leftRegularNumber    = "";
+    String rightRegularNumber   = "";
+
+    // Figuring out which part is the i units
+    if (simplifedLeftOperand1.contains("i"))
+    {
+      leftImaginaryNumber = simplifedLeftOperand1.replaceAll("i", "");
+      leftRegularNumber   = simplifedLeftOperand2;
+    }
+    else
+    {
+      leftImaginaryNumber = simplifedLeftOperand2.replaceAll("i", "");
+      leftRegularNumber   = simplifedLeftOperand1;
+    }
+
+    if (simplifedRightOperand1.contains("i"))
+    {
+      rightImaginaryNumber = simplifedRightOperand1.replaceAll("i", "");
+      rightRegularNumber   = simplifedRightOperand2;
+    }
+    else
+    {
+      rightImaginaryNumber = simplifedRightOperand2.replaceAll("i", "");
+      rightRegularNumber   = simplifedRightOperand1;
+    }
+
+    if (leftImaginaryNumber.equals(""))
+    {
+      leftImaginaryNumber = "1";
+    }
+
+    if (leftImaginaryNumber.equals("-"))
+    {
+      leftImaginaryNumber = "-1";
+    }
+
+    if (rightImaginaryNumber.equals(""))
+    {
+      rightImaginaryNumber = "1";
+    }
+
+    if (rightImaginaryNumber.equals("-"))
+    {
+      rightImaginaryNumber = "-1";
+    }
+    
+    
+    String[] operandArray = {leftRegularNumber, leftImaginaryNumber, 
+        rightRegularNumber, rightImaginaryNumber};
+    
+    return operandArray;
+  }
 }
