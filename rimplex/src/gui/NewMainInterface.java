@@ -71,7 +71,7 @@ public class NewMainInterface extends JFrame implements Finals
 
     listener = new InterfaceController();
 
-    contentPane.setLayout(new BorderLayout());
+    contentPane.setLayout(new BorderLayout(20, 20));
 
     setupNorthPanel();
     setupCenterPanel();
@@ -84,7 +84,10 @@ public class NewMainInterface extends JFrame implements Finals
 
   private void setUpEastPanel()
   {
-    eastPanel = new JPanel(new GridLayout(5, 2));
+    GridLayout layout = new GridLayout(5, 2);
+    layout.setHgap(20);
+    layout.setVgap(20);
+    eastPanel = new JPanel(layout);
 
     for (String function : FUNCTIONS)
     {
@@ -98,7 +101,10 @@ public class NewMainInterface extends JFrame implements Finals
 
   private void setupCenterPanel()
   {
-    centerPanel = new JPanel(new GridLayout(5, 3));
+    GridLayout layout = new GridLayout(5, 3);
+    layout.setHgap(20);
+    layout.setVgap(20);
+    centerPanel = new JPanel(layout);
 
     JToggleButton sign = new JToggleButton(SIGN);
     JButton clearBtn = new JButton(CLEAR);
@@ -139,6 +145,12 @@ public class NewMainInterface extends JFrame implements Finals
     centerPanel.add(imagBtn);
   }
 
+  /**
+   * Exactly the same as increaseSize but just for ToggleButton.
+   * 
+   * @param button
+   *          the sign button
+   */
   private void sign(JToggleButton button)
   {
     Font oldFont = button.getFont();
