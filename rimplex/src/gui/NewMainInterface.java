@@ -30,6 +30,9 @@ public class NewMainInterface extends JFrame implements Finals
     setupFrame();
     setSize(400, 500);
     setTitle("Rimplex");
+    ImageIcon icon = new ImageIcon(
+        "C:\\Users\\Brooke\\git\\team11\\rimplex\\src\\gui\\iconRimplex.png");
+    setIconImage(icon.getImage());
     setVisible(true); // display this
     centerForm();
 
