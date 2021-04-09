@@ -7,7 +7,11 @@ public class MultiplicationOperator implements Operator
 
   /**
    * This evaluates two operands using multiplication!
+   * @param leftOperand The left operand to be evaluated.
+   * @param rightOperand The right operand to be evaluated.
    * @return a string of the two operands multiplied together.
+   * @throws IllegalArgumentException
+   *           thrown if operands are null or empty.
    */
   @Override
   public String evaluate(String leftOperand, String rightOperand)

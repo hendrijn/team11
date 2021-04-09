@@ -114,7 +114,15 @@ public class TempContext
     return result;
   }
   
-  
+  /**
+   * This function takes two string operands for complex numbers and decomposes them into parts.
+   * Example: 5+2i, and 4+3i, will be returned as 3 2 4 3.
+   * @param leftOperand The leftOperand to get broken down.
+   * @param rightOperand The rightOperand to get broken down.
+   * @return A string array of the decomposedOperands. It very specifically is indexed in order:
+   *    leftRegularNumber, leftImaginaryNumber, rightRegularNumber, rightImaginaryNumber.
+   *    Example: With 5+2i, and 4+3i, [0] = 5, [1] = 2, [2] = 4, [3] = 3;
+   */
   public static String[] decomposeOperands(String leftOperand, String rightOperand) 
   {
     
