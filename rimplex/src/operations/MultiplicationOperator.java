@@ -5,6 +5,10 @@ public class MultiplicationOperator implements Operator
   
   final int I_SQUARED = -1;
 
+  /**
+   * This evaluates two operands using multiplication!
+   * @return a string of the two operands multiplied together.
+   */
   @Override
   public String evaluate(String leftOperand, String rightOperand)
   {
