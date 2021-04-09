@@ -28,9 +28,18 @@ public class NewMainInterface extends JFrame implements Finals
     setupFrame();
     setSize(400, 500);
     setTitle("Rimplex");
+    ImageIcon icon = new ImageIcon(
+        "C:\\Users\\Brooke\\git\\team11\\rimplex\\src\\gui\\iconRimplex.png");
+    setIconImage(icon.getImage());
     setVisible(true); // display this
     centerForm();
 
+  }
+
+  private void historySetUp()
+  {
+    JFrame frame = new JFrame(">", null);
+    eastPanel.add(frame);
   }
 
   private void centerForm()
@@ -70,20 +79,27 @@ public class NewMainInterface extends JFrame implements Finals
 
     listener = new InterfaceController();
 
-    contentPane.setLayout(new BorderLayout());
+    contentPane.setLayout(new BorderLayout(20, 20));
 
     setupNorthPanel();
     setupCenterPanel();
     setUpEastPanel();
+    JMenu bar = new JMenu();
+    bar.add(">");
+    bar.addActionListener(listener);
 
     contentPane.add(northPanel, BorderLayout.NORTH);
-    contentPane.add(centerPanel, BorderLayout.CENTER);
-    contentPane.add(eastPanel, BorderLayout.EAST);
+    contentPane.add(centerPanel, BorderLayout.WEST);
+    contentPane.add(eastPanel, BorderLayout.CENTER);
+    contentPane.add(bar, BorderLayout.EAST);
   }
 
   private void setUpEastPanel()
   {
-    eastPanel = new JPanel(new GridLayout(5, 2));
+    GridLayout layout = new GridLayout(5, 2);
+    layout.setHgap(20);
+    layout.setVgap(20);
+    eastPanel = new JPanel(layout);
 
     for (String function : FUNCTIONS)
     {
@@ -97,14 +113,16 @@ public class NewMainInterface extends JFrame implements Finals
 
   private void setupCenterPanel()
   {
-    centerPanel = new JPanel(new GridLayout(5, 3));
+    GridLayout layout = new GridLayout(5, 3);
+    layout.setHgap(20);
+    layout.setVgap(20);
+    centerPanel = new JPanel(layout);
 
-    JButton sign = new JButton(SIGN);
+    JToggleButton sign = new JToggleButton(SIGN);
     JButton clearBtn = new JButton(CLEAR);
     JButton backBtn = new JButton(BACKSPACE);
 
     ArrayList<JButton> btns = new ArrayList<>();
-    btns.add(sign);
     btns.add(clearBtn);
     btns.add(backBtn);
 
@@ -115,6 +133,7 @@ public class NewMainInterface extends JFrame implements Finals
       btn.setForeground(Color.MAGENTA);
       centerPanel.add(btn);
     }
+    sign(sign);
 
     for (int i = 1; i < 10; i++)
     {
@@ -136,6 +155,23 @@ public class NewMainInterface extends JFrame implements Finals
     increaseSize(imagBtn);
     imagBtn.addActionListener(listener);
     centerPanel.add(imagBtn);
+  }
+
+  /**
+   * Exactly the same as increaseSize but just for ToggleButton.
+   * 
+   * @param button
+   *          the sign button
+   */
+  private void sign(JToggleButton button)
+  {
+    Font oldFont = button.getFont();
+    Font newFont = new Font("Times New Roman", oldFont.getStyle(), 20);
+    button.setFont(newFont);
+
+    button.addActionListener(listener);
+    button.setForeground(Color.MAGENTA);
+    centerPanel.add(button);
   }
 
   /**
@@ -165,9 +201,9 @@ public class NewMainInterface extends JFrame implements Finals
     expressionDisplay = new JLabel(HTML, JLabel.LEFT);
     resultDisplay = new JLabel(HTML, JLabel.RIGHT);
     inputDisplay = new JLabel(HTML, JLabel.RIGHT);
-    inputDisplay.setFocusable(true); 
+    inputDisplay.setFocusable(true);
     inputDisplay.addKeyListener(listener);
-    
+
     Font oldFont = expressionDisplay.getFont();
     Font newFont = new Font("Times New Roman", oldFont.getStyle(), 20);
     expressionDisplay.setFont(newFont);

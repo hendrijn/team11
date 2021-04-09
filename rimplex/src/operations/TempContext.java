@@ -113,4 +113,93 @@ public class TempContext
     }
     return result;
   }
+  
+  /**
+   * This function takes two string operands for complex numbers and decomposes them into parts.
+   * Example: 5+2i, and 4+3i, will be returned as 3 2 4 3.
+   * @param leftOperand The leftOperand to get broken down.
+   * @param rightOperand The rightOperand to get broken down.
+   * @return A string array of the decomposedOperands. It very specifically is indexed in order:
+   *    leftRegularNumber, leftImaginaryNumber, rightRegularNumber, rightImaginaryNumber.
+   *    Example: With 5+2i, and 4+3i, [0] = 5, [1] = 2, [2] = 4, [3] = 3;
+   */
+  public static String[] decomposeOperands(String leftOperand, String rightOperand) 
+  {
+    
+    
+    String alteredROp = TempContext.format(rightOperand);
+    String alteredLOp = TempContext.format(leftOperand);
+
+    // Method for counting i's in a string from: https://www.baeldung.com/java-count-chars
+    long iCountLeft  = alteredLOp.chars().filter(ch -> ch == 'i').count();
+    long iCountRight = alteredROp.chars().filter(ch -> ch == 'i').count();
+
+    if (iCountLeft > 1 || iCountRight > 1)
+    {
+      throw new IllegalArgumentException("Please provide two valid operands, or simplify them.");
+    }
+
+    int leftPlusIndex  = alteredLOp.indexOf("+");
+    int rightPlusIndex = alteredROp.indexOf("+");
+
+    // Getting the two parts of the complex number
+    String simplifedLeftOperand1  = alteredLOp.substring(0, leftPlusIndex);
+    String simplifedLeftOperand2  = alteredLOp.substring(leftPlusIndex + 1);
+    String simplifedRightOperand1 = alteredROp.substring(0, rightPlusIndex);
+    String simplifedRightOperand2 = alteredROp.substring(rightPlusIndex + 1);
+
+    String leftImaginaryNumber  = "";
+    String rightImaginaryNumber = "";
+    String leftRegularNumber    = "";
+    String rightRegularNumber   = "";
+
+    // Figuring out which part is the i units
+    if (simplifedLeftOperand1.contains("i"))
+    {
+      leftImaginaryNumber = simplifedLeftOperand1.replaceAll("i", "");
+      leftRegularNumber   = simplifedLeftOperand2;
+    }
+    else
+    {
+      leftImaginaryNumber = simplifedLeftOperand2.replaceAll("i", "");
+      leftRegularNumber   = simplifedLeftOperand1;
+    }
+
+    if (simplifedRightOperand1.contains("i"))
+    {
+      rightImaginaryNumber = simplifedRightOperand1.replaceAll("i", "");
+      rightRegularNumber   = simplifedRightOperand2;
+    }
+    else
+    {
+      rightImaginaryNumber = simplifedRightOperand2.replaceAll("i", "");
+      rightRegularNumber   = simplifedRightOperand1;
+    }
+
+    if (leftImaginaryNumber.equals(""))
+    {
+      leftImaginaryNumber = "1";
+    }
+
+    if (leftImaginaryNumber.equals("-"))
+    {
+      leftImaginaryNumber = "-1";
+    }
+
+    if (rightImaginaryNumber.equals(""))
+    {
+      rightImaginaryNumber = "1";
+    }
+
+    if (rightImaginaryNumber.equals("-"))
+    {
+      rightImaginaryNumber = "-1";
+    }
+    
+    
+    String[] operandArray = {leftRegularNumber, leftImaginaryNumber, 
+        rightRegularNumber, rightImaginaryNumber};
+    
+    return operandArray;
+  }
 }

@@ -2,8 +2,6 @@ package testing;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.Random;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import operations.MultiplicationOperator;
@@ -341,5 +339,106 @@ class MultiplicationOperatorTesting
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
+  
+  @Test
+  public void twoValidComplexNumbersNeg1Test()
+  {
+    String complexNumberOne = "3 - 2i";
+    String complexNumberTwo = "4 + 2i";
+    String expectedResult = "16.0-2.0i";
+    TempContext tempContext = new TempContext(new MultiplicationOperator());
+    String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
+    assertEquals(expectedResult, actualResult);
+  }
+  
+  @Test
+  public void twoValidComplexNumbersNeg2Test()
+  {
+    String complexNumberOne = "3 + 2i";
+    String complexNumberTwo = "4 - 2i";
+    String expectedResult = "16.0+2.0i";
+    TempContext tempContext = new TempContext(new MultiplicationOperator());
+    String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
+    assertEquals(expectedResult, actualResult);
+  }
+  
+  @Test
+  public void twoValidComplexNumbersNeg3Test()
+  {
+    String complexNumberOne = "3 - 2i";
+    String complexNumberTwo = "4 - 2i";
+    String expectedResult = "8.0-14.0i";
+    TempContext tempContext = new TempContext(new MultiplicationOperator());
+    String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
+    assertEquals(expectedResult, actualResult);
+  }
+  
+  @Test
+  public void twoValidRegNumbersNeg1Test()
+  {
+    String complexNumberOne = "-300";
+    String complexNumberTwo = "400";
+    String expectedResult = "-120000.0+0.0i";
+    TempContext tempContext = new TempContext(new MultiplicationOperator());
+    String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
+    assertEquals(expectedResult, actualResult);
+  }
+  
+  @Test
+  public void twoValidRegNumbersNeg2Test()
+  {
+    String complexNumberOne = "300";
+    String complexNumberTwo = "-400";
+    String expectedResult = "-120000.0+0.0i";
+    TempContext tempContext = new TempContext(new MultiplicationOperator());
+    String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
+    assertEquals(expectedResult, actualResult);
+  }
+  
+  @Test
+  public void twoValidRegNumbersNeg3Test()
+  {
+    String complexNumberOne = "-300";
+    String complexNumberTwo = "-400";
+    String expectedResult = "120000.0+0.0i";
+    TempContext tempContext = new TempContext(new MultiplicationOperator());
+    String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
+    assertEquals(expectedResult, actualResult);
+  }
+  
+  @Test
+  public void twoValidMixedNumbersNeg1Test()
+  {
+    String complexNumberOne = "-300 + 4i";
+    String complexNumberTwo = "400";
+    String expectedResult = "-120000.0+1600.0i";
+    TempContext tempContext = new TempContext(new MultiplicationOperator());
+    String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
+    assertEquals(expectedResult, actualResult);
+  }
+  
+  @Test
+  public void twoValidMixedNumbersNeg2Test()
+  {
+    String complexNumberOne = "20";
+    String complexNumberTwo = "400 - 3i";
+    String expectedResult = "8000.0-60.0i";
+    TempContext tempContext = new TempContext(new MultiplicationOperator());
+    String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
+    assertEquals(expectedResult, actualResult);
+  }
+  
+  @Test
+  public void twoValidMixedNumbersNeg3Test()
+  {
+    String complexNumberOne = "-20";
+    String complexNumberTwo = "400 - 3i";
+    String expectedResult = "-8000.0+60.0i";
+    TempContext tempContext = new TempContext(new MultiplicationOperator());
+    String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
+    assertEquals(expectedResult, actualResult);
+  }
+  
+  
 
 }
