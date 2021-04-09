@@ -241,25 +241,25 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
     {
       case ADD:
         context = new TempContext(new AdditionOperator());
-        exLabel.setText(firstOperand + SP + operation + SP);
+        exLabel.setText(HTML + firstOperand + SP + operation + SP);
         inLabel.setText(HTML);
         resLabel.setText(HTML);
         break;
       case SUBTRACT:
         context = new TempContext(new SubtractionOperator());
-        exLabel.setText(firstOperand + SP + operation + SP);
+        exLabel.setText(HTML + firstOperand + SP + operation + SP);
         inLabel.setText(HTML);
         resLabel.setText(HTML);
         break;
       case MULTIPLY:
         context = new TempContext(new MultiplicationOperator());
-        exLabel.setText(firstOperand + SP + operation + SP);
+        exLabel.setText(HTML + firstOperand + SP + operation + SP);
         inLabel.setText(HTML);
         resLabel.setText(HTML);
         break;
       case DIVIDE:
         context = new TempContext(new DivisionOperator());
-        exLabel.setText(firstOperand + SP + operation + SP);
+        exLabel.setText(HTML + firstOperand + SP + operation + SP);
         resLabel.setText(HTML);
         inLabel.setText(HTML);
         break;
