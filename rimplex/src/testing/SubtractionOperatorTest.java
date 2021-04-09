@@ -4,7 +4,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import operations.AdditionOperator;
 import operations.SubtractionOperator;
+import operations.TempContext;
 
 /**
  * Unit tests for the Subtraction class.
@@ -21,7 +23,7 @@ class SubtractionOperatorTest
   @Test
   public void testEvaluateExtraSpaces()
   {
-    SubtractionOperator s = new SubtractionOperator();
+    TempContext s = new TempContext(new SubtractionOperator());
 
     // complex
     String actual = s.evaluate("   6       +      4     i   ", "   2        +       3    i      ");
@@ -60,8 +62,8 @@ class SubtractionOperatorTest
   @Test
   public void testEvaluateIllegalArguments()
   {
-    SubtractionOperator s = new SubtractionOperator();
-
+    TempContext s = new TempContext(new SubtractionOperator());
+    
     // both illegal
     try
     {
@@ -136,8 +138,8 @@ class SubtractionOperatorTest
   @Test
   public void testEvaluateComplex()
   {
-    SubtractionOperator s = new SubtractionOperator();
-
+    TempContext s = new TempContext(new SubtractionOperator());
+    
     // both operands null
     try
     {
@@ -247,8 +249,8 @@ class SubtractionOperatorTest
   @Test
   public void testEvaluateImaginary()
   {
-    SubtractionOperator s = new SubtractionOperator();
-
+    TempContext s = new TempContext(new SubtractionOperator());
+    
     // first operand null
     try
     {
@@ -336,8 +338,8 @@ class SubtractionOperatorTest
   @Test
   public void testEvaluateReal()
   {
-    SubtractionOperator s = new SubtractionOperator();
-
+    TempContext s = new TempContext(new SubtractionOperator());
+    
     // first operand null
     try
     {
@@ -425,8 +427,8 @@ class SubtractionOperatorTest
   @Test
   public void testEvaluateComplexReal()
   {
-    SubtractionOperator s = new SubtractionOperator();
-
+    TempContext s = new TempContext(new SubtractionOperator());
+    
     // both positive, first operand complex, second operand real
     String actual = s.evaluate("5+3i", "3");
     String expected = "2+3i";
@@ -475,8 +477,8 @@ class SubtractionOperatorTest
   @Test
   public void testEvaluateImaginaryReal()
   {
-    SubtractionOperator s = new SubtractionOperator();
-
+    TempContext s = new TempContext(new SubtractionOperator());
+    
     // both positive, first operand imaginary, second operand real
     String actual = s.evaluate("3i", "3");
     String expected = "-3+3i";
@@ -524,8 +526,8 @@ class SubtractionOperatorTest
   @Test
   public void testEvaluateImaginaryComplex()
   {
-    SubtractionOperator s = new SubtractionOperator();
-
+    TempContext s = new TempContext(new SubtractionOperator());
+    
     // both positive, first operand imaginary, second operand complex
     String actual = s.evaluate("3i", "9+6i");
     String expected = "-9-3i";
@@ -566,5 +568,42 @@ class SubtractionOperatorTest
     expected = "-6+3i";
     assertTrue(expected.equals(actual));
   }
+  
+  @Test
+  public void testDecimalOperands()
+  {
+    //TODO: implement
+    TempContext s = new TempContext(new SubtractionOperator());
+    
+    //complex
+    String actual = s.evaluate("3.45+7.56i", "2.98+5.04i");
+    String expected = "0.47+2.52i";
+    assertTrue(actual.equals(expected));
+    
+    //imaginary
+    actual = s.evaluate("6.42i", "7.75i");
+    expected = "0.00-1.33i";
+    assertTrue(actual.equals(expected));
+    
+    //real
+    actual = s.evaluate("3.88", "2.94");
+    expected = "0.94+0.00i";
+    assertTrue(actual.equals(expected));
+    
+    //complex imaginary
+    actual = s.evaluate("0.89+7.25i", "3.56i");
+    expected = "0.89+3.69i";
+    assertTrue(actual.equals(expected));
+    
+    //complex real
+    actual = s.evaluate("3.39+6.89i", "2.09");
+    expected = "1.30+6.89i";
+    assertTrue(actual.equals(expected));
+    
+    //real imaginary
+    actual = s.evaluate("9.06", "2.66i");
+    expected = "9.06-2.66i";
+    assertTrue(actual.equals(expected));
 
+  }
 }
