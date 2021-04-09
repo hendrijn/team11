@@ -210,7 +210,7 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
   private void handleOperators(String operation)
   {
     NewMainInterface ui = NewMainInterface.getInstance();
-    // not working
+    // working
     if (inParentheses(ui.getInputLabel().getText()))
     {
       handleInput(operation);
@@ -221,8 +221,8 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
     JLabel inLabel = ui.getInputLabel();
     JLabel resLabel = ui.getResultLabel();
 
-    System.out.println("inLabel text: " + inLabel.getText());
-    if (inParentheses(inLabel.getText()))
+    
+    if (inParentheses(operation))
     {
       inLabel.setText(ui.getInputLabel().getText() + operation);
     }
