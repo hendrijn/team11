@@ -74,6 +74,15 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
             resetInterface();
           }
           break;
+        case DECIMAL:
+        	handleInput(DECIMAL);
+        	break;
+        case LPAREN:
+        	handleInput(LPAREN);
+        	break;
+        case RPAREN:
+        	handleInput(RPAREN);
+        	break;
         default:
           closeApplication();
 
@@ -88,10 +97,12 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
   @Override
   public void keyTyped(KeyEvent e)
   {
+	NewMainInterface ui = NewMainInterface.getInstance();
     System.out.println("you typed");
     char keyChar = e.getKeyChar();
     String keyText = Character.toString(keyChar);
     System.out.println(keyText);
+    System.out.println(keyChar);
     try
     {
       Integer.parseInt(keyText);
@@ -102,6 +113,10 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
       switch (keyText)
       {
         case ADD:
+        	if (inParentheses(ui.getInputLabel().getText()))
+        	{
+        		
+        	}
           handleOperators(ADD);
           break;
         case SUBTRACT:
@@ -114,21 +129,20 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
           handleOperators(DIVIDE);
           break;
         case EQUALS:
-          // try
-          // {
-          // equalsButtonHandling(ui);
-          // }
-          // catch (NullPointerException nullP)
-          // {
-          // firstOperand = "";
-          // ui.errorMessage("Please input two valid operands.");
-          // ui.clearAll();
-          // }
-          // ui.inputField.requestFocusInWindow();
+          
           break;
         case "i":
           handleInput(I);
           break;
+        case DECIMAL:
+        	handleInput(DECIMAL);
+        	break;
+        case LPAREN:
+        	handleInput(LPAREN);
+        	break;
+        case RPAREN:
+        	handleInput(RPAREN);
+        	break;
         default:
 
       }
@@ -186,6 +200,13 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
   private void handleOperators(String operation)
   {
     NewMainInterface ui = NewMainInterface.getInstance();
+    //not working
+    if (inParentheses(ui.getInputLabel().getText()))
+    	{
+           	handleInput(operation);
+           	System.out.println("in Parentheses");
+           	return;
+   		}
     JLabel exLabel = ui.getExpressionLabel();
     JLabel inLabel = ui.getInputLabel();
     JLabel resLabel = ui.getResultLabel();
@@ -281,7 +302,7 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
     int right = 0;
     for (int i = 0; i < input.length(); i++)
     {
-      if (input.charAt(i) == '(')
+      if (input.charAt(i) == ')')
         left++;
       else if (input.charAt(i) == ')')
         right++;
