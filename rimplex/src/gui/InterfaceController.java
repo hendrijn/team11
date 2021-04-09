@@ -221,7 +221,8 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
     JLabel inLabel = ui.getInputLabel();
     JLabel resLabel = ui.getResultLabel();
 
-    if (inParentheses(operation))
+    System.out.println("inLabel text: " + inLabel.getText());
+    if (inParentheses(inLabel.getText()))
     {
       inLabel.setText(ui.getInputLabel().getText() + operation);
     }
@@ -312,7 +313,7 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
     int right = 0;
     for (int i = 0; i < input.length(); i++)
     {
-      if (input.charAt(i) == ')')
+      if (input.charAt(i) == '(')
         left++;
       else if (input.charAt(i) == ')')
         right++;

@@ -21,5 +21,6 @@ public class ParenthesesTest {
 		assertFalse(InterfaceController.inParentheses(s2));
 		assertTrue(InterfaceController.inParentheses(s3));
 		assertTrue(InterfaceController.inParentheses(s4));
+		assertTrue(InterfaceController.inParentheses("<html>(3"));
 	}
 }
