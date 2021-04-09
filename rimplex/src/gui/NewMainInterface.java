@@ -1,7 +1,6 @@
 package gui;
 
 import java.awt.*;
-import java.awt.event.ItemListener;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -29,9 +28,18 @@ public class NewMainInterface extends JFrame implements Finals
     setupFrame();
     setSize(400, 500);
     setTitle("Rimplex");
+    ImageIcon icon = new ImageIcon(
+        "C:\\Users\\Brooke\\git\\team11\\rimplex\\src\\gui\\iconRimplex.png");
+    setIconImage(icon.getImage());
     setVisible(true); // display this
     centerForm();
 
+  }
+
+  private void historySetUp()
+  {
+    JFrame frame = new JFrame(">", null);
+    eastPanel.add(frame);
   }
 
   private void centerForm()
@@ -76,10 +84,14 @@ public class NewMainInterface extends JFrame implements Finals
     setupNorthPanel();
     setupCenterPanel();
     setUpEastPanel();
+    JMenu bar = new JMenu();
+    bar.add(">");
+    bar.addActionListener(listener);
 
     contentPane.add(northPanel, BorderLayout.NORTH);
-    contentPane.add(centerPanel, BorderLayout.CENTER);
-    contentPane.add(eastPanel, BorderLayout.EAST);
+    contentPane.add(centerPanel, BorderLayout.WEST);
+    contentPane.add(eastPanel, BorderLayout.CENTER);
+    contentPane.add(bar, BorderLayout.EAST);
   }
 
   private void setUpEastPanel()
