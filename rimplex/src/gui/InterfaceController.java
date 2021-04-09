@@ -45,7 +45,7 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
           resetInterface();
           break;
         case CLEAR:
-          ui.getInputLabel().setText(EMPTY);
+          ui.getInputLabel().setText(HTML);
           break;
         case ADD:
           handleOperators(ADD);
@@ -75,14 +75,24 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
           }
           break;
         case DECIMAL:
-        	handleInput(DECIMAL);
-        	break;
+          handleInput(DECIMAL);
+          break;
         case LPAREN:
-        	handleInput(LPAREN);
-        	break;
+          handleInput(LPAREN);
+          break;
         case RPAREN:
-        	handleInput(RPAREN);
-        	break;
+          handleInput(RPAREN);
+          break;
+        case BACKSPACE:
+          String text = ui.getInputLabel().getText();
+
+          // to cover cases when the user backspaces without typing anything
+          if (text.length() > HTML.length())
+          {
+            text = text.substring(0, text.length() - 1);
+            ui.getInputLabel().setText(text);
+          }
+          break;
         default:
           closeApplication();
 
@@ -97,7 +107,7 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
   @Override
   public void keyTyped(KeyEvent e)
   {
-	NewMainInterface ui = NewMainInterface.getInstance();
+    NewMainInterface ui = NewMainInterface.getInstance();
     System.out.println("you typed");
     char keyChar = e.getKeyChar();
     String keyText = Character.toString(keyChar);
@@ -113,10 +123,10 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
       switch (keyText)
       {
         case ADD:
-        	if (inParentheses(ui.getInputLabel().getText()))
-        	{
-        		
-        	}
+          if (inParentheses(ui.getInputLabel().getText()))
+          {
+
+          }
           handleOperators(ADD);
           break;
         case SUBTRACT:
@@ -129,20 +139,20 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
           handleOperators(DIVIDE);
           break;
         case EQUALS:
-          
+
           break;
         case "i":
           handleInput(I);
           break;
         case DECIMAL:
-        	handleInput(DECIMAL);
-        	break;
+          handleInput(DECIMAL);
+          break;
         case LPAREN:
-        	handleInput(LPAREN);
-        	break;
+          handleInput(LPAREN);
+          break;
         case RPAREN:
-        	handleInput(RPAREN);
-        	break;
+          handleInput(RPAREN);
+          break;
         default:
 
       }
@@ -200,13 +210,13 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
   private void handleOperators(String operation)
   {
     NewMainInterface ui = NewMainInterface.getInstance();
-    //not working
+    // not working
     if (inParentheses(ui.getInputLabel().getText()))
-    	{
-           	handleInput(operation);
-           	System.out.println("in Parentheses");
-           	return;
-   		}
+    {
+      handleInput(operation);
+      System.out.println("in Parentheses");
+      return;
+    }
     JLabel exLabel = ui.getExpressionLabel();
     JLabel inLabel = ui.getInputLabel();
     JLabel resLabel = ui.getResultLabel();
