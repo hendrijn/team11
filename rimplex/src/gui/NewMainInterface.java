@@ -36,6 +36,12 @@ public class NewMainInterface extends JFrame implements Finals
 
   }
 
+  private void historySetUp()
+  {
+    JFrame frame = new JFrame(">", null);
+    eastPanel.add(frame);
+  }
+
   private void centerForm()
   {
     Dimension dimScreenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -78,10 +84,14 @@ public class NewMainInterface extends JFrame implements Finals
     setupNorthPanel();
     setupCenterPanel();
     setUpEastPanel();
+    JMenu bar = new JMenu();
+    bar.add(">");
+    bar.addActionListener(listener);
 
     contentPane.add(northPanel, BorderLayout.NORTH);
-    contentPane.add(centerPanel, BorderLayout.CENTER);
-    contentPane.add(eastPanel, BorderLayout.EAST);
+    contentPane.add(centerPanel, BorderLayout.WEST);
+    contentPane.add(eastPanel, BorderLayout.CENTER);
+    contentPane.add(bar, BorderLayout.EAST);
   }
 
   private void setUpEastPanel()
