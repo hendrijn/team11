@@ -26,7 +26,7 @@ public class NewMainInterface extends JFrame implements Finals
   private NewMainInterface()
   {
     setupFrame();
-    setSize(400, 500);
+    setSize(520, 500);
     setTitle("Rimplex");
     ImageIcon icon = new ImageIcon(
         "C:\\Users\\Brooke\\git\\team11\\rimplex\\src\\gui\\iconRimplex.png");
