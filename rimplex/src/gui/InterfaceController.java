@@ -176,18 +176,19 @@ public class InterfaceController implements Finals, ActionListener, KeyListener,
   private void equalsButtonHandling(NewMainInterface ui)
   {
     JLabel exLabel = ui.getExpressionLabel();
-    secondOperand = ui.getInputLabel().getText().replace(HTML, EMPTY);
+    secondOperand = removeFormatting(ui.getInputLabel().getText());
 
     try
     {
       result = context.evaluate(firstOperand, secondOperand);
       ui.getInputLabel().setText(HTML);
-      exLabel.setText(exLabel.getText() + secondOperand + SP + EQUALS);
-      ui.getResultLabel().setText(result);
+      exLabel.setText(exLabel.getText() + replaceFormatting(secondOperand) + SP + EQUALS);
+      ui.getResultLabel().setText(replaceFormatting(result));
       shownError = false;
     }
     catch (IllegalArgumentException e)
     {
+      System.out.println(firstOperand + "\t" + secondOperand);
       ui.errorMessage(e.getMessage());
       result = "";
       shownError = true;
@@ -210,56 +211,84 @@ public class InterfaceController implements Finals, ActionListener, KeyListener,
   private void handleOperators(String operation)
   {
     NewMainInterface ui = NewMainInterface.getInstance();
-    // not working
-    if (inParentheses(ui.getInputLabel().getText()))
+    JLabel exLabel = ui.getExpressionLabel();
+    JLabel inLabel = ui.getInputLabel();
+    JLabel resLabel = ui.getResultLabel();
+
+    // handles the input label if in paren
+    if (inParentheses(inLabel.getText()))
     {
       handleInput(operation);
       System.out.println("in Parentheses");
       return;
     }
-    JLabel exLabel = ui.getExpressionLabel();
-    JLabel inLabel = ui.getInputLabel();
-    JLabel resLabel = ui.getResultLabel();
 
-    System.out.println("inLabel text: " + inLabel.getText());
     if (inParentheses(inLabel.getText()))
     {
       inLabel.setText(ui.getInputLabel().getText() + operation);
     }
-    else // this is the running calc section. All that doesn't work is ending rn
+    else
     {
-      if (result.equals(EMPTY)) // takes user input as firstOperand
+      if (!inLabel.getText().equals(HTML)) // takes user input as firstOperand
       {
-        firstOperand = inLabel.getText().replace(HTML, EMPTY);
+        // System.out.println(inLabel.getText());
+        firstOperand = removeFormatting(inLabel.getText());
+        // System.out.println(firstOperand);
+        updateDisplayWithOperator(operation, ui, exLabel, inLabel, resLabel);
       }
-      else // takes prev result as firstOperand
+      else if (!result.equals(EMPTY))// takes prev result as firstOperand
       {
         firstOperand = result;
+        updateDisplayWithOperator(operation, ui, exLabel, inLabel, resLabel);
+      }
+      else
+      {
+        ui.errorMessage("No previous result");
+        resetInterface();
       }
     }
+  }
+
+  /**
+   * Actually performs the operation handling.
+   * 
+   * @param operation
+   *          the operator
+   * @param ui
+   *          the interface
+   * @param exLabel
+   *          the expression label
+   * @param inLabel
+   *          the input label
+   * @param resLabel
+   *          the results label
+   */
+  private void updateDisplayWithOperator(String operation, NewMainInterface ui, JLabel exLabel,
+      JLabel inLabel, JLabel resLabel)
+  {
     switch (operation)
     {
       case ADD:
         context = new TempContext(new AdditionOperator());
-        exLabel.setText(HTML + firstOperand + SP + operation + SP);
+        exLabel.setText(replaceFormatting(firstOperand) + SP + operation + SP);
         inLabel.setText(HTML);
         resLabel.setText(HTML);
         break;
       case SUBTRACT:
         context = new TempContext(new SubtractionOperator());
-        exLabel.setText(HTML + firstOperand + SP + operation + SP);
+        exLabel.setText(replaceFormatting(firstOperand) + SP + operation + SP);
         inLabel.setText(HTML);
         resLabel.setText(HTML);
         break;
       case MULTIPLY:
         context = new TempContext(new MultiplicationOperator());
-        exLabel.setText(HTML + firstOperand + SP + operation + SP);
+        exLabel.setText(replaceFormatting(firstOperand) + SP + operation + SP);
         inLabel.setText(HTML);
         resLabel.setText(HTML);
         break;
       case DIVIDE:
         context = new TempContext(new DivisionOperator());
-        exLabel.setText(HTML + firstOperand + SP + operation + SP);
+        exLabel.setText(replaceFormatting(firstOperand) + SP + operation + SP);
         resLabel.setText(HTML);
         inLabel.setText(HTML);
         break;
@@ -286,6 +315,36 @@ public class InterfaceController implements Finals, ActionListener, KeyListener,
         break;
 
     }
+  }
+
+  /**
+   * Overrites any html formatting with the correct values for storing.
+   * 
+   * @param input
+   *          the string to change
+   * @return the input without html formatting
+   */
+  private String removeFormatting(String input)
+  {
+    String newString = EMPTY;
+    newString = input.replace(HTML, EMPTY);
+    newString = newString.replace(I, "i");
+    return newString;
+  }
+
+  /**
+   * Overrites any html formatting with the correct values for calculations.
+   * 
+   * @param input
+   *          the string to change
+   * @return the input without html formatting
+   */
+  private String replaceFormatting(String input)
+  {
+    String newString = HTML;
+    newString = newString + input.replace("i", I);
+    System.out.println(newString);
+    return newString;
   }
 
   private void resetInterface()
@@ -341,35 +400,35 @@ public class InterfaceController implements Finals, ActionListener, KeyListener,
   public void mouseClicked(MouseEvent e)
   {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void mousePressed(MouseEvent e)
   {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void mouseReleased(MouseEvent e)
   {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void mouseEntered(MouseEvent e)
   {
     // TODO Auto-generated method stub
-    
+
   }
 
   @Override
   public void mouseExited(MouseEvent e)
   {
     // TODO Auto-generated method stub
-    
+
   }
 
 }
