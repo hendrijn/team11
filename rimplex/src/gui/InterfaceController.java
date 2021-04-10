@@ -222,11 +222,6 @@ public class InterfaceController implements Finals, ActionListener, KeyListener,
       System.out.println("in Parentheses");
       return;
     }
-
-    if (inParentheses(inLabel.getText()))
-    {
-      inLabel.setText(ui.getInputLabel().getText() + operation);
-    }
     else
     {
       if (!inLabel.getText().equals(HTML)) // takes user input as firstOperand
