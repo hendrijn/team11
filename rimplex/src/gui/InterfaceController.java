@@ -13,7 +13,7 @@ import operations.*;
  * @author Jacquelyn Hendricks
  * @version March 23 2021
  */
-public class InterfaceController implements Finals, ActionListener, KeyListener
+public class InterfaceController implements Finals, ActionListener, KeyListener, MouseListener
 {
   private TempContext context = null;
 
@@ -335,6 +335,41 @@ public class InterfaceController implements Finals, ActionListener, KeyListener
   {
     // TODO Auto-generated method stub
 
+  }
+
+  @Override
+  public void mouseClicked(MouseEvent e)
+  {
+    // TODO Auto-generated method stub
+    
+  }
+
+  @Override
+  public void mousePressed(MouseEvent e)
+  {
+    // TODO Auto-generated method stub
+    
+  }
+
+  @Override
+  public void mouseReleased(MouseEvent e)
+  {
+    // TODO Auto-generated method stub
+    
+  }
+
+  @Override
+  public void mouseEntered(MouseEvent e)
+  {
+    // TODO Auto-generated method stub
+    
+  }
+
+  @Override
+  public void mouseExited(MouseEvent e)
+  {
+    // TODO Auto-generated method stub
+    
   }
 
 }
