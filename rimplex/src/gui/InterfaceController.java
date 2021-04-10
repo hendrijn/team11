@@ -120,6 +120,24 @@ public class InterfaceController implements Finals, ActionListener, KeyListener,
     }
     catch (Throwable t)
     {
+      // This was my attempt at the enter key stuff. It's registering as no key code so I have to
+      // revisit.
+      // System.out.println(e.getKeyCode() + "\t" + KeyEvent.VK_ENTER);
+      // if (e.getKeyCode() == KeyEvent.VK_ENTER)
+      // {
+      // try
+      // {
+      // equalsButtonHandling(ui);
+      // }
+      // catch (NullPointerException nullP)
+      // {
+      // firstOperand = EMPTY;
+      // ui.errorMessage("Please input two valid operands.");
+      // resetInterface();
+      // }
+      // }
+      // else
+      // {
       switch (keyText)
       {
         case ADD:
@@ -138,9 +156,6 @@ public class InterfaceController implements Finals, ActionListener, KeyListener,
         case PDIVIDE:
           handleOperators(DIVIDE);
           break;
-        case EQUALS:
-
-          break;
         case "i":
           handleInput(I);
           break;
@@ -154,9 +169,10 @@ public class InterfaceController implements Finals, ActionListener, KeyListener,
           handleInput(RPAREN);
           break;
         default:
-
       }
+      // }
     }
+
   }
 
   /**
