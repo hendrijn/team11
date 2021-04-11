@@ -102,7 +102,7 @@ public class InterfaceController implements Finals, ActionListener, KeyListener,
   }
 
   /**
-   * Handles when something is typed in the text box.
+   * Handles when something is typed.
    */
   @Override
   public void keyTyped(KeyEvent e)
@@ -141,10 +141,6 @@ public class InterfaceController implements Finals, ActionListener, KeyListener,
       switch (keyText)
       {
         case ADD:
-          if (inParentheses(ui.getInputLabel().getText()))
-          {
-
-          }
           handleOperators(ADD);
           break;
         case SUBTRACT:
