@@ -40,31 +40,20 @@ public class AdditionOperator implements Operator
     String rightImaginaryNumber  = decomposedOperands[3];
     
     // Integer processing
-    long leftImagNumLong = 0;
+    Double leftImagNumDouble = 0.0;
     try
     {
-      leftImagNumLong = Long.parseLong(leftImaginaryNumber);
+      leftImagNumDouble = Double.parseDouble(leftImaginaryNumber);
     }
     catch (NumberFormatException e)
     {
       throw new IllegalArgumentException("Not a valid operand.");
     }
 
-    long leftRegNumLong = 0;
+    Double leftRegNumDouble = 0.0;
     try
     {
-      leftRegNumLong = Long.parseLong(leftRegularNumber);
-    }
-    catch (NumberFormatException e)
-    {
-
-      throw new IllegalArgumentException("Not a valid operand.");
-    }
-
-    long rightImagNumLong = 0;
-    try
-    {
-      rightImagNumLong = Long.parseLong(rightImaginaryNumber);
+      leftRegNumDouble = Double.parseDouble(leftRegularNumber);
     }
     catch (NumberFormatException e)
     {
@@ -72,10 +61,10 @@ public class AdditionOperator implements Operator
       throw new IllegalArgumentException("Not a valid operand.");
     }
 
-    long rightRegNumLong = 0;
+    Double rightImagNumDouble = 0.0;
     try
     {
-      rightRegNumLong = Long.parseLong(rightRegularNumber);
+      rightImagNumDouble = Double.parseDouble(rightImaginaryNumber);
     }
     catch (NumberFormatException e)
     {
@@ -83,8 +72,19 @@ public class AdditionOperator implements Operator
       throw new IllegalArgumentException("Not a valid operand.");
     }
 
-    long finalRegTotal = leftRegNumLong + rightRegNumLong;
-    long finalImagTotal = leftImagNumLong + rightImagNumLong;
+    Double rightRegNumDouble = 0.0;
+    try
+    {
+      rightRegNumDouble = Double.parseDouble(rightRegularNumber);
+    }
+    catch (NumberFormatException e)
+    {
+
+      throw new IllegalArgumentException("Not a valid operand.");
+    }
+
+    Double finalRegTotal = leftRegNumDouble + rightRegNumDouble;
+    Double finalImagTotal = leftImagNumDouble + rightImagNumDouble;
 
     String result = finalRegTotal + "+" + finalImagTotal + "i";
 

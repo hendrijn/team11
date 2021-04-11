@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import operations.AdditionOperator;
 import operations.MultiplicationOperator;
 import operations.TempContext;
 
@@ -400,7 +402,7 @@ class MultiplicationOperatorTesting
   {
     String complexNumberOne = "-300";
     String complexNumberTwo = "-400";
-    String expectedResult = "120000.0+0.0i";
+    String expectedResult = "120000.0-0.0i";
     TempContext tempContext = new TempContext(new MultiplicationOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -438,6 +440,54 @@ class MultiplicationOperatorTesting
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
   }
+  
+  
+  @Test
+  public void testDecimalOperands2()
+  {
+    TempContext a = new TempContext(new MultiplicationOperator());
+    String actual = a.evaluate("6.42i", "7.75i");
+    String expected = "-49.755+0.0i";
+    assertEquals(expected, actual);
+  } 
+  
+  
+  @Test
+  public void testDecimalOperands3()
+  {
+    TempContext a = new TempContext(new MultiplicationOperator());
+    String actual = a.evaluate("3.88", "2.94");
+    String expected = "11.4072+0.0i";
+    assertEquals(expected, actual);
+  } 
+  
+  @Test
+  public void testDecimalOperands4()
+  {
+    TempContext a = new TempContext(new MultiplicationOperator());
+    String actual = a.evaluate("0.89+7.25i", "3.56i");
+    String expected = "-25.81+3.1684i";
+    assertEquals(expected, actual);
+  } 
+  
+  
+  @Test
+  public void testDecimalOperands5()
+  {
+    TempContext a = new TempContext(new MultiplicationOperator());
+    String actual = a.evaluate("3.39+6.89i", "2.09");
+    String expected = "7.0851+14.400099999999998i";
+    assertEquals(expected, actual);
+  } 
+  
+  @Test
+  public void testDecimalOperands6()
+  {
+    TempContext a = new TempContext(new MultiplicationOperator());
+    String actual = a.evaluate("9.06", "2.66i");
+    String expected = "0.0+24.099600000000002i";
+    assertEquals(expected, actual);
+  } 
   
   
 

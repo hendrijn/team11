@@ -34,31 +34,20 @@ public class MultiplicationOperator implements Operator
     
     
     // Integer processing
-    long leftImagNumLong = 0;
+    Double leftImagNumDouble = 0.0;
     try
     {
-      leftImagNumLong = Long.parseLong(leftImaginaryNumber);
+      leftImagNumDouble    = Double.parseDouble(leftImaginaryNumber);
     }
     catch (NumberFormatException e)
     {
       throw new IllegalArgumentException("Not a valid operand.");
     }
 
-    long leftRegNumLong = 0;
+    Double leftRegNumDouble = 0.0;
     try
     {
-      leftRegNumLong = Long.parseLong(leftRegularNumber);
-    }
-    catch (NumberFormatException e)
-    {
-
-      throw new IllegalArgumentException("Not a valid operand.");
-    }
-
-    long rightImagNumLong = 0;
-    try
-    {
-      rightImagNumLong = Long.parseLong(rightImaginaryNumber);
+      leftRegNumDouble    = Double.parseDouble(leftRegularNumber);
     }
     catch (NumberFormatException e)
     {
@@ -66,10 +55,10 @@ public class MultiplicationOperator implements Operator
       throw new IllegalArgumentException("Not a valid operand.");
     }
 
-    long rightRegNumLong = 0;
+    Double rightImagNumDouble = 0.0;
     try
     {
-      rightRegNumLong = Long.parseLong(rightRegularNumber);
+      rightImagNumDouble    = Double.parseDouble(rightImaginaryNumber);
     }
     catch (NumberFormatException e)
     {
@@ -77,10 +66,21 @@ public class MultiplicationOperator implements Operator
       throw new IllegalArgumentException("Not a valid operand.");
     }
 
-    double fOILFirst  = leftRegNumLong * rightRegNumLong;
-    double fOILOuters = leftRegNumLong * rightImagNumLong;
-    double fOILInners = leftImagNumLong * rightRegNumLong;
-    double fOILLasts  = leftImagNumLong * rightImagNumLong *  I_SQUARED;
+    Double rightRegNumDouble = 0.0;
+    try
+    {
+      rightRegNumDouble    = Double.parseDouble(rightRegularNumber);
+    }
+    catch (NumberFormatException e)
+    {
+
+      throw new IllegalArgumentException("Not a valid operand.");
+    }
+
+    double fOILFirst  = leftRegNumDouble  * rightRegNumDouble;
+    double fOILOuters = leftRegNumDouble  * rightImagNumDouble;
+    double fOILInners = leftImagNumDouble * rightRegNumDouble;
+    double fOILLasts  = leftImagNumDouble * rightImagNumDouble *  I_SQUARED;
     
     double finalRegTotal  = fOILFirst + fOILLasts;
     double finalImagTotal = fOILOuters + fOILInners;
