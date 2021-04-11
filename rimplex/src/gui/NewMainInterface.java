@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.*;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -39,6 +40,7 @@ public class NewMainInterface extends JFrame implements Finals
   private void historySetUp()
   {
     JFrame frame = new JFrame(">", null);
+    frame.addMouseListener((MouseListener) listener);
     eastPanel.add(frame);
   }
 

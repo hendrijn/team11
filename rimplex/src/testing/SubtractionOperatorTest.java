@@ -129,6 +129,8 @@ class SubtractionOperatorTest
     {
       assertTrue(true);
     }
+    
+    //TODO: test complex spaces and parens
 
   }
 

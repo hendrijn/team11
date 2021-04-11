@@ -586,5 +586,6 @@ class AdditonOperatorTesting
     expected = "9.06+2.66i";
     assertTrue(actual.equals(expected));
   }
-
+  
+  //TODO: test complex spaces and parens
 }

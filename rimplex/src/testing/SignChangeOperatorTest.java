@@ -42,12 +42,13 @@ class SignChangeOperatorTest
     
     try
     {
-      String actual = s.changeSign("        ");
+      String actual = s.changeSign("  ()      ");
     }
     catch (IllegalArgumentException iae)
     {
       assertTrue(true);
     }
+    
   }
   
   @Test
