@@ -249,7 +249,7 @@ public class InterfaceController implements Finals, ActionListener, KeyListener,
       }
       else if (!result.equals(EMPTY))// takes prev result as firstOperand
       {
-        firstOperand = result;
+        firstOperand = "(" + result + ")";
         updateDisplayWithOperator(operation, ui, exLabel, inLabel, resLabel);
       }
       else
