@@ -94,6 +94,11 @@ public class InterfaceController
             ui.getInputLabel().setText(text);
           }
           break;
+        case SIGN:
+          JLabel input = ui.getInputLabel();
+          String in = input.getText();
+          handleSign(in);
+          break;
         default:
           closeApplication();
 
@@ -215,6 +220,30 @@ public class InterfaceController
     else
     {
       shownError = false;
+    }
+  }
+
+  /**
+   * Helper method to change sign of a number.
+   * 
+   * @param input
+   *          the number to change
+   */
+  private void handleSign(String input)
+  {
+    String[] nums = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0"};
+    NewMainInterface ui = NewMainInterface.getInstance();
+    JLabel inLabel = ui.getInputLabel();
+    String actual = removeFormatting(input);
+
+    for (int i = 0; i < nums.length; i++)
+    {
+      if (actual.endsWith(nums[i]))
+      {
+        String change = operations.SignChangeOperator.changeSign(actual);
+        inLabel.setText(change);
+        break;
+      }
     }
   }
 

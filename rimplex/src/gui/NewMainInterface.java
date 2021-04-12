@@ -207,7 +207,7 @@ public class NewMainInterface extends JFrame implements Finals
     inputDisplay.addKeyListener(listener);
     expressionDisplay.addKeyListener(listener);
     resultDisplay.addKeyListener(listener);
-    
+
     inputDisplay.setFocusable(true);
     inputDisplay.addFocusListener(listener);
     inputDisplay.requestFocusInWindow();
