@@ -25,7 +25,7 @@ public class InterfaceController
   private boolean shownError = false;
 
   /**
-   * Handles all button operations.
+   * Handles soft button operations.
    */
   @Override
   public void actionPerformed(ActionEvent e)
