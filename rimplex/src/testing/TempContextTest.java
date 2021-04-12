@@ -32,19 +32,19 @@ class TempContextTest
     assertTrue(actual.equals(expected));
 
     actual = TempContext.format("3");
-    expected = "3+0i";
+    expected = "3+0.00i";
     assertTrue(actual.equals(expected));
 
     actual = TempContext.format("3i");
-    expected = "0+3i";
+    expected = "0.00+3i";
     assertTrue(actual.equals(expected));
 
     actual = TempContext.format("-3");
-    expected = "-3+0i";
+    expected = "-3+0.00i";
     assertTrue(actual.equals(expected));
 
     actual = TempContext.format("-3i");
-    expected = "0+-3i";
+    expected = "0.00+-3i";
     assertTrue(actual.equals(expected));
     
     //with parens

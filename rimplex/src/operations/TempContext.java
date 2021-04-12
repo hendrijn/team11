@@ -83,12 +83,12 @@ public class TempContext
 
     if (imaginary)
     {
-      result = "0+" + alteredOp;
+      result = "0.00+" + alteredOp;
     }
 
     if (real)
     {
-      result = alteredOp + "+0i";
+      result = alteredOp + "+0.00i";
     }
     return result;
   }
