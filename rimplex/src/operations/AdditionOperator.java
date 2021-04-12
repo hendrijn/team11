@@ -85,8 +85,11 @@ public class AdditionOperator implements Operator
 
     Double finalRegTotal = leftRegNumDouble + rightRegNumDouble;
     Double finalImagTotal = leftImagNumDouble + rightImagNumDouble;
-
-    String result = finalRegTotal + "+" + finalImagTotal + "i";
+    
+    String formattedRegTotal = String.format("%.2f", finalRegTotal);
+    String formattedImagTotal = String.format("%.2f", finalImagTotal);
+    
+    String result = formattedRegTotal + "+" + formattedImagTotal + "i";
 
     if (result.contains("+-"))
     {

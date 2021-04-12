@@ -31,23 +31,48 @@ class SignChangeOperatorTest
     {
       assertTrue(true);
     }
-    try
+    
+    /*try
     {
       String actual = s.changeSign("jfh3ourfh");
+      assertTrue(false);
+    }
+    catch (IllegalArgumentException iae)
+    {
+      assertTrue(true);
+    }*/
+    
+    try
+    {
+      String actual = s.changeSign("  ()      ");
+      assertTrue(false);
     }
     catch (IllegalArgumentException iae)
     {
       assertTrue(true);
     }
     
+    /*try
+    {
+      String actual = s.changeSign("ilovecs");
+      assertTrue(false);
+    }
+    catch (IllegalArgumentException iae)
+    {
+      assertTrue(true);
+    }*/
+    
     try
     {
-      String actual = s.changeSign("  ()      ");
+      String actual = s.changeSign("5ii");
+      assertTrue(false);
     }
     catch (IllegalArgumentException iae)
     {
       assertTrue(true);
     }
+    
+    
     
   }
   
