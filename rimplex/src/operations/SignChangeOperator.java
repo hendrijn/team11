@@ -19,7 +19,6 @@ public class SignChangeOperator
       throw new IllegalArgumentException("Please provide a valid operand, or simplify it.");
     }
 
-    
     boolean complex = false;
     boolean imaginary = false;
     boolean real = false;
