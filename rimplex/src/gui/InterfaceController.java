@@ -13,7 +13,8 @@ import operations.*;
  * @author Jacquelyn Hendricks
  * @version March 23 2021
  */
-public class InterfaceController implements Finals, ActionListener, KeyListener, MouseListener, FocusListener
+public class InterfaceController
+    implements Finals, ActionListener, KeyListener, MouseListener, FocusListener
 {
   private TempContext context = null;
 
@@ -120,55 +121,52 @@ public class InterfaceController implements Finals, ActionListener, KeyListener,
     }
     catch (Throwable t)
     {
-      // This was my attempt at the enter key stuff. It's registering as no key code so I have to
-      // revisit.
-      // System.out.println(e.getKeyCode() + "\t" + KeyEvent.VK_ENTER);
-      // if (e.getKeyCode() == KeyEvent.VK_ENTER)
-      // {
-      // try
-      // {
-      // equalsButtonHandling(ui);
-      // }
-      // catch (NullPointerException nullP)
-      // {
-      // firstOperand = EMPTY;
-      // ui.errorMessage("Please input two valid operands.");
-      // resetInterface();
-      // }
-      // }
-      // else
-      // {
-      switch (keyText)
+      if (e.getKeyChar() == '\n')
       {
-        case ADD:
-          handleOperators(ADD);
-          break;
-        case SUBTRACT:
-          handleOperators(SUBTRACT);
-          break;
-        case PMULTIPLY:
-          handleOperators(MULTIPLY);
-          break;
-        case PDIVIDE:
-          handleOperators(DIVIDE);
-          break;
-        case "i":
-          handleInput(I);
-          break;
-        case DECIMAL:
-          handleInput(DECIMAL);
-          break;
-        case LPAREN:
-          handleInput(LPAREN);
-          break;
-        case RPAREN:
-          handleInput(RPAREN);
-          break;
-        default:
+        try
+        {
+          equalsButtonHandling(ui);
+        }
+        catch (NullPointerException nullP)
+        {
+          firstOperand = EMPTY;
+          ui.errorMessage("Please input two valid operands.");
+          resetInterface();
+        }
       }
-      // }
-    }
+      else
+      {
+        switch (keyText)
+        {
+          case ADD:
+            handleOperators(ADD);
+            break;
+          case SUBTRACT:
+            handleOperators(SUBTRACT);
+            break;
+          case PMULTIPLY:
+            handleOperators(MULTIPLY);
+            break;
+          case PDIVIDE:
+            handleOperators(DIVIDE);
+            break;
+          case "i":
+            handleInput(I);
+            break;
+          case DECIMAL:
+            handleInput(DECIMAL);
+            break;
+          case LPAREN:
+            handleInput(LPAREN);
+            break;
+          case RPAREN:
+            handleInput(RPAREN);
+            break;
+          default:
+        }
+      }
 
+    }
   }
 
   /**
@@ -222,7 +220,7 @@ public class InterfaceController implements Finals, ActionListener, KeyListener,
 
   private void handleOperators(String operation)
   {
-    NewMainInterface ui = NewMainInterface.getInstance();   
+    NewMainInterface ui = NewMainInterface.getInstance();
     JLabel exLabel = ui.getExpressionLabel();
     JLabel inLabel = ui.getInputLabel();
     JLabel resLabel = ui.getResultLabel();
@@ -389,22 +387,23 @@ public class InterfaceController implements Finals, ActionListener, KeyListener,
 
     return false;
   }
-  
-  
+
   @Override
-  public void focusLost(FocusEvent e) {
-  	// TODO Auto-generated method stub
-	  NewMainInterface ui = NewMainInterface.getInstance();
-	  ui.getInputLabel().requestFocusInWindow();
+  public void focusLost(FocusEvent e)
+  {
+    // TODO Auto-generated method stub
+    NewMainInterface ui = NewMainInterface.getInstance();
+    ui.getInputLabel().requestFocusInWindow();
   }
 
   @Override
-  public void focusGained(FocusEvent e) {
-  	// TODO Auto-generated method stub
-	  NewMainInterface ui = NewMainInterface.getInstance();
-	  ui.getInputLabel().requestFocusInWindow();
+  public void focusGained(FocusEvent e)
+  {
+    // TODO Auto-generated method stub
+    NewMainInterface ui = NewMainInterface.getInstance();
+    ui.getInputLabel().requestFocusInWindow();
   }
-  
+
   // ----------------- Unimplemented -------------//
   @Override
   public void keyPressed(KeyEvent e)
@@ -452,8 +451,5 @@ public class InterfaceController implements Finals, ActionListener, KeyListener,
     // TODO Auto-generated method stub
 
   }
-
-
-
 
 }
