@@ -2,7 +2,7 @@ package operations;
 
 public class SignChangeOperator
 {
-  public String changeSign(String operand) throws IllegalArgumentException
+  public static String changeSign(String operand) throws IllegalArgumentException
   {
     // TODO: handle random strings
     //error checking 
