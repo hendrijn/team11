@@ -11,7 +11,7 @@ public class SignChangeOperator
       throw new IllegalArgumentException("Please provide an operand");
     }
     
-    String alteredOp = operand.replaceAll(" ", "");
+    String alteredOp = TempContext.format(operand);
     
     long iCount  = alteredOp.chars().filter(ch -> ch == 'i').count();
     if (iCount > 1 || alteredOp.isEmpty() || alteredOp.equals("()"))
@@ -19,31 +19,10 @@ public class SignChangeOperator
       throw new IllegalArgumentException("Please provide a valid operand, or simplify it.");
     }
 
-    boolean complex = false;
-    boolean imaginary = false;
-    boolean real = false;
+    boolean complex = TempContext.isComplex(alteredOp);
+    boolean imaginary = TempContext.isImaginary(alteredOp);
+    boolean real = TempContext.isReal(alteredOp);
     String result = "";
-
-    if (alteredOp.contains("+"))
-    {
-      complex = true;
-    }
-    else if (alteredOp.charAt(0) == '-' && alteredOp.indexOf("-", 1) != -1)
-    {
-      complex = true;
-    }
-    else if (alteredOp.charAt(0) != '-' && alteredOp.contains("-"))
-    {
-      complex = true;
-    }
-    else if (alteredOp.contains("i"))
-    {
-      imaginary = true;
-    }
-    else
-    {
-      real = true;
-    }
 
     if (complex)
     {

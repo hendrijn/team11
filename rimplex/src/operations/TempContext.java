@@ -53,35 +53,14 @@ public class TempContext
       throw new IllegalArgumentException("Please provide two valid operands.");
     }
     
-    boolean complex = false;
-    boolean imaginary = false;
-    boolean real = false;
+    boolean complex = isComplex(operand);
+    boolean imaginary = isImaginary(operand);
+    boolean real = isReal(operand);
     String result = "";
     
     String alteredOp = operand.replaceAll(" ", "");
     int negative = alteredOp.indexOf("-");
     int minus = alteredOp.indexOf("-", negative + 1);
-
-    if (alteredOp.contains("+"))
-    {
-      complex = true;
-    }
-    else if (alteredOp.charAt(0) == '-' && minus != -1)
-    {
-      complex = true;
-    }
-    else if (alteredOp.charAt(0) != '-' && negative != -1)
-    {
-      complex = true;
-    }
-    else if (alteredOp.contains("i"))
-    {
-      imaginary = true;
-    }
-    else
-    {
-      real = true;
-    }
 
     if (complex)
     {
@@ -125,8 +104,7 @@ public class TempContext
    */
   public static String[] decomposeOperands(String leftOperand, String rightOperand) 
   {
-    
-    
+
     String alteredROp = TempContext.format(rightOperand);
     String alteredLOp = TempContext.format(leftOperand);
 
@@ -201,5 +179,47 @@ public class TempContext
         rightRegularNumber, rightImaginaryNumber};
     
     return operandArray;
+  }
+  
+  public static boolean isComplex(String operand)
+  {
+    boolean complex = false;
+    if (operand.contains("+"))
+    {
+      complex = true;
+    }
+    else if (operand.charAt(0) == '-' && operand.indexOf("-", 1) != -1)
+    {
+      complex = true;
+    }
+    else if (operand.charAt(0) != '-' && operand.contains("-"))
+    {
+      complex = true;
+    }
+    return complex;
+  }
+  
+  public static boolean isImaginary(String operand)
+  {
+    boolean imaginary = false;
+    boolean complex = isComplex(operand);
+    if (!complex && operand.contains("i"))
+    {
+      imaginary = true;
+    }
+    return imaginary;
+  }
+  
+  public static boolean isReal(String operand)
+  {
+    boolean real = false;
+    boolean imaginary = isImaginary(operand);
+    boolean complex = isComplex(operand);
+    
+    if(!complex && ! imaginary)
+    {
+      real = true;
+    }
+    return real;
   }
 }
