@@ -13,7 +13,7 @@ import operations.*;
  * @author Jacquelyn Hendricks
  * @version March 23 2021
  */
-public class InterfaceController implements Finals, ActionListener, KeyListener, MouseListener
+public class InterfaceController implements Finals, ActionListener, KeyListener, MouseListener, FocusListener
 {
   private TempContext context = null;
 
@@ -389,7 +389,22 @@ public class InterfaceController implements Finals, ActionListener, KeyListener,
 
     return false;
   }
+  
+  
+  @Override
+  public void focusLost(FocusEvent e) {
+  	// TODO Auto-generated method stub
+	  NewMainInterface ui = NewMainInterface.getInstance();
+	  ui.getInputLabel().requestFocusInWindow();
+  }
 
+  @Override
+  public void focusGained(FocusEvent e) {
+  	// TODO Auto-generated method stub
+	  NewMainInterface ui = NewMainInterface.getInstance();
+	  ui.getInputLabel().requestFocusInWindow();
+  }
+  
   // ----------------- Unimplemented -------------//
   @Override
   public void keyPressed(KeyEvent e)
@@ -437,5 +452,8 @@ public class InterfaceController implements Finals, ActionListener, KeyListener,
     // TODO Auto-generated method stub
 
   }
+
+
+
 
 }
