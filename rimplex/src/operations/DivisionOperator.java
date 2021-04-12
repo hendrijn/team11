@@ -28,14 +28,13 @@ public class DivisionOperator implements Operator
     }
     else if(imaginaryL && imaginaryR)
     {
-      
+      doubleResult = Double.parseDouble(parts[1]) / Double.parseDouble(parts[3]);
+      result = TempContext.format(String.format("%.2f", doubleResult));
     }
     else if (realL && realR)
     {
       double doubleL = Double.parseDouble(alteredLOp);
       double doubleR = Double.parseDouble(alteredROp);
-      System.out.println(doubleL);
-      System.out.println(doubleR);
       doubleResult = doubleL / doubleR;
       result = TempContext.format(String.format("%.2f", doubleResult));
     }

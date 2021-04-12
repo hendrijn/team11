@@ -207,7 +207,6 @@ class DivisonOperatorTest
     //both negative
     String actual = d.evaluate("6", "9");
     String expected = "0.67+0.00i";
-    System.out.println(actual);
     assertTrue(actual.equals(expected));
     
     //both positive
