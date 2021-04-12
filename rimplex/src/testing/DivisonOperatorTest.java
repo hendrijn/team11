@@ -412,7 +412,7 @@ class DivisonOperatorTest
     
     //both negative; first imaginary; second real
     String actual = d.evaluate("-i", "-2");
-    String expected = "0.00+0.5i";
+    String expected = "0.00+0.50i";
     assertTrue(actual.equals(expected));
     
     //both positive; first imaginary; second real

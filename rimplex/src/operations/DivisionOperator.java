@@ -38,7 +38,23 @@ public class DivisionOperator implements Operator
       doubleResult = doubleL / doubleR;
       result = TempContext.format(String.format("%.2f", doubleResult));
     }
+    else if (realL && imaginaryR)
+    {
+      double doubleL = Double.parseDouble(alteredLOp);
+      doubleResult = doubleL / Double.parseDouble(parts[3]);
+      result = TempContext.format(String.format("%.2f", doubleResult) + "i");
+    }
+    else if(imaginaryL && realR)
+    {
+      double doubleR = Double.parseDouble(alteredROp);
+      doubleResult = Double.parseDouble(parts[1]) / doubleR;
+      result = TempContext.format(String.format("%.2f", doubleResult) + "i");
+    }
     
+    if(result.contains("+-"))
+    {
+      result = result.substring(0,result.indexOf("+")) + "-" + result.substring(result.indexOf("-") + 1);
+     }
     return result;
   }
 }
