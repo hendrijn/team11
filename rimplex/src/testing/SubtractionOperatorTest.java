@@ -27,7 +27,6 @@ class SubtractionOperatorTest
 
     // complex
     String actual = s.evaluate("   6       +      4     i   ", "   2        +       3    i      ");
-    System.out.println(actual);
     String expected = "4.00+1.00i";
     assertTrue(actual.equals(expected));
 
