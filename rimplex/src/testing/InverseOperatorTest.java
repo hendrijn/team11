@@ -2,6 +2,7 @@ package testing;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import operations.InverseOperator;
@@ -14,7 +15,7 @@ class InverseOperatorTest
   public void invertComplexTest1()
   {
     String operand = "2+4i";
-    String expectedInverse = "0.1-0.2i";
+    String expectedInverse = "0.10-0.20i";
     InverseOperator inverseOperator = new InverseOperator();
     String actualInverse = inverseOperator.invert(operand);
     assertEquals(expectedInverse, actualInverse);
@@ -25,7 +26,7 @@ class InverseOperatorTest
   public void invertRealTest1()
   {
     String operand = "8";
-    String expectedInverse = "0.125";
+    String expectedInverse = "0.125+0.00i";
     InverseOperator inverseOperator = new InverseOperator();
     String actualInverse = inverseOperator.invert(operand);
     assertEquals(expectedInverse, actualInverse);
@@ -35,10 +36,103 @@ class InverseOperatorTest
   public void invertComplexTest2()
   {
     String operand = "2-3i";
-    String expectedInverse = "14.5-3.75i";
+    String expectedInverse = "0.15+0.23i";
     InverseOperator inverseOperator = new InverseOperator();
     String actualInverse = inverseOperator.invert(operand);
     assertEquals(expectedInverse, actualInverse);
+  }
+  
+  @Test
+  public void invertI()
+  {
+    String operand = "3i";
+    String expectedInverse = "0.00-0.33i";
+    InverseOperator inverseOperator = new InverseOperator();
+    String actualInverse = inverseOperator.invert(operand);
+    assertEquals(expectedInverse, actualInverse);
+  }
+  
+  
+  @Test
+  public void invertI2()
+  {
+    String operand = "i";
+    String expectedInverse = "0.00-1.00i";
+    InverseOperator inverseOperator = new InverseOperator();
+    String actualInverse = inverseOperator.invert(operand);
+    assertEquals(expectedInverse, actualInverse);
+  }
+  
+  @Test
+  public void invertNegReal()
+  {
+    String operand = "-4";
+    String expectedInverse = "-0.25+0.00i";
+    InverseOperator inverseOperator = new InverseOperator();
+    String actualInverse = inverseOperator.invert(operand);
+    assertEquals(expectedInverse, actualInverse);
+  }
+  
+  @Test
+  public void invertNegComplex()
+  {
+    String operand = "-4+3i";
+    String expectedInverse = "-0.16-0.12i";
+    InverseOperator inverseOperator = new InverseOperator();
+    String actualInverse = inverseOperator.invert(operand);
+    assertEquals(expectedInverse, actualInverse);
+  }
+  
+  @Test
+  public void invertInvalid1()
+  {
+    String operand = "-4+3iiii";
+    InverseOperator inverseOperator = new InverseOperator();
+    Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+      inverseOperator.invert(operand);
+    });
+    String expectedException = "Not a valid operand.";
+    String actualException = exception.getMessage();
+    assertEquals(expectedException, actualException);
+  }
+  
+  @Test
+  public void invertInvalid2()
+  {
+    String operand = "";
+    InverseOperator inverseOperator = new InverseOperator();
+    Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+      inverseOperator.invert(operand);
+    });
+    String expectedException = "Please provide a valid operand.";
+    String actualException = exception.getMessage();
+    assertEquals(expectedException, actualException);
+  }
+  
+  @Test
+  public void invertInvalid3()
+  {
+    String operand = null;
+    InverseOperator inverseOperator = new InverseOperator();
+    Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+      inverseOperator.invert(operand);
+    });
+    String expectedException = "Please provide a valid operand.";
+    String actualException = exception.getMessage();
+    assertEquals(expectedException, actualException);
+  }
+  
+  @Test
+  public void invertInvalid4()
+  {
+    String operand = "3+2asczxi";
+    InverseOperator inverseOperator = new InverseOperator();
+    Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+      inverseOperator.invert(operand);
+    });
+    String expectedException = "Not a valid operand.";
+    String actualException = exception.getMessage();
+    assertEquals(expectedException, actualException);
   }
 
 }

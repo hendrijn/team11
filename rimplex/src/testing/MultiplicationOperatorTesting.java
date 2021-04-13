@@ -497,5 +497,14 @@ class MultiplicationOperatorTesting
     String expected = "22.00-14.00i";
     assertEquals(expected, actual);
   }
+  
+  @Test
+  public void testNegComplex2()
+  {
+    TempContext a = new TempContext(new MultiplicationOperator());
+    String actual = a.evaluate("-3+5i", "-4");
+    String expected = "12.00-20.00i";
+    assertEquals(expected, actual);
+  }
 
 }
