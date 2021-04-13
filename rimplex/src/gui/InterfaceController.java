@@ -241,7 +241,7 @@ public class InterfaceController
       if (actual.endsWith(nums[i]))
       {
         String change = operations.SignChangeOperator.changeSign(actual);
-        inLabel.setText(change);
+        inLabel.setText(replaceFormatting(change));
         break;
       }
     }
