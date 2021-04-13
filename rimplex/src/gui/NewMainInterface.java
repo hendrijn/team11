@@ -69,7 +69,10 @@ public class NewMainInterface extends JFrame implements Finals
     setUpEastPanel();
     JPanel bar = new JPanel();
     bar.setLayout(new GridLayout(1, 1));
-    bar.add(new JButton());
+    JButton button = new JButton(">");
+    HistoryController cont = new HistoryController();
+    button.addActionListener(cont);
+    bar.add(button);
 
     contentPane.add(northPanel, BorderLayout.NORTH);
     contentPane.add(centerPanel, BorderLayout.WEST);
