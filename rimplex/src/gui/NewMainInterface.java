@@ -35,6 +35,7 @@ public class NewMainInterface extends JFrame implements Finals
     setVisible(true); // display this
     centerForm();
 
+    HistoryDisplay history = HistoryDisplay.getInstance();
   }
 
   private void historySetUp()
