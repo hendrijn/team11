@@ -37,7 +37,7 @@ class ConjugateOperatorTest
     
     try
     {
-      String empty = c.conjugate("   ()");
+      String emptyParen = c.conjugate("   ()");
       assertTrue(false);
     }
     catch (IllegalArgumentException e)
@@ -45,7 +45,35 @@ class ConjugateOperatorTest
       assertTrue(true);
     }
     
-    //TODO: test illegal args
+    try
+    {
+      String random = c.conjugate("rogphu3sdnjivb3uo");
+      assertTrue(false);
+    }
+    catch (IllegalArgumentException e)
+    {
+      assertTrue(true);
+    }
+    
+    try
+    {
+      String doubleI = c.conjugate("5ii");
+      assertTrue(false);
+    }
+    catch (IllegalArgumentException e)
+    {
+      assertTrue(true);
+    }
+    
+    try
+    {
+      String iString = c.conjugate("ilovecs");
+      assertTrue(false);
+    }
+    catch (IllegalArgumentException e)
+    {
+      assertTrue(true);
+    }
     
   }
   

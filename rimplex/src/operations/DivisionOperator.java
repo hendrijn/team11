@@ -5,6 +5,7 @@ public class DivisionOperator implements Operator
   @Override
   public String evaluate(String leftOperand, String rightOperand)
   {
+    
     String alteredLOp = ((leftOperand.replaceAll(" ", "")).replace("(", "")).replace(")", "");
     String alteredROp = ((rightOperand.replaceAll(" ", "")).replace("(", "")).replace(")", "");
     

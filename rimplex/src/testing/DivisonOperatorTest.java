@@ -10,8 +10,7 @@ import operations.TempContext;
 
 class DivisonOperatorTest
 {
-
-  //TODO: test illegal args
+  
   @Test 
   public void testSpaces()
   {
@@ -455,7 +454,6 @@ class DivisonOperatorTest
   @Test
   public void testDecimalOperands()
   {
-    //TODO: implement
     TempContext d = new TempContext(new DivisionOperator());
     
     //complex

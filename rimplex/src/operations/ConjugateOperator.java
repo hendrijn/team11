@@ -5,8 +5,7 @@ public class ConjugateOperator
 
   public String conjugate(String operand)
   {
-    // TODO: handle illegal args
-
+    //error checking
     if (operand == null || operand.equals(""))
     {
       throw new IllegalArgumentException("Please Enter an Operand.");
@@ -18,7 +17,7 @@ public class ConjugateOperator
     {
       throw new IllegalArgumentException("Please Enter an Operand.");
     }
-
+    
     String result = "";
 
     boolean complex = TempContext.isComplex(alteredOp);

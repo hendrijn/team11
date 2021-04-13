@@ -4,9 +4,8 @@ public class SignChangeOperator
 {
   public static String changeSign(String operand) throws IllegalArgumentException
   {
-    // TODO: handle random strings
     //error checking 
-    if (operand == null)
+    if (operand == null )
     {
       throw new IllegalArgumentException("Please provide an operand");
     }
@@ -24,6 +23,15 @@ public class SignChangeOperator
     boolean real = TempContext.isReal(alteredOp);
     String result = "";
 
+    try
+    {
+      Double.parseDouble(((alteredOp.replace("i", "")).replace("+", "")).replaceAll("-", ""));
+    }
+    catch(NumberFormatException nfe)
+    {
+      throw new IllegalArgumentException("Please provide a valid operand, or simplify it.");
+    }
+    
     if (complex)
     {
       ConjugateOperator c = new ConjugateOperator();
