@@ -238,10 +238,10 @@ class SubtractionOperatorTest
     expected = "-7.00-54.00i";
     assertTrue(expected.equals(actual));
     
-    /*//extra case that seems to be failing
+    //just i
     actual = s.evaluate("3+2i", "2-i");
-    expected = "1+3i";
-    assertTrue(expected.equals(actual));*/
+    expected = "1.00+3.00i";
+    assertTrue(expected.equals(actual));
 
   }
 

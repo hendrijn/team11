@@ -47,24 +47,46 @@ public class SubtractionOperator implements Operator
 
   private static String distribute(String rightOperand)
   {
-    int indexOfNeg = rightOperand.indexOf("-");
+    int negMinus = rightOperand.indexOf("-");
+    int minus = rightOperand.indexOf("-", negMinus + 1);
     String distribute = "";
-    if (rightOperand.indexOf("+") != -1)
+    
+    boolean complex = TempContext.isComplex(rightOperand);
+    boolean imaginary = TempContext.isImaginary(rightOperand);
+    boolean real = TempContext.isReal(rightOperand);
+    
+    if(complex)
     {
-      if (rightOperand.charAt(0) == '-')
+      if(rightOperand.contains("+"))
       {
-        distribute = rightOperand.substring(0, rightOperand.indexOf("+")) + "-"
-            + rightOperand.substring(rightOperand.indexOf("+") + 1);
+        if (rightOperand.charAt(0) == '-')
+        {
+          distribute = rightOperand.substring(0, rightOperand.indexOf("+")) + "-"
+              + rightOperand.substring(rightOperand.indexOf("+") + 1);
+        }
+        else
+        {
+          distribute = "-" + rightOperand.substring(0, rightOperand.indexOf("+")) + "+-"
+              + rightOperand.substring(rightOperand.indexOf("+") + 1);
+        }
       }
-      else
+      else if(rightOperand.contains("-"))
       {
-        distribute = "-" + rightOperand.substring(0, rightOperand.indexOf("+")) + "+-"
-            + rightOperand.substring(rightOperand.indexOf("+") + 1) + "";
+        if(rightOperand.charAt(0) == '-' && minus != -1)
+        {
+          distribute = rightOperand.substring(1, minus) + "+"
+              + rightOperand.substring(minus + 1);
+        }
+        else
+        {
+          distribute = "-" + rightOperand.substring(0, rightOperand.indexOf("-")) + "+"
+              + rightOperand.substring(rightOperand.indexOf("-") + 1);
+        }
       }
     }
-    else
+    if(imaginary || real)
     {
-      if (rightOperand.charAt(0) == '-')
+      if(rightOperand.contains("-"))
       {
         distribute = rightOperand.substring(1);
       }
@@ -74,19 +96,6 @@ public class SubtractionOperator implements Operator
       }
     }
 
-    if (rightOperand.indexOf("-", indexOfNeg + 1) != -1)
-    {
-      if (rightOperand.charAt(0) == '-')
-      {
-        distribute = rightOperand.substring(1, rightOperand.indexOf("-", indexOfNeg + 1)) + "+"
-            + rightOperand.substring(rightOperand.indexOf("-", indexOfNeg + 1) + 1);
-      }
-      else
-      {
-        distribute = "-" + rightOperand.substring(0, rightOperand.indexOf("-", indexOfNeg + 1))
-            + "+" + rightOperand.substring(rightOperand.indexOf("-", indexOfNeg + 1) + 1);
-      }
-    }
     return distribute;
   }
 
