@@ -50,6 +50,6 @@ public class SignChangeOperator
       }
 
     }
-    return result;
+    return "(" + result + ")";
   }
 }
