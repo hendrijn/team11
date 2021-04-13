@@ -85,7 +85,7 @@ public class MultiplicationOperator implements Operator
     double finalRegTotal  = fOILFirst + fOILLasts;
     double finalImagTotal = fOILOuters + fOILInners;
 
-    String result = finalRegTotal + "+" + finalImagTotal + "i";
+    String result = String.format("%.2f", finalRegTotal) + "+" + String.format("%.2f", finalImagTotal) + "i";
 
     if (result.contains("+-"))
     {

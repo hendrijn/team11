@@ -17,7 +17,7 @@ class MultiplicationOperatorTesting
   {
     String complexNumberOne = "3 + 2i";
     String complexNumberTwo = "4 + 2i";
-    String expectedResult = "8.0+14.0i";
+    String expectedResult = "8.00+14.00i";
     TempContext tempContext = new TempContext(new MultiplicationOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -28,7 +28,7 @@ class MultiplicationOperatorTesting
   {
     String complexNumberOne = "3";
     String complexNumberTwo = "4";
-    String expectedResult = "12.0+0.0i";
+    String expectedResult = "12.00+0.00i";
     TempContext tempContext = new TempContext(new MultiplicationOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -40,7 +40,7 @@ class MultiplicationOperatorTesting
   {
     String complexNumberOne = "3 + 2i";
     String complexNumberTwo = "4";
-    String expectedResult = "12.0+8.0i";
+    String expectedResult = "12.00+8.00i";
     TempContext tempContext = new TempContext(new MultiplicationOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -51,7 +51,7 @@ class MultiplicationOperatorTesting
   {
     String complexNumberOne = "6";
     String complexNumberTwo = "4i + 4";
-    String expectedResult = "24.0+24.0i";
+    String expectedResult = "24.00+24.00i";
     TempContext tempContext = new TempContext(new MultiplicationOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -62,7 +62,7 @@ class MultiplicationOperatorTesting
   {
     String complexNumberOne = "6";
     String complexNumberTwo = "0";
-    String expectedResult = "0.0+0.0i";
+    String expectedResult = "0.00+0.00i";
     TempContext tempContext = new TempContext(new MultiplicationOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -73,7 +73,7 @@ class MultiplicationOperatorTesting
   {
     String complexNumberOne = "0";
     String complexNumberTwo = "3i+2";
-    String expectedResult = "0.0+0.0i";
+    String expectedResult = "0.00+0.00i";
     TempContext tempContext = new TempContext(new MultiplicationOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -85,7 +85,7 @@ class MultiplicationOperatorTesting
   {
     String complexNumberOne = "i";
     String complexNumberTwo = "0";
-    String expectedResult = "0.0+0.0i";
+    String expectedResult = "0.00+0.00i";
     TempContext tempContext = new TempContext(new MultiplicationOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -96,7 +96,7 @@ class MultiplicationOperatorTesting
   {
     String complexNumberOne = "i";
     String complexNumberTwo = "i";
-    String expectedResult = "-1.0+0.0i";
+    String expectedResult = "-1.00+0.00i";
     TempContext tempContext = new TempContext(new MultiplicationOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -107,7 +107,7 @@ class MultiplicationOperatorTesting
   {
     String complexNumberOne = "2i";
     String complexNumberTwo = "15i";
-    String expectedResult = "-30.0+0.0i";
+    String expectedResult = "-30.00+0.00i";
     TempContext tempContext = new TempContext(new MultiplicationOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -347,7 +347,7 @@ class MultiplicationOperatorTesting
   {
     String complexNumberOne = "3 - 2i";
     String complexNumberTwo = "4 + 2i";
-    String expectedResult = "16.0-2.0i";
+    String expectedResult = "16.00-2.00i";
     TempContext tempContext = new TempContext(new MultiplicationOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -358,7 +358,7 @@ class MultiplicationOperatorTesting
   {
     String complexNumberOne = "3 + 2i";
     String complexNumberTwo = "4 - 2i";
-    String expectedResult = "16.0+2.0i";
+    String expectedResult = "16.00+2.00i";
     TempContext tempContext = new TempContext(new MultiplicationOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -369,7 +369,7 @@ class MultiplicationOperatorTesting
   {
     String complexNumberOne = "3 - 2i";
     String complexNumberTwo = "4 - 2i";
-    String expectedResult = "8.0-14.0i";
+    String expectedResult = "8.00-14.00i";
     TempContext tempContext = new TempContext(new MultiplicationOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -380,7 +380,7 @@ class MultiplicationOperatorTesting
   {
     String complexNumberOne = "-300";
     String complexNumberTwo = "400";
-    String expectedResult = "-120000.0+0.0i";
+    String expectedResult = "-120000.00+0.00i";
     TempContext tempContext = new TempContext(new MultiplicationOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -391,7 +391,7 @@ class MultiplicationOperatorTesting
   {
     String complexNumberOne = "300";
     String complexNumberTwo = "-400";
-    String expectedResult = "-120000.0+0.0i";
+    String expectedResult = "-120000.00+0.00i";
     TempContext tempContext = new TempContext(new MultiplicationOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -402,7 +402,7 @@ class MultiplicationOperatorTesting
   {
     String complexNumberOne = "-300";
     String complexNumberTwo = "-400";
-    String expectedResult = "120000.0-0.0i";
+    String expectedResult = "120000.00-0.00i";
     TempContext tempContext = new TempContext(new MultiplicationOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -413,7 +413,7 @@ class MultiplicationOperatorTesting
   {
     String complexNumberOne = "-300 + 4i";
     String complexNumberTwo = "400";
-    String expectedResult = "-120000.0+1600.0i";
+    String expectedResult = "-120000.00+1600.00i";
     TempContext tempContext = new TempContext(new MultiplicationOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -424,7 +424,7 @@ class MultiplicationOperatorTesting
   {
     String complexNumberOne = "20";
     String complexNumberTwo = "400 - 3i";
-    String expectedResult = "8000.0-60.0i";
+    String expectedResult = "8000.00-60.00i";
     TempContext tempContext = new TempContext(new MultiplicationOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -435,7 +435,7 @@ class MultiplicationOperatorTesting
   {
     String complexNumberOne = "-20";
     String complexNumberTwo = "400 - 3i";
-    String expectedResult = "-8000.0+60.0i";
+    String expectedResult = "-8000.00+60.00i";
     TempContext tempContext = new TempContext(new MultiplicationOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -447,7 +447,7 @@ class MultiplicationOperatorTesting
   {
     TempContext a = new TempContext(new MultiplicationOperator());
     String actual = a.evaluate("6.42i", "7.75i");
-    String expected = "-49.755+0.0i";
+    String expected = "-49.76+0.00i";
     assertEquals(expected, actual);
   } 
   
@@ -457,7 +457,7 @@ class MultiplicationOperatorTesting
   {
     TempContext a = new TempContext(new MultiplicationOperator());
     String actual = a.evaluate("3.88", "2.94");
-    String expected = "11.4072+0.0i";
+    String expected = "11.41+0.00i";
     assertEquals(expected, actual);
   } 
   
@@ -466,7 +466,7 @@ class MultiplicationOperatorTesting
   {
     TempContext a = new TempContext(new MultiplicationOperator());
     String actual = a.evaluate("0.89+7.25i", "3.56i");
-    String expected = "-25.81+3.1684i";
+    String expected = "-25.81+3.17i";
     assertEquals(expected, actual);
   } 
   
@@ -476,7 +476,7 @@ class MultiplicationOperatorTesting
   {
     TempContext a = new TempContext(new MultiplicationOperator());
     String actual = a.evaluate("3.39+6.89i", "2.09");
-    String expected = "7.0851+14.400099999999998i";
+    String expected = "7.09+14.40i";
     assertEquals(expected, actual);
   } 
   
@@ -485,7 +485,7 @@ class MultiplicationOperatorTesting
   {
     TempContext a = new TempContext(new MultiplicationOperator());
     String actual = a.evaluate("9.06", "2.66i");
-    String expected = "0.0+24.099600000000002i";
+    String expected = "0.00+24.10i";
     assertEquals(expected, actual);
   } 
   
@@ -494,8 +494,7 @@ class MultiplicationOperatorTesting
   {
     TempContext a = new TempContext(new MultiplicationOperator());
     String actual = a.evaluate("-3+5i", "-4-2i");
-    String expected = "22.0-14.0i";
-    System.out.println(actual);
+    String expected = "22.00-14.00i";
     assertEquals(expected, actual);
   }
 
