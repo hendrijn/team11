@@ -23,13 +23,13 @@ public class HistoryController implements Finals, ActionListener
     {
       case ">":
         history.setSize(500, 420);
-        history.list.setVisible(true);
+        history.listPane.setVisible(true);
         history.close.setVisible(true);
         history.open.setVisible(false);
         break;
       case "<":
         history.setSize(40, 420);
-        history.list.setVisible(false);
+        history.listPane.setVisible(false);
         history.close.setVisible(false);
         history.open.setVisible(true);
         break;

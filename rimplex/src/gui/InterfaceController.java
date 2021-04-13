@@ -17,7 +17,7 @@ public class InterfaceController
     implements Finals, ActionListener, KeyListener, MouseListener, FocusListener
 {
   private TempContext context = null;
-
+  private String operator = EMPTY;
   private String firstOperand = EMPTY;
   private String secondOperand = EMPTY;
   private String result = EMPTY;
@@ -190,6 +190,7 @@ public class InterfaceController
    */
   private void equalsButtonHandling(NewMainInterface ui)
   {
+    HistoryDisplay history = HistoryDisplay.getInstance();
     JLabel exLabel = ui.getExpressionLabel();
     secondOperand = removeFormatting(ui.getInputLabel().getText());
 
@@ -200,6 +201,7 @@ public class InterfaceController
       exLabel.setText(exLabel.getText() + replaceFormatting(secondOperand) + SP + EQUALS);
       ui.getResultLabel().setText(replaceFormatting(result));
       shownError = false;
+      history.addCalculation(firstOperand + operator + secondOperand + EQUALS + result);
     }
     catch (IllegalArgumentException e)
     {
@@ -265,9 +267,7 @@ public class InterfaceController
     {
       if (!inLabel.getText().equals(HTML)) // takes user input as firstOperand
       {
-        // System.out.println(inLabel.getText());
         firstOperand = removeFormatting(inLabel.getText());
-        // System.out.println(firstOperand);
         updateDisplayWithOperator(operation, ui, exLabel, inLabel, resLabel);
       }
       else if (!result.equals(EMPTY))// takes prev result as firstOperand
@@ -300,6 +300,8 @@ public class InterfaceController
   private void updateDisplayWithOperator(String operation, NewMainInterface ui, JLabel exLabel,
       JLabel inLabel, JLabel resLabel)
   {
+    operator = operation; //assigns the indicated operation to the class variable
+
     switch (operation)
     {
       case ADD:

@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 /**
@@ -22,7 +23,8 @@ public class HistoryDisplay extends JFrame implements Finals
   private static HistoryDisplay history = null;
   JButton open;
   JButton close;
-  JTextArea list;
+  JScrollPane listPane;
+  private JTextArea calcList;
 
   private HistoryController listener;
 
@@ -46,26 +48,44 @@ public class HistoryDisplay extends JFrame implements Finals
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     contentPane.setLayout(new BorderLayout());
 
-    addComponents();
+    addButtons();
+    addList();
 
     contentPane.add(open, BorderLayout.WEST);
     contentPane.add(close, BorderLayout.EAST);
-    contentPane.add(list, BorderLayout.CENTER);
+    contentPane.add(listPane, BorderLayout.CENTER);
   }
 
-  private void addComponents()
+  private void addButtons()
   {
     listener = new HistoryController();
 
     open = new JButton(">");
     close = new JButton("<");
-    list = new JTextArea();
 
     open.addActionListener(listener);
     close.addActionListener(listener);
 
     close.setVisible(false);
-    list.setVisible(false);
+  }
+  
+  private void addList()
+  {
+    calcList = new JTextArea();
+    listPane = new JScrollPane(calcList);
+    calcList.setEditable(false); //prohibits the user from typing
+    listPane.setVisible(false);
+  }
+  
+  /**
+   * Adds the incoming calculation to the list.
+   * 
+   * @param calc the calculation
+   */
+  public void addCalculation(String calc)
+  {
+    String prevText = calcList.getText();
+    calcList.setText(prevText + calc + "\n");
   }
 
   /**
