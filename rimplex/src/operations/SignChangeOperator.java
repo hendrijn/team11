@@ -30,11 +30,11 @@ public class SignChangeOperator
       String conjugatedOp = c.conjugate(alteredOp);
       if (conjugatedOp.charAt(0) == '-')
       {
-        result = conjugatedOp.substring(1);
+        result = "(" + conjugatedOp.substring(1) + ")";
       }
       else
       {
-        result = "-" + conjugatedOp;
+        result = "(-" + conjugatedOp + ")";
       }
     } 
     
@@ -50,6 +50,6 @@ public class SignChangeOperator
       }
 
     }
-    return "(" + result + ")";
+    return result;
   }
 }
