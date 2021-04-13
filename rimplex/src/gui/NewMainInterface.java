@@ -26,6 +26,7 @@ public class NewMainInterface extends JFrame implements Finals
    */
   private NewMainInterface()
   {
+    HistoryDisplay history = HistoryDisplay.getInstance();
     setupFrame();
     setSize(520, 500);
     setTitle("Rimplex");
@@ -33,9 +34,6 @@ public class NewMainInterface extends JFrame implements Finals
         "C:\\Users\\Brooke\\git\\team11\\rimplex\\src\\gui\\iconRimplex.png");
     setIconImage(icon.getImage());
     setVisible(true); // display this
-    centerForm();
-
-    HistoryDisplay history = HistoryDisplay.getInstance();
   }
 
   private void historySetUp()
@@ -43,24 +41,6 @@ public class NewMainInterface extends JFrame implements Finals
     JFrame frame = new JFrame(">", null);
     frame.addMouseListener((MouseListener) listener);
     eastPanel.add(frame);
-  }
-
-  private void centerForm()
-  {
-    Dimension dimScreenSize = Toolkit.getDefaultToolkit().getScreenSize();
-    Dimension dimFrameSize = getSize();
-
-    if (dimFrameSize.height > dimScreenSize.height)
-    {
-      dimFrameSize.height = dimScreenSize.height;
-    }
-    if (dimFrameSize.width > dimScreenSize.width)
-    {
-      dimFrameSize.width = dimScreenSize.width;
-    }
-
-    setLocation((dimScreenSize.width - dimFrameSize.width) / 2,
-        (dimScreenSize.height - dimFrameSize.height) / 2);
   }
 
   /**
@@ -87,9 +67,9 @@ public class NewMainInterface extends JFrame implements Finals
     setupNorthPanel();
     setupCenterPanel();
     setUpEastPanel();
-    JMenu bar = new JMenu();
-    bar.add(">");
-    bar.addActionListener(listener);
+    JPanel bar = new JPanel();
+    bar.setLayout(new GridLayout(1, 1));
+    bar.add(new JButton());
 
     contentPane.add(northPanel, BorderLayout.NORTH);
     contentPane.add(centerPanel, BorderLayout.WEST);
