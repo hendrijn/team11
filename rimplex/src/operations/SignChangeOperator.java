@@ -11,7 +11,7 @@ public class SignChangeOperator
       throw new IllegalArgumentException("Please provide an operand");
     }
     
-    String alteredOp = TempContext.format(operand);
+    String alteredOp = ((operand.replaceAll(" ", "")).replace("(", "")).replace(")", "");;
     
     long iCount  = alteredOp.chars().filter(ch -> ch == 'i').count();
     if (iCount > 1 || alteredOp.isEmpty() || alteredOp.equals("()"))
@@ -27,7 +27,7 @@ public class SignChangeOperator
     if (complex)
     {
       ConjugateOperator c = new ConjugateOperator();
-      String conjugatedOp = c.conjugate(operand);
+      String conjugatedOp = c.conjugate(alteredOp);
       if (conjugatedOp.charAt(0) == '-')
       {
         result = conjugatedOp.substring(1);
@@ -38,7 +38,7 @@ public class SignChangeOperator
       }
     } 
     
-    if(imaginary || real)
+    else if(imaginary || real)
     {
       if(alteredOp.charAt(0) == '-')
       {

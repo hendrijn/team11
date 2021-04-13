@@ -1,7 +1,5 @@
 package operations;
 
-import java.util.Arrays;
-
 public class DivisionOperator implements Operator
 {
   @Override
