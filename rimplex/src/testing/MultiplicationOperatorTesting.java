@@ -494,7 +494,8 @@ class MultiplicationOperatorTesting
   {
     TempContext a = new TempContext(new MultiplicationOperator());
     String actual = a.evaluate("-3+5i", "-4-2i");
-    String expected = "22.00-14.00i";
+    String expected = "22.0-14.0i";
+    System.out.println(actual);
     assertEquals(expected, actual);
   }
 

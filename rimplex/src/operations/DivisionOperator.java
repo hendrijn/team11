@@ -22,7 +22,7 @@ public class DivisionOperator implements Operator
     
     parts = TempContext.decomposeOperands(alteredLOp, alteredROp);
     double doubleResult = 0.0;
-    String result = "";
+    String result = "0.00+0.00i";
 
     if(complexL && complexR)
     {
@@ -36,7 +36,6 @@ public class DivisionOperator implements Operator
       double imgDiv = Double.parseDouble(conjugateParts[1]) / Double.parseDouble(conjugateParts[2]);
 
       result = TempContext.format(String.format("%.2f",realDiv) + "+" + String.format("%.2f", imgDiv) + "i");
-      
     }
     else if(imaginaryL && imaginaryR)
     {
@@ -62,10 +61,32 @@ public class DivisionOperator implements Operator
       doubleResult = Double.parseDouble(parts[1]) / doubleR;
       result = TempContext.format(String.format("%.2f", doubleResult) + "i");
     }
-    
+    else if(complexL && imaginaryR)
+    {
+      double realNum = Double.parseDouble(parts[0]) / (Double.parseDouble(parts[3]));
+      double imgNum = Double.parseDouble(parts[1]) / Double.parseDouble(parts[3]);
+      result = TempContext.format(String.format("%.2f", imgNum) + "+" + String.format("%.2f", realNum) + "i");
+    }
+    else if(imaginaryL && complexR)
+    {
+      //conjugate
+    }
+    else if (complexL && realR)
+    {
+      /*ConjugateOperator c = new ConjugateOperator();
+      MultiplicationOperator mult = new MultiplicationOperator();
+      double realNum = Double.parseDouble(parts[0]) / Double.parseDouble(mult.evaluate(parts[2], c.conjugate(parts[2])));
+      double imgNum = Double.parseDouble(parts[1]) / Double.parseDouble(parts[2]);
+      result = TempContext.format(String.format("%.2f", realNum) + "+" + String.format("%.2f", imgNum) + "i");*/
+    }
+    else if (realL && complexR)
+    {
+      //conjugate
+    }
+
     if(result.contains("+-"))
     {
-      result = result.substring(0,result.indexOf("+")) + "-" + result.substring(result.indexOf("-") + 1);
+      result = result.substring(0, result.indexOf("+")) + "-" + result.substring(result.indexOf("+") + 2);
      }
     return result;
   }

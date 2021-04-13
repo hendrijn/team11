@@ -128,7 +128,6 @@ class DivisonOperatorTest
     //negative real, positive imaginary; second all negative
     actual = d.evaluate("-2+4i", "-3-6i");
     expected = "-0.40-0.53i";
-    System.out.println(actual);
     assertTrue(actual.equals(expected));
     
     //first all positive; second positive real, negative imaginary
@@ -169,7 +168,6 @@ class DivisonOperatorTest
     //first positive real, negative imaginary; second negative real, positive imaginary
     actual = d.evaluate("4-3i", "-5+7i");
     expected = "-0.55-0.18i";
-    System.out.println(actual);
     assertTrue(actual.equals(expected));
 
   }
@@ -236,6 +234,7 @@ class DivisonOperatorTest
     //first complex all positive; second positive imaginary
     String actual = d.evaluate("4+8i", "5i");
     String expected = "1.60-0.80i";
+    System.out.println(actual);
     assertTrue(actual.equals(expected));
     
     //first complex, negative real, positive imaginary; second positive imaginary
@@ -330,12 +329,12 @@ class DivisonOperatorTest
     
     //first complex, negative real, positive imaginary; second positive real
     actual = d.evaluate("-4+3i", "3");
-    expected = "-1.33+0.00i";
+    expected = "-1.33+1.00i";
     assertTrue(actual.equals(expected));
     
     //first complex, positive real, negative imaginary; second positive real
     actual = d.evaluate("7-4i", "5");
-    expected = "1.40-0.8i";
+    expected = "1.40-0.80i";
     assertTrue(actual.equals(expected));
     
     //first complex, all negative; second positive real
