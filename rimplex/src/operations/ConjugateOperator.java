@@ -5,7 +5,7 @@ public class ConjugateOperator
 
   public String conjugate(String operand)
   {
-    //error checking
+    // error checking
     if (operand == null || operand.equals(""))
     {
       throw new IllegalArgumentException("Please Enter an Operand.");
@@ -16,6 +16,16 @@ public class ConjugateOperator
     if (alteredOp.equals(""))
     {
       throw new IllegalArgumentException("Please Enter an Operand.");
+    }
+
+    if ((alteredOp.indexOf("i", alteredOp.indexOf("i") + 1) != -1))
+    {
+      throw new IllegalArgumentException("Please Enter a Valid Operand.");
+    }
+    
+    if((alteredOp.replace("i", "")).matches(".*[a-zA-Z]+.*"))
+    {
+      throw new IllegalArgumentException("Please Enter a Valid Operand.");
     }
     
     String result = "";
@@ -45,9 +55,9 @@ public class ConjugateOperator
         }
       }
     }
-    if(imaginary)
+    if (imaginary)
     {
-      if(alteredOp.charAt(0) == '-')
+      if (alteredOp.charAt(0) == '-')
       {
         result = alteredOp.substring(1);
       }

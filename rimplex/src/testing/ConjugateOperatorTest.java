@@ -47,7 +47,7 @@ class ConjugateOperatorTest
     
     try
     {
-      String random = c.conjugate("rogphu3sdnjivb3uo");
+      String random = c.conjugate("rogphusdnjivbuo");
       assertTrue(false);
     }
     catch (IllegalArgumentException e)
