@@ -1,5 +1,7 @@
 package operations;
 
+import java.util.Arrays;
+
 public class DivisionOperator implements Operator
 {
   @Override
@@ -24,6 +26,16 @@ public class DivisionOperator implements Operator
 
     if(complexL && complexR)
     {
+      ConjugateOperator c = new ConjugateOperator();
+      MultiplicationOperator mult = new MultiplicationOperator();
+      String conjugate = c.conjugate(alteredROp);
+      String top = mult.evaluate(alteredLOp, conjugate);
+      String bottom = mult.evaluate(conjugate, alteredROp);
+      String[] conjugateParts = TempContext.decomposeOperands(top, bottom);
+      double realDiv = Double.parseDouble(conjugateParts[0]) / Double.parseDouble(conjugateParts[2]);
+      double imgDiv = Double.parseDouble(conjugateParts[1]) / Double.parseDouble(conjugateParts[2]);
+
+      result = TempContext.format(String.format("%.2f",realDiv) + "+" + String.format("%.2f", imgDiv) + "i");
       
     }
     else if(imaginaryL && imaginaryR)
