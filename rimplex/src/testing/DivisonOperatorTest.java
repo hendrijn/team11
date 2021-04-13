@@ -234,7 +234,6 @@ class DivisonOperatorTest
     //first complex all positive; second positive imaginary
     String actual = d.evaluate("4+8i", "5i");
     String expected = "1.60-0.80i";
-    System.out.println(actual);
     assertTrue(actual.equals(expected));
     
     //first complex, negative real, positive imaginary; second positive imaginary
@@ -270,13 +269,12 @@ class DivisonOperatorTest
     
     //first complex, all negative; second negative imaginary
     actual = d.evaluate("-4-3i", "-i");
-    expected = "";
+    expected = "3.00-4.00i";
     assertTrue(actual.equals(expected));
-    
     
     //first positive imaginary; second complex all positive; 
     actual = d.evaluate("3i", "2+8i");
-    expected = "3.00-4.00i";
+    expected = "0.35+0.09i";
     assertTrue(actual.equals(expected));
     
     //first positive imaginary; second complex, negative real, positive imaginary
@@ -312,7 +310,7 @@ class DivisonOperatorTest
     
     //first negative imaginary; second complex, all negative
     actual = d.evaluate("-i", "-7-5i");
-    expected = "0.07+0.13i";
+    expected = "0.07+0.09i";
     assertTrue(actual.equals(expected));
     
   }
@@ -423,12 +421,12 @@ class DivisonOperatorTest
     
     //both negative; first real; second imaginary
     actual = d.evaluate("-5", "-6i");
-    expected = "0.00+0.83i";
+    expected = "0.00-0.83i";
     assertTrue(actual.equals(expected));
     
     //both positive; first real; second imaginary
     actual = d.evaluate("7", "8i");
-    expected = "0.00+0.88i";
+    expected = "0.00-0.88i";
     assertTrue(actual.equals(expected));
     
     
@@ -444,12 +442,12 @@ class DivisonOperatorTest
     
     //first real negative; second imaginary positive
     actual = d.evaluate("-4", "7i");
-    expected = "0.00-0.57i";
+    expected = "0.00+0.57i";
     assertTrue(actual.equals(expected));
     
     //first real positive; second imaginary negative
     actual = d.evaluate("6", "-9i");
-    expected = "0.00-0.67i";
+    expected = "0.00+0.67i";
     assertTrue(actual.equals(expected));
     
   }
@@ -487,7 +485,7 @@ class DivisonOperatorTest
     
     //real imaginary
     actual = d.evaluate("9.06", "2.66i");
-    expected = "0.00-3.41i";
+    expected = "0.00-3.40i";
     assertTrue(actual.equals(expected));
   }
 }
