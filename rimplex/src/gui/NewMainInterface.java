@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.*;
+import java.awt.event.ComponentListener;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
@@ -16,6 +17,8 @@ public class NewMainInterface extends JFrame implements Finals
   private JPanel northPanel;
   private JPanel eastPanel;
   private JPanel centerPanel;
+  
+  static JButton history;
 
   JLabel expressionDisplay;
   JLabel resultDisplay;
@@ -26,6 +29,7 @@ public class NewMainInterface extends JFrame implements Finals
    */
   private NewMainInterface()
   {
+    addComponentListener((ComponentListener) listener);
     HistoryDisplay history = HistoryDisplay.getInstance();
     setupFrame();
     setSize(520, 500);
@@ -34,13 +38,6 @@ public class NewMainInterface extends JFrame implements Finals
         "C:\\Users\\Brooke\\git\\team11\\rimplex\\src\\gui\\iconRimplex.png");
     setIconImage(icon.getImage());
     setVisible(true); // display this
-  }
-
-  private void historySetUp()
-  {
-    JFrame frame = new JFrame(">", null);
-    frame.addMouseListener((MouseListener) listener);
-    eastPanel.add(frame);
   }
 
   /**
@@ -69,10 +66,10 @@ public class NewMainInterface extends JFrame implements Finals
     setUpEastPanel();
     JPanel bar = new JPanel();
     bar.setLayout(new GridLayout(1, 1));
-    JButton button = new JButton(">");
+    history = new JButton(">");
     HistoryController cont = new HistoryController();
-    button.addActionListener(cont);
-    bar.add(button);
+    history.addActionListener(cont);
+    bar.add(history);
 
     contentPane.add(northPanel, BorderLayout.NORTH);
     contentPane.add(centerPanel, BorderLayout.WEST);

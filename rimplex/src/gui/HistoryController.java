@@ -22,16 +22,16 @@ public class HistoryController implements Finals, ActionListener
     switch (btn.getText())
     {
       case ">":
-        history.setSize(500, 420);
+        history.setSize(500, 380);
         history.listPane.setVisible(true);
         history.close.setVisible(true);
-        history.open.setVisible(false);
+        // history.open.setVisible(false);
         break;
       case "<":
-        history.setSize(40, 420);
+        history.setSize(1, 1);
         history.listPane.setVisible(false);
         history.close.setVisible(false);
-        history.open.setVisible(true);
+        // history.open.setVisible(true);
         break;
 
     }
