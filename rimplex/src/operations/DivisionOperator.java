@@ -49,36 +49,36 @@ public class DivisionOperator implements Operator
       double realDiv = Double.parseDouble(conjugateParts[0])
           / Double.parseDouble(conjugateParts[2]);
       double imgDiv = Double.parseDouble(conjugateParts[1]) / Double.parseDouble(conjugateParts[2]);
-      result = String.format("%.2f", realDiv) + "+" + String.format("%.2f", imgDiv) + "i";
+      result = TempContext.format(String.format("%.2f", realDiv) + "+" + String.format("%.2f", imgDiv) + "i");
     }
     // both imaginary and real as the right operand do not use the conjugate
     else if (imaginaryL && imaginaryR)
     {
       doubleResult = Double.parseDouble(parts[1]) / Double.parseDouble(parts[3]);
-      result = String.format("%.2f", doubleResult);
+      result = TempContext.format(String.format("%.2f", doubleResult));
     }
     else if (realL && realR)
     {
       double doubleL = Double.parseDouble(alteredLOp);
       double doubleR = Double.parseDouble(alteredROp);
       doubleResult = doubleL / doubleR;
-      result = String.format("%.2f", doubleResult);
+      result = TempContext.format(String.format("%.2f", doubleResult));
     }
     else if (imaginaryL && realR)
     {
       double doubleR = Double.parseDouble(alteredROp);
       doubleResult = Double.parseDouble(parts[1]) / doubleR;
-      result = String.format("%.2f", doubleResult) + "i";
+      result = TempContext.format(String.format("%.2f", doubleResult) + "i");
     }
     else if (complexL && realR)
     {
       double realNum = Double.parseDouble(parts[0]) / Double.parseDouble(parts[2]);
       double imgNum = Double.parseDouble(parts[1]) / Double.parseDouble(parts[2]);
-      result = String.format("%.2f", realNum) + "+" + String.format("%.2f", imgNum) + "i";
+      result = TempContext.format(String.format("%.2f", realNum) + "+" + String.format("%.2f", imgNum) + "i");
     }
 
     // formats result
-    TempContext.format(result);
+
 
     // edits any +- occurances to -
     if (result.contains("+-"))
