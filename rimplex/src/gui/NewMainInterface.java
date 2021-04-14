@@ -177,6 +177,7 @@ public class NewMainInterface extends JFrame implements Finals
   {
     northPanel = new JPanel(new GridLayout(2, 2));
     northPanel.setBackground(Color.lightGray);
+    northPanel.setPreferredSize(new Dimension(400,100));
 
     Border displayB = BorderFactory.createLineBorder(Color.BLUE, 3, true);
     northPanel.setBorder(displayB);
@@ -194,7 +195,7 @@ public class NewMainInterface extends JFrame implements Finals
     inputDisplay.requestFocusInWindow();
 
     Font oldFont = expressionDisplay.getFont();
-    Font newFont = new Font("Times New Roman", oldFont.getStyle(), 20);
+    Font newFont = new Font("Times New Roman", oldFont.getStyle(), 40);
     expressionDisplay.setFont(newFont);
     resultDisplay.setFont(newFont);
     inputDisplay.setFont(newFont);
