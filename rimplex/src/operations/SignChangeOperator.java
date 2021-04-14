@@ -53,8 +53,12 @@ public class SignChangeOperator
       throw new IllegalArgumentException("Please provide a valid operand, or simplify it.");
     }
 
+    if(alteredOp.equals("0"))
+    {
+      result = operand;
+    }
     // complex manipulation
-    if (complex)
+    else if (complex)
     {
       ConjugateOperator c = new ConjugateOperator();
       String conjugatedOp = c.conjugate(alteredOp);
