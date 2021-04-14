@@ -234,8 +234,8 @@ public class InterfaceController
       exLabel.setText(exLabel.getText() + replaceFormatting(secondOperand) + SP + EQUALS);
       ui.getResultLabel().setText(replaceFormatting(result));
       shownError = false;
-      history.addCalculation(replaceFormatting(
-          firstOperand + SP + operator + SP + secondOperand + SP + EQUALS + SP + result));
+      history.addCalculation(
+          firstOperand + SP + operator + SP + secondOperand + SP + EQUALS + SP + result);
     }
     catch (IllegalArgumentException e)
     {
