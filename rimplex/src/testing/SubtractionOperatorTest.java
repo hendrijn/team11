@@ -12,7 +12,7 @@ import operations.TempContext;
  * Unit tests for the Subtraction class.
  * 
  * @author team 11 - may4sa
- * @version Sprint 1
+ * @version Sprint 2
  */
 class SubtractionOperatorTest
 { 

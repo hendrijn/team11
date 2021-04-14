@@ -9,6 +9,12 @@ import operations.AdditionOperator;
 import operations.MultiplicationOperator;
 import operations.TempContext;
 
+/**
+ * Unit tests for the MultiplcationOperator.
+ * 
+ * @author pgleb - team 11
+ * @version Sprint 2
+ */
 class MultiplicationOperatorTesting
 {
 
@@ -22,7 +28,7 @@ class MultiplicationOperatorTesting
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
   }
-  
+
   @Test
   public void twoValidRealNumTest()
   {
@@ -33,8 +39,7 @@ class MultiplicationOperatorTesting
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
   }
-  
-  
+
   @Test
   public void twoValidComplexNumMix1Test()
   {
@@ -45,7 +50,7 @@ class MultiplicationOperatorTesting
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
   }
-  
+
   @Test
   public void twoValidComplexNumMix2Test()
   {
@@ -56,7 +61,7 @@ class MultiplicationOperatorTesting
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
   }
-  
+
   @Test
   public void twoValidZero1Test()
   {
@@ -67,7 +72,7 @@ class MultiplicationOperatorTesting
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
   }
-  
+
   @Test
   public void twoValidZero2Test()
   {
@@ -78,8 +83,7 @@ class MultiplicationOperatorTesting
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
   }
-  
-  
+
   @Test
   public void twoValidZero3Test()
   {
@@ -90,7 +94,7 @@ class MultiplicationOperatorTesting
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
   }
-  
+
   @Test
   public void twoValidComplexNumI1Test()
   {
@@ -101,7 +105,7 @@ class MultiplicationOperatorTesting
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
   }
-  
+
   @Test
   public void twoValidComplexNumI2Test()
   {
@@ -112,23 +116,22 @@ class MultiplicationOperatorTesting
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
   }
-  
-  
-//  @Test
-//  public void twoRandomRealNumTest()
-//  {
-//    Random random = new Random();
-//    int firstRandomNum = random.nextInt();
-//    int secondRandomNum = random.nextInt();
-//    String firstStringRandomNum = String.valueOf(firstRandomNum);
-//    String secondStringRandomNum = String.valueOf(secondRandomNum);
-//    String expectedResult = String.valueOf(firstRandomNum * secondRandomNum) + "+0i";
-//    TempContext tempContext = new TempContext(new MultiplicationOperator());
-//    String actualResult = tempContext.evaluate(firstStringRandomNum, secondStringRandomNum);
-//    assertEquals(expectedResult, actualResult);
-//    
-//  }
-  
+
+  // @Test
+  // public void twoRandomRealNumTest()
+  // {
+  // Random random = new Random();
+  // int firstRandomNum = random.nextInt();
+  // int secondRandomNum = random.nextInt();
+  // String firstStringRandomNum = String.valueOf(firstRandomNum);
+  // String secondStringRandomNum = String.valueOf(secondRandomNum);
+  // String expectedResult = String.valueOf(firstRandomNum * secondRandomNum) + "+0i";
+  // TempContext tempContext = new TempContext(new MultiplicationOperator());
+  // String actualResult = tempContext.evaluate(firstStringRandomNum, secondStringRandomNum);
+  // assertEquals(expectedResult, actualResult);
+  //
+  // }
+
   @Test
   public void inValidNullLeftOperandTest()
   {
@@ -188,8 +191,7 @@ class MultiplicationOperatorTesting
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
-  
-  
+
   @Test
   public void inValidRegLeftOperandTest()
   {
@@ -234,8 +236,7 @@ class MultiplicationOperatorTesting
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
-  
-  
+
   @Test
   public void inValidImagRightOperandTest()
   {
@@ -295,8 +296,7 @@ class MultiplicationOperatorTesting
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
-  
-  
+
   @Test
   public void tooManyIsRightTest()
   {
@@ -341,7 +341,7 @@ class MultiplicationOperatorTesting
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
-  
+
   @Test
   public void twoValidComplexNumbersNeg1Test()
   {
@@ -352,7 +352,7 @@ class MultiplicationOperatorTesting
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
   }
-  
+
   @Test
   public void twoValidComplexNumbersNeg2Test()
   {
@@ -363,7 +363,7 @@ class MultiplicationOperatorTesting
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
   }
-  
+
   @Test
   public void twoValidComplexNumbersNeg3Test()
   {
@@ -374,7 +374,7 @@ class MultiplicationOperatorTesting
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
   }
-  
+
   @Test
   public void twoValidRegNumbersNeg1Test()
   {
@@ -385,7 +385,7 @@ class MultiplicationOperatorTesting
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
   }
-  
+
   @Test
   public void twoValidRegNumbersNeg2Test()
   {
@@ -396,7 +396,7 @@ class MultiplicationOperatorTesting
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
   }
-  
+
   @Test
   public void twoValidRegNumbersNeg3Test()
   {
@@ -407,7 +407,7 @@ class MultiplicationOperatorTesting
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
   }
-  
+
   @Test
   public void twoValidMixedNumbersNeg1Test()
   {
@@ -418,7 +418,7 @@ class MultiplicationOperatorTesting
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
   }
-  
+
   @Test
   public void twoValidMixedNumbersNeg2Test()
   {
@@ -429,7 +429,7 @@ class MultiplicationOperatorTesting
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
   }
-  
+
   @Test
   public void twoValidMixedNumbersNeg3Test()
   {
@@ -440,8 +440,7 @@ class MultiplicationOperatorTesting
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
   }
-  
-  
+
   @Test
   public void testDecimalOperands2()
   {
@@ -449,9 +448,8 @@ class MultiplicationOperatorTesting
     String actual = a.evaluate("6.42i", "7.75i");
     String expected = "-49.76+0.00i";
     assertEquals(expected, actual);
-  } 
-  
-  
+  }
+
   @Test
   public void testDecimalOperands3()
   {
@@ -459,8 +457,8 @@ class MultiplicationOperatorTesting
     String actual = a.evaluate("3.88", "2.94");
     String expected = "11.41+0.00i";
     assertEquals(expected, actual);
-  } 
-  
+  }
+
   @Test
   public void testDecimalOperands4()
   {
@@ -468,9 +466,8 @@ class MultiplicationOperatorTesting
     String actual = a.evaluate("0.89+7.25i", "3.56i");
     String expected = "-25.81+3.17i";
     assertEquals(expected, actual);
-  } 
-  
-  
+  }
+
   @Test
   public void testDecimalOperands5()
   {
@@ -478,8 +475,8 @@ class MultiplicationOperatorTesting
     String actual = a.evaluate("3.39+6.89i", "2.09");
     String expected = "7.09+14.40i";
     assertEquals(expected, actual);
-  } 
-  
+  }
+
   @Test
   public void testDecimalOperands6()
   {
@@ -487,8 +484,8 @@ class MultiplicationOperatorTesting
     String actual = a.evaluate("9.06", "2.66i");
     String expected = "0.00+24.10i";
     assertEquals(expected, actual);
-  } 
-  
+  }
+
   @Test
   public void testNegComplex()
   {
@@ -497,7 +494,7 @@ class MultiplicationOperatorTesting
     String expected = "22.00-14.00i";
     assertEquals(expected, actual);
   }
-  
+
   @Test
   public void testNegComplex2()
   {

@@ -8,6 +8,12 @@ import org.junit.jupiter.api.Test;
 import operations.InverseOperator;
 import operations.TempContext;
 
+/**
+ * Unit tests for the InverseOperator.
+ * 
+ * @author pgleb - team 11
+ * @version Sprint 2
+ */
 class InverseOperatorTest
 {
 
@@ -20,8 +26,7 @@ class InverseOperatorTest
     String actualInverse = inverseOperator.invert(operand);
     assertEquals(expectedInverse, actualInverse);
   }
-  
-  
+
   @Test
   public void invertRealTest1()
   {
@@ -31,7 +36,7 @@ class InverseOperatorTest
     String actualInverse = inverseOperator.invert(operand);
     assertEquals(expectedInverse, actualInverse);
   }
-  
+
   @Test
   public void invertComplexTest2()
   {
@@ -41,7 +46,7 @@ class InverseOperatorTest
     String actualInverse = inverseOperator.invert(operand);
     assertEquals(expectedInverse, actualInverse);
   }
-  
+
   @Test
   public void invertI()
   {
@@ -51,8 +56,7 @@ class InverseOperatorTest
     String actualInverse = inverseOperator.invert(operand);
     assertEquals(expectedInverse, actualInverse);
   }
-  
-  
+
   @Test
   public void invertI2()
   {
@@ -62,7 +66,7 @@ class InverseOperatorTest
     String actualInverse = inverseOperator.invert(operand);
     assertEquals(expectedInverse, actualInverse);
   }
-  
+
   @Test
   public void invertNegReal()
   {
@@ -72,7 +76,7 @@ class InverseOperatorTest
     String actualInverse = inverseOperator.invert(operand);
     assertEquals(expectedInverse, actualInverse);
   }
-  
+
   @Test
   public void invertNegComplex()
   {
@@ -82,7 +86,7 @@ class InverseOperatorTest
     String actualInverse = inverseOperator.invert(operand);
     assertEquals(expectedInverse, actualInverse);
   }
-  
+
   @Test
   public void invertInvalid1()
   {
@@ -95,7 +99,7 @@ class InverseOperatorTest
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
-  
+
   @Test
   public void invertInvalid2()
   {
@@ -108,7 +112,7 @@ class InverseOperatorTest
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
-  
+
   @Test
   public void invertInvalid3()
   {
@@ -121,7 +125,7 @@ class InverseOperatorTest
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
-  
+
   @Test
   public void invertInvalid4()
   {

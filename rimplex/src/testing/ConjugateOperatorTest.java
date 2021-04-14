@@ -7,14 +7,24 @@ import org.junit.jupiter.api.Test;
 import operations.ConjugateOperator;
 import operations.TempContext;
 
+/**
+ * Unit Tests for the ConjugateOperator.
+ * 
+ * @author may4sa - team11
+ * @version Sprint 2
+ */
 class ConjugateOperatorTest
 {
 
+  /**
+   * tests for Illegal Arguments.
+   */
   @Test
   public void testIllegalArgs()
   {
     ConjugateOperator c = new ConjugateOperator();
 
+    // null
     try
     {
       String bothNull = c.conjugate(null);
@@ -24,7 +34,8 @@ class ConjugateOperatorTest
     {
       assertTrue(true);
     }
-    
+
+    // empty
     try
     {
       String empty = c.conjugate("");
@@ -34,7 +45,8 @@ class ConjugateOperatorTest
     {
       assertTrue(true);
     }
-    
+
+    // just parens
     try
     {
       String emptyParen = c.conjugate("   ()");
@@ -44,7 +56,8 @@ class ConjugateOperatorTest
     {
       assertTrue(true);
     }
-    
+
+    // string
     try
     {
       String random = c.conjugate("rogphusdnjivbuo");
@@ -54,7 +67,8 @@ class ConjugateOperatorTest
     {
       assertTrue(true);
     }
-    
+
+    // two i's
     try
     {
       String doubleI = c.conjugate("5ii");
@@ -64,7 +78,8 @@ class ConjugateOperatorTest
     {
       assertTrue(true);
     }
-    
+
+    // i in an illegal string
     try
     {
       String iString = c.conjugate("ilovecs");
@@ -74,36 +89,42 @@ class ConjugateOperatorTest
     {
       assertTrue(true);
     }
-    
+
   }
-  
+
+  /**
+   * tests the change from positive to negative.
+   */
   @Test
   public void testPlusToMinus()
   {
     ConjugateOperator c = new ConjugateOperator();
-    
-    //all positive
+
+    // all positive
     String actual = c.conjugate("3+7i");
     String expected = "3-7i";
     assertTrue(actual.equals(expected));
-    
-    //negative real, positive imaginary
+
+    // negative real, positive imaginary
     actual = c.conjugate("-9+5i");
     expected = "-9-5i";
     assertTrue(actual.equals(expected));
   }
-  
+
+  /**
+   * tests change from negative to positive
+   */
   @Test
   public void testMinustoPlus()
   {
     ConjugateOperator c = new ConjugateOperator();
 
-    //all negative
+    // all negative
     String actual = c.conjugate("-2-6i");
     String expected = "-2+6i";
     assertTrue(actual.equals(expected));
-    
-    //positive real, negative imaginary
+
+    // positive real, negative imaginary
     actual = c.conjugate("4-8i");
     expected = "4+8i";
     assertTrue(actual.equals(expected));

@@ -1,14 +1,23 @@
 package operations;
 
+/**
+ * class for computing multiplication of complex, real, and imaginary numbers.
+ * 
+ * @author pgleb - team 11
+ * @version Sprint 2
+ */
 public class MultiplicationOperator implements Operator
 {
-  
+
   final int I_SQUARED = -1;
 
   /**
    * This evaluates two operands using multiplication!
-   * @param leftOperand The left operand to be evaluated.
-   * @param rightOperand The right operand to be evaluated.
+   * 
+   * @param leftOperand
+   *          The left operand to be evaluated.
+   * @param rightOperand
+   *          The right operand to be evaluated.
    * @return a string of the two operands multiplied together.
    * @throws IllegalArgumentException
    *           thrown if operands are null or empty.
@@ -16,7 +25,7 @@ public class MultiplicationOperator implements Operator
   @Override
   public String evaluate(String leftOperand, String rightOperand)
   {
-    
+
     String[] decomposedOperands = new String[3];
     try
     {
@@ -26,18 +35,17 @@ public class MultiplicationOperator implements Operator
     {
       throw new IllegalArgumentException(e1.getMessage());
     }
-    
-    String leftRegularNumber     = decomposedOperands[0];
-    String leftImaginaryNumber   = decomposedOperands[1];
-    String rightRegularNumber    = decomposedOperands[2];
-    String rightImaginaryNumber  = decomposedOperands[3];
-    
-    
+
+    String leftRegularNumber = decomposedOperands[0];
+    String leftImaginaryNumber = decomposedOperands[1];
+    String rightRegularNumber = decomposedOperands[2];
+    String rightImaginaryNumber = decomposedOperands[3];
+
     // Integer processing
     Double leftImagNumDouble = 0.0;
     try
     {
-      leftImagNumDouble    = Double.parseDouble(leftImaginaryNumber);
+      leftImagNumDouble = Double.parseDouble(leftImaginaryNumber);
     }
     catch (NumberFormatException e)
     {
@@ -47,7 +55,7 @@ public class MultiplicationOperator implements Operator
     Double leftRegNumDouble = 0.0;
     try
     {
-      leftRegNumDouble    = Double.parseDouble(leftRegularNumber);
+      leftRegNumDouble = Double.parseDouble(leftRegularNumber);
     }
     catch (NumberFormatException e)
     {
@@ -58,7 +66,7 @@ public class MultiplicationOperator implements Operator
     Double rightImagNumDouble = 0.0;
     try
     {
-      rightImagNumDouble    = Double.parseDouble(rightImaginaryNumber);
+      rightImagNumDouble = Double.parseDouble(rightImaginaryNumber);
     }
     catch (NumberFormatException e)
     {
@@ -69,7 +77,7 @@ public class MultiplicationOperator implements Operator
     Double rightRegNumDouble = 0.0;
     try
     {
-      rightRegNumDouble    = Double.parseDouble(rightRegularNumber);
+      rightRegNumDouble = Double.parseDouble(rightRegularNumber);
     }
     catch (NumberFormatException e)
     {
@@ -77,21 +85,22 @@ public class MultiplicationOperator implements Operator
       throw new IllegalArgumentException("Not a valid operand.");
     }
 
-    double fOILFirst  = leftRegNumDouble  * rightRegNumDouble;
-    double fOILOuters = leftRegNumDouble  * rightImagNumDouble;
+    double fOILFirst = leftRegNumDouble * rightRegNumDouble;
+    double fOILOuters = leftRegNumDouble * rightImagNumDouble;
     double fOILInners = leftImagNumDouble * rightRegNumDouble;
-    double fOILLasts  = leftImagNumDouble * rightImagNumDouble *  I_SQUARED;
-    
-    double finalRegTotal  = fOILFirst + fOILLasts;
+    double fOILLasts = leftImagNumDouble * rightImagNumDouble * I_SQUARED;
+
+    double finalRegTotal = fOILFirst + fOILLasts;
     double finalImagTotal = fOILOuters + fOILInners;
 
-    String result = String.format("%.2f", finalRegTotal) + "+" + String.format("%.2f", finalImagTotal) + "i";
+    String result = String.format("%.2f", finalRegTotal) + "+"
+        + String.format("%.2f", finalImagTotal) + "i";
 
     if (result.contains("+-"))
     {
       result = result.substring(0, result.indexOf("+")) + "-"
-             + result.substring(result.indexOf("+") + 2);
+          + result.substring(result.indexOf("+") + 2);
     }
     return result;
   }
- }
+}

@@ -11,7 +11,7 @@ import operations.TempContext;
  * Unit tests for the Temp Context Class.
  * 
  * @author team 11 - may4sa
- * @version Sprint 1
+ * @version Sprint 2
  */
 class TempContextTest
 {
@@ -55,7 +55,7 @@ class TempContextTest
     actual = TempContext.format("(3+6i)");
     expected = "3+6i";
     assertTrue(actual.equals(expected));
-
   }
 
+  //should at some point test other methods in tempContext
 }

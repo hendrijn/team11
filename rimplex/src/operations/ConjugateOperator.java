@@ -1,18 +1,36 @@
 package operations;
 
+/**
+ * class for computing the conjugate of a complex/imaginary number. Used for the inverse and
+ * division.
+ * 
+ * @author may4sa - team 11
+ * @version Sprint 2
+ */
 public class ConjugateOperator
 {
-
+  /**
+   * computes the conjugate of a complex/imaginary operand.
+   * 
+   * @param operand
+   *          the operand to compute the conjugate of.
+   * @return the conjugate.
+   */
   public String conjugate(String operand)
   {
     // error checking
+    // no error checking needs to be done for whether the
+    // operand is complex/imaginary or not because this is used internally
+    // for division and the inverse
     if (operand == null || operand.equals(""))
     {
       throw new IllegalArgumentException("Please Enter an Operand.");
     }
 
+    // operand w/o spaces and parens
     String alteredOp = ((operand.replaceAll(" ", "")).replace("(", "")).replace(")", "");
 
+    // error checking for empty and bad operands
     if (alteredOp.equals(""))
     {
       throw new IllegalArgumentException("Please Enter an Operand.");
@@ -22,17 +40,19 @@ public class ConjugateOperator
     {
       throw new IllegalArgumentException("Please Enter a Valid Operand.");
     }
-    
-    if((alteredOp.replace("i", "")).matches(".*[a-zA-Z]+.*"))
+
+    if ((alteredOp.replace("i", "")).matches(".*[a-zA-Z]+.*"))
     {
       throw new IllegalArgumentException("Please Enter a Valid Operand.");
     }
-    
+
     String result = "";
 
+    // type checking
     boolean complex = TempContext.isComplex(alteredOp);
     boolean imaginary = TempContext.isImaginary(alteredOp);
 
+    // conjugate for complex
     if (complex)
     {
       int negMin = alteredOp.indexOf("-");
@@ -55,6 +75,8 @@ public class ConjugateOperator
         }
       }
     }
+
+    // conjugate for imginary
     if (imaginary)
     {
       if (alteredOp.charAt(0) == '-')

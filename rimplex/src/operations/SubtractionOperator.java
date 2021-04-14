@@ -4,7 +4,7 @@ package operations;
  * Subtraction Operator Class.
  * 
  * @author team 11 - may4sa
- * @version Sprint 1
+ * @version Sprint 2
  */
 public class SubtractionOperator implements Operator
 {
@@ -50,14 +50,14 @@ public class SubtractionOperator implements Operator
     int negMinus = rightOperand.indexOf("-");
     int minus = rightOperand.indexOf("-", negMinus + 1);
     String distribute = "";
-    
+
     boolean complex = TempContext.isComplex(rightOperand);
     boolean imaginary = TempContext.isImaginary(rightOperand);
     boolean real = TempContext.isReal(rightOperand);
-    
-    if(complex)
+
+    if (complex)
     {
-      if(rightOperand.contains("+"))
+      if (rightOperand.contains("+"))
       {
         if (rightOperand.charAt(0) == '-')
         {
@@ -70,12 +70,11 @@ public class SubtractionOperator implements Operator
               + rightOperand.substring(rightOperand.indexOf("+") + 1);
         }
       }
-      else if(rightOperand.contains("-"))
+      else if (rightOperand.contains("-"))
       {
-        if(rightOperand.charAt(0) == '-' && minus != -1)
+        if (rightOperand.charAt(0) == '-' && minus != -1)
         {
-          distribute = rightOperand.substring(1, minus) + "+"
-              + rightOperand.substring(minus + 1);
+          distribute = rightOperand.substring(1, minus) + "+" + rightOperand.substring(minus + 1);
         }
         else
         {
@@ -84,9 +83,9 @@ public class SubtractionOperator implements Operator
         }
       }
     }
-    if(imaginary || real)
+    if (imaginary || real)
     {
-      if(rightOperand.contains("-"))
+      if (rightOperand.contains("-"))
       {
         distribute = rightOperand.substring(1);
       }

@@ -4,7 +4,7 @@ package operations;
  * Addition Operator Class.
  * 
  * @author team 11 - pgleb and may4sa
- * @version Sprint 1
+ * @version Sprint 2
  */
 public class AdditionOperator implements Operator
 {
@@ -33,12 +33,12 @@ public class AdditionOperator implements Operator
     {
       throw new IllegalArgumentException(e1.getMessage());
     }
-    
-    String leftRegularNumber     = decomposedOperands[0];
-    String leftImaginaryNumber   = decomposedOperands[1];
-    String rightRegularNumber    = decomposedOperands[2];
-    String rightImaginaryNumber  = decomposedOperands[3];
-    
+
+    String leftRegularNumber = decomposedOperands[0];
+    String leftImaginaryNumber = decomposedOperands[1];
+    String rightRegularNumber = decomposedOperands[2];
+    String rightImaginaryNumber = decomposedOperands[3];
+
     // Integer processing
     Double leftImagNumDouble = 0.0;
     try
@@ -85,10 +85,10 @@ public class AdditionOperator implements Operator
 
     Double finalRegTotal = leftRegNumDouble + rightRegNumDouble;
     Double finalImagTotal = leftImagNumDouble + rightImagNumDouble;
-    
+
     String formattedRegTotal = String.format("%.2f", finalRegTotal);
     String formattedImagTotal = String.format("%.2f", finalImagTotal);
-    
+
     String result = formattedRegTotal + "+" + formattedImagTotal + "i";
 
     if (result.contains("+-"))

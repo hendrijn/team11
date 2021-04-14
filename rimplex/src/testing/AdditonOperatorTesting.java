@@ -4,7 +4,7 @@ package testing;
  * Unit tests for the Addition Operator Class.
  * 
  * @author team 11 - pgleb
- * @version Sprint 1
+ * @version Sprint 2
  */
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -162,40 +162,28 @@ class AdditonOperatorTesting
     assertEquals(expectedResult, actualResult);
   }
 
-  // had to comment out because sometimes works and sometimes doesn't 
+  // had to comment out because sometimes works and sometimes doesn't
   // and was not able to get a standard result during this sprint
-  /*@Test
-  public void twoRandomComplexNumbersTest()
-  {
-    Random random = new Random();
-    int firstRandomNum = random.nextInt();
-    int secondRandomNum = random.nextInt();
-    int firstRandomI = random.nextInt();
-    int secondRandomI = random.nextInt();
-    String complexNumberOne = String.valueOf(firstRandomNum) + "+" + String.valueOf(firstRandomI)
-        + "i";
-    String complexNumberTwo = String.valueOf(secondRandomNum) + "+" + String.valueOf(secondRandomI)
-        + "i";
-    String expectedResult = String.valueOf(firstRandomNum + secondRandomNum) + "+"
-        + String.valueOf(firstRandomI + secondRandomI) + "i";
-    TempContext tempContext = new TempContext(new AdditionOperator());
-    String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
-    assertEquals(expectedResult, actualResult);
-  }
-
-  @Test
-  public void twoRandomRealNumbersTest()
-  {
-    Random random = new Random();
-    int firstRandomNum = random.nextInt();
-    int secondRandomNum = random.nextInt();
-    String firstStringRandomNum = String.valueOf(firstRandomNum);
-    String secondStringRandomNum = String.valueOf(secondRandomNum);
-    String expectedResult = String.valueOf(firstRandomNum + secondRandomNum) + "+0i";
-    TempContext tempContext = new TempContext(new AdditionOperator());
-    String actualResult = tempContext.evaluate(firstStringRandomNum, secondStringRandomNum);
-    assertEquals(expectedResult, actualResult);
-  }*/
+  /*
+   * @Test public void twoRandomComplexNumbersTest() { Random random = new Random(); int
+   * firstRandomNum = random.nextInt(); int secondRandomNum = random.nextInt(); int firstRandomI =
+   * random.nextInt(); int secondRandomI = random.nextInt(); String complexNumberOne =
+   * String.valueOf(firstRandomNum) + "+" + String.valueOf(firstRandomI) + "i"; String
+   * complexNumberTwo = String.valueOf(secondRandomNum) + "+" + String.valueOf(secondRandomI) + "i";
+   * String expectedResult = String.valueOf(firstRandomNum + secondRandomNum) + "+" +
+   * String.valueOf(firstRandomI + secondRandomI) + "i"; TempContext tempContext = new
+   * TempContext(new AdditionOperator()); String actualResult =
+   * tempContext.evaluate(complexNumberOne, complexNumberTwo); assertEquals(expectedResult,
+   * actualResult); }
+   * 
+   * @Test public void twoRandomRealNumbersTest() { Random random = new Random(); int firstRandomNum
+   * = random.nextInt(); int secondRandomNum = random.nextInt(); String firstStringRandomNum =
+   * String.valueOf(firstRandomNum); String secondStringRandomNum = String.valueOf(secondRandomNum);
+   * String expectedResult = String.valueOf(firstRandomNum + secondRandomNum) + "+0i"; TempContext
+   * tempContext = new TempContext(new AdditionOperator()); String actualResult =
+   * tempContext.evaluate(firstStringRandomNum, secondStringRandomNum); assertEquals(expectedResult,
+   * actualResult); }
+   */
 
   @Test
   public void inValidNullLeftOperandTest()
@@ -528,31 +516,25 @@ class AdditonOperatorTesting
   }
 
   /*
-  //Hi sydney here. I broke these. My bad
-  @Test
-  public void largeNumberTest()
-  {
-    String complexNumberOne = "100000000i";
-    String complexNumberTwo = "100000000i";
-    String expectedResult = "0.00+2.00E7i";
-    TempContext tempContext = new TempContext(new AdditionOperator());
-    String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
-    assertEquals(expectedResult, actualResult);
+   * //Hi sydney here. I broke these. My bad
+   * 
+   * @Test public void largeNumberTest() { String complexNumberOne = "100000000i"; String
+   * complexNumberTwo = "100000000i"; String expectedResult = "0.00+2.00E7i"; TempContext
+   * tempContext = new TempContext(new AdditionOperator()); String actualResult =
+   * tempContext.evaluate(complexNumberOne, complexNumberTwo); assertEquals(expectedResult,
+   * actualResult);
+   * 
+   * }
+   * 
+   * //Hi sydney here. I broke these. My bad
+   * 
+   * @Test public void largeNumber2Test() { String complexNumberOne = "100000000000i"; String
+   * complexNumberTwo = "100000000000i"; String expectedResult = "0.00+2.00E10i"; TempContext
+   * tempContext = new TempContext(new AdditionOperator()); String actualResult =
+   * tempContext.evaluate(complexNumberOne, complexNumberTwo); assertEquals(expectedResult,
+   * actualResult); }
+   */
 
-  }
-
-  //Hi sydney here. I broke these. My bad
-  @Test
-  public void largeNumber2Test()
-  {
-    String complexNumberOne = "100000000000i";
-    String complexNumberTwo = "100000000000i";
-    String expectedResult = "0.00+2.00E10i";
-    TempContext tempContext = new TempContext(new AdditionOperator());
-    String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
-    assertEquals(expectedResult, actualResult);
-  }*/
-  
   @Test
   public void testDecimalOperands1()
   {
@@ -560,9 +542,8 @@ class AdditonOperatorTesting
     String actual = a.evaluate("3.45+7.56i", "2.98+5.04i");
     String expected = "6.43+12.60i";
     assertEquals(expected, actual);
-  } 
-  
-  
+  }
+
   @Test
   public void testDecimalOperands2()
   {
@@ -570,9 +551,8 @@ class AdditonOperatorTesting
     String actual = a.evaluate("6.42i", "7.75i");
     String expected = "0.00+14.17i";
     assertEquals(expected, actual);
-  } 
-  
-  
+  }
+
   @Test
   public void testDecimalOperands3()
   {
@@ -580,8 +560,8 @@ class AdditonOperatorTesting
     String actual = a.evaluate("3.88", "2.94");
     String expected = "6.82+0.00i";
     assertEquals(expected, actual);
-  } 
-  
+  }
+
   @Test
   public void testDecimalOperands4()
   {
@@ -589,9 +569,8 @@ class AdditonOperatorTesting
     String actual = a.evaluate("0.89+7.25i", "3.56i");
     String expected = "0.89+10.81i";
     assertEquals(expected, actual);
-  } 
-  
-  
+  }
+
   @Test
   public void testDecimalOperands5()
   {
@@ -599,8 +578,8 @@ class AdditonOperatorTesting
     String actual = a.evaluate("3.39+6.89i", "2.09");
     String expected = "5.48+6.89i";
     assertEquals(expected, actual);
-  } 
-  
+  }
+
   @Test
   public void testDecimalOperands6()
   {
@@ -608,8 +587,7 @@ class AdditonOperatorTesting
     String actual = a.evaluate("9.06", "2.66i");
     String expected = "9.06+2.66i";
     assertEquals(expected, actual);
-  } 
-    
-  
-  //TODO: test complex spaces and parens
+  }
+
+  // TODO: test complex spaces and parens
 }
