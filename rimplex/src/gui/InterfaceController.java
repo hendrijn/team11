@@ -120,7 +120,8 @@ public class InterfaceController
             resetInterface();
             break;
           }
-          ui.getInputLabel().setText(invertedOperand);
+          invertedOperand = "(" + invertedOperand + ")";
+          ui.getInputLabel().setText(replaceFormatting(invertedOperand));
           break;
         default:
           closeApplication();
