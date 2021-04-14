@@ -30,6 +30,10 @@ public class DivisionOperator implements Operator
 
     String[] parts = new String[4];
 
+    if(alteredROp.equals("0"))
+    {
+      throw new IllegalArgumentException("Right operand cannot be 0");
+    }
     // gets the pieces of the operands (see TempContext)
     parts = TempContext.decomposeOperands(alteredLOp, alteredROp);
 
