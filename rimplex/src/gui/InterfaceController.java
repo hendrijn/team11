@@ -114,7 +114,7 @@ public class InterfaceController
             resetInterface();
             break;
           }
-          ui.getResultLabel().setText(invertedOperand);
+          ui.getInputLabel().setText(invertedOperand);
           break;
         default:
           closeApplication();
