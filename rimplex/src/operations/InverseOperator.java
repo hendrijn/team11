@@ -28,6 +28,7 @@ public class InverseOperator
    */
   public String invert(String operand)
   {
+    boolean complex = TempContext.isComplex(operand);
 
     if (operand == null || operand.equals(""))
     {
@@ -83,6 +84,10 @@ public class InverseOperator
       throw new IllegalArgumentException("Not a valid operand.");
     }
 
+    if(complex)
+    {
+      finalResult = "(" + finalResult + ")";
+    }
     return finalResult;
   }
 
