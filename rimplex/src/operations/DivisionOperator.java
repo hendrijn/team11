@@ -30,7 +30,9 @@ public class DivisionOperator implements Operator
 
     String[] parts = new String[4];
 
-    if(alteredROp.equals("0"))
+    if (alteredROp.equals("0") || alteredROp.equals("0i") || alteredROp.equals("0+0i")
+        || alteredROp.equals("0-0i") || alteredROp.equals("0.00+0.00i")
+        || alteredROp.equals("0.00-0.00i"))
     {
       throw new IllegalArgumentException("Right operand cannot be 0");
     }
@@ -53,7 +55,8 @@ public class DivisionOperator implements Operator
       double realDiv = Double.parseDouble(conjugateParts[0])
           / Double.parseDouble(conjugateParts[2]);
       double imgDiv = Double.parseDouble(conjugateParts[1]) / Double.parseDouble(conjugateParts[2]);
-      result = TempContext.format(String.format("%.2f", realDiv) + "+" + String.format("%.2f", imgDiv) + "i");
+      result = TempContext
+          .format(String.format("%.2f", realDiv) + "+" + String.format("%.2f", imgDiv) + "i");
     }
     // both imaginary and real as the right operand do not use the conjugate
     else if (imaginaryL && imaginaryR)
@@ -78,11 +81,11 @@ public class DivisionOperator implements Operator
     {
       double realNum = Double.parseDouble(parts[0]) / Double.parseDouble(parts[2]);
       double imgNum = Double.parseDouble(parts[1]) / Double.parseDouble(parts[2]);
-      result = TempContext.format(String.format("%.2f", realNum) + "+" + String.format("%.2f", imgNum) + "i");
+      result = TempContext
+          .format(String.format("%.2f", realNum) + "+" + String.format("%.2f", imgNum) + "i");
     }
 
     // formats result
-
 
     // edits any +- occurances to -
     if (result.contains("+-"))
