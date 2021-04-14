@@ -88,6 +88,11 @@ public class InterfaceController
           String text = ui.getInputLabel().getText();
 
           // to cover cases when the user backspaces without typing anything
+          String cleanText = removeFormatting(text);
+          if (cleanText.length() == 1) {
+            ui.getInputLabel().setText(HTML);
+            break;
+          }
           if (text.length() > HTML.length())
           {
         	  if (text.substring(text.length() - I.length()).equals(I))
@@ -108,6 +113,10 @@ public class InterfaceController
         case INVERSE:
           String invertNum = ui.getInputLabel().getText();
           String cleaninvertNum = removeFormatting(invertNum);
+          if (cleaninvertNum.equals("")) {
+            invertNum = ui.getResultLabel().getText();
+            cleaninvertNum = removeFormatting(invertNum);
+          }
           InverseOperator inverseOP = new InverseOperator();
           String invertedOperand = "";
           try
