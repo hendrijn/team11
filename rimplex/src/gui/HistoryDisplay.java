@@ -93,7 +93,7 @@ public class HistoryDisplay extends JWindow implements Finals, ComponentListener
   public void addCalculation(String calc)
   {
     String prevText = calcList.getText();
-    calcList.setText(prevText + calc + "\n");
+    calcList.setText(prevText + "\t" + calc + "\n");
   }
 
   /**

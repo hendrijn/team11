@@ -218,7 +218,8 @@ public class InterfaceController
       exLabel.setText(exLabel.getText() + replaceFormatting(secondOperand) + SP + EQUALS);
       ui.getResultLabel().setText(replaceFormatting(result));
       shownError = false;
-      history.addCalculation(firstOperand + operator + secondOperand + EQUALS + result);
+      history.addCalculation(replaceFormatting(
+          firstOperand + SP + operator + SP + secondOperand + SP + EQUALS + SP + result));
     }
     catch (IllegalArgumentException e)
     {
@@ -265,10 +266,6 @@ public class InterfaceController
       }
     }
   }
-  
-  
-  
-  
 
   private void handleOperators(String operation)
   {
@@ -321,7 +318,7 @@ public class InterfaceController
   private void updateDisplayWithOperator(String operation, NewMainInterface ui, JLabel exLabel,
       JLabel inLabel, JLabel resLabel)
   {
-    operator = operation; //assigns the indicated operation to the class variable
+    operator = operation; // assigns the indicated operation to the class variable
 
     switch (operation)
     {
