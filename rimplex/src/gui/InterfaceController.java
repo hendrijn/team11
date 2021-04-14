@@ -99,6 +99,23 @@ public class InterfaceController
           String in = input.getText();
           handleSign(in);
           break;
+        case INVERSE:
+          String invertNum = ui.getInputLabel().getText();
+          String cleaninvertNum = removeFormatting(invertNum);
+          InverseOperator inverseOP = new InverseOperator();
+          String invertedOperand = "";
+          try
+          {
+            invertedOperand = inverseOP.invert(cleaninvertNum);
+          }
+          catch (IllegalArgumentException e1)
+          {
+            ui.errorMessage(e1.getMessage());
+            resetInterface();
+            break;
+          }
+          ui.getResultLabel().setText(invertedOperand);
+          break;
         default:
           closeApplication();
 
@@ -248,6 +265,10 @@ public class InterfaceController
       }
     }
   }
+  
+  
+  
+  
 
   private void handleOperators(String operation)
   {
