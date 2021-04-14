@@ -90,8 +90,14 @@ public class InterfaceController
           // to cover cases when the user backspaces without typing anything
           if (text.length() > HTML.length())
           {
-            text = text.substring(0, text.length() - 1);
-            ui.getInputLabel().setText(text);
+        	  if (text.substring(text.length() - I.length()).equals(I))
+        	  {
+        		  text = text.substring(0, text.length() - I.length());
+        		  ui.getInputLabel().setText(text);
+        	  } else {
+        		  text = text.substring(0, text.length() - 1);
+                  ui.getInputLabel().setText(text);
+        	  }
           }
           break;
         case SIGN:
