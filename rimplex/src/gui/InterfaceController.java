@@ -88,6 +88,11 @@ public class InterfaceController
           String text = ui.getInputLabel().getText();
 
           // to cover cases when the user backspaces without typing anything
+          String cleanText = removeFormatting(text);
+          if (cleanText.length() == 1) {
+            ui.getInputLabel().setText(HTML);
+            break;
+          }
           if (text.length() > HTML.length())
           {
         	  if (text.substring(text.length() - I.length()).equals(I))
