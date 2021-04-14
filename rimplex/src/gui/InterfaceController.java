@@ -108,6 +108,10 @@ public class InterfaceController
         case INVERSE:
           String invertNum = ui.getInputLabel().getText();
           String cleaninvertNum = removeFormatting(invertNum);
+          if (cleaninvertNum.equals("")) {
+            invertNum = ui.getResultLabel().getText();
+            cleaninvertNum = removeFormatting(invertNum);
+          }
           InverseOperator inverseOP = new InverseOperator();
           String invertedOperand = "";
           try
