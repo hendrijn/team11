@@ -27,7 +27,7 @@ public class HistoryController implements Finals, ActionListener, ComponentListe
     switch (btn.getText())
     {
       case ">":
-        history.setSize(500, 380);
+        history.setSize(500, 340);
         history.listPane.setVisible(true);
         history.close.setVisible(true);
         // history.open.setVisible(false);
