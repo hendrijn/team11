@@ -25,12 +25,13 @@ import javax.swing.JWindow;
 
 // make component listener on the JFrame
 // implement component moved method
-public class HistoryDisplay extends JWindow implements Finals, ComponentListener
+public class HistoryDisplay extends JWindow implements Finals
 {
   private static HistoryDisplay history = null;
   JButton open;
   JButton close;
   JScrollPane listPane;
+  Point origin;
   private JTextArea calcList;
 
   private HistoryController listener;
@@ -46,7 +47,13 @@ public class HistoryDisplay extends JWindow implements Finals, ComponentListener
         "C:\\Users\\Brooke\\git\\team11\\rimplex\\src\\gui\\iconRimplex.png");
     setIconImage(icon.getImage());
     setVisible(true);
-    setLocation(515, 110);
+    setLoc(515, 110);
+  }
+
+  void setLoc(int x, int y)
+  {
+    origin = new Point(x, y);
+    setLocation(origin);
   }
 
   private void setupFrame()
@@ -106,36 +113,6 @@ public class HistoryDisplay extends JWindow implements Finals, ComponentListener
     if (history == null)
       history = new HistoryDisplay();
     return history;
-
-  }
-
-  @Override
-  public void componentResized(ComponentEvent e)
-  {
-    // TODO Auto-generated method stub
-
-  }
-
-  @Override
-  public void componentMoved(ComponentEvent e)
-  {
-    NewMainInterface ui = NewMainInterface.getInstance();
-    Point loc = ui.history.getLocation();
-    history.setLocation(loc);
-
-  }
-
-  @Override
-  public void componentShown(ComponentEvent e)
-  {
-    // TODO Auto-generated method stub
-
-  }
-
-  @Override
-  public void componentHidden(ComponentEvent e)
-  {
-    // TODO Auto-generated method stub
 
   }
 }

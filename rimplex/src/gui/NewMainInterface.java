@@ -17,7 +17,7 @@ public class NewMainInterface extends JFrame implements Finals
   private JPanel northPanel;
   private JPanel eastPanel;
   private JPanel centerPanel;
-  
+
   static JButton history;
 
   JLabel expressionDisplay;
@@ -29,7 +29,6 @@ public class NewMainInterface extends JFrame implements Finals
    */
   private NewMainInterface()
   {
-    addComponentListener((ComponentListener) listener);
     HistoryDisplay history = HistoryDisplay.getInstance();
     setupFrame();
     setSize(520, 500);
@@ -70,6 +69,8 @@ public class NewMainInterface extends JFrame implements Finals
     HistoryController cont = new HistoryController();
     history.addActionListener(cont);
     bar.add(history);
+
+    contentPane.addComponentListener(cont);
 
     contentPane.add(northPanel, BorderLayout.NORTH);
     contentPane.add(centerPanel, BorderLayout.WEST);
@@ -177,7 +178,7 @@ public class NewMainInterface extends JFrame implements Finals
   {
     northPanel = new JPanel(new GridLayout(2, 2));
     northPanel.setBackground(Color.lightGray);
-    northPanel.setPreferredSize(new Dimension(400,100));
+    northPanel.setPreferredSize(new Dimension(400, 100));
 
     Border displayB = BorderFactory.createLineBorder(Color.BLUE, 3, true);
     northPanel.setBorder(displayB);
