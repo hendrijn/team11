@@ -14,6 +14,7 @@ public class NewMainInterface extends JFrame implements Finals
 
   private static NewMainInterface ui;
   private InterfaceController listener;
+  private JMenuBar menuBar;
   private JPanel northPanel;
   private JPanel eastPanel;
   private JPanel centerPanel;
@@ -61,6 +62,8 @@ public class NewMainInterface extends JFrame implements Finals
 
     contentPane.setLayout(new BorderLayout(20, 20));
 
+    createMenu();
+
     setupNorthPanel();
     setupCenterPanel();
     setUpEastPanel();
@@ -74,6 +77,7 @@ public class NewMainInterface extends JFrame implements Finals
 
     contentPane.addComponentListener(cont);
 
+    setJMenuBar(menuBar);
     contentPane.add(northPanel, BorderLayout.NORTH);
     contentPane.add(centerPanel, BorderLayout.WEST);
     contentPane.add(eastPanel, BorderLayout.CENTER);
@@ -338,7 +342,7 @@ public class NewMainInterface extends JFrame implements Finals
    * @param button
    *          the button on the calculator
    */
-  private void increaseSize(JButton button)
+  private void increaseSize(JComponent button)
   {
     Font oldFont = button.getFont();
     Font newFont = new Font("Times New Roman", oldFont.getStyle(), 30);
@@ -380,6 +384,28 @@ public class NewMainInterface extends JFrame implements Finals
     // Filler label to make layout work
     northPanel.add(new JLabel());
     northPanel.add(inputDisplay);
+  }
+
+  /**
+   * Creates the menu bar for the frame.
+   */
+  private void createMenu()
+  {
+    menuBar = new JMenuBar();
+
+    JMenu fileMenu = new JMenu(FILE);
+    menuBar.add(fileMenu);
+
+    for (String item : FILEMENUITEMS)
+    {
+      JMenuItem menuItem = new JMenuItem(item);
+      increaseSize(menuItem);
+      menuItem.addActionListener(listener);
+      fileMenu.add(menuItem);
+    }
+
+    JMenu aboutMenu = new JMenu(ABOUT);
+    menuBar.add(aboutMenu);
   }
 
   public JLabel getExpressionLabel()
