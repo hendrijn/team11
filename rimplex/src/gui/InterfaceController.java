@@ -89,20 +89,23 @@ public class InterfaceController
 
           // to cover cases when the user backspaces without typing anything
           String cleanText = removeFormatting(text);
-          if (cleanText.length() == 1) {
+          if (cleanText.length() == 1)
+          {
             ui.getInputLabel().setText(HTML);
             break;
           }
           if (text.length() > HTML.length())
           {
-        	  if (text.substring(text.length() - I.length()).equals(I))
-        	  {
-        		  text = text.substring(0, text.length() - I.length());
-        		  ui.getInputLabel().setText(text);
-        	  } else {
-        		  text = text.substring(0, text.length() - 1);
-                  ui.getInputLabel().setText(text);
-        	  }
+            if (text.substring(text.length() - I.length()).equals(I))
+            {
+              text = text.substring(0, text.length() - I.length());
+              ui.getInputLabel().setText(text);
+            }
+            else
+            {
+              text = text.substring(0, text.length() - 1);
+              ui.getInputLabel().setText(text);
+            }
           }
           break;
         case SIGN:
@@ -113,7 +116,8 @@ public class InterfaceController
         case INVERSE:
           String invertNum = ui.getInputLabel().getText();
           String cleaninvertNum = removeFormatting(invertNum);
-          if (cleaninvertNum.equals("")) {
+          if (cleaninvertNum.equals(""))
+          {
             invertNum = ui.getResultLabel().getText();
             cleaninvertNum = removeFormatting(invertNum);
           }

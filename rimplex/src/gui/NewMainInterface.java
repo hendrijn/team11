@@ -17,6 +17,7 @@ public class NewMainInterface extends JFrame implements Finals
   private JPanel northPanel;
   private JPanel eastPanel;
   private JPanel centerPanel;
+  private JPanel southPanel;
 
   static JButton history;
 
@@ -31,7 +32,7 @@ public class NewMainInterface extends JFrame implements Finals
   {
     HistoryDisplay history = HistoryDisplay.getInstance();
     setupFrame();
-    setSize(520, 500);
+    setSize(540, 550);
     setTitle("Rimplex");
     ImageIcon icon = new ImageIcon(
         "C:\\Users\\Brooke\\git\\team11\\rimplex\\src\\gui\\iconRimplex.png");
@@ -63,6 +64,7 @@ public class NewMainInterface extends JFrame implements Finals
     setupNorthPanel();
     setupCenterPanel();
     setUpEastPanel();
+    // setUpSouthPanel();
     JPanel bar = new JPanel();
     bar.setLayout(new GridLayout(1, 1));
     history = new JButton(">");
@@ -76,11 +78,12 @@ public class NewMainInterface extends JFrame implements Finals
     contentPane.add(centerPanel, BorderLayout.WEST);
     contentPane.add(eastPanel, BorderLayout.CENTER);
     contentPane.add(bar, BorderLayout.EAST);
+    // contentPane.add(southPanel, BorderLayout.SOUTH);
   }
 
   private void setUpEastPanel()
   {
-    GridLayout layout = new GridLayout(5, 2);
+    GridLayout layout = new GridLayout(5, 3);
     layout.setHgap(20);
     layout.setVgap(20);
     eastPanel = new JPanel(layout);
@@ -91,16 +94,23 @@ public class NewMainInterface extends JFrame implements Finals
       btn.setForeground(Color.BLUE);
       increaseSize(btn);
       btn.addActionListener(listener);
+      btn.setPreferredSize(new Dimension(50, 50));
       eastPanel.add(btn);
     }
   }
 
   private void setupCenterPanel()
   {
-    GridLayout layout = new GridLayout(5, 3);
-    layout.setHgap(20);
-    layout.setVgap(20);
-    centerPanel = new JPanel(layout);
+    // GridLayout layout = new GridLayout(5, 3);
+    GridBagLayout layout = new GridBagLayout();
+    // layout.setHgap(20);
+    // layout.setVgap(20);
+    centerPanel = new JPanel();
+    centerPanel.setLayout(layout);
+    GridBagConstraints con = new GridBagConstraints();
+    centerPanel.setPreferredSize(new Dimension(300, 500));
+
+    Insets inset = new Insets(10, 10, 10, 10);
 
     JToggleButton sign = new JToggleButton(SIGN);
     JButton clearBtn = new JButton(CLEAR);
@@ -110,36 +120,204 @@ public class NewMainInterface extends JFrame implements Finals
     btns.add(clearBtn);
     btns.add(backBtn);
 
-    for (JButton btn : btns)
-    {
-      increaseSize(btn);
-      btn.addActionListener(listener);
-      btn.setForeground(Color.MAGENTA);
-      centerPanel.add(btn);
-    }
+    // for (JButton btn : btns)
+    // {
+    // increaseSize(btn);
+    // btn.addActionListener(listener);
+    // btn.setForeground(Color.MAGENTA);
+    // con.gridx = 0;
+    // con.gridy = 0;
+    // // con.fill = GridBagConstraints.HORIZONTAL;
+    // con.anchor = GridBagConstraints.NORTH;
+    // // layout.setConstraints(btn, con);
+    // centerPanel.add(btn, con);
+    // }
+
+    // setting up the clear button
+    increaseSize(clearBtn);
+    clearBtn.setPreferredSize(new Dimension(53, 53));
+    clearBtn.addActionListener(listener);
+    clearBtn.setForeground(Color.MAGENTA);
+    con.fill = GridBagConstraints.BOTH;
+    con.gridx = 0;
+    con.gridy = 0;
+    con.weightx = 100;
+    con.insets = inset;
+    centerPanel.add(clearBtn, con);
+
+    // setting up the backspace button
+    increaseSize(backBtn);
+    backBtn.setPreferredSize(new Dimension(53, 53));
+    backBtn.addActionListener(listener);
+    backBtn.setForeground(Color.MAGENTA);
+    con.fill = GridBagConstraints.BOTH;
+    con.gridx = 1;
+    con.gridy = 0;
+    con.weightx = 100;
+    con.insets = inset;
+    centerPanel.add(backBtn, con);
+
+    // setting up the sign button
     sign(sign);
+    sign.setPreferredSize(new Dimension(53, 53));
+    sign.addActionListener(listener);
+    sign.setForeground(Color.MAGENTA);
+    con.fill = GridBagConstraints.BOTH;
+    con.gridx = 2;
+    con.gridy = 0;
+    con.weightx = 100;
+    con.insets = inset;
+    centerPanel.add(sign, con);
 
-    for (int i = 1; i < 10; i++)
-    {
-      JButton btn = new JButton(String.valueOf(i));
-      centerPanel.add(btn);
-      increaseSize(btn);
-      btn.addActionListener(listener);
-      centerPanel.add(btn);
-    }
+    JButton btn = new JButton(String.valueOf(1));
+    increaseSize(btn);
+    btn.setPreferredSize(new Dimension(60, 60));
+    btn.addActionListener(listener);
+    con.gridx = 0;
+    con.gridy = 1;
+    con.fill = GridBagConstraints.BOTH;
+    con.insets = inset;
+    centerPanel.add(btn, con);
 
-    centerPanel.add(new JPanel());
+    JButton btn2 = new JButton(String.valueOf(2));
+    increaseSize(btn2);
+    btn2.setPreferredSize(new Dimension(60, 60));
+    btn2.addActionListener(listener);
+    con.gridx = 1;
+    con.gridy = 1;
+    con.fill = GridBagConstraints.BOTH;
+    con.insets = inset;
+    centerPanel.add(btn2, con);
+
+    JButton btn3 = new JButton(String.valueOf(3));
+    increaseSize(btn3);
+    btn3.setPreferredSize(new Dimension(60, 60));
+    btn3.addActionListener(listener);
+    con.gridx = 2;
+    con.gridy = 1;
+    con.fill = GridBagConstraints.BOTH;
+    con.insets = inset;
+    centerPanel.add(btn3, con);
+
+    JButton btn4 = new JButton(String.valueOf(4));
+    increaseSize(btn4);
+    btn4.setPreferredSize(new Dimension(60, 60));
+    btn4.addActionListener(listener);
+    con.gridx = 0;
+    con.gridy = 2;
+    con.fill = GridBagConstraints.BOTH;
+    con.insets = inset;
+    centerPanel.add(btn4, con);
+
+    JButton btn5 = new JButton(String.valueOf(5));
+    increaseSize(btn5);
+    btn5.setPreferredSize(new Dimension(60, 60));
+    btn5.addActionListener(listener);
+    con.gridx = 1;
+    con.gridy = 2;
+    con.fill = GridBagConstraints.BOTH;
+    con.insets = inset;
+    centerPanel.add(btn5, con);
+
+    JButton btn6 = new JButton(String.valueOf(6));
+    increaseSize(btn6);
+    btn6.setPreferredSize(new Dimension(60, 60));
+    btn6.addActionListener(listener);
+    con.gridx = 2;
+    con.gridy = 2;
+    con.fill = GridBagConstraints.BOTH;
+    con.insets = inset;
+    centerPanel.add(btn6, con);
+
+    JButton btn7 = new JButton(String.valueOf(7));
+    increaseSize(btn7);
+    btn7.setPreferredSize(new Dimension(60, 60));
+    btn7.addActionListener(listener);
+    con.gridx = 0;
+    con.gridy = 3;
+    con.fill = GridBagConstraints.BOTH;
+    con.insets = inset;
+    centerPanel.add(btn7, con);
+
+    JButton btn8 = new JButton(String.valueOf(8));
+    increaseSize(btn8);
+    btn8.setPreferredSize(new Dimension(60, 60));
+    btn8.addActionListener(listener);
+    con.gridx = 1;
+    con.gridy = 3;
+    con.fill = GridBagConstraints.BOTH;
+    con.insets = inset;
+    centerPanel.add(btn8, con);
+
+    JButton btn9 = new JButton(String.valueOf(9));
+    increaseSize(btn9);
+    btn9.setPreferredSize(new Dimension(60, 60));
+    btn9.addActionListener(listener);
+    con.gridx = 2;
+    con.gridy = 3;
+    con.fill = GridBagConstraints.BOTH;
+    con.insets = inset;
+    centerPanel.add(btn9, con);
+
+    // for (int i = 1; i < 10; i++)
+    // {
+    // JButton btnx = new JButton(String.valueOf(i));
+    // // centerPanel.add(btn);
+    // increaseSize(btn);
+    // btn.addActionListener(listener);
+    // con.gridx = 0;
+    // con.gridy = 1;
+    // // con.fill = GridBagConstraints.HORIZONTAL;
+    // // con.anchor = GridBagConstraints.CENTER;
+    // centerPanel.add(btn, con);
+    // }
 
     JButton zeroBtn = new JButton("0");
     increaseSize(zeroBtn);
+    zeroBtn.setPreferredSize(new Dimension(60, 60));
     zeroBtn.addActionListener(listener);
-    centerPanel.add(zeroBtn);
+    con.gridx = 0;
+    con.gridy = 4;
+    con.gridwidth = GridBagConstraints.RELATIVE;
+    centerPanel.add(zeroBtn, con);
 
     JButton imagBtn = new JButton(HTML + I);
     increaseSize(imagBtn);
+    imagBtn.setPreferredSize(new Dimension(60, 60));
     imagBtn.addActionListener(listener);
-    centerPanel.add(imagBtn);
+    con.gridx = 2;
+    con.gridy = 4;
+    con.gridwidth = 1;
+    centerPanel.add(imagBtn, con);
+
   }
+
+  // private void setUpSouthPanel()
+  // {
+  // GridBagLayout layout = new GridBagLayout();
+  // southPanel = new JPanel(layout);
+  // GridBagConstraints con = new GridBagConstraints();
+  //
+  // JButton zeroBtn = new JButton("0");
+  // increaseSize(zeroBtn);
+  // zeroBtn.addActionListener(listener);
+  // con.gridx = 0;
+  // con.gridy = 0;
+  // con.gridwidth = 2;
+  // con.weightx = 100;
+  // // con.fill = GridBagConstraints.HORIZONTAL;
+  // con.anchor = GridBagConstraints.SOUTHWEST;
+  // southPanel.add(zeroBtn);
+  //
+  // JButton imagBtn = new JButton(HTML + I);
+  // increaseSize(imagBtn);
+  // imagBtn.addActionListener(listener);
+  // con.gridx = 3;
+  // con.gridy = 0;
+  // // con.fill = GridBagConstraints.HORIZONTAL;
+  // con.anchor = GridBagConstraints.SOUTH;
+  // southPanel.add(imagBtn);
+  // }
 
   /**
    * Exactly the same as increaseSize but just for ToggleButton.
@@ -150,12 +328,8 @@ public class NewMainInterface extends JFrame implements Finals
   private void sign(JToggleButton button)
   {
     Font oldFont = button.getFont();
-    Font newFont = new Font("Times New Roman", oldFont.getStyle(), 20);
+    Font newFont = new Font("Times New Roman", oldFont.getStyle(), 30);
     button.setFont(newFont);
-
-    button.addActionListener(listener);
-    button.setForeground(Color.MAGENTA);
-    centerPanel.add(button);
   }
 
   /**
@@ -167,7 +341,7 @@ public class NewMainInterface extends JFrame implements Finals
   private void increaseSize(JButton button)
   {
     Font oldFont = button.getFont();
-    Font newFont = new Font("Times New Roman", oldFont.getStyle(), 20);
+    Font newFont = new Font("Times New Roman", oldFont.getStyle(), 30);
     button.setFont(newFont);
   }
 
