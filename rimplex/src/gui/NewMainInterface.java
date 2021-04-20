@@ -15,16 +15,11 @@ public class NewMainInterface extends JFrame implements Finals
   private static NewMainInterface ui;
   private InterfaceController listener;
   private JMenuBar menuBar;
-  private JPanel northPanel;
-  private JPanel eastPanel;
-  private JPanel centerPanel;
-  private JPanel southPanel;
+  JPanel northPanel, eastPanel, centerPanel;
 
   static JButton history;
 
-  JLabel expressionDisplay;
-  JLabel resultDisplay;
-  JLabel inputDisplay;
+  JLabel expressionDisplay, resultDisplay, inputDisplay;
 
   /**
    * Default constructor.
@@ -391,6 +386,8 @@ public class NewMainInterface extends JFrame implements Finals
    */
   private void createMenu()
   {
+    MenuController menuListener = new MenuController();
+
     menuBar = new JMenuBar();
 
     JMenu fileMenu = new JMenu(FILE);
@@ -400,7 +397,7 @@ public class NewMainInterface extends JFrame implements Finals
     {
       JMenuItem menuItem = new JMenuItem(item);
       increaseSize(menuItem);
-      menuItem.addActionListener(listener);
+      menuItem.addActionListener(menuListener);
       fileMenu.add(menuItem);
     }
 
