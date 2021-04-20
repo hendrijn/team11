@@ -15,7 +15,7 @@ public class NewMainInterface extends JFrame implements Finals
   private static NewMainInterface ui;
   private InterfaceController listener;
   private JMenuBar menuBar;
-  JPanel northPanel, eastPanel, centerPanel;
+  JPanel northPanel, eastPanel, centerPanel, bar;
 
   static JButton history;
 
@@ -63,7 +63,7 @@ public class NewMainInterface extends JFrame implements Finals
     setupCenterPanel();
     setUpEastPanel();
     // setUpSouthPanel();
-    JPanel bar = new JPanel();
+    bar = new JPanel();
     bar.setLayout(new GridLayout(1, 1));
     history = new JButton(">");
     HistoryController cont = new HistoryController();
