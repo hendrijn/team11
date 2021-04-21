@@ -3,6 +3,8 @@ package gui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -14,7 +16,7 @@ import javax.swing.JOptionPane;
  * @author Jacquelyn Hendricks
  * @version v3
  */
-public class MenuController implements ActionListener, Finals
+public class MenuController extends Timer implements ActionListener, Finals
 {
 
   private CalculationRecorder recorder = new CalculationRecorder();
@@ -76,21 +78,14 @@ public class MenuController implements ActionListener, Finals
   }
 
   /**
-   * Plays the recording on the screen.
+   * Plays the recording on the screen. Recorder is run() located within the calculation recorder.
    * 
    * @param ui
    *          the interface
    */
   private void startPlayback(NewMainInterface ui)
   {
-    ArrayList<String[]> recording = recorder.getRecording();
-
-    for (int i = 0; i < recording.size() - 1; i++)
-    {
-      String[] calculation = recording.get(i);
-      ui.expressionDisplay.setText(calculation[0] + calculation[1] + calculation[2]);
-      ui.resultDisplay.setText(calculation[3]);
-    }
+    schedule(recorder, 0, 200);
   }
 
   /**
@@ -107,7 +102,7 @@ public class MenuController implements ActionListener, Finals
     {
       int choice = JOptionPane.showConfirmDialog(null, "Confirm addition", null,
           JOptionPane.YES_NO_OPTION);
-      
+
       if (choice == JOptionPane.YES_OPTION)
       {
         recorder.add(ui.getExpressionLabel(), ui.getResultLabel());

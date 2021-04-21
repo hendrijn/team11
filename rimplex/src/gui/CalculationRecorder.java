@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.TimerTask;
 
 import javax.swing.*;
 
@@ -11,10 +12,12 @@ import javax.swing.*;
  * @author Jacquelyn Hendricks
  * @version v3
  */
-public class CalculationRecorder
+public class CalculationRecorder extends TimerTask
 {
   private ArrayList<String[]> recording;
   private String[] calculation;
+  private Timer timer = new Timer(0, null);
+  private static int count = 0;
 
   /**
    * Constructor.
@@ -59,7 +62,7 @@ public class CalculationRecorder
   {
     calculation = expressionLabel.getText().split("\\s");
     calculation[3] = resultLabel.getText();
-    
+
     recording.add(calculation);
   }
 
@@ -92,5 +95,20 @@ public class CalculationRecorder
       component.setEnabled(isEnabled);
     }
 
+  }
+
+  /**
+   * Handles tasks in the timer.
+   */
+  @Override
+  public void run()
+  {
+    count++;
+    if (count > 4)
+    {
+      cancel();
+      return;
+    }
+    System.out.println("Print me");
   }
 }
