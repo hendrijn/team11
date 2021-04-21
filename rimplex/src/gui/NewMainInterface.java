@@ -15,7 +15,7 @@ public class NewMainInterface extends JFrame implements Finals
 
   private static NewMainInterface ui;
   private InterfaceController listener;
-  private JMenuBar menuBar;
+  JMenuBar menuBar;
   JPanel northPanel, eastPanel, centerPanel, bar;
 
   static JButton history;
@@ -31,13 +31,13 @@ public class NewMainInterface extends JFrame implements Finals
     setupFrame();
     setSize(670, 550);
     setTitle("Rimplex");
-    //ImageIcon icon = new ImageIcon(
-        //"C:\\Users\\Brooke\\git\\team11\\rimplex\\src\\gui\\iconRimplex.png");
-    
+    // ImageIcon icon = new ImageIcon(
+    // "C:\\Users\\Brooke\\git\\team11\\rimplex\\src\\gui\\iconRimplex.png");
+
     ClassLoader cldr = this.getClass().getClassLoader();
     java.net.URL imgURL = cldr.getResource("gui/iconRimplex.png");
     ImageIcon icon = new ImageIcon(imgURL);
-    
+
     setIconImage(icon.getImage());
     setVisible(true); // display this
     System.out.println("current working directory is: " + System.getProperty("user.dir"));
@@ -96,7 +96,7 @@ public class NewMainInterface extends JFrame implements Finals
 
     for (String function : FUNCTIONS)
     {
-      JButton btn = new JButton(function); 
+      JButton btn = new JButton(function);
       btn.setForeground(Color.BLUE);
       increaseSize(btn);
       btn.addActionListener(listener);
@@ -116,7 +116,7 @@ public class NewMainInterface extends JFrame implements Finals
     GridBagConstraints con = new GridBagConstraints();
     centerPanel.setPreferredSize(new Dimension(300, 500));
 
-    Insets inset = new Insets(10, 10, 10, 10);
+    Insets inset = new Insets(5, 5, 5, 5);
 
     JToggleButton sign = new JToggleButton(SIGN);
     JButton clearBtn = new JButton(CLEAR);
@@ -296,8 +296,7 @@ public class NewMainInterface extends JFrame implements Finals
     con.gridy = 4;
     con.gridwidth = 1;
     centerPanel.add(imagBtn, con);
-    
-    
+
   }
 
   // private void setUpSouthPanel()
@@ -408,7 +407,10 @@ public class NewMainInterface extends JFrame implements Finals
       increaseSize(menuItem);
       menuItem.addActionListener(menuListener);
       fileMenu.add(menuItem);
+      menuItem.setEnabled(false);
     }
+
+    fileMenu.getItem(0).setEnabled(true);
 
     JMenu aboutMenu = new JMenu(ABOUT);
     menuBar.add(aboutMenu);
