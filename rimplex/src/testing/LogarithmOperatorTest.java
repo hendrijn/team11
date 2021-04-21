@@ -23,17 +23,17 @@ class LogarithmOperatorTest
     LogarithmOperator l = new LogarithmOperator();
 
     // complex
-    String actual = l.evalulate(" 7    + 9     i ");
+    String actual = l.log(" 7    + 9     i ");
     String expected = "log(7+9i)";
     assertTrue(actual.equals(expected));
 
     // real
-    actual = l.evalulate("  4      ");
+    actual = l.log("  4      ");
     expected = "0.60";
     assertTrue(actual.equals(expected));
 
     // imaginary
-    actual = l.evalulate("  8      i      ");
+    actual = l.log("  8      i      ");
     expected = "log(8i)";
     assertTrue(actual.equals(expected));
   }
@@ -49,7 +49,7 @@ class LogarithmOperatorTest
     // empty
     try
     {
-      String actual = l.evalulate("");
+      String actual = l.log("");
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)
@@ -60,7 +60,7 @@ class LogarithmOperatorTest
     // null
     try
     {
-      String actual = l.evalulate(null);
+      String actual = l.log(null);
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)
@@ -71,7 +71,7 @@ class LogarithmOperatorTest
     // string
     try
     {
-      String actual = l.evalulate("vhjb3yito");
+      String actual = l.log("vhjb3yito");
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)
@@ -82,7 +82,7 @@ class LogarithmOperatorTest
     // multi i's
     try
     {
-      String actual = l.evalulate("6ii");
+      String actual = l.log("6ii");
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)
@@ -93,7 +93,7 @@ class LogarithmOperatorTest
     // ilovecs
     try
     {
-      String actual = l.evalulate("ilovecs");
+      String actual = l.log("ilovecs");
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)
@@ -110,9 +110,9 @@ class LogarithmOperatorTest
   {
     LogarithmOperator l = new LogarithmOperator();
 
-    String actual = l.evalulate("18");
+    String actual = l.log("18");
     String expected = "1.26";
-    assertTrue(actual.equals(expected));
+    assertEquals(actual, expected);
   }
 
   /**
@@ -123,7 +123,7 @@ class LogarithmOperatorTest
   {
     LogarithmOperator l = new LogarithmOperator();
 
-    String actual = l.evalulate("4i");
+    String actual = l.log("4i");
     String expected = "log(4i)";
     assertTrue(actual.equals(expected));
   }
@@ -136,7 +136,7 @@ class LogarithmOperatorTest
   {
     LogarithmOperator l = new LogarithmOperator();
 
-    String actual = l.evalulate("3+7i");
+    String actual = l.log("3+7i");
     String expected = "log(3+7i)";
     assertTrue(actual.equals(expected));
   }
@@ -151,7 +151,7 @@ class LogarithmOperatorTest
 
     try
     {
-      String actual = l.evalulate("-7");
+      String actual = l.log("-7");
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)
@@ -170,7 +170,7 @@ class LogarithmOperatorTest
 
     try
     {
-      String actual = l.evalulate("0");
+      String actual = l.log("0");
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)
@@ -180,7 +180,7 @@ class LogarithmOperatorTest
 
     try
     {
-      String actual = l.evalulate("0.00");
+      String actual = l.log("0.00");
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)
