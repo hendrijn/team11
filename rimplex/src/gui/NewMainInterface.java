@@ -96,7 +96,7 @@ public class NewMainInterface extends JFrame implements Finals
 
     for (String function : FUNCTIONS)
     {
-      JButton btn = new JButton(function);
+      JButton btn = new JButton(function); 
       btn.setForeground(Color.BLUE);
       increaseSize(btn);
       btn.addActionListener(listener);
@@ -121,6 +121,7 @@ public class NewMainInterface extends JFrame implements Finals
     JToggleButton sign = new JToggleButton(SIGN);
     JButton clearBtn = new JButton(CLEAR);
     JButton backBtn = new JButton(BACKSPACE);
+    JButton realBtn = new JButton(RPARTS);
 
     ArrayList<JButton> btns = new ArrayList<>();
     btns.add(clearBtn);
@@ -295,6 +296,32 @@ public class NewMainInterface extends JFrame implements Finals
     con.gridy = 4;
     con.gridwidth = 1;
     centerPanel.add(imagBtn, con);
+    
+    // setting up the imaginary parts button
+
+    /*JButton imagPBtn = new JButton(IPARTS);
+    imagPBtn.setPreferredSize(new Dimension(53, 53));
+    imagPBtn.addActionListener(listener);
+    imagPBtn.setForeground(Color.BLACK);
+    con.fill = GridBagConstraints.BOTH;
+    con.gridx = ?;
+    con.gridy = ?;
+    con.weightx = 100;
+    con.insets = inset;
+    centerPanel.add(imagPBtn, con);*/
+    
+    // setting up the real parts button
+
+    /*JButton realBtn = new JButton(RPARTS);
+    imagPBtn.setPreferredSize(new Dimension(53, 53));
+    imagPBtn.addActionListener(listener);
+    imagPBtn.setForeground(Color.BLACK);
+    con.fill = GridBagConstraints.BOTH;
+    con.gridx = ?;
+    con.gridy = ?;
+    con.weightx = 100;
+    con.insets = inset;
+    centerPanel.add(realBtn, con);*/
 
   }
 

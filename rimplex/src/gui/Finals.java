@@ -23,6 +23,8 @@ public interface Finals
   static final String EQUALS = "=";
   static final String SIGN = "±";
   static final String INVERSE = "Inv";
+  static final String RPARTS = "Real";
+  static final String IPARTS = "Imag";
   static final String LPAREN = "(";
   static final String RPAREN = ")";
   static final String DECIMAL = ".";
