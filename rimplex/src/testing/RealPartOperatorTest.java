@@ -14,6 +14,9 @@ import operations.RealPartOperator;
  */
 class RealPartOperatorTest
 {
+  /**
+   * tests for operands with spaces.
+   */
   @Test
   public void testSpaces()
   {
@@ -35,6 +38,9 @@ class RealPartOperatorTest
     assertTrue(actual.equals(expected));
   }
 
+  /**
+   * tests for illegal arguments (operands that are not real, imaginary, or complex numbers.
+   */
   @Test
   public void testIllegalArgs()
   {
@@ -96,6 +102,9 @@ class RealPartOperatorTest
     }
   }
 
+  /**
+   * tests for real opeands.
+   */
   @Test
   public void testReal()
   {
@@ -112,6 +121,9 @@ class RealPartOperatorTest
     assertTrue(actual.equals(expected));
   }
 
+  /**
+   * tests for imaginary operands.
+   */
   @Test
   public void testImaginary()
   {
@@ -128,6 +140,9 @@ class RealPartOperatorTest
     assertTrue(actual.equals(expected));
   }
 
+  /**
+   * tests for complex operands.
+   */
   @Test
   public void testComplex()
   {
