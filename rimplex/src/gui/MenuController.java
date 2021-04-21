@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 
 /**
  * Controls the functionality of the menu items.
@@ -33,10 +34,10 @@ public class MenuController implements ActionListener, Finals
     {
       case ADDTOREC:
         handleAdding(ui);
-        setItemsEnabled(play, true);
         break;
       case START:
         setButtonsEnabled(ui, false);
+        setItemsEnabled(add, false);
         setItemsEnabled(pause, true);
         setItemsEnabled(stop, true);
         setItemsEnabled(play, false);
@@ -44,12 +45,14 @@ public class MenuController implements ActionListener, Finals
         break;
       case PAUSE:
         setItemsEnabled(play, true);
+        setItemsEnabled(pause, false);
         break;
       case STOP:
         setButtonsEnabled(ui, true);
         setItemsEnabled(play, true);
-        setItemsEnabled(pause, true);
-        setItemsEnabled(stop, true);
+        setItemsEnabled(pause, false);
+        setItemsEnabled(stop, false);
+        setItemsEnabled(add, true);
         break;
       default:
         System.exit(0);
@@ -102,7 +105,14 @@ public class MenuController implements ActionListener, Finals
       ui.errorMessage("Cannot add incomplete calculation");
     else
     {
-      recorder.add(ui.getExpressionLabel(), ui.getResultLabel());
+      int choice = JOptionPane.showConfirmDialog(null, "Confirm addition", null,
+          JOptionPane.YES_NO_OPTION);
+      
+      if (choice == JOptionPane.YES_OPTION)
+      {
+        recorder.add(ui.getExpressionLabel(), ui.getResultLabel());
+        setItemsEnabled(play, true);
+      }
     }
 
   }
