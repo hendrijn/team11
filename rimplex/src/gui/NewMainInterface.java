@@ -116,7 +116,7 @@ public class NewMainInterface extends JFrame implements Finals
     GridBagConstraints con = new GridBagConstraints();
     centerPanel.setPreferredSize(new Dimension(300, 500));
 
-    Insets inset = new Insets(10, 10, 10, 10);
+    Insets inset = new Insets(5, 5, 5, 5);
 
     JToggleButton sign = new JToggleButton(SIGN);
     JButton clearBtn = new JButton(CLEAR);
