@@ -29,7 +29,7 @@ public class NewMainInterface extends JFrame implements Finals
   {
     HistoryDisplay history = HistoryDisplay.getInstance();
     setupFrame();
-    setSize(540, 550);
+    setSize(670, 550);
     setTitle("Rimplex");
     //ImageIcon icon = new ImageIcon(
         //"C:\\Users\\Brooke\\git\\team11\\rimplex\\src\\gui\\iconRimplex.png");
@@ -297,32 +297,7 @@ public class NewMainInterface extends JFrame implements Finals
     con.gridwidth = 1;
     centerPanel.add(imagBtn, con);
     
-    // setting up the imaginary parts button
-
-    /*JButton imagPBtn = new JButton(IPARTS);
-    imagPBtn.setPreferredSize(new Dimension(53, 53));
-    imagPBtn.addActionListener(listener);
-    imagPBtn.setForeground(Color.BLACK);
-    con.fill = GridBagConstraints.BOTH;
-    con.gridx = ?;
-    con.gridy = ?;
-    con.weightx = 100;
-    con.insets = inset;
-    centerPanel.add(imagPBtn, con);*/
     
-    // setting up the real parts button
-
-    /*JButton realBtn = new JButton(RPARTS);
-    imagPBtn.setPreferredSize(new Dimension(53, 53));
-    imagPBtn.addActionListener(listener);
-    imagPBtn.setForeground(Color.BLACK);
-    con.fill = GridBagConstraints.BOTH;
-    con.gridx = ?;
-    con.gridy = ?;
-    con.weightx = 100;
-    con.insets = inset;
-    centerPanel.add(realBtn, con);*/
-
   }
 
   // private void setUpSouthPanel()

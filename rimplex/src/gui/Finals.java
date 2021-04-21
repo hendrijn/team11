@@ -25,6 +25,8 @@ public interface Finals
   static final String INVERSE = "Inv";
   static final String RPARTS = "Real";
   static final String IPARTS = "Imag";
+  static final String LOG = "log";
+  static final String EXP = "exp";
   static final String LPAREN = "(";
   static final String RPAREN = ")";
   static final String DECIMAL = ".";
@@ -42,6 +44,6 @@ public interface Finals
   static final String[] FILEMENUITEMS = {ADDTOREC, START, PAUSE, STOP};
 
   static final String[] FUNCTIONS = {ADD, RESET, SUBTRACT, INVERSE, MULTIPLY, LPAREN, DIVIDE,
-      RPAREN, EQUALS, DECIMAL};
+      RPAREN, EQUALS, DECIMAL, RPARTS, IPARTS, LOG, EXP};
 
 }
