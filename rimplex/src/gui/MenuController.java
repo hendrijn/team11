@@ -2,9 +2,7 @@ package gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.Timer;
-import java.util.TimerTask;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;

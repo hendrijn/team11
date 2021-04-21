@@ -16,7 +16,6 @@ public class CalculationRecorder extends TimerTask
 {
   private ArrayList<String[]> recording;
   private String[] calculation;
-  private Timer timer = new Timer(0, null);
   private static int count = 0;
 
   /**
@@ -31,34 +30,12 @@ public class CalculationRecorder extends TimerTask
   /**
    * Adds a calculation to the recording.
    * 
-   * @param firstOperand
-   *          first operand
-   * @param operator
-   *          operator
-   * @param secondOperand
-   *          second operand
-   * @param result
-   *          result
-   */
-  public void add(String firstOperand, String operator, String secondOperand, String result)
-  {
-    calculation[0] = firstOperand;
-    calculation[1] = operator;
-    calculation[2] = secondOperand;
-    calculation[3] = result;
-
-    recording.add(calculation);
-  }
-
-  /**
-   * Adds a calculation to the recording.
-   * 
    * @param expressionLabel
    *          operands and operator
    * @param resultLabel
    *          result
    */
-  public void add(JLabel expressionLabel, JLabel resultLabel)
+  void add(JLabel expressionLabel, JLabel resultLabel)
   {
     calculation = expressionLabel.getText().split("\\s");
     calculation[3] = resultLabel.getText();
@@ -69,7 +46,7 @@ public class CalculationRecorder extends TimerTask
   /**
    * @return the recording
    */
-  public ArrayList<String[]> getRecording()
+  ArrayList<String[]> getRecording()
   {
     return recording;
   }
