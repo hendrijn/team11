@@ -13,7 +13,7 @@ import javax.swing.*;
  */
 public class CalculationRecorder
 {
-  private ArrayList<String> recording;
+  private ArrayList<String[]> recording;
   private String[] calculation;
 
   /**
@@ -22,7 +22,37 @@ public class CalculationRecorder
   public CalculationRecorder()
   {
     recording = new ArrayList<>();
-    calculation = new String[3];
+    calculation = new String[4];
+  }
+
+  /**
+   * Adds a calculation to the recording.
+   * 
+   * @param firstOperand
+   *          first operand
+   * @param operator
+   *          operator
+   * @param secondOperand
+   *          second operand
+   * @param result
+   *          result
+   */
+  public void add(String firstOperand, String operator, String secondOperand, String result)
+  {
+    calculation[0] = firstOperand;
+    calculation[1] = operator;
+    calculation[2] = secondOperand;
+    calculation[3] = result;
+
+    recording.add(calculation);
+  }
+
+  /**
+   * @return the recording
+   */
+  public ArrayList<String[]> getRecording()
+  {
+    return recording;
   }
 
   /**
@@ -36,7 +66,7 @@ public class CalculationRecorder
   void setPanelEnabled(JPanel panel, boolean isEnabled)
   {
     Component[] components = panel.getComponents();
-
+  
     for (Component component : components)
     {
       if (component instanceof JPanel)
@@ -45,6 +75,6 @@ public class CalculationRecorder
       }
       component.setEnabled(isEnabled);
     }
-
+  
   }
 }

@@ -39,38 +39,6 @@ public class InterfaceController
   }
 
   /**
-   * @return the operator
-   */
-  public String getOperator()
-  {
-    return operator;
-  }
-
-  /**
-   * @return the firstOperand
-   */
-  public String getFirstOperand()
-  {
-    return firstOperand;
-  }
-
-  /**
-   * @return the secondOperand
-   */
-  public String getSecondOperand()
-  {
-    return secondOperand;
-  }
-
-  /**
-   * @return the result
-   */
-  public String getResult()
-  {
-    return result;
-  }
-
-  /**
    * @return the shownError
    */
   public boolean isShownError()

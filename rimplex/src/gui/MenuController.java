@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JMenuItem;
 
@@ -32,6 +33,7 @@ public class MenuController implements ActionListener, Finals
         break;
       case START:
         setButtonsEnabled(ui, false);
+        startPlayback(ui);
         break;
       case PAUSE:
         System.out.println("paused");
@@ -45,6 +47,24 @@ public class MenuController implements ActionListener, Finals
   }
 
   /**
+   * Plays the recording on the screen.
+   * 
+   * @param ui
+   *          the interface
+   */
+  private void startPlayback(NewMainInterface ui)
+  {
+    ArrayList<String[]> recording = recorder.getRecording();
+    
+    for (int i = 0; i < recording.size() - 1; i++)
+    {
+      String[] calculation = recording.get(i);
+      ui.expressionDisplay.setText(calculation[0] + calculation[1] + calculation[2]);
+      ui.resultDisplay.setText(calculation[3]);
+    }
+  }
+
+  /**
    * Handles adding a new calculation to the recording.
    * 
    * @param ui
@@ -52,15 +72,14 @@ public class MenuController implements ActionListener, Finals
    */
   private void handleAdding(NewMainInterface ui)
   {
-    InterfaceController uiController = InterfaceController.getInstance();
-    
-    if (uiController.getResult().equals(EMPTY))
+    if (ui.getResultLabel().getText().equals(HTML))
       ui.errorMessage("Cannot add incomplete calculation");
     else
     {
-      
+//      recorder.add(uiController.getFirstOperand(), uiController.getOperator(),
+//          uiController.getSecondOperand(), uiController.getResult());
     }
-      
+
   }
 
   /**
