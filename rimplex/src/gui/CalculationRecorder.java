@@ -48,6 +48,22 @@ public class CalculationRecorder
   }
 
   /**
+   * Adds a calculation to the recording.
+   * 
+   * @param expressionLabel
+   *          operands and operator
+   * @param resultLabel
+   *          result
+   */
+  public void add(JLabel expressionLabel, JLabel resultLabel)
+  {
+    calculation = expressionLabel.getText().split("\\s");
+    calculation[3] = resultLabel.getText();
+    
+    recording.add(calculation);
+  }
+
+  /**
    * @return the recording
    */
   public ArrayList<String[]> getRecording()
@@ -66,7 +82,7 @@ public class CalculationRecorder
   void setPanelEnabled(JPanel panel, boolean isEnabled)
   {
     Component[] components = panel.getComponents();
-  
+
     for (Component component : components)
     {
       if (component instanceof JPanel)
@@ -75,6 +91,6 @@ public class CalculationRecorder
       }
       component.setEnabled(isEnabled);
     }
-  
+
   }
 }

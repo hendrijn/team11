@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
 /**
@@ -16,6 +17,7 @@ public class MenuController implements ActionListener, Finals
 {
 
   private CalculationRecorder recorder = new CalculationRecorder();
+  private JMenuItem add, play, pause, stop;
 
   /**
    * Responds to menu button presses.
@@ -24,26 +26,50 @@ public class MenuController implements ActionListener, Finals
   public void actionPerformed(ActionEvent e)
   {
     NewMainInterface ui = NewMainInterface.getInstance();
+    assignMenuItems(ui);
     JMenuItem itemClicked = (JMenuItem) e.getSource();
 
     switch (itemClicked.getText())
     {
       case ADDTOREC:
         handleAdding(ui);
+        setItemsEnabled(play, true);
         break;
       case START:
         setButtonsEnabled(ui, false);
+        setItemsEnabled(pause, true);
+        setItemsEnabled(stop, true);
+        setItemsEnabled(play, false);
         startPlayback(ui);
         break;
       case PAUSE:
-        System.out.println("paused");
+        setItemsEnabled(play, true);
         break;
       case STOP:
         setButtonsEnabled(ui, true);
+        setItemsEnabled(play, true);
+        setItemsEnabled(pause, true);
+        setItemsEnabled(stop, true);
         break;
       default:
         System.exit(0);
     }
+  }
+
+  /**
+   * Gets each menu item and assigns it to the right variable.
+   * 
+   * @param ui
+   *          the interface
+   */
+  private void assignMenuItems(NewMainInterface ui)
+  {
+    JMenu fileMenu = (JMenu) ui.menuBar.getMenu(0);
+
+    add = fileMenu.getItem(0);
+    play = fileMenu.getItem(1);
+    pause = fileMenu.getItem(2);
+    stop = fileMenu.getItem(3);
   }
 
   /**
@@ -55,7 +81,7 @@ public class MenuController implements ActionListener, Finals
   private void startPlayback(NewMainInterface ui)
   {
     ArrayList<String[]> recording = recorder.getRecording();
-    
+
     for (int i = 0; i < recording.size() - 1; i++)
     {
       String[] calculation = recording.get(i);
@@ -76,8 +102,7 @@ public class MenuController implements ActionListener, Finals
       ui.errorMessage("Cannot add incomplete calculation");
     else
     {
-//      recorder.add(uiController.getFirstOperand(), uiController.getOperator(),
-//          uiController.getSecondOperand(), uiController.getResult());
+      recorder.add(ui.getExpressionLabel(), ui.getResultLabel());
     }
 
   }
@@ -95,6 +120,19 @@ public class MenuController implements ActionListener, Finals
     recorder.setPanelEnabled(ui.bar, isEnabled);
     recorder.setPanelEnabled(ui.centerPanel, isEnabled);
     recorder.setPanelEnabled(ui.eastPanel, isEnabled);
+  }
+
+  /**
+   * Either enables or disables menu items on the main interface.
+   * 
+   * @param play2
+   *          the menu item.
+   * @param isEnabled
+   *          true to enable, false to disable
+   */
+  private void setItemsEnabled(JMenuItem item, boolean isEnabled)
+  {
+    item.setEnabled(isEnabled);
   }
 
 }
