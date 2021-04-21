@@ -3,6 +3,7 @@ package gui;
 import java.awt.*;
 import java.awt.event.ComponentListener;
 import java.awt.event.MouseListener;
+import java.io.InputStream;
 import java.util.ArrayList;
 
 import javax.swing.*;
@@ -30,10 +31,16 @@ public class NewMainInterface extends JFrame implements Finals
     setupFrame();
     setSize(540, 550);
     setTitle("Rimplex");
-    ImageIcon icon = new ImageIcon(
-        "C:\\Users\\Brooke\\git\\team11\\rimplex\\src\\gui\\iconRimplex.png");
+    //ImageIcon icon = new ImageIcon(
+        //"C:\\Users\\Brooke\\git\\team11\\rimplex\\src\\gui\\iconRimplex.png");
+    
+    ClassLoader cldr = this.getClass().getClassLoader();
+    java.net.URL imgURL = cldr.getResource("gui/iconRimplex.png");
+    ImageIcon icon = new ImageIcon(imgURL);
+    
     setIconImage(icon.getImage());
     setVisible(true); // display this
+    System.out.println("current working directory is: " + System.getProperty("user.dir"));
   }
 
   /**
