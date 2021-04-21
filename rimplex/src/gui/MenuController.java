@@ -28,7 +28,7 @@ public class MenuController implements ActionListener, Finals
     switch (itemClicked.getText())
     {
       case ADDTOREC:
-        System.out.println("added");
+        handleAdding(ui);
         break;
       case START:
         setButtonsEnabled(ui, false);
@@ -42,6 +42,25 @@ public class MenuController implements ActionListener, Finals
       default:
         System.exit(0);
     }
+  }
+
+  /**
+   * Handles adding a new calculation to the recording.
+   * 
+   * @param ui
+   *          the interface.
+   */
+  private void handleAdding(NewMainInterface ui)
+  {
+    InterfaceController uiController = InterfaceController.getInstance();
+    
+    if (uiController.getResult().equals(EMPTY))
+      ui.errorMessage("Cannot add incomplete calculation");
+    else
+    {
+      
+    }
+      
   }
 
   /**

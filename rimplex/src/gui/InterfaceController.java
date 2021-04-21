@@ -16,6 +16,8 @@ import operations.*;
 public class InterfaceController
     implements Finals, ActionListener, KeyListener, MouseListener, FocusListener
 {
+  private static InterfaceController instance;
+
   private TempContext context = null;
   private String operator = EMPTY;
   private String firstOperand = EMPTY;
@@ -23,6 +25,58 @@ public class InterfaceController
   private String result = EMPTY;
 
   private boolean shownError = false;
+
+  /**
+   * Singleton.
+   * 
+   * @return the one instance of interface controller.
+   */
+  public static InterfaceController getInstance()
+  {
+    if (instance == null)
+      instance = new InterfaceController();
+    return instance;
+  }
+
+  /**
+   * @return the operator
+   */
+  public String getOperator()
+  {
+    return operator;
+  }
+
+  /**
+   * @return the firstOperand
+   */
+  public String getFirstOperand()
+  {
+    return firstOperand;
+  }
+
+  /**
+   * @return the secondOperand
+   */
+  public String getSecondOperand()
+  {
+    return secondOperand;
+  }
+
+  /**
+   * @return the result
+   */
+  public String getResult()
+  {
+    return result;
+  }
+
+  /**
+   * @return the shownError
+   */
+  public boolean isShownError()
+  {
+    return shownError;
+  }
 
   /**
    * Handles soft button operations.
@@ -245,7 +299,7 @@ public class InterfaceController
     {
       System.out.println(firstOperand + "\t" + secondOperand);
       ui.errorMessage(e.getMessage());
-      result = "";
+      result = EMPTY;
       shownError = true;
     }
     finally

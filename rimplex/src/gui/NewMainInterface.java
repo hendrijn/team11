@@ -60,7 +60,7 @@ public class NewMainInterface extends JFrame implements Finals
 
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-    listener = new InterfaceController();
+    listener = InterfaceController.getInstance();
 
     contentPane.setLayout(new BorderLayout(20, 20));
 
