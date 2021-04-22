@@ -40,6 +40,11 @@ public interface Finals
   static final String PAUSE = "Pause Recording";
   static final String STOP = "Stop Recording";
   static final String ABOUT = "About";
+  static final String HELP = "Help";
+  static final String SETTINGS = "Settings";
+  static final String ENG = "English";
+  static final String FRE = "Français";
+  static final String GER = "Deutsch";
 
   static final String[] FILEMENUITEMS = {ADDTOREC, START, PAUSE, STOP};
 
