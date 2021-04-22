@@ -27,20 +27,40 @@ public class NewMainInterface extends JFrame implements Finals
    */
   private NewMainInterface()
   {
-    HistoryDisplay history = HistoryDisplay.getInstance();
-    setupFrame();
+	
     setSize(670, 550);
     setTitle("Rimplex");
     // ImageIcon icon = new ImageIcon(
     // "C:\\Users\\Brooke\\git\\team11\\rimplex\\src\\gui\\iconRimplex.png");
 
+    //For OS X
+    
+    
     ClassLoader cldr = this.getClass().getClassLoader();
     java.net.URL imgURL = cldr.getResource("gui/iconRimplex.png");
     ImageIcon icon = new ImageIcon(imgURL);
 
+    final Taskbar taskbar = Taskbar.getTaskbar();
+
+    try {
+        //set icon for mac os (and other systems which do support this method)
+        taskbar.setIconImage(icon.getImage());
+    } catch (final UnsupportedOperationException e) {
+        System.out.println("The os does not support: 'taskbar.setIconImage'");
+    } catch (final SecurityException e) {
+        System.out.println("There was a security exception for: 'taskbar.setIconImage'");
+    }
+    
     setIconImage(icon.getImage());
+    System.out.println("before1");
+    System.out.println("before2");
+    //making NewMainInterface run repeatedly????????
+    //LogoDisplay logo = LogoDisplay.getInstance();
+    
+    HistoryDisplay history = HistoryDisplay.getInstance();
+    setupFrame();
     setVisible(true); // display this
-    System.out.println("current working directory is: " + System.getProperty("user.dir"));
+    //System.out.println("current working directory is: " + System.getProperty("user.dir"));
   }
 
   /**
@@ -348,8 +368,17 @@ public class NewMainInterface extends JFrame implements Finals
   private void increaseSize(JComponent button)
   {
     Font oldFont = button.getFont();
-    Font newFont = new Font("Times New Roman", oldFont.getStyle(), 30);
-    button.setFont(newFont);
+
+    if (button instanceof JButton || button instanceof JToggleButton)
+    {
+      Font newFont = new Font("Times New Roman", oldFont.getStyle(), 30);
+      button.setFont(newFont);
+    }
+    else if (button instanceof JMenu || button instanceof JMenuItem)
+    {
+      Font newFont = new Font("Times New Roman", oldFont.getStyle(), 20);
+      button.setFont(newFont);
+    }
   }
 
   /**
@@ -395,10 +424,12 @@ public class NewMainInterface extends JFrame implements Finals
   private void createMenu()
   {
     MenuController menuListener = new MenuController();
+    AboutController aboutListener = new AboutController();
 
     menuBar = new JMenuBar();
 
     JMenu fileMenu = new JMenu(FILE);
+    increaseSize(fileMenu);
     menuBar.add(fileMenu);
 
     for (String item : FILEMENUITEMS)
@@ -412,7 +443,12 @@ public class NewMainInterface extends JFrame implements Finals
 
     fileMenu.getItem(0).setEnabled(true);
 
-    JMenu aboutMenu = new JMenu(ABOUT);
+    JMenu aboutMenu = new JMenu("Help");
+    increaseSize(aboutMenu);
+    JMenuItem about = new JMenuItem(ABOUT);
+    increaseSize(about);
+    about.addActionListener(aboutListener);
+    aboutMenu.add(about);
     menuBar.add(aboutMenu);
   }
 
