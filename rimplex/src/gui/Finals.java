@@ -9,7 +9,8 @@ import java.util.List;
  * @author jacquelynhendricks
  *
  */
-public interface Finals {
+public interface Finals
+{
   static final String RESET = "R";
   static final String CLEAR = "C";
   static final String ADD = "+";
@@ -43,10 +44,10 @@ public interface Finals {
   static final String SETTINGS = "Settings";
   static final String ENG = "English";
   static final String FRE = "Français";
-  static final String GER = "Deutsch";  
-  
+  static final String GER = "Deutsch";
+
   static final String[] FILEMENUITEMS = {ADDTOREC, START, PAUSE, STOP};
-  static final String[] FUNCTIONS = {ADD, RESET, SUBTRACT, INVERSE, MULTIPLY, LPAREN, DIVIDE,
-      RPAREN, EQUALS, DECIMAL, RPARTS, IPARTS, LOG, EXP};
+  static final String[] FUNCTIONS = {ADD, RESET, INVERSE, SUBTRACT, LOG, EXP, MULTIPLY, LPAREN,
+      RPAREN, DIVIDE, RPARTS, IPARTS, EQUALS, DECIMAL};
 
 }
