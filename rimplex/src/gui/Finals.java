@@ -9,20 +9,19 @@ import java.util.List;
  * @author jacquelynhendricks
  *
  */
-public interface Finals
-{
+public interface Finals {
   static final String RESET = "R";
   static final String CLEAR = "C";
   static final String ADD = "+";
   static final String BACKSPACE = "←";
   static final String SUBTRACT = "-";
   static final String MULTIPLY = "×";
+  static final String INVERSE = "ƒ-¹";
   static final String PMULTIPLY = "*";
   static final String DIVIDE = "÷";
   static final String PDIVIDE = "/";
   static final String EQUALS = "=";
   static final String SIGN = "±";
-  static final String INVERSE = "Inv";
   static final String RPARTS = "Real";
   static final String IPARTS = "Imag";
   static final String LOG = "log";
@@ -40,9 +39,13 @@ public interface Finals
   static final String PAUSE = "Pause Recording";
   static final String STOP = "Stop Recording";
   static final String ABOUT = "About";
-
+  static final String HELP = "Help";
+  static final String SETTINGS = "Settings";
+  static final String ENG = "English";
+  static final String FRE = "Français";
+  static final String GER = "Deutsch";  
+  
   static final String[] FILEMENUITEMS = {ADDTOREC, START, PAUSE, STOP};
-
   static final String[] FUNCTIONS = {ADD, RESET, SUBTRACT, INVERSE, MULTIPLY, LPAREN, DIVIDE,
       RPAREN, EQUALS, DECIMAL, RPARTS, IPARTS, LOG, EXP};
 
