@@ -24,6 +24,8 @@ public class LogoDisplay extends JWindow implements Finals
 		setSize(1, 1);
 		setVisible(true);
 		setLocation(new Point(515, 150));
+		NewMainInterface ui = NewMainInterface.getInstance();
+		
 		System.out.println("happening");
 	}
 	

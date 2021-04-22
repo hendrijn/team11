@@ -27,7 +27,7 @@ public class NewMainInterface extends JFrame implements Finals
    */
   private NewMainInterface()
   {
-    
+	
     setSize(670, 550);
     setTitle("Rimplex");
     // ImageIcon icon = new ImageIcon(
@@ -52,13 +52,15 @@ public class NewMainInterface extends JFrame implements Finals
     }
     
     setIconImage(icon.getImage());
-    
-    LogoDisplay logo = LogoDisplay.getInstance();
+    System.out.println("before1");
+    System.out.println("before2");
+    //making NewMainInterface run repeatedly????????
+    //LogoDisplay logo = LogoDisplay.getInstance();
     
     HistoryDisplay history = HistoryDisplay.getInstance();
     setupFrame();
     setVisible(true); // display this
-    System.out.println("current working directory is: " + System.getProperty("user.dir"));
+    //System.out.println("current working directory is: " + System.getProperty("user.dir"));
   }
 
   /**
