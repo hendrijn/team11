@@ -348,8 +348,17 @@ public class NewMainInterface extends JFrame implements Finals
   private void increaseSize(JComponent button)
   {
     Font oldFont = button.getFont();
-    Font newFont = new Font("Times New Roman", oldFont.getStyle(), 30);
-    button.setFont(newFont);
+
+    if (button instanceof JButton || button instanceof JToggleButton)
+    {
+      Font newFont = new Font("Times New Roman", oldFont.getStyle(), 30);
+      button.setFont(newFont);
+    }
+    else if (button instanceof JMenu || button instanceof JMenuItem)
+    {
+      Font newFont = new Font("Times New Roman", oldFont.getStyle(), 20);
+      button.setFont(newFont);
+    }
   }
 
   /**
@@ -395,10 +404,12 @@ public class NewMainInterface extends JFrame implements Finals
   private void createMenu()
   {
     MenuController menuListener = new MenuController();
+    AboutController aboutListener = new AboutController();
 
     menuBar = new JMenuBar();
 
     JMenu fileMenu = new JMenu(FILE);
+    increaseSize(fileMenu);
     menuBar.add(fileMenu);
 
     for (String item : FILEMENUITEMS)
@@ -412,7 +423,12 @@ public class NewMainInterface extends JFrame implements Finals
 
     fileMenu.getItem(0).setEnabled(true);
 
-    JMenu aboutMenu = new JMenu(ABOUT);
+    JMenu aboutMenu = new JMenu("Help");
+    increaseSize(aboutMenu);
+    JMenuItem about = new JMenuItem(ABOUT);
+    increaseSize(about);
+    about.addActionListener(aboutListener);
+    aboutMenu.add(about);
     menuBar.add(aboutMenu);
   }
 
