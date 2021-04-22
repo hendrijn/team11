@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.TimerTask;
 
@@ -12,17 +13,16 @@ import javax.swing.*;
  * @author Jacquelyn Hendricks
  * @version v3
  */
-public class CalculationRecorder extends TimerTask
+public class CalculationRecorder extends Timer
 {
+
+  private static final long serialVersionUID = 8592944449515675645L;
   private ArrayList<String[]> recording;
   private String[] calculation;
-  private static int count = 0;
 
-  /**
-   * Constructor.
-   */
-  public CalculationRecorder()
+  public CalculationRecorder(int delay, ActionListener listener)
   {
+    super(delay, listener);
     recording = new ArrayList<>();
     calculation = new String[4];
   }
@@ -75,17 +75,17 @@ public class CalculationRecorder extends TimerTask
   }
 
   /**
-   * Handles tasks in the timer.
+   * Displays the elements in the recording.
+   * 
+   * @param calcCount
+   *          which calculation we're on
+   * @param elementsDisplayed
+   *          which part of the calculation are we on
    */
-  @Override
-  public void run()
+  public void displayNextElement(int calcCount, int elementsDisplayed)
   {
-    count++;
-    if (count > 4)
-    {
-      cancel();
-      return;
-    }
-    System.out.println("Print me");
+    System.out.println(recording.get(calcCount)[elementsDisplayed]);
+
   }
+
 }
