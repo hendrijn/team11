@@ -17,8 +17,8 @@ public class MenuController implements ActionListener, Finals
 
   private CalculationRecorder recorder = new CalculationRecorder(1000, this);
   private JMenuItem add, play, pause, stop;
-  private static int elementsDisplayed = 0;
-  private static int calcCount = 0;
+  private int elementsDisplayed = 0;
+  private int calcCount = 0;
 
   /**
    * Responds to menu button presses.
@@ -51,11 +51,7 @@ public class MenuController implements ActionListener, Finals
           setItemsEnabled(pause, false);
           break;
         case STOP:
-          setButtonsEnabled(ui, true);
-          setItemsEnabled(play, true);
-          setItemsEnabled(pause, false);
-          setItemsEnabled(stop, false);
-          setItemsEnabled(add, true);
+          stopPlayback(ui);
           break;
         default:
           System.exit(0);
@@ -65,22 +61,25 @@ public class MenuController implements ActionListener, Finals
     {
       if (calcCount < recorder.getRecording().size())
       {
+        // if we're starting a new calculation...
+        if (elementsDisplayed == 0)
+          resetDisplay(ui);
+
         recorder.displayNextElement(calcCount, elementsDisplayed, ui);
         elementsDisplayed++;
+
         // if all elements in a calculation have been shown...
-        if (6 / elementsDisplayed == 1)
+        if (elementsDisplayed == 4)
         {
           calcCount++;
           elementsDisplayed = 0;
-//          resetDisplay(ui);
         }
       }
       else
       {
-        recorder.stop();
+        stopPlayback(ui);
         calcCount = 0;
         elementsDisplayed = 0;
-        resetDisplay(ui);
       }
 
     }
@@ -111,8 +110,24 @@ public class MenuController implements ActionListener, Finals
   private void startPlayback(NewMainInterface ui)
   {
     ui.getInputLabel().setText(HTML);
-    resetDisplay(ui);
     recorder.start();
+  }
+
+  /**
+   * Plays the recording on the screen. Recorder is run() located within the calculation recorder.
+   * 
+   * @param ui
+   *          the interface
+   */
+  private void stopPlayback(NewMainInterface ui)
+  {
+    recorder.stop();
+    resetDisplay(ui);
+    setButtonsEnabled(ui, true);
+    setItemsEnabled(play, true);
+    setItemsEnabled(pause, false);
+    setItemsEnabled(stop, false);
+    setItemsEnabled(add, true);
   }
 
   /**
