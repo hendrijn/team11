@@ -110,7 +110,17 @@ public class MenuController implements ActionListener, Finals
   private void startPlayback(NewMainInterface ui)
   {
     ui.getInputLabel().setText(HTML);
-    recorder.start();
+    String speed = JOptionPane.showInputDialog("Specify a Playback Speed (sec)");
+    try
+    {
+      recorder.setDelay(Integer.parseInt(speed) * 1000);
+      recorder.start();
+    }
+    catch (NumberFormatException nfe)
+    {
+      ui.errorMessage("Not a valid number");
+      stopPlayback(ui);
+    }
   }
 
   /**
