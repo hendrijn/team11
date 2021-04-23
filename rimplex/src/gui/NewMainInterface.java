@@ -15,9 +15,8 @@ public class NewMainInterface extends JFrame implements Finals
 {
   private static final long serialVersionUID = 5691196863267451960L;
 
-  static final ResourceBundle STRINGS = ResourceBundle.getBundle("gui.Strings_fr_FR");
-
-  static final Locale LOCALE = Locale.FRENCH;
+  public static final ResourceBundle STRINGS = ResourceBundle.getBundle("gui.Strings",
+      Locale.getDefault());
 
   private static NewMainInterface ui;
   private InterfaceController listener;
@@ -372,6 +371,7 @@ public class NewMainInterface extends JFrame implements Finals
   {
     MenuController menuListener = new MenuController();
     AboutController aboutListener = new AboutController();
+    // LanguageController langListener = new LanguageController();
 
     menuBar = new JMenuBar();
 
@@ -401,6 +401,9 @@ public class NewMainInterface extends JFrame implements Finals
     increaseSize(english);
     increaseSize(french);
     increaseSize(german);
+    // english.addActionListener(langListener);
+    // french.addActionListener(langListener);
+    // german.addActionListener(langListener);
     settingsMenu.add(english);
     settingsMenu.add(french);
     settingsMenu.add(german);
