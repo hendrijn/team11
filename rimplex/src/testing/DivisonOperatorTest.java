@@ -63,6 +63,89 @@ class DivisonOperatorTest
   {
     TempContext d = new TempContext(new DivisionOperator());
 
+    //empty L
+    try
+    {
+      String actual = d.evaluate("", "6");
+    }
+    catch (IllegalArgumentException iae)
+    {
+      assertTrue(true);
+    }
+
+    //empty R
+    try
+    {
+      String actual = d.evaluate("6", "");
+    }
+    catch (IllegalArgumentException iae)
+    {
+      assertTrue(true);
+    }
+
+    
+    //null L
+    try
+    {
+      String actual = d.evaluate(null, "6");
+    }
+    catch (IllegalArgumentException iae)
+    {
+      assertTrue(true);
+    }
+
+    
+    //null R
+    try
+    {
+      String actual = d.evaluate("6", null);
+    }
+    catch (IllegalArgumentException iae)
+    {
+      assertTrue(true);
+    }
+
+    
+    //empty both
+    try
+    {
+      String actual = d.evaluate("", "");
+    }
+    catch (IllegalArgumentException iae)
+    {
+      assertTrue(true);
+    }
+
+    //null both   
+    try
+    {
+      String actual = d.evaluate(null, null);
+    }
+    catch (IllegalArgumentException iae)
+    {
+      assertTrue(true);
+    }
+
+    //just parens L
+    try
+    {
+      String actual = d.evaluate("()", "7");
+    }
+    catch (IllegalArgumentException iae)
+    {
+      assertTrue(true);
+    }
+    
+    //just paren R
+    try
+    {
+      String actual = d.evaluate("7", "()");
+    }
+    catch (IllegalArgumentException iae)
+    {
+      assertTrue(true);
+    }
+    
     // random chars
     try
     {
