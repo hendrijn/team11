@@ -2,10 +2,6 @@ package gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
-
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
@@ -16,11 +12,13 @@ import javax.swing.JOptionPane;
  * @author Jacquelyn Hendricks
  * @version v3
  */
-public class MenuController extends Timer implements ActionListener, Finals
+public class MenuController implements ActionListener, Finals
 {
 
-  private CalculationRecorder recorder = new CalculationRecorder();
+  private CalculationRecorder recorder = new CalculationRecorder(1000, this);
   private JMenuItem add, play, pause, stop;
+  private static int elementsDisplayed = 0;
+  private static int calcCount = 0;
 
   /**
    * Responds to menu button presses.
@@ -30,34 +28,61 @@ public class MenuController extends Timer implements ActionListener, Finals
   {
     NewMainInterface ui = NewMainInterface.getInstance();
     assignMenuItems(ui);
-    JMenuItem itemClicked = (JMenuItem) e.getSource();
 
-    switch (itemClicked.getText())
+    if (e.getSource() instanceof JMenuItem)
     {
-      case ADDTOREC:
-        handleAdding(ui);
-        break;
-      case START:
-        setButtonsEnabled(ui, false);
-        setItemsEnabled(add, false);
-        setItemsEnabled(pause, true);
-        setItemsEnabled(stop, true);
-        setItemsEnabled(play, false);
-        startPlayback(ui);
-        break;
-      case PAUSE:
-        setItemsEnabled(play, true);
-        setItemsEnabled(pause, false);
-        break;
-      case STOP:
-        setButtonsEnabled(ui, true);
-        setItemsEnabled(play, true);
-        setItemsEnabled(pause, false);
-        setItemsEnabled(stop, false);
-        setItemsEnabled(add, true);
-        break;
-      default:
-        System.exit(0);
+      JMenuItem itemClicked = (JMenuItem) e.getSource();
+
+      switch (itemClicked.getText())
+      {
+        case ADDTOREC:
+          handleAdding(ui);
+          break;
+        case START:
+          setButtonsEnabled(ui, false);
+          setItemsEnabled(add, false);
+          setItemsEnabled(pause, true);
+          setItemsEnabled(stop, true);
+          setItemsEnabled(play, false);
+          startPlayback(ui);
+          break;
+        case PAUSE:
+          setItemsEnabled(play, true);
+          setItemsEnabled(pause, false);
+          break;
+        case STOP:
+          setButtonsEnabled(ui, true);
+          setItemsEnabled(play, true);
+          setItemsEnabled(pause, false);
+          setItemsEnabled(stop, false);
+          setItemsEnabled(add, true);
+          break;
+        default:
+          System.exit(0);
+      }
+    }
+    else
+    {
+      if (calcCount < recorder.getRecording().size())
+      {
+        recorder.displayNextElement(calcCount, elementsDisplayed, ui);
+        elementsDisplayed++;
+        // if all elements in a calculation have been shown...
+        if (6 / elementsDisplayed == 1)
+        {
+          calcCount++;
+          elementsDisplayed = 0;
+//          resetDisplay(ui);
+        }
+      }
+      else
+      {
+        recorder.stop();
+        calcCount = 0;
+        elementsDisplayed = 0;
+        resetDisplay(ui);
+      }
+
     }
   }
 
@@ -85,7 +110,9 @@ public class MenuController extends Timer implements ActionListener, Finals
    */
   private void startPlayback(NewMainInterface ui)
   {
-    schedule(recorder, 0, 200);
+    ui.getInputLabel().setText(HTML);
+    resetDisplay(ui);
+    recorder.start();
   }
 
   /**
@@ -107,9 +134,22 @@ public class MenuController extends Timer implements ActionListener, Finals
       {
         recorder.add(ui.getExpressionLabel(), ui.getResultLabel());
         setItemsEnabled(play, true);
+        resetDisplay(ui);
       }
     }
 
+  }
+
+  /**
+   * Resets the expression and result labels.
+   * 
+   * @param ui
+   *          the interface
+   */
+  private void resetDisplay(NewMainInterface ui)
+  {
+    ui.getExpressionLabel().setText(HTML);
+    ui.getResultLabel().setText(HTML);
   }
 
   /**

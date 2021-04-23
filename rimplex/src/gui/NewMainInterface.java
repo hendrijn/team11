@@ -5,6 +5,8 @@ import java.awt.event.ComponentListener;
 import java.awt.event.MouseListener;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -12,6 +14,9 @@ import javax.swing.border.Border;
 public class NewMainInterface extends JFrame implements Finals
 {
   private static final long serialVersionUID = 5691196863267451960L;
+
+  public static final ResourceBundle STRINGS = ResourceBundle.getBundle("gui.Strings",
+      Locale.getDefault());
 
   private static NewMainInterface ui;
   private InterfaceController listener;
@@ -27,40 +32,44 @@ public class NewMainInterface extends JFrame implements Finals
    */
   private NewMainInterface()
   {
-	
+
     setSize(670, 550);
     setTitle("Rimplex");
     // ImageIcon icon = new ImageIcon(
     // "C:\\Users\\Brooke\\git\\team11\\rimplex\\src\\gui\\iconRimplex.png");
 
-    //For OS X
-    
-    
+    // For OS X
+
     ClassLoader cldr = this.getClass().getClassLoader();
     java.net.URL imgURL = cldr.getResource("gui/iconRimplex.png");
     ImageIcon icon = new ImageIcon(imgURL);
 
     final Taskbar taskbar = Taskbar.getTaskbar();
 
-    try {
-        //set icon for mac os (and other systems which do support this method)
-        taskbar.setIconImage(icon.getImage());
-    } catch (final UnsupportedOperationException e) {
-        System.out.println("The os does not support: 'taskbar.setIconImage'");
-    } catch (final SecurityException e) {
-        System.out.println("There was a security exception for: 'taskbar.setIconImage'");
+    try
+    {
+      // set icon for mac os (and other systems which do support this method)
+      taskbar.setIconImage(icon.getImage());
     }
-    
+    catch (final UnsupportedOperationException e)
+    {
+      System.out.println("The os does not support: 'taskbar.setIconImage'");
+    }
+    catch (final SecurityException e)
+    {
+      System.out.println("There was a security exception for: 'taskbar.setIconImage'");
+    }
+
     setIconImage(icon.getImage());
     System.out.println("before1");
     System.out.println("before2");
-    //making NewMainInterface run repeatedly????????
-    //LogoDisplay logo = LogoDisplay.getInstance();
-    
+    // making NewMainInterface run repeatedly????????
+    // LogoDisplay logo = LogoDisplay.getInstance();
+
     HistoryDisplay history = HistoryDisplay.getInstance();
     setupFrame();
     setVisible(true); // display this
-    //System.out.println("current working directory is: " + System.getProperty("user.dir"));
+    // System.out.println("current working directory is: " + System.getProperty("user.dir"));
   }
 
   /**
@@ -89,7 +98,6 @@ public class NewMainInterface extends JFrame implements Finals
     setupNorthPanel();
     setupCenterPanel();
     setUpEastPanel();
-    // setUpSouthPanel();
     bar = new JPanel();
     bar.setLayout(new GridLayout(1, 1));
     history = new JButton(">");
@@ -104,7 +112,6 @@ public class NewMainInterface extends JFrame implements Finals
     contentPane.add(centerPanel, BorderLayout.WEST);
     contentPane.add(eastPanel, BorderLayout.CENTER);
     contentPane.add(bar, BorderLayout.EAST);
-    // contentPane.add(southPanel, BorderLayout.SOUTH);
   }
 
   private void setUpEastPanel()
@@ -127,10 +134,7 @@ public class NewMainInterface extends JFrame implements Finals
 
   private void setupCenterPanel()
   {
-    // GridLayout layout = new GridLayout(5, 3);
     GridBagLayout layout = new GridBagLayout();
-    // layout.setHgap(20);
-    // layout.setVgap(20);
     centerPanel = new JPanel();
     centerPanel.setLayout(layout);
     GridBagConstraints con = new GridBagConstraints();
@@ -141,24 +145,6 @@ public class NewMainInterface extends JFrame implements Finals
     JToggleButton sign = new JToggleButton(SIGN);
     JButton clearBtn = new JButton(CLEAR);
     JButton backBtn = new JButton(BACKSPACE);
-    JButton realBtn = new JButton(RPARTS);
-
-    ArrayList<JButton> btns = new ArrayList<>();
-    btns.add(clearBtn);
-    btns.add(backBtn);
-
-    // for (JButton btn : btns)
-    // {
-    // increaseSize(btn);
-    // btn.addActionListener(listener);
-    // btn.setForeground(Color.MAGENTA);
-    // con.gridx = 0;
-    // con.gridy = 0;
-    // // con.fill = GridBagConstraints.HORIZONTAL;
-    // con.anchor = GridBagConstraints.NORTH;
-    // // layout.setConstraints(btn, con);
-    // centerPanel.add(btn, con);
-    // }
 
     // setting up the clear button
     increaseSize(clearBtn);
@@ -286,19 +272,6 @@ public class NewMainInterface extends JFrame implements Finals
     con.insets = inset;
     centerPanel.add(btn9, con);
 
-    // for (int i = 1; i < 10; i++)
-    // {
-    // JButton btnx = new JButton(String.valueOf(i));
-    // // centerPanel.add(btn);
-    // increaseSize(btn);
-    // btn.addActionListener(listener);
-    // con.gridx = 0;
-    // con.gridy = 1;
-    // // con.fill = GridBagConstraints.HORIZONTAL;
-    // // con.anchor = GridBagConstraints.CENTER;
-    // centerPanel.add(btn, con);
-    // }
-
     JButton zeroBtn = new JButton("0");
     increaseSize(zeroBtn);
     zeroBtn.setPreferredSize(new Dimension(60, 60));
@@ -318,33 +291,6 @@ public class NewMainInterface extends JFrame implements Finals
     centerPanel.add(imagBtn, con);
 
   }
-
-  // private void setUpSouthPanel()
-  // {
-  // GridBagLayout layout = new GridBagLayout();
-  // southPanel = new JPanel(layout);
-  // GridBagConstraints con = new GridBagConstraints();
-  //
-  // JButton zeroBtn = new JButton("0");
-  // increaseSize(zeroBtn);
-  // zeroBtn.addActionListener(listener);
-  // con.gridx = 0;
-  // con.gridy = 0;
-  // con.gridwidth = 2;
-  // con.weightx = 100;
-  // // con.fill = GridBagConstraints.HORIZONTAL;
-  // con.anchor = GridBagConstraints.SOUTHWEST;
-  // southPanel.add(zeroBtn);
-  //
-  // JButton imagBtn = new JButton(HTML + I);
-  // increaseSize(imagBtn);
-  // imagBtn.addActionListener(listener);
-  // con.gridx = 3;
-  // con.gridy = 0;
-  // // con.fill = GridBagConstraints.HORIZONTAL;
-  // con.anchor = GridBagConstraints.SOUTH;
-  // southPanel.add(imagBtn);
-  // }
 
   /**
    * Exactly the same as increaseSize but just for ToggleButton.
@@ -425,14 +371,18 @@ public class NewMainInterface extends JFrame implements Finals
   {
     MenuController menuListener = new MenuController();
     AboutController aboutListener = new AboutController();
+    // LanguageController langListener = new LanguageController();
 
     menuBar = new JMenuBar();
 
-    JMenu fileMenu = new JMenu(FILE);
+    JMenu fileMenu = new JMenu(STRINGS.getString("FILE"));
     increaseSize(fileMenu);
     menuBar.add(fileMenu);
 
-    for (String item : FILEMENUITEMS)
+    String[] fileItemsStrings = {STRINGS.getString("ADDTOREC"), STRINGS.getString("START"),
+        STRINGS.getString("PAUSE"), STRINGS.getString("STOP")};
+
+    for (String item : fileItemsStrings)
     {
       JMenuItem menuItem = new JMenuItem(item);
       increaseSize(menuItem);
@@ -443,9 +393,25 @@ public class NewMainInterface extends JFrame implements Finals
 
     fileMenu.getItem(0).setEnabled(true);
 
-    JMenu aboutMenu = new JMenu("Help");
+    JMenu settingsMenu = new JMenu(STRINGS.getString("SETTINGS"));
+    increaseSize(settingsMenu);
+    JMenuItem english = new JMenuItem(ENG);
+    JMenuItem french = new JMenuItem(FRE);
+    JMenuItem german = new JMenuItem(GER);
+    increaseSize(english);
+    increaseSize(french);
+    increaseSize(german);
+    // english.addActionListener(langListener);
+    // french.addActionListener(langListener);
+    // german.addActionListener(langListener);
+    settingsMenu.add(english);
+    settingsMenu.add(french);
+    settingsMenu.add(german);
+    menuBar.add(settingsMenu);
+
+    JMenu aboutMenu = new JMenu(STRINGS.getString("HELP"));
     increaseSize(aboutMenu);
-    JMenuItem about = new JMenuItem(ABOUT);
+    JMenuItem about = new JMenuItem(STRINGS.getString("ABOUT"));
     increaseSize(about);
     about.addActionListener(aboutListener);
     aboutMenu.add(about);

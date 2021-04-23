@@ -1,6 +1,7 @@
 package gui;
 
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.TimerTask;
 
@@ -12,42 +13,18 @@ import javax.swing.*;
  * @author Jacquelyn Hendricks
  * @version v3
  */
-public class CalculationRecorder extends TimerTask
+public class CalculationRecorder extends Timer implements Finals
 {
+
+  private static final long serialVersionUID = 8592944449515675645L;
   private ArrayList<String[]> recording;
   private String[] calculation;
-  private Timer timer = new Timer(0, null);
-  private static int count = 0;
 
-  /**
-   * Constructor.
-   */
-  public CalculationRecorder()
+  public CalculationRecorder(int delay, ActionListener listener)
   {
+    super(delay, listener);
     recording = new ArrayList<>();
     calculation = new String[4];
-  }
-
-  /**
-   * Adds a calculation to the recording.
-   * 
-   * @param firstOperand
-   *          first operand
-   * @param operator
-   *          operator
-   * @param secondOperand
-   *          second operand
-   * @param result
-   *          result
-   */
-  public void add(String firstOperand, String operator, String secondOperand, String result)
-  {
-    calculation[0] = firstOperand;
-    calculation[1] = operator;
-    calculation[2] = secondOperand;
-    calculation[3] = result;
-
-    recording.add(calculation);
   }
 
   /**
@@ -58,7 +35,7 @@ public class CalculationRecorder extends TimerTask
    * @param resultLabel
    *          result
    */
-  public void add(JLabel expressionLabel, JLabel resultLabel)
+  void add(JLabel expressionLabel, JLabel resultLabel)
   {
     calculation = expressionLabel.getText().split("\\s");
     calculation[3] = resultLabel.getText();
@@ -69,7 +46,7 @@ public class CalculationRecorder extends TimerTask
   /**
    * @return the recording
    */
-  public ArrayList<String[]> getRecording()
+  ArrayList<String[]> getRecording()
   {
     return recording;
   }
@@ -98,17 +75,74 @@ public class CalculationRecorder extends TimerTask
   }
 
   /**
-   * Handles tasks in the timer.
+   * Displays the elements in the recording.
+   * 
+   * @param calcCount
+   *          which calculation we're on
+   * @param elementsDisplayed
+   *          which part of the calculation are we on
+   * @param ui
+   *          the main interface
    */
-  @Override
-  public void run()
+  public void displayNextElement(int calcCount, int elementsDisplayed, NewMainInterface ui)
   {
-    count++;
-    if (count > 4)
+    String calcElement = recording.get(calcCount)[elementsDisplayed];
+
+    if (elementsDisplayed == 0 || elementsDisplayed == 2)
     {
-      cancel();
-      return;
+      updateInputLabel(ui, calcElement);
     }
-    System.out.println("Print me");
+    else if (elementsDisplayed == 1)
+    {
+      updateExpressionLabel(ui, calcElement);
+    }
+    else if (elementsDisplayed == 3)
+    {
+      updateResultLabel(ui, calcElement);
+    }
   }
+
+  /**
+   * Adds the element to the result field.
+   * 
+   * @param ui
+   *          the interface
+   * @param calcElement
+   *          the element to display
+   */
+  private void updateResultLabel(NewMainInterface ui, String calcElement)
+  {
+    ui.getExpressionLabel().setText(
+        ui.getExpressionLabel().getText() + SP + ui.getInputLabel().getText() + SP + EQUALS);
+    ui.getInputLabel().setText(HTML);
+    ui.getResultLabel().setText(calcElement);
+  }
+
+  /**
+   * Adds the element to the expression field.
+   * 
+   * @param ui
+   *          the interface
+   * @param calcElement
+   *          the element to display
+   */
+  private void updateExpressionLabel(NewMainInterface ui, String calcElement)
+  {
+    ui.getExpressionLabel().setText(ui.getInputLabel().getText() + SP + calcElement);
+    ui.getInputLabel().setText(HTML);
+  }
+
+  /**
+   * Adds the element to the input field.
+   * 
+   * @param ui
+   *          the interface
+   * @param calcElement
+   *          the operand to display
+   */
+  private void updateInputLabel(NewMainInterface ui, String calcElement)
+  {
+    ui.getInputLabel().setText(calcElement);
+  }
+
 }
