@@ -146,7 +146,7 @@ public class MenuController implements ActionListener, Finals
 
     if (!isPaused)
     {
-      String speed = JOptionPane.showInputDialog("Specify a Playback Speed (sec)");
+      String speed = JOptionPane.showInputDialog(NewMainInterface.STRINGS.getString("SPEED"));
       try
       {
         recorder.setDelay(Integer.parseInt(speed) * 1000);
@@ -154,7 +154,7 @@ public class MenuController implements ActionListener, Finals
       }
       catch (NumberFormatException nfe)
       {
-        ui.errorMessage("Not a valid number");
+        ui.errorMessage(NewMainInterface.STRINGS.getString("NOT_VALID"));
         stopPlayback(ui);
       }
     }
@@ -191,10 +191,10 @@ public class MenuController implements ActionListener, Finals
   private void handleAdding(NewMainInterface ui)
   {
     if (ui.getResultLabel().getText().equals(HTML))
-      ui.errorMessage("Cannot add incomplete calculation");
+      ui.errorMessage(NewMainInterface.STRINGS.getString("INCOMPLETE"));
     else
     {
-      int choice = JOptionPane.showConfirmDialog(null, "Confirm addition", null,
+      int choice = JOptionPane.showConfirmDialog(null, NewMainInterface.STRINGS.getString("CONFIRM"), null,
           JOptionPane.YES_NO_OPTION);
 
       if (choice == JOptionPane.YES_OPTION)
