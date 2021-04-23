@@ -32,33 +32,37 @@ public class MenuController implements ActionListener, Finals
     if (e.getSource() instanceof JMenuItem)
     {
       JMenuItem itemClicked = (JMenuItem) e.getSource();
+      String item = itemClicked.getText();
 
-      switch (itemClicked.getText())
+      if (item.equals(NewMainInterface.STRINGS.getString("ADDTOREC")))
       {
-        case ADDTOREC:
-          handleAdding(ui);
-          break;
-        case START:
-          setButtonsEnabled(ui, false);
-          setItemsEnabled(add, false);
-          setItemsEnabled(pause, true);
-          setItemsEnabled(stop, true);
-          setItemsEnabled(play, false);
-          startPlayback(ui);
-          break;
-        case PAUSE:
-          setItemsEnabled(play, true);
-          setItemsEnabled(pause, false);
-          break;
-        case STOP:
-          setButtonsEnabled(ui, true);
-          setItemsEnabled(play, true);
-          setItemsEnabled(pause, false);
-          setItemsEnabled(stop, false);
-          setItemsEnabled(add, true);
-          break;
-        default:
-          System.exit(0);
+        handleAdding(ui);
+      }
+      else if (item.equals(NewMainInterface.STRINGS.getString("START")))
+      {
+        setButtonsEnabled(ui, false);
+        setItemsEnabled(add, false);
+        setItemsEnabled(pause, true);
+        setItemsEnabled(stop, true);
+        setItemsEnabled(play, false);
+        startPlayback(ui);
+      }
+      else if (item.equals(NewMainInterface.STRINGS.getString("PAUSE")))
+      {
+        setItemsEnabled(play, true);
+        setItemsEnabled(pause, false);
+      }
+      else if (item.equals(NewMainInterface.STRINGS.getString("STOP")))
+      {
+        setButtonsEnabled(ui, true);
+        setItemsEnabled(play, true);
+        setItemsEnabled(pause, false);
+        setItemsEnabled(stop, false);
+        setItemsEnabled(add, true);
+      }
+      else
+      {
+        System.exit(0);
       }
     }
     else
@@ -72,7 +76,7 @@ public class MenuController implements ActionListener, Finals
         {
           calcCount++;
           elementsDisplayed = 0;
-//          resetDisplay(ui);
+          // resetDisplay(ui);
         }
       }
       else
@@ -82,7 +86,6 @@ public class MenuController implements ActionListener, Finals
         elementsDisplayed = 0;
         resetDisplay(ui);
       }
-
     }
   }
 
@@ -137,7 +140,6 @@ public class MenuController implements ActionListener, Finals
         resetDisplay(ui);
       }
     }
-
   }
 
   /**
