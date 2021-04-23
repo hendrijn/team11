@@ -32,7 +32,7 @@ public class DivisionOperator implements Operator
 
     if (alteredROp.equals("0") || alteredROp.equals("0i") || alteredROp.equals("0+0i")
         || alteredROp.equals("0-0i") || alteredROp.equals("0.00+0.00i")
-        || alteredROp.equals("0.00-0.00i"))
+        || alteredROp.equals("0.00-0.00i") || alteredROp.equals("0.00i") || alteredROp.equals("0.00"))
     {
       throw new IllegalArgumentException("Right operand cannot be 0");
     }
