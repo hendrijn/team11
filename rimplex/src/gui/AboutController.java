@@ -12,9 +12,8 @@ import javax.swing.SwingConstants;
 
 public class AboutController implements ActionListener, Finals
 {
-  static final ResourceBundle STRINGS = ResourceBundle.getBundle("gui.Strings_fr_FR");
-
-  static final Locale LOCALE = Locale.FRENCH;
+  static final ResourceBundle STRINGS = ResourceBundle.getBundle("gui.Strings",
+      Locale.getDefault());
 
   @Override
   public void actionPerformed(ActionEvent e)
