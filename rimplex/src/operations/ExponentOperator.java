@@ -15,7 +15,7 @@ public class ExponentOperator
     }
     catch (Exception e)
     {
-      throw new IllegalArgumentException(e.getMessage());
+      throw new IllegalArgumentException("Please provide a valid operand.");
     }
     
     int powerOf = 0;
@@ -25,7 +25,7 @@ public class ExponentOperator
     }
     catch (NumberFormatException e)
     {
-      throw new IllegalArgumentException(e.getMessage());
+      throw new IllegalArgumentException("Please provide a valid base.");
     }
     
     String leftRegularNumber = decomposedOperands[0];
@@ -40,7 +40,7 @@ public class ExponentOperator
     }
     catch (NumberFormatException e1)
     {
-      throw new IllegalArgumentException(e1.getMessage());
+      throw new IllegalArgumentException("Please provide a valid operand.");
     }
     
     try
@@ -49,10 +49,10 @@ public class ExponentOperator
     }
     catch (NumberFormatException e2)
     {
-      throw new IllegalArgumentException(e2.getMessage());
+      throw new IllegalArgumentException("Please provide a valid operand.");
     }
    
-    if (dblImagNum == 0.00 || dblImagNum == -0.00) 
+    if (dblImagNum == 0.00) 
     {
       finalResult = Math.pow(dblRegNum, powerOf);
       return String.valueOf(finalResult) + "+00.0i";
@@ -67,6 +67,10 @@ public class ExponentOperator
       runningOperand = finalOperand;
     }
     
+    if (finalOperand.substring(0, 4).equals("-0.0")) 
+    {
+      finalOperand = "0.00" + finalOperand.substring(5);
+    }
     return finalOperand;
     
     

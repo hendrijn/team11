@@ -43,14 +43,27 @@ public class LogarithmOperator
     {
       throw new IllegalArgumentException(e2.getMessage());
     }
-   
+    
+    String finalString = "";
+    
     if (dblImagNum == 0.00 || dblImagNum == -0.00) 
     {
-      finalResult = Math.log10(dblRegNum);
-      return String.valueOf(finalResult) + "+00.0i";
+      if (dblRegNum > 0) 
+      {
+        finalResult = Math.log(dblRegNum);
+        finalString = String.valueOf(finalResult) + "+00.0i";
+      } 
+      else 
+      {
+        throw new IllegalArgumentException("ln(x) is undefined for x <= 0");
+      }
+    } 
+    else 
+    {
+      finalString = "ln(" + operand + ")";
     }
     
-    return "log(" + operand + ")";
+    return finalString;
     
   }
 }
