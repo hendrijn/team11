@@ -14,6 +14,11 @@ import operations.SignChangeOperator;
  */
 class SignChangeOperatorTest
 {
+  @Test
+  public void testConstruction()
+  {
+    SignChangeOperator s = new SignChangeOperator();
+  }
   /**
    * tests for Illegal Arguements.
    */

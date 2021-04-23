@@ -507,4 +507,90 @@ class DivisonOperatorTest
     expected = "0.00-3.40i";
     assertTrue(actual.equals(expected));
   }
+
+  @Test
+  public void testZeros()
+  {
+    TempContext d = new TempContext(new DivisionOperator());
+
+    try
+    {
+      String actual = d.evaluate("3.45+7.56i", "0.00+0.00i");
+      assertTrue(false);
+    }
+    catch (IllegalArgumentException iae)
+    {
+      assertTrue(true);
+    }
+
+    try
+    {
+      String actual = d.evaluate("3.45+7.56i", "0i");
+      assertTrue(false);
+    }
+    catch (IllegalArgumentException iae)
+    {
+      assertTrue(true);
+    }
+
+    try
+    {
+      String actual = d.evaluate("3.45+7.56i", "0i");
+      assertTrue(false);
+    }
+    catch (IllegalArgumentException iae)
+    {
+      assertTrue(true);
+    }
+    
+    try
+    {
+      String actual = d.evaluate("3.45+7.56i", "0.00i");
+      assertTrue(false);
+    }
+    catch (IllegalArgumentException iae)
+    {
+      assertTrue(true);
+    }
+    
+    try
+    {
+      String actual = d.evaluate("3.45+7.56i", "0-0i");
+      assertTrue(false);
+    }
+    catch (IllegalArgumentException iae)
+    {
+      assertTrue(true);
+    }
+    
+    try
+    {
+      String actual = d.evaluate("3.45+7.56i", "0+0i");
+      assertTrue(false);
+    }
+    catch (IllegalArgumentException iae)
+    {
+      assertTrue(true);
+    }
+    
+    try
+    {
+      String actual = d.evaluate("3.45+7.56i", "0");
+      assertTrue(false);
+    }
+    catch (IllegalArgumentException iae)
+    {
+      assertTrue(true);
+    }
+
+    try
+    {
+      String actual = d.evaluate("3.45+7.56i", "0.00");
+      assertTrue(false);
+    }
+    catch (IllegalArgumentException iae)
+    {
+      assertTrue(true);
+    }
+  }
 }

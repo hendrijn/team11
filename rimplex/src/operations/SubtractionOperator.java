@@ -59,29 +59,21 @@ public class SubtractionOperator implements Operator
     {
       if (rightOperand.contains("+"))
       {
-        if (rightOperand.charAt(0) == '-')
-        {
-          distribute = rightOperand.substring(0, rightOperand.indexOf("+")) + "-"
-              + rightOperand.substring(rightOperand.indexOf("+") + 1);
-        }
-        else
-        {
-          distribute = "-" + rightOperand.substring(0, rightOperand.indexOf("+")) + "+-"
-              + rightOperand.substring(rightOperand.indexOf("+") + 1);
-        }
+
+        distribute = "-" + rightOperand.substring(0, rightOperand.indexOf("+")) + "+-"
+            + rightOperand.substring(rightOperand.indexOf("+") + 1);
       }
-      else if (rightOperand.contains("-"))
+
+      else if (minus != -1)
       {
-        if (rightOperand.charAt(0) == '-' && minus != -1)
-        {
-          distribute = rightOperand.substring(1, minus) + "+" + rightOperand.substring(minus + 1);
-        }
-        else
-        {
-          distribute = "-" + rightOperand.substring(0, rightOperand.indexOf("-")) + "+"
-              + rightOperand.substring(rightOperand.indexOf("-") + 1);
-        }
+        distribute = rightOperand.substring(1, minus) + "+" + rightOperand.substring(minus + 1);
       }
+      else
+      {
+        distribute = "-" + rightOperand.substring(0, rightOperand.indexOf("-")) + "+"
+            + rightOperand.substring(rightOperand.indexOf("-") + 1);
+      }
+
     }
     if (imaginary || real)
     {
