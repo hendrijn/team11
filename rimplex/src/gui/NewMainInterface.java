@@ -370,6 +370,7 @@ public class NewMainInterface extends JFrame implements Finals
   {
     MenuController menuListener = new MenuController();
     AboutController aboutListener = new AboutController();
+    HistoryPrinter historyPrinter = new HistoryPrinter(HistoryDisplay.getInstance());
     // LanguageController langListener = new LanguageController();
 
     menuBar = new JMenuBar();
@@ -390,7 +391,10 @@ public class NewMainInterface extends JFrame implements Finals
       menuItem.setEnabled(false);
     }
 
+    fileMenu.getItem(4).addActionListener(historyPrinter);
+    
     fileMenu.getItem(0).setEnabled(true);
+    fileMenu.getItem(4).setEnabled(true);
 
     JMenu settingsMenu = new JMenu(STRINGS.getString("SETTINGS"));
     increaseSize(settingsMenu);
