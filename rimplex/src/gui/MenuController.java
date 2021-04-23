@@ -159,7 +159,6 @@ public class MenuController implements ActionListener, Finals
       {
         recorder.add(ui.getExpressionLabel(), ui.getResultLabel());
         setItemsEnabled(play, true);
-        resetDisplay(ui);
       }
     }
 
