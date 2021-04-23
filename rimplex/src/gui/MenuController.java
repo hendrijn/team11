@@ -72,6 +72,7 @@ public class MenuController implements ActionListener, Finals
         {
           calcCount++;
           elementsDisplayed = 0;
+//          resetDisplay(ui);
         }
       }
       else
@@ -79,6 +80,7 @@ public class MenuController implements ActionListener, Finals
         recorder.stop();
         calcCount = 0;
         elementsDisplayed = 0;
+        resetDisplay(ui);
       }
 
     }
@@ -109,8 +111,7 @@ public class MenuController implements ActionListener, Finals
   private void startPlayback(NewMainInterface ui)
   {
     ui.getInputLabel().setText(HTML);
-    ui.getExpressionLabel().setText(HTML);
-    ui.getResultLabel().setText(HTML);
+    resetDisplay(ui);
     recorder.start();
   }
 
@@ -133,9 +134,22 @@ public class MenuController implements ActionListener, Finals
       {
         recorder.add(ui.getExpressionLabel(), ui.getResultLabel());
         setItemsEnabled(play, true);
+        resetDisplay(ui);
       }
     }
 
+  }
+
+  /**
+   * Resets the expression and result labels.
+   * 
+   * @param ui
+   *          the interface
+   */
+  private void resetDisplay(NewMainInterface ui)
+  {
+    ui.getExpressionLabel().setText(HTML);
+    ui.getResultLabel().setText(HTML);
   }
 
   /**
