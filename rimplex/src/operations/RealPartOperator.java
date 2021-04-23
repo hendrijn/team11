@@ -20,7 +20,7 @@ public class RealPartOperator
     }
     
     long iCount = alteredOp.chars().filter(ch -> ch == 'i').count();
-    if (iCount > 1 || alteredOp.isEmpty() || alteredOp.equals("()"))
+    if (iCount > 1)
     {
       throw new IllegalArgumentException("Please provide a valid operand, or simplify it.");
     }

@@ -46,6 +46,17 @@ class RealPartOperatorTest
   {
     RealPartOperator r = new RealPartOperator();
     
+    //just parens
+    try
+    {
+      String actual = r.evaluate("()");
+      assertTrue(false);
+    }
+    catch(IllegalArgumentException iae)
+    {
+      assertTrue(true);
+    }
+    
     // empty
     try
     {
