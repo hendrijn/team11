@@ -62,6 +62,10 @@ public class MenuController implements ActionListener, Finals
         setItemsEnabled(stop, false);
         setItemsEnabled(add, true);
       }
+      else if (item.equals(NewMainInterface.STRINGS.getString("PRINT")))
+      {
+    	  
+      }
       else
       {
         System.exit(0);
