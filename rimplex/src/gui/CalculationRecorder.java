@@ -81,10 +81,12 @@ public class CalculationRecorder extends Timer
    *          which calculation we're on
    * @param elementsDisplayed
    *          which part of the calculation are we on
+   * @param ui
+   *          the main interface
    */
-  public void displayNextElement(int calcCount, int elementsDisplayed)
+  public void displayNextElement(int calcCount, int elementsDisplayed, NewMainInterface ui)
   {
-    System.out.println(recording.get(calcCount)[elementsDisplayed]);
+    ui.getInputLabel().setText(recording.get(calcCount)[elementsDisplayed]);
 
   }
 

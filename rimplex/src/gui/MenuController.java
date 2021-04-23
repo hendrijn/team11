@@ -63,12 +63,18 @@ public class MenuController implements ActionListener, Finals
     }
     else
     {
-      CalculationRecorder timer = (CalculationRecorder) e.getSource();
+      // CalculationRecorder timer = (CalculationRecorder) e.getSource();
 
-      if (calcCount < timer.getRecording().size())
+      if (elementsDisplayed < recorder.getRecording().size())
       {
-        timer.displayNextElement(calcCount, elementsDisplayed);
-        calcCount++;
+        recorder.displayNextElement(calcCount, elementsDisplayed, ui);
+        elementsDisplayed++;
+        // if all elements in a calculation have been shown...
+        if (3 % elementsDisplayed == 0)
+        {
+          calcCount++;
+          elementsDisplayed = 0;
+        }
       }
       else
       {
@@ -104,6 +110,9 @@ public class MenuController implements ActionListener, Finals
    */
   private void startPlayback(NewMainInterface ui)
   {
+    ui.getInputLabel().setText(HTML);
+    ui.getExpressionLabel().setText(HTML);
+    ui.getResultLabel().setText(HTML);
     recorder.start();
   }
 
