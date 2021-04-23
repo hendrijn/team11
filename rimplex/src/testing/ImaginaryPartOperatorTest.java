@@ -135,7 +135,7 @@ class ImaginaryPartOperatorTest
     assertTrue(actual.equals(expected));
 
     // negative
-    actual = i.evaluate("-7");
+    actual = i.evaluate("-7i");
     expected = "-7.00i";
     assertTrue(actual.equals(expected));
   }
