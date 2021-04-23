@@ -46,7 +46,6 @@ public interface Finals
   static final String FRE = "Français";
   static final String GER = "Deutsch";
 
-  static final String[] FILEMENUITEMS = {ADDTOREC, START, PAUSE, STOP};
   static final String[] FUNCTIONS = {ADD, RESET, INVERSE, SUBTRACT, LOG, EXP, MULTIPLY, LPAREN,
       RPAREN, DIVIDE, RPARTS, IPARTS, EQUALS, DECIMAL};
 
