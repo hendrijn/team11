@@ -14,6 +14,8 @@ public class DivisionOperator implements Operator
   @Override
   public String evaluate(String leftOperand, String rightOperand)
   {
+    //check for null and empty
+    
     // removes spaces and parens from l and r operands
     String alteredLOp = ((leftOperand.replaceAll(" ", "")).replace("(", "")).replace(")", "");
     String alteredROp = ((rightOperand.replaceAll(" ", "")).replace("(", "")).replace(")", "");
