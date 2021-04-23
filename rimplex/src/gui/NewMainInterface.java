@@ -446,7 +446,7 @@ public class NewMainInterface extends JFrame implements Finals
     settingsMenu.add(french);
 
     german.addActionListener((ActionEvent e) -> {
-      updateLanguage(new Locale("ge", "GE"));
+      updateLanguage(new Locale("de", "DE"));
     });
     settingsMenu.add(german);
     menuBar.add(settingsMenu);
