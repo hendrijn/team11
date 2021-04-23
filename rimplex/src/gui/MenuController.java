@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  */
 public class MenuController implements ActionListener, Finals
 {
-
+  boolean isPaused;
   private CalculationRecorder recorder = new CalculationRecorder(1000, this);
   private JMenuItem add, play, pause, stop;
   private int elementsDisplayed = 0;
@@ -49,6 +49,8 @@ public class MenuController implements ActionListener, Finals
         case PAUSE:
           setItemsEnabled(play, true);
           setItemsEnabled(pause, false);
+          isPaused = true;
+          recorder.stop();
           break;
         case STOP:
           stopPlayback(ui);
@@ -59,29 +61,52 @@ public class MenuController implements ActionListener, Finals
     }
     else
     {
-      if (calcCount < recorder.getRecording().size())
-      {
-        // if we're starting a new calculation...
-        if (elementsDisplayed == 0)
-          resetDisplay(ui);
+      handlePlayback(ui);
+    }
+  }
 
-        recorder.displayNextElement(calcCount, elementsDisplayed, ui);
-        elementsDisplayed++;
+  /**
+   * Pauses playback.
+   * 
+   * @param ui
+   *          the interface
+   */
+  private void pausePlayback(NewMainInterface ui)
+  {
+    recorder.stop();
 
-        // if all elements in a calculation have been shown...
-        if (elementsDisplayed == 4)
-        {
-          calcCount++;
-          elementsDisplayed = 0;
-        }
-      }
-      else
+  }
+
+  /**
+   * Handles playback functionality.
+   * 
+   * @param ui
+   *          the interface
+   */
+  private void handlePlayback(NewMainInterface ui)
+  {
+    if (calcCount < recorder.getRecording().size())
+    {
+      isPaused = false;
+      // if we're starting a new calculation...
+      if (elementsDisplayed == 0)
+        resetDisplay(ui);
+
+      recorder.displayNextElement(calcCount, elementsDisplayed, ui);
+      elementsDisplayed++;
+
+      // if all elements in a calculation have been shown...
+      if (elementsDisplayed == 4)
       {
-        stopPlayback(ui);
-        calcCount = 0;
+        calcCount++;
         elementsDisplayed = 0;
       }
-
+    }
+    else
+    {
+      stopPlayback(ui);
+      calcCount = 0;
+      elementsDisplayed = 0;
     }
   }
 
@@ -110,21 +135,30 @@ public class MenuController implements ActionListener, Finals
   private void startPlayback(NewMainInterface ui)
   {
     ui.getInputLabel().setText(HTML);
-    String speed = JOptionPane.showInputDialog("Specify a Playback Speed (sec)");
-    try
+
+    if (!isPaused)
     {
-      recorder.setDelay(Integer.parseInt(speed) * 1000);
+      String speed = JOptionPane.showInputDialog("Specify a Playback Speed (sec)");
+      try
+      {
+        recorder.setDelay(Integer.parseInt(speed) * 1000);
+        recorder.start();
+      }
+      catch (NumberFormatException nfe)
+      {
+        ui.errorMessage("Not a valid number");
+        stopPlayback(ui);
+      }
+    }
+    else
+    {
       recorder.start();
     }
-    catch (NumberFormatException nfe)
-    {
-      ui.errorMessage("Not a valid number");
-      stopPlayback(ui);
-    }
+
   }
 
   /**
-   * Plays the recording on the screen. Recorder is run() located within the calculation recorder.
+   * Stops the recording, resets the display, and handles menu item enabling.
    * 
    * @param ui
    *          the interface
