@@ -22,7 +22,7 @@ public class SignChangeOperator
   public static String changeSign(String operand) throws IllegalArgumentException
   {
     // error checking
-    if (operand == null)
+    if (operand == null || operand.equals(""))
     {
       throw new IllegalArgumentException("Please provide an operand");
     }
@@ -33,11 +33,16 @@ public class SignChangeOperator
 
     // more error checking (for i's)
     long iCount = alteredOp.chars().filter(ch -> ch == 'i').count();
-    if (iCount > 1 || alteredOp.isEmpty() || alteredOp.equals("()"))
+    if (iCount > 1)
     {
       throw new IllegalArgumentException("Please provide a valid operand, or simplify it.");
     }
 
+    if(alteredOp.equals(""))
+    {
+      throw new IllegalArgumentException("Please provide an operand");
+    }
+    
     boolean complex = TempContext.isComplex(alteredOp);
     boolean imaginary = TempContext.isImaginary(alteredOp);
     boolean real = TempContext.isReal(alteredOp);
@@ -53,12 +58,8 @@ public class SignChangeOperator
       throw new IllegalArgumentException("Please provide a valid operand, or simplify it.");
     }
 
-    if(alteredOp.equals("0"))
-    {
-      result = operand;
-    }
     // complex manipulation
-    else if (complex)
+    if (complex)
     {
       ConjugateOperator c = new ConjugateOperator();
       String conjugatedOp = c.conjugate(alteredOp);
@@ -73,7 +74,7 @@ public class SignChangeOperator
     }
 
     // imaginary/real manipulation
-    else if (imaginary || real)
+    else
     {
       if (alteredOp.charAt(0) == '-')
       {

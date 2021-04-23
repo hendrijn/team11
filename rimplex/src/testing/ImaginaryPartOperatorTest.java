@@ -46,6 +46,17 @@ class ImaginaryPartOperatorTest
   {
     ImaginaryPartOperator i = new ImaginaryPartOperator();
 
+    //just parens
+    try
+    {
+      String actual = i.evaluate("()");
+      assertTrue(false);
+    }
+    catch(IllegalArgumentException iae)
+    {
+      assertTrue(true);
+    }
+    
     // empty
     try
     {
@@ -135,7 +146,7 @@ class ImaginaryPartOperatorTest
     assertTrue(actual.equals(expected));
 
     // negative
-    actual = i.evaluate("-7");
+    actual = i.evaluate("-7i");
     expected = "-7.00i";
     assertTrue(actual.equals(expected));
   }
