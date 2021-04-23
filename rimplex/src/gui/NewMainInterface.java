@@ -15,8 +15,7 @@ public class NewMainInterface extends JFrame implements Finals
 {
   private static final long serialVersionUID = 5691196863267451960L;
 
-  public static final ResourceBundle STRINGS = ResourceBundle.getBundle("gui.Strings",
-      Locale.getDefault());
+  public static final ResourceBundle STRINGS = ResourceBundle.getBundle("gui.Strings", Locale.US);
 
   private static NewMainInterface ui;
   private InterfaceController listener;
@@ -408,6 +407,15 @@ public class NewMainInterface extends JFrame implements Finals
     settingsMenu.add(french);
     settingsMenu.add(german);
     menuBar.add(settingsMenu);
+
+    JButton print = new JButton(STRINGS.getString("PRINT"));
+    print.setFont(new Font("Times New Roman", print.getFont().getStyle(), 20));
+    print.setOpaque(false);
+    print.setContentAreaFilled(false);
+    print.setBorderPainted(false);
+    print.setFocusPainted(false);
+    print.addActionListener(menuListener);
+    menuBar.add(print);
 
     JMenu aboutMenu = new JMenu(STRINGS.getString("HELP"));
     increaseSize(aboutMenu);

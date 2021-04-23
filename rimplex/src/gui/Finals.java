@@ -17,7 +17,7 @@ public interface Finals
   static final String BACKSPACE = "←";
   static final String SUBTRACT = "-";
   static final String MULTIPLY = "×";
-  static final String INVERSE = "<html>ƒ<sup><font size=\"5\">-1</sup></font>";
+  static final String INVERSE = "<html>ƒ<sup><font size=\"4\">-1</sup></font>";
   static final String PMULTIPLY = "*";
   static final String DIVIDE = "÷";
   static final String PDIVIDE = "/";
