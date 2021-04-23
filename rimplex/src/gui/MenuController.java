@@ -63,14 +63,12 @@ public class MenuController implements ActionListener, Finals
     }
     else
     {
-      // CalculationRecorder timer = (CalculationRecorder) e.getSource();
-
-      if (elementsDisplayed < recorder.getRecording().size())
+      if (calcCount < recorder.getRecording().size())
       {
         recorder.displayNextElement(calcCount, elementsDisplayed, ui);
         elementsDisplayed++;
         // if all elements in a calculation have been shown...
-        if (3 % elementsDisplayed == 0)
+        if (6 / elementsDisplayed == 1)
         {
           calcCount++;
           elementsDisplayed = 0;

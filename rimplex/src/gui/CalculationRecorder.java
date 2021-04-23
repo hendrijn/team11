@@ -13,7 +13,7 @@ import javax.swing.*;
  * @author Jacquelyn Hendricks
  * @version v3
  */
-public class CalculationRecorder extends Timer
+public class CalculationRecorder extends Timer implements Finals
 {
 
   private static final long serialVersionUID = 8592944449515675645L;
@@ -86,8 +86,63 @@ public class CalculationRecorder extends Timer
    */
   public void displayNextElement(int calcCount, int elementsDisplayed, NewMainInterface ui)
   {
-    ui.getInputLabel().setText(recording.get(calcCount)[elementsDisplayed]);
+    String calcElement = recording.get(calcCount)[elementsDisplayed];
 
+    if (elementsDisplayed == 0 || elementsDisplayed == 2)
+    {
+      updateInputLabel(ui, calcElement);
+    }
+    else if (elementsDisplayed == 1)
+    {
+      updateExpressionLabel(ui, calcElement);
+    }
+    else if (elementsDisplayed == 3)
+    {
+      updateResultLabel(ui, calcElement);
+    }
+  }
+
+  /**
+   * Adds the element to the result field.
+   * 
+   * @param ui
+   *          the interface
+   * @param calcElement
+   *          the element to display
+   */
+  private void updateResultLabel(NewMainInterface ui, String calcElement)
+  {
+    ui.getExpressionLabel().setText(
+        ui.getExpressionLabel().getText() + SP + ui.getInputLabel().getText() + SP + EQUALS);
+    ui.getInputLabel().setText(HTML);
+    ui.getResultLabel().setText(calcElement);
+  }
+
+  /**
+   * Adds the element to the expression field.
+   * 
+   * @param ui
+   *          the interface
+   * @param calcElement
+   *          the element to display
+   */
+  private void updateExpressionLabel(NewMainInterface ui, String calcElement)
+  {
+    ui.getExpressionLabel().setText(ui.getInputLabel().getText() + SP + calcElement);
+    ui.getInputLabel().setText(HTML);
+  }
+
+  /**
+   * Adds the element to the input field.
+   * 
+   * @param ui
+   *          the interface
+   * @param calcElement
+   *          the operand to display
+   */
+  private void updateInputLabel(NewMainInterface ui, String calcElement)
+  {
+    ui.getInputLabel().setText(calcElement);
   }
 
 }
