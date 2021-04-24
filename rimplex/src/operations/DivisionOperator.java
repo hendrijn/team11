@@ -16,21 +16,22 @@ public class DivisionOperator implements Operator
   @Override
   public String evaluate(String leftOperand, String rightOperand)
   {
-    //check for null and empty
-    if(leftOperand == null || rightOperand == null || leftOperand.equals("") || rightOperand.equals(""))
+    // check for null and empty
+    if (leftOperand == null || rightOperand == null || leftOperand.equals("")
+        || rightOperand.equals(""))
     {
       throw new IllegalArgumentException("Please enter two operands");
     }
-    
+
     // removes spaces and parens from l and r operands
     String alteredLOp = ((leftOperand.replaceAll(" ", "")).replace("(", "")).replace(")", "");
     String alteredROp = ((rightOperand.replaceAll(" ", "")).replace("(", "")).replace(")", "");
 
-    if(alteredLOp.equals("") || alteredROp.equals(""))
+    if (alteredLOp.equals("") || alteredROp.equals(""))
     {
       throw new IllegalArgumentException("Please enter two operands");
     }
-    
+
     // determines type of L operand
     boolean complexL = TempContext.isComplex(alteredLOp);
     boolean imaginaryL = TempContext.isImaginary(alteredLOp);
@@ -43,11 +44,16 @@ public class DivisionOperator implements Operator
 
     String[] parts = new String[4];
 
-    if (alteredROp.equals("0") || alteredROp.equals("0i") || alteredROp.equals("0+0i")
-        || alteredROp.equals("0-0i") || alteredROp.equals("0.00+0.00i")
-        || alteredROp.equals("0.00-0.00i") || alteredROp.equals("0.00i") || alteredROp.equals("0.00"))
+    String zeroCheckR = (((alteredROp.replaceAll("-", "")).replace("+", "")).replace("i", ""))
+          .replaceAll("0", "");
+
+
+    if (!alteredROp.equals("i") && !alteredROp.equals("-i"))
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("RIGHT_OPERAND"));
+      if (zeroCheckR.equals("") || zeroCheckR.equals(".") || zeroCheckR.equals(".."))
+      {
+        throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("RIGHT_OPERAND"));
+      }
     }
     // gets the pieces of the operands (see TempContext)
     parts = TempContext.decomposeOperands(alteredLOp, alteredROp);
@@ -71,31 +77,31 @@ public class DivisionOperator implements Operator
       result = TempContext
           .format(String.format("%.2f", realDiv) + "+" + String.format("%.2f", imgDiv) + "i");
     }
-    // both imaginary and real as the right operand do not use the conjugate
-    else if (imaginaryL && imaginaryR)
-    {
-      doubleResult = Double.parseDouble(parts[1]) / Double.parseDouble(parts[3]);
-      result = TempContext.format(String.format("%.2f", doubleResult));
-    }
-    else if (realL && realR)
+    if (realL && realR)
     {
       double doubleL = Double.parseDouble(alteredLOp);
       double doubleR = Double.parseDouble(alteredROp);
       doubleResult = doubleL / doubleR;
       result = TempContext.format(String.format("%.2f", doubleResult));
     }
-    else if (imaginaryL && realR)
+    if (imaginaryL && realR)
     {
       double doubleR = Double.parseDouble(alteredROp);
       doubleResult = Double.parseDouble(parts[1]) / doubleR;
       result = TempContext.format(String.format("%.2f", doubleResult) + "i");
     }
-    else if (complexL && realR)
+    if (complexL && realR)
     {
       double realNum = Double.parseDouble(parts[0]) / Double.parseDouble(parts[2]);
       double imgNum = Double.parseDouble(parts[1]) / Double.parseDouble(parts[2]);
       result = TempContext
           .format(String.format("%.2f", realNum) + "+" + String.format("%.2f", imgNum) + "i");
+    }
+    // both imaginary and real as the right operand do not use the conjugate
+    if (imaginaryL && imaginaryR)
+    {
+      doubleResult = Double.parseDouble(parts[1]) / Double.parseDouble(parts[3]);
+      result = TempContext.format(String.format("%.2f", doubleResult));
     }
 
     // formats result

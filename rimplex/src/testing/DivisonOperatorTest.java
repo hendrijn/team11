@@ -527,8 +527,8 @@ class DivisonOperatorTest
     assertTrue(actual.equals(expected));
 
     // both positive; first real; second imaginary
-    actual = d.evaluate("7", "8i");
-    expected = "0.00-0.88i";
+    actual = d.evaluate("7", "i");
+    expected = "0.00-7.00i";
     assertTrue(actual.equals(expected));
 
     // first imaginary negative; second real positive
