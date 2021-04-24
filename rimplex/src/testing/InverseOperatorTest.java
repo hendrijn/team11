@@ -95,7 +95,7 @@ class InverseOperatorTest
     Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
       inverseOperator.invert(operand);
     });
-    String expectedException = "Not a valid operand.";
+    String expectedException = "Please provide a valid operand";
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
@@ -108,7 +108,7 @@ class InverseOperatorTest
     Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
       inverseOperator.invert(operand);
     });
-    String expectedException = "Please provide a valid operand.";
+    String expectedException = "Please provide a valid operand";
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
@@ -121,7 +121,7 @@ class InverseOperatorTest
     Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
       inverseOperator.invert(operand);
     });
-    String expectedException = "Please provide a valid operand.";
+    String expectedException = "Please provide a valid operand";
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
@@ -134,7 +134,7 @@ class InverseOperatorTest
     Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
       inverseOperator.invert(operand);
     });
-    String expectedException = "Not a valid operand.";
+    String expectedException = "Please provide a valid operand";
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
