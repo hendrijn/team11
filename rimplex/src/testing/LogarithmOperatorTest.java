@@ -126,6 +126,8 @@ class LogarithmOperatorTest
     String actual = l.log("4i");
     String expected = "ln(4.00i)";
     assertEquals(actual, expected);
+    
+    
   }
 
   /**
@@ -151,7 +153,7 @@ class LogarithmOperatorTest
 
     try
     {
-      String actual = l.log("-7");
+      String actual = l.log("-7i");
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)
@@ -181,6 +183,16 @@ class LogarithmOperatorTest
     try
     {
       String actual = l.log("0.00");
+      assertTrue(false);
+    }
+    catch (IllegalArgumentException iae)
+    {
+      assertTrue(true);
+    }
+    
+    try
+    {
+      String actual = l.log("-0.00");
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)
