@@ -1,5 +1,7 @@
 package operations;
 
+import gui.NewMainInterface;
+
 /**
  * the division operation for real, imaginary, and complex numbers.
  * 
@@ -45,7 +47,7 @@ public class DivisionOperator implements Operator
         || alteredROp.equals("0-0i") || alteredROp.equals("0.00+0.00i")
         || alteredROp.equals("0.00-0.00i") || alteredROp.equals("0.00i") || alteredROp.equals("0.00"))
     {
-      throw new IllegalArgumentException("Right operand cannot be 0");
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("RIGHT_OPERAND"));
     }
     // gets the pieces of the operands (see TempContext)
     parts = TempContext.decomposeOperands(alteredLOp, alteredROp);

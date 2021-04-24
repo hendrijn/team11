@@ -1,10 +1,7 @@
 package gui;
 
 import java.awt.*;
-import java.awt.event.ComponentListener;
-import java.awt.event.MouseListener;
-import java.io.InputStream;
-import java.util.ArrayList;
+import java.awt.event.ActionEvent;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -15,12 +12,13 @@ public class NewMainInterface extends JFrame implements Finals
 {
   private static final long serialVersionUID = 5691196863267451960L;
 
-  public static final ResourceBundle STRINGS = ResourceBundle.getBundle("gui.Strings",
-      Locale.getDefault());
+  public static ResourceBundle STRINGS;
 
   private static NewMainInterface ui;
   private InterfaceController listener;
   JMenuBar menuBar;
+  JMenu settingsMenu, aboutMenu, fileMenu;
+  JMenuItem about, add, start, pause, stop, print;
   JPanel northPanel, eastPanel, centerPanel, bar;
 
   static JButton history;
@@ -32,7 +30,6 @@ public class NewMainInterface extends JFrame implements Finals
    */
   private NewMainInterface()
   {
-
     setSize(670, 550);
     setTitle("Rimplex");
     // ImageIcon icon = new ImageIcon(
@@ -104,6 +101,8 @@ public class NewMainInterface extends JFrame implements Finals
     HistoryController cont = new HistoryController();
     history.addActionListener(cont);
     bar.add(history);
+
+    updateLanguage(new Locale("en", "US"));
 
     contentPane.addComponentListener(cont);
 
@@ -364,6 +363,21 @@ public class NewMainInterface extends JFrame implements Finals
     northPanel.add(inputDisplay);
   }
 
+  public void updateLanguage(Locale locale)
+  {
+    NewMainInterface.STRINGS = ResourceBundle.getBundle("gui.Strings", locale);
+    settingsMenu.setText(STRINGS.getString("SETTINGS"));
+    fileMenu.setText(STRINGS.getString("FILE"));
+    aboutMenu.setText(STRINGS.getString("HELP"));
+    about.setText(STRINGS.getString("ABOUT"));
+    add.setText(STRINGS.getString("ADDTOREC"));
+    start.setText(STRINGS.getString("START"));
+    stop.setText(STRINGS.getString("STOP"));
+    pause.setText(STRINGS.getString("PAUSE"));
+    print.setText(STRINGS.getString("PRINT"));
+
+  }
+
   /**
    * Creates the menu bar for the frame.
    */
@@ -371,29 +385,49 @@ public class NewMainInterface extends JFrame implements Finals
   {
     MenuController menuListener = new MenuController();
     AboutController aboutListener = new AboutController();
+    HistoryPrinter historyPrinter = new HistoryPrinter(HistoryDisplay.getInstance());
     // LanguageController langListener = new LanguageController();
 
     menuBar = new JMenuBar();
 
-    JMenu fileMenu = new JMenu(STRINGS.getString("FILE"));
+    // fileMenu = new JMenu(STRINGS.getString("FILE"));
+    fileMenu = new JMenu();
     increaseSize(fileMenu);
     menuBar.add(fileMenu);
 
-    String[] fileItemsStrings = {STRINGS.getString("ADDTOREC"), STRINGS.getString("START"),
-        STRINGS.getString("PAUSE"), STRINGS.getString("STOP")};
+    // String[] fileItemsStrings = {STRINGS.getString("ADDTOREC"), STRINGS.getString("START"),
+    // STRINGS.getString("PAUSE"), STRINGS.getString("STOP"), STRINGS.getString("PRINT")};
+    //
+    // for (String item : fileItemsStrings)
+    // {
+    // JMenuItem menuItem = new JMenuItem(item);
+    // increaseSize(menuItem);
+    // menuItem.addActionListener(menuListener);
+    // fileMenu.add(menuItem);
+    // menuItem.setEnabled(false);
+    // }
+    add = new JMenuItem();
+    start = new JMenuItem();
+    stop = new JMenuItem();
+    pause = new JMenuItem();
+    print = new JMenuItem();
 
-    for (String item : fileItemsStrings)
+    JMenuItem[] fileItems = {add, start, stop, pause, print};
+    for (JMenuItem item : fileItems)
     {
-      JMenuItem menuItem = new JMenuItem(item);
-      increaseSize(menuItem);
-      menuItem.addActionListener(menuListener);
-      fileMenu.add(menuItem);
-      menuItem.setEnabled(false);
+      increaseSize(item);
+      item.addActionListener(menuListener);
+      fileMenu.add(item);
+      item.setEnabled(false);
     }
 
-    fileMenu.getItem(0).setEnabled(true);
+    fileMenu.getItem(4).addActionListener(historyPrinter);
 
-    JMenu settingsMenu = new JMenu(STRINGS.getString("SETTINGS"));
+    fileMenu.getItem(0).setEnabled(true);
+    fileMenu.getItem(4).setEnabled(true);
+
+    // settingsMenu = new JMenu(STRINGS.getString("SETTINGS"));
+    settingsMenu = new JMenu();
     increaseSize(settingsMenu);
     JMenuItem english = new JMenuItem(ENG);
     JMenuItem french = new JMenuItem(FRE);
@@ -401,17 +435,25 @@ public class NewMainInterface extends JFrame implements Finals
     increaseSize(english);
     increaseSize(french);
     increaseSize(german);
-    // english.addActionListener(langListener);
-    // french.addActionListener(langListener);
-    // german.addActionListener(langListener);
+    english.addActionListener((ActionEvent e) -> {
+      updateLanguage(new Locale("en", "US"));
+    });
     settingsMenu.add(english);
+
+    french.addActionListener((ActionEvent e) -> {
+      updateLanguage(new Locale("fr", "FR"));
+    });
     settingsMenu.add(french);
+
+    german.addActionListener((ActionEvent e) -> {
+      updateLanguage(new Locale("de", "DE"));
+    });
     settingsMenu.add(german);
     menuBar.add(settingsMenu);
 
-    JMenu aboutMenu = new JMenu(STRINGS.getString("HELP"));
+    aboutMenu = new JMenu();
     increaseSize(aboutMenu);
-    JMenuItem about = new JMenuItem(STRINGS.getString("ABOUT"));
+    about = new JMenuItem();
     increaseSize(about);
     about.addActionListener(aboutListener);
     aboutMenu.add(about);

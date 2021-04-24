@@ -1,5 +1,7 @@
 package operations;
 
+import gui.NewMainInterface;
+
 /**
  * class for computing the multiplicative inverse of an operand.
  * 
@@ -31,7 +33,7 @@ public class InverseOperator
 
     if (operand == null || operand.equals(""))
     {
-      throw new IllegalArgumentException("Please provide a valid operand.");
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
     }
 
     if (!operand.contains("i"))
@@ -43,7 +45,7 @@ public class InverseOperator
       }
       catch (NumberFormatException e)
       {
-        throw new IllegalArgumentException("Not a valid operand.");
+        throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
       }
 
       double finalReturnOperand = (1 / finalOperand);
@@ -62,7 +64,7 @@ public class InverseOperator
     }
     catch (IllegalArgumentException e)
     {
-      throw new IllegalArgumentException("Not a valid operand.");
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
     }
     String denominator = "";
     try
@@ -71,7 +73,7 @@ public class InverseOperator
     }
     catch (Exception e)
     {
-      throw new IllegalArgumentException("Not a valid operand.");
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
     }
     String finalResult = "";
     try
@@ -80,7 +82,7 @@ public class InverseOperator
     }
     catch (Exception e)
     {
-      throw new IllegalArgumentException("Not a valid operand.");
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
     }
 
     return finalResult;

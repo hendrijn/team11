@@ -1,5 +1,7 @@
 package operations;
 
+import gui.NewMainInterface;
+
 public class LogarithmOperator
 {
   
@@ -55,7 +57,7 @@ public class LogarithmOperator
       } 
       else 
       {
-        throw new IllegalArgumentException("ln(x) is undefined for x <= 0");
+        throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("LOGARITHM"));
       }
     } 
     else 
