@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import operations.InverseOperator;
+import operations.SignChangeOperator;
 import operations.TempContext;
 
 /**
@@ -16,7 +17,6 @@ import operations.TempContext;
  */
 class InverseOperatorTest
 {
-
   @Test
   public void invertComplexTest1()
   {
@@ -71,7 +71,7 @@ class InverseOperatorTest
   public void invertNegReal()
   {
     String operand = "-4";
-    String expectedInverse = "-0.25+0.00i";
+    String expectedInverse = "0.25+0.00i";
     InverseOperator inverseOperator = new InverseOperator();
     String actualInverse = inverseOperator.invert(operand);
     assertEquals(expectedInverse, actualInverse);
@@ -95,7 +95,7 @@ class InverseOperatorTest
     Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
       inverseOperator.invert(operand);
     });
-    String expectedException = "Please provide a valid operand";
+    String expectedException = "Please provide a valid operand, or simplify it";
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
@@ -139,4 +139,73 @@ class InverseOperatorTest
     assertEquals(expectedException, actualException);
   }
 
+  @Test
+  public void testIllgealArgs()
+  {
+    InverseOperator inverseOperator = new InverseOperator();
+
+    // test empty
+    try
+    {
+      String actual = inverseOperator.invert("");
+    }
+    catch (IllegalArgumentException iae)
+    {
+      assertTrue(true);
+    }
+
+    // test null
+    try
+    {
+      String actual = inverseOperator.invert(null);
+    }
+    catch (IllegalArgumentException iae)
+    {
+      assertTrue(true);
+    }
+
+    // test random string
+    try
+    {
+      String actual = inverseOperator.invert("jfh3ourfh");
+      assertTrue(false);
+    }
+    catch (IllegalArgumentException iae)
+    {
+      assertTrue(true);
+    }
+
+    // test space and parens
+    try
+    {
+      String actual = inverseOperator.invert("  ()      ");
+      assertTrue(false);
+    }
+    catch (IllegalArgumentException iae)
+    {
+      assertTrue(true);
+    }
+
+    // test random string with i
+    try
+    {
+      String actual = inverseOperator.invert("ilovecs");
+      assertTrue(false);
+    }
+    catch (IllegalArgumentException iae)
+    {
+      assertTrue(true);
+    }
+
+    // test two i's
+    try
+    {
+      String actual = inverseOperator.invert("5ii");
+      assertTrue(false);
+    }
+    catch (IllegalArgumentException iae)
+    {
+      assertTrue(true);
+    }
+  }
 }
