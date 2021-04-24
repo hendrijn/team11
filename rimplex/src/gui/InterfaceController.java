@@ -158,6 +158,18 @@ public class InterfaceController
           invertedOperand = "(" + invertedOperand + ")";
           ui.getInputLabel().setText(replaceFormatting(invertedOperand));
           break;
+        case RPARTS:
+          // I honestly don't know how to do this lol
+          JLabel partOp = ui.getInputLabel();
+          String part = partOp.getText();
+          handleRealParts(part);
+          break;
+        case IPARTS:
+          // I honestly don't know how to do this lol
+          JLabel partIOp = ui.getInputLabel();
+          String partI = partIOp.getText();
+          handleImaginaryParts(partI);
+          break;
         default:
           closeApplication();
 
@@ -307,6 +319,26 @@ public class InterfaceController
         break;
       }
     }
+  }
+
+  private void handleRealParts(String input)
+  {
+    NewMainInterface ui = NewMainInterface.getInstance();
+    JLabel inLabel = ui.getInputLabel();
+    String actual = removeFormatting(input);
+    RealPartOperator r = new RealPartOperator();
+    String change = r.evaluate(actual);
+    inLabel.setText(replaceFormatting(change));
+  }
+
+  private void handleImaginaryParts(String input)
+  {
+    NewMainInterface ui = NewMainInterface.getInstance();
+    JLabel inLabel = ui.getInputLabel();
+    String actual = removeFormatting(input);
+    ImaginaryPartOperator i = new ImaginaryPartOperator();
+    String change = i.evaluate(actual);
+    inLabel.setText(replaceFormatting(change));
   }
 
   private void handleOperators(String operation)
