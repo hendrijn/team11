@@ -12,7 +12,9 @@ public class NewMainInterface extends JFrame implements Finals
 {
   private static final long serialVersionUID = 5691196863267451960L;
 
-  public static ResourceBundle STRINGS;
+ 
+  static final Locale LOCALE = Locale.getDefault();
+  public static ResourceBundle STRINGS = ResourceBundle.getBundle("gui.Strings", LOCALE);
 
   private static NewMainInterface ui;
   private InterfaceController listener;
