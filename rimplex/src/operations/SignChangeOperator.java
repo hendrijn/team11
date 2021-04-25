@@ -1,5 +1,7 @@
 package operations;
 
+import java.util.ResourceBundle;
+
 import gui.NewMainInterface;
 
 /**
@@ -31,7 +33,6 @@ public class SignChangeOperator
 
     // String with no spaces or parens
     String alteredOp = ((operand.replaceAll(" ", "")).replace("(", "")).replace(")", "");
-    ;
 
     // more error checking (for i's)
     long iCount = alteredOp.chars().filter(ch -> ch == 'i').count();
@@ -51,14 +52,15 @@ public class SignChangeOperator
     String result = "";
 
     // error checking for illegal strings
-    try
-    {
-      Double.parseDouble(((alteredOp.replace("i", "")).replace("+", "")).replaceAll("-", ""));
-    }
-    catch (NumberFormatException nfe)
-    {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("VALID_OR_SIMPLIFY"));
-    }
+    if (alteredOp.length() > 1)
+      try
+      {
+        Double.parseDouble(((alteredOp.replace("i", "")).replace("+", "")).replaceAll("-", ""));
+      }
+      catch (NumberFormatException nfe)
+      {
+        throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("VALID_OR_SIMPLIFY"));
+      }
 
     // complex manipulation
     if (complex)

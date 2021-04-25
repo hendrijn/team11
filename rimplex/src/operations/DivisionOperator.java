@@ -17,11 +17,20 @@ public class DivisionOperator implements Operator
   public String evaluate(String leftOperand, String rightOperand)
   {
     //check for null and empty
+    if(leftOperand == null || rightOperand == null || leftOperand.equals("") || rightOperand.equals(""))
+    {
+      throw new IllegalArgumentException("Please enter two operands");
+    }
     
     // removes spaces and parens from l and r operands
     String alteredLOp = ((leftOperand.replaceAll(" ", "")).replace("(", "")).replace(")", "");
     String alteredROp = ((rightOperand.replaceAll(" ", "")).replace("(", "")).replace(")", "");
 
+    if(alteredLOp.equals("") || alteredROp.equals(""))
+    {
+      throw new IllegalArgumentException("Please enter two operands");
+    }
+    
     // determines type of L operand
     boolean complexL = TempContext.isComplex(alteredLOp);
     boolean imaginaryL = TempContext.isImaginary(alteredLOp);

@@ -10,32 +10,26 @@ public class LogarithmOperator
   public String log(String operand)
   {
     
-    
-    String[] decomposedOperands = new String[3];
-    try
+    if (operand == null || operand.equals(""))
     {
-      decomposedOperands = TempContext.decomposeOperands(operand, BLANK_OPERAND);
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
     }
-    catch (Exception e)
+
+    String alteredOp = ((operand.replaceAll(" ", "")).replace("(", "")).replace(")", "");
+    
+    long iCount = alteredOp.chars().filter(ch -> ch == 'i').count();
+    if (iCount > 1)
     {
-      throw new IllegalArgumentException(e.getMessage());
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("VALID_OR_SIMPLIFY"));
     }
     
+    String[] decomposedOperands = TempContext.decomposeOperands(alteredOp, BLANK_OPERAND);
     
     String leftRegularNumber = decomposedOperands[0];
     String leftImaginaryNumber = decomposedOperands[1];
-    double dblRegNum = 0.0;
+    double dblRegNum = Double.parseDouble(leftRegularNumber);
     double dblImagNum = 0.0;
     double finalResult = 0.0;
-    
-    try
-    {
-      dblRegNum = Double.parseDouble(leftRegularNumber);
-    }
-    catch (NumberFormatException e1)
-    {
-      throw new IllegalArgumentException(e1.getMessage());
-    }
     
     try
     {
@@ -48,7 +42,7 @@ public class LogarithmOperator
     
     String finalString = "";
     
-    if (dblImagNum == 0.00 || dblImagNum == -0.00) 
+    if (dblImagNum == 0.00 /*|| dblImagNum == -0.00*/) 
     {
       if (dblRegNum > 0) 
       {
@@ -62,7 +56,7 @@ public class LogarithmOperator
     } 
     else 
     {
-      finalString = "ln(" + operand + ")";
+      finalString = "ln(" + alteredOp + ")";
     }
     
     return finalString;

@@ -36,18 +36,26 @@ public class InverseOperator
       throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
     }
 
+    String alteredOp = ((operand.replaceAll(" ", "")).replace("(", "")).replace(")", "");
+    
+    long iCount = alteredOp.chars().filter(ch -> ch == 'i').count();
+    if (iCount > 1)
+    {
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("VALID_OR_SIMPLIFY"));
+    }
+    
+    double finalOperand = 0;
+   
     if (!operand.contains("i"))
     {
-      double finalOperand = 0;
       try
       {
-        finalOperand = Double.parseDouble(operand);
+        finalOperand = Double.parseDouble((((alteredOp.replace("i", "")).replace("+", "")).replaceAll("-", "")));
       }
       catch (NumberFormatException e)
       {
         throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
       }
-
       double finalReturnOperand = (1 / finalOperand);
 
       return String.valueOf(finalReturnOperand) + "+0.00i";
@@ -57,33 +65,11 @@ public class InverseOperator
     TempContext divContext = new TempContext(new DivisionOperator());
     ConjugateOperator cjOperator = new ConjugateOperator();
 
-    String conjugate = "";
-    try
-    {
-      conjugate = cjOperator.conjugate(operand);
-    }
-    catch (IllegalArgumentException e)
-    {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
-    }
-    String denominator = "";
-    try
-    {
-      denominator = multiContext.evaluate(operand, conjugate);
-    }
-    catch (Exception e)
-    {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
-    }
-    String finalResult = "";
-    try
-    {
-      finalResult = divContext.evaluate(conjugate, denominator);
-    }
-    catch (Exception e)
-    {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
-    }
+    String conjugate = cjOperator.conjugate(alteredOp);
+
+    String denominator = multiContext.evaluate(alteredOp, conjugate);;
+
+    String finalResult =  divContext.evaluate(conjugate, denominator);;
 
     return finalResult;
   }

@@ -150,4 +150,12 @@ class SignChangeOperatorTest
     expected = "9";
     assertTrue(expected.equals(actual));
   }
+  
+  @Test
+  public void justI()
+  {
+    String actual = SignChangeOperator.changeSign("i");
+    String expected = "-i";
+    assertTrue(expected.equals(actual));
+  }
 }

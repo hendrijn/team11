@@ -72,7 +72,7 @@ class ExponentOperatorTesting
     String operand = null;
     String power = "2";
     ExponentOperator expOp = new ExponentOperator();
-    String expectedMessage = "Please provide a valid operand.";
+    String expectedMessage = "Please provide a valid operand";
     Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
       expOp.exponentation(operand, power);
     });
@@ -85,7 +85,7 @@ class ExponentOperatorTesting
     String operand = "4";
     String power = null;
     ExponentOperator expOp = new ExponentOperator();
-    String expectedMessage = "Please provide a valid base.";
+    String expectedMessage = "Please provide a valid base";
     Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
       expOp.exponentation(operand, power);
     });
@@ -98,7 +98,7 @@ class ExponentOperatorTesting
     String operand = "ajjajaja";
     String power = "2";
     ExponentOperator expOp = new ExponentOperator();
-    String expectedMessage = "Please provide a valid operand.";
+    String expectedMessage = "Please provide a valid operand";
     Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
       expOp.exponentation(operand, power);
     });
@@ -113,7 +113,7 @@ class ExponentOperatorTesting
     String operand = "3+abci";
     String power = "2";
     ExponentOperator expOp = new ExponentOperator();
-    String expectedMessage = "Please provide a valid operand.";
+    String expectedMessage = "Please provide a valid operand";
     Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
       expOp.exponentation(operand, power);
     });

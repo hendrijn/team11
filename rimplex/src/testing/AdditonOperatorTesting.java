@@ -195,7 +195,7 @@ class AdditonOperatorTesting
     Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
       tempContext.evaluate(complexNumberOne, complexNumberTwo);
     });
-    String expectedException = "Please provide two valid operands.";
+    String expectedException = "Please provide two valid operands";
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
@@ -210,7 +210,7 @@ class AdditonOperatorTesting
     Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
       tempContext.evaluate(complexNumberOne, complexNumberTwo);
     });
-    String expectedException = "Please provide two valid operands.";
+    String expectedException = "Please provide two valid operands";
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
@@ -225,7 +225,7 @@ class AdditonOperatorTesting
     Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
       tempContext.evaluate(complexNumberOne, complexNumberTwo);
     });
-    String expectedException = "Please provide two valid operands.";
+    String expectedException = "Please provide two valid operands";
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
@@ -240,7 +240,7 @@ class AdditonOperatorTesting
     Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
       tempContext.evaluate(complexNumberOne, complexNumberTwo);
     });
-    String expectedException = "Please provide two valid operands.";
+    String expectedException = "Please provide two valid operands";
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
@@ -255,7 +255,7 @@ class AdditonOperatorTesting
     Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
       tempContext.evaluate(complexNumberOne, complexNumberTwo);
     });
-    String expectedException = "Not a valid operand.";
+    String expectedException = "Please provide a valid operand";
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
@@ -270,7 +270,7 @@ class AdditonOperatorTesting
     Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
       tempContext.evaluate(complexNumberOne, complexNumberTwo);
     });
-    String expectedException = "Please provide two valid operands, or simplify them.";
+    String expectedException = "Please provide two valid operands, or simplify them";
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
@@ -285,7 +285,7 @@ class AdditonOperatorTesting
     Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
       tempContext.evaluate(complexNumberOne, complexNumberTwo);
     });
-    String expectedException = "Not a valid operand.";
+    String expectedException = "Please provide a valid operand";
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
@@ -300,7 +300,7 @@ class AdditonOperatorTesting
     Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
       tempContext.evaluate(complexNumberOne, complexNumberTwo);
     });
-    String expectedException = "Not a valid operand.";
+    String expectedException = "Please provide a valid operand";
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
@@ -315,7 +315,7 @@ class AdditonOperatorTesting
     Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
       tempContext.evaluate(complexNumberOne, complexNumberTwo);
     });
-    String expectedException = "Not a valid operand.";
+    String expectedException = "Please provide a valid operand";
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
@@ -330,7 +330,7 @@ class AdditonOperatorTesting
     Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
       tempContext.evaluate(complexNumberOne, complexNumberTwo);
     });
-    String expectedException = "Not a valid operand.";
+    String expectedException = "Please provide a valid operand";
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
@@ -345,7 +345,7 @@ class AdditonOperatorTesting
     Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
       tempContext.evaluate(complexNumberOne, complexNumberTwo);
     });
-    String expectedException = "Please provide two valid operands, or simplify them.";
+    String expectedException = "Please provide two valid operands, or simplify them";
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
@@ -360,7 +360,7 @@ class AdditonOperatorTesting
     Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
       tempContext.evaluate(complexNumberOne, complexNumberTwo);
     });
-    String expectedException = "Please provide two valid operands, or simplify them.";
+    String expectedException = "Please provide two valid operands, or simplify them";
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
@@ -375,7 +375,7 @@ class AdditonOperatorTesting
     Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
       tempContext.evaluate(complexNumberOne, complexNumberTwo);
     });
-    String expectedException = "Not a valid operand.";
+    String expectedException = "Please provide a valid operand";
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
@@ -390,7 +390,7 @@ class AdditonOperatorTesting
     Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
       tempContext.evaluate(complexNumberOne, complexNumberTwo);
     });
-    String expectedException = "Not a valid operand.";
+    String expectedException = "Please provide a valid operand";
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
