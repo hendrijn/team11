@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.print.PrinterException;
 import java.util.Locale;
 
 import javax.swing.JMenu;
@@ -64,7 +65,15 @@ public class MenuController implements ActionListener, Finals
       }
       else if (item.equals(NewMainInterface.STRINGS.getString("PRINT")))
       {
-    	  
+    	  HistoryDisplay hd = HistoryDisplay.getInstance();
+    	  HistoryPrinter.printComponent(hd.getCalcList());
+//    	  HistoryDisplay hd = HistoryDisplay.getInstance();
+//    	  try {
+//			hd.getCalcList().print();
+//		} catch (PrinterException e1) {
+//			// TODO Auto-generated catch block
+//			System.out.println("print failed");
+//		}
       }
       else
       {
