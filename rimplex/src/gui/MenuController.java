@@ -2,6 +2,9 @@ package gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.print.PrinterException;
+import java.util.Locale;
+
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
@@ -14,11 +17,11 @@ import javax.swing.JOptionPane;
  */
 public class MenuController implements ActionListener, Finals
 {
-
+  boolean isPaused;
   private CalculationRecorder recorder = new CalculationRecorder(1000, this);
   private JMenuItem add, play, pause, stop;
-  private static int elementsDisplayed = 0;
-  private static int calcCount = 0;
+  private int elementsDisplayed = 0;
+  private int calcCount = 0;
 
   /**
    * Responds to menu button presses.
@@ -32,57 +35,99 @@ public class MenuController implements ActionListener, Finals
     if (e.getSource() instanceof JMenuItem)
     {
       JMenuItem itemClicked = (JMenuItem) e.getSource();
+      String item = itemClicked.getText();
 
-      switch (itemClicked.getText())
+      if (item.equals(NewMainInterface.STRINGS.getString("ADDTOREC")))
       {
-        case ADDTOREC:
-          handleAdding(ui);
-          break;
-        case START:
-          setButtonsEnabled(ui, false);
-          setItemsEnabled(add, false);
-          setItemsEnabled(pause, true);
-          setItemsEnabled(stop, true);
-          setItemsEnabled(play, false);
-          startPlayback(ui);
-          break;
-        case PAUSE:
-          setItemsEnabled(play, true);
-          setItemsEnabled(pause, false);
-          break;
-        case STOP:
-          setButtonsEnabled(ui, true);
-          setItemsEnabled(play, true);
-          setItemsEnabled(pause, false);
-          setItemsEnabled(stop, false);
-          setItemsEnabled(add, true);
-          break;
-        default:
-          System.exit(0);
+        handleAdding(ui);
+      }
+      else if (item.equals(NewMainInterface.STRINGS.getString("START")))
+      {
+        setButtonsEnabled(ui, false);
+        setItemsEnabled(add, false);
+        setItemsEnabled(pause, true);
+        setItemsEnabled(stop, true);
+        setItemsEnabled(play, false);
+        startPlayback(ui);
+      }
+      else if (item.equals(NewMainInterface.STRINGS.getString("PAUSE")))
+      {
+        setItemsEnabled(play, true);
+        setItemsEnabled(pause, false);
+      }
+      else if (item.equals(NewMainInterface.STRINGS.getString("STOP")))
+      {
+        setButtonsEnabled(ui, true);
+        setItemsEnabled(play, true);
+        setItemsEnabled(pause, false);
+        setItemsEnabled(stop, false);
+        setItemsEnabled(add, true);
+      }
+      else if (item.equals(NewMainInterface.STRINGS.getString("PRINT")))
+      {
+    	  HistoryDisplay hd = HistoryDisplay.getInstance();
+    	  HistoryPrinter.printComponent(hd.getCalcList());
+//    	  HistoryDisplay hd = HistoryDisplay.getInstance();
+//    	  try {
+//			hd.getCalcList().print();
+//		} catch (PrinterException e1) {
+//			// TODO Auto-generated catch block
+//			System.out.println("print failed");
+//		}
+      }
+      else
+      {
+        System.exit(0);
       }
     }
     else
     {
-      if (calcCount < recorder.getRecording().size())
-      {
-        recorder.displayNextElement(calcCount, elementsDisplayed, ui);
-        elementsDisplayed++;
-        // if all elements in a calculation have been shown...
-        if (6 / elementsDisplayed == 1)
-        {
-          calcCount++;
-          elementsDisplayed = 0;
-//          resetDisplay(ui);
-        }
-      }
-      else
-      {
-        recorder.stop();
-        calcCount = 0;
-        elementsDisplayed = 0;
-        resetDisplay(ui);
-      }
+      handlePlayback(ui);
+    }
+  }
 
+  /**
+   * Pauses playback.
+   * 
+   * @param ui
+   *          the interface
+   */
+  private void pausePlayback(NewMainInterface ui)
+  {
+    recorder.stop();
+
+  }
+
+  /**
+   * Handles playback functionality.
+   * 
+   * @param ui
+   *          the interface
+   */
+  private void handlePlayback(NewMainInterface ui)
+  {
+    if (calcCount < recorder.getRecording().size())
+    {
+      isPaused = false;
+      // if we're starting a new calculation...
+      if (elementsDisplayed == 0)
+        resetDisplay(ui);
+
+      recorder.displayNextElement(calcCount, elementsDisplayed, ui);
+      elementsDisplayed++;
+
+      // if all elements in a calculation have been shown...
+      if (elementsDisplayed == 4)
+      {
+        calcCount++;
+        elementsDisplayed = 0;
+      }
+    }
+    else
+    {
+      stopPlayback(ui);
+      calcCount = 0;
+      elementsDisplayed = 0;
     }
   }
 
@@ -111,8 +156,43 @@ public class MenuController implements ActionListener, Finals
   private void startPlayback(NewMainInterface ui)
   {
     ui.getInputLabel().setText(HTML);
+
+    if (!isPaused)
+    {
+      String speed = JOptionPane.showInputDialog(NewMainInterface.STRINGS.getString("SPEED"));
+      try
+      {
+        recorder.setDelay(Integer.parseInt(speed) * 1000);
+        recorder.start();
+      }
+      catch (NumberFormatException nfe)
+      {
+        ui.errorMessage(NewMainInterface.STRINGS.getString("NOT_VALID"));
+        stopPlayback(ui);
+      }
+    }
+    else
+    {
+      recorder.start();
+    }
+
+  }
+
+  /**
+   * Stops the recording, resets the display, and handles menu item enabling.
+   * 
+   * @param ui
+   *          the interface
+   */
+  private void stopPlayback(NewMainInterface ui)
+  {
+    recorder.stop();
     resetDisplay(ui);
-    recorder.start();
+    setButtonsEnabled(ui, true);
+    setItemsEnabled(play, true);
+    setItemsEnabled(pause, false);
+    setItemsEnabled(stop, false);
+    setItemsEnabled(add, true);
   }
 
   /**
@@ -124,20 +204,18 @@ public class MenuController implements ActionListener, Finals
   private void handleAdding(NewMainInterface ui)
   {
     if (ui.getResultLabel().getText().equals(HTML))
-      ui.errorMessage("Cannot add incomplete calculation");
+      ui.errorMessage(NewMainInterface.STRINGS.getString("INCOMPLETE"));
     else
     {
-      int choice = JOptionPane.showConfirmDialog(null, "Confirm addition", null,
+      int choice = JOptionPane.showConfirmDialog(null, NewMainInterface.STRINGS.getString("CONFIRM"), null,
           JOptionPane.YES_NO_OPTION);
 
       if (choice == JOptionPane.YES_OPTION)
       {
         recorder.add(ui.getExpressionLabel(), ui.getResultLabel());
         setItemsEnabled(play, true);
-        resetDisplay(ui);
       }
     }
-
   }
 
   /**

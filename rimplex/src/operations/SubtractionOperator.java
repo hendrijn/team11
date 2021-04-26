@@ -1,5 +1,7 @@
 package operations;
 
+import gui.NewMainInterface;
+
 /**
  * Subtraction Operator Class.
  * 
@@ -29,7 +31,7 @@ public class SubtractionOperator implements Operator
     if (leftOperand == null || rightOperand == null || leftOperand.equals("")
         || rightOperand.equals(""))
     {
-      throw new IllegalArgumentException("Please provide two operands");
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("TWO_OPERANDS"));
     }
 
     // remove spaces

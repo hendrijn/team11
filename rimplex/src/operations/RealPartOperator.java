@@ -1,39 +1,41 @@
 package operations;
 
+import gui.NewMainInterface;
+
 public class RealPartOperator
 {
   private final String FORM = "%.2f";
 
   public String evaluate(String operand)
   {
-    if(operand == null || operand.equals(""))
+    if (operand == null || operand.equals(""))
     {
       throw new IllegalArgumentException("Please enter an operand");
     }
-    
+
     String alteredOp = ((operand.replaceAll(" ", "")).replace("(", "")).replace(")", "");
     String result = "";
 
-    if(alteredOp.equals(""))
+    if (alteredOp.equals(""))
     {
-      throw new IllegalArgumentException("Please enter an operand");
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NO_OPERAND"));
     }
-    
+
     long iCount = alteredOp.chars().filter(ch -> ch == 'i').count();
     if (iCount > 1)
     {
-      throw new IllegalArgumentException("Please provide a valid operand, or simplify it.");
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("VALID_OR_SIMPLIFY"));
     }
-  
+
     try
     {
       Double.parseDouble(((alteredOp.replace("i", "")).replace("+", "")).replaceAll("-", ""));
     }
     catch (NumberFormatException nfe)
     {
-      throw new IllegalArgumentException("Please provide a valid operand, or simplify it.");
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("VALID_OR_SIMPLIFY"));
     }
-    
+
     boolean isComplex = TempContext.isComplex(alteredOp);
     boolean isImaginary = TempContext.isImaginary(alteredOp);
     boolean isReal = TempContext.isReal(alteredOp);
@@ -59,13 +61,13 @@ public class RealPartOperator
         result = String.format(FORM, Double.parseDouble(alteredOp.substring(0, negativeMinus)));
       }
     }
-    
-    if(isImaginary)
+
+    if (isImaginary)
     {
       result = String.format(FORM, 0.0);
     }
-    
-    if(isReal)
+
+    if (isReal)
     {
       result = String.format(FORM, Double.parseDouble(alteredOp));
     }

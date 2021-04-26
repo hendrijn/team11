@@ -1,5 +1,7 @@
 package operations;
 
+import gui.NewMainInterface;
+
 /**
  * Addition Operator Class.
  * 
@@ -47,7 +49,7 @@ public class AdditionOperator implements Operator
     }
     catch (NumberFormatException e)
     {
-      throw new IllegalArgumentException("Not a valid operand.");
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
     }
 
     Double leftRegNumDouble = 0.0;
@@ -58,7 +60,7 @@ public class AdditionOperator implements Operator
     catch (NumberFormatException e)
     {
 
-      throw new IllegalArgumentException("Not a valid operand.");
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
     }
 
     Double rightImagNumDouble = 0.0;
@@ -69,7 +71,7 @@ public class AdditionOperator implements Operator
     catch (NumberFormatException e)
     {
 
-      throw new IllegalArgumentException("Not a valid operand.");
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
     }
 
     Double rightRegNumDouble = 0.0;
@@ -80,7 +82,7 @@ public class AdditionOperator implements Operator
     catch (NumberFormatException e)
     {
 
-      throw new IllegalArgumentException("Not a valid operand.");
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
     }
 
     Double finalRegTotal = leftRegNumDouble + rightRegNumDouble;

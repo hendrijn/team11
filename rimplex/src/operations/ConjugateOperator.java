@@ -1,5 +1,7 @@
 package operations;
 
+import gui.NewMainInterface;
+
 /**
  * class for computing the conjugate of a complex/imaginary number. Used for the inverse and
  * division.
@@ -24,7 +26,7 @@ public class ConjugateOperator
     // for division and the inverse
     if (operand == null || operand.equals(""))
     {
-      throw new IllegalArgumentException("Please Enter an Operand.");
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NO_OPERAND"));
     }
 
     // operand w/o spaces and parens
@@ -33,17 +35,17 @@ public class ConjugateOperator
     // error checking for empty and bad operands
     if (alteredOp.equals(""))
     {
-      throw new IllegalArgumentException("Please Enter an Operand.");
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NO_OPERAND"));
     }
 
     if ((alteredOp.indexOf("i", alteredOp.indexOf("i") + 1) != -1))
     {
-      throw new IllegalArgumentException("Please Enter a Valid Operand.");
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
     }
 
     if ((alteredOp.replace("i", "")).matches(".*[a-zA-Z]+.*"))
     {
-      throw new IllegalArgumentException("Please Enter a Valid Operand.");
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
     }
 
     String result = "";

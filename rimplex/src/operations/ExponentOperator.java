@@ -1,5 +1,7 @@
 package operations;
 
+import gui.NewMainInterface;
+
 public class ExponentOperator
 {
   
@@ -15,7 +17,7 @@ public class ExponentOperator
     }
     catch (Exception e)
     {
-      throw new IllegalArgumentException("Please provide a valid operand.");
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
     }
     
     int powerOf = 0;
@@ -25,7 +27,7 @@ public class ExponentOperator
     }
     catch (NumberFormatException e)
     {
-      throw new IllegalArgumentException("Please provide a valid base.");
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("BASE"));
     }
     
     String leftRegularNumber = decomposedOperands[0];
@@ -40,7 +42,7 @@ public class ExponentOperator
     }
     catch (NumberFormatException e1)
     {
-      throw new IllegalArgumentException("Please provide a valid operand.");
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
     }
     
     try
@@ -49,7 +51,7 @@ public class ExponentOperator
     }
     catch (NumberFormatException e2)
     {
-      throw new IllegalArgumentException("Please provide a valid operand.");
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
     }
    
     if (dblImagNum == 0.00) 

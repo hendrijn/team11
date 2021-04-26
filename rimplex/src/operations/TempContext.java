@@ -1,5 +1,7 @@
 package operations;
 
+import gui.NewMainInterface;
+
 /**
  * This is class that provides context for swapping between Operators, following the Strategy
  * pattern. This class may or may not prove to be redundant and therefore was named tempContext at
@@ -50,7 +52,7 @@ public class TempContext
   {
     if (operand == null || operand.equals(""))
     {
-      throw new IllegalArgumentException("Please provide two valid operands.");
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("TWO_OPERANDS"));
     }
 
     boolean complex = isComplex(operand);
@@ -124,7 +126,7 @@ public class TempContext
 
     if (iCountLeft > 1 || iCountRight > 1)
     {
-      throw new IllegalArgumentException("Please provide two valid operands, or simplify them.");
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("TWO_VALID_OR_SIMPLIFY"));
     }
 
     int leftPlusIndex = alteredLOp.indexOf("+");
