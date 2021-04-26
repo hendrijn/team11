@@ -18,7 +18,7 @@ public class Rimplex
     logo.contentPane.setVisible(true);
     TimeUnit.SECONDS.sleep(3);
     logo.setVisible(false);
-    NewMainInterface ui = NewMainInterface.getInstance();
+    NewMainInterface.getInstance();
   }
 
 }
