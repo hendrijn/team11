@@ -41,7 +41,7 @@ public class AdditionOperator implements Operator
     String rightRegularNumber = decomposedOperands[2];
     String rightImaginaryNumber = decomposedOperands[3];
 
-    // Integer processing
+    //Process the parts of operands as doubles.
     Double leftImagNumDouble = 0.0;
     try
     {
@@ -93,6 +93,7 @@ public class AdditionOperator implements Operator
 
     String result = formattedRegTotal + "+" + formattedImagTotal + "i";
 
+    //If the result ends up with +-, revert to the proper -
     if (result.contains("+-"))
     {
       result = result.substring(0, result.indexOf("+")) + "-"

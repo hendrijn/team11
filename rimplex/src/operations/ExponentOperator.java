@@ -51,6 +51,7 @@ public class ExponentOperator
     double dblImagNum = 0.0;
     double finalResult = 0.0;
 
+    //Processing the parts of the operand as doubles
     try
     {
       dblRegNum = Double.parseDouble(leftRegularNumber);
@@ -85,6 +86,7 @@ public class ExponentOperator
       runningOperand = finalOperand;
     }
 
+    //If negative zero is in the string, change it to 0.00
     if (finalOperand.substring(0, 4).equals("-0.0"))
     {
       finalOperand = "0.00" + finalOperand.substring(5);

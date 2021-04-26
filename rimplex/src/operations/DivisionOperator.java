@@ -121,7 +121,6 @@ public class DivisionOperator implements Operator
       doubleResult = Double.parseDouble(parts[1]) / Double.parseDouble(parts[3]);
       result = TempContext.format(String.format(FORM, doubleResult));
     }
-    // formats result
 
     // edits any +- occurances to -
     if (result.contains("+-"))
