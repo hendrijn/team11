@@ -158,6 +158,16 @@ public class InterfaceController
           invertedOperand = "(" + invertedOperand + ")";
           ui.getInputLabel().setText(replaceFormatting(invertedOperand));
           break;
+        case RPARTS:
+          JLabel rPart = ui.getInputLabel();
+          String real = rPart.getText();
+          handleReal(real);
+          break;
+        case IPARTS:
+          JLabel iPart = ui.getInputLabel();
+          String imag = iPart.getText();
+          handleImaginary(imag);
+          break;
         default:
           closeApplication();
 
@@ -307,6 +317,43 @@ public class InterfaceController
         break;
       }
     }
+  }
+
+  private void handleReal(String operand)
+  {
+    NewMainInterface ui = NewMainInterface.getInstance();
+    JLabel inLabel = ui.getInputLabel();
+    String actual = removeFormatting(operand);
+    RealPartOperator r = new RealPartOperator();
+    String change = "";
+    try
+    {
+      change = r.evaluate(actual);
+    }
+    catch (IllegalArgumentException iae)
+    {
+      ui.errorMessage(iae.getMessage());
+    }
+    inLabel.setText(replaceFormatting(change));
+  }
+
+  private void handleImaginary(String operand)
+  {
+    NewMainInterface ui = NewMainInterface.getInstance();
+    JLabel inLabel = ui.getInputLabel();
+    String actual = removeFormatting(operand);
+    ImaginaryPartOperator i = new ImaginaryPartOperator();
+
+    String change = "";
+    try
+    {
+      change = i.evaluate(actual);
+    }
+    catch (IllegalArgumentException iae)
+    {
+      ui.errorMessage(iae.getMessage());
+    }
+    inLabel.setText(replaceFormatting(change));
   }
 
   private void handleOperators(String operation)

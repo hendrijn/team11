@@ -12,8 +12,7 @@ public class Rimplex
 {  
   public static void main(String[] args) throws InterruptedException
   {
-	  
-	  
+
 	  // make History Display here
 	  LogoDisplay logo = LogoDisplay.getInstance();
 	  logo.setSize(250, 100);
