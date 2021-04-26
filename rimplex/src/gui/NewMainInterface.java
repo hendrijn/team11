@@ -12,7 +12,6 @@ public class NewMainInterface extends JFrame implements Finals
 {
   private static final long serialVersionUID = 5691196863267451960L;
 
- 
   static final Locale LOCALE = Locale.getDefault();
   public static ResourceBundle STRINGS = ResourceBundle.getBundle("gui.Strings", LOCALE);
 
@@ -65,7 +64,6 @@ public class NewMainInterface extends JFrame implements Finals
     // making NewMainInterface run repeatedly????????
     // LogoDisplay logo = LogoDisplay.getInstance();
 
-    HistoryDisplay history = HistoryDisplay.getInstance();
     setupFrame();
     setVisible(true); // display this
     // System.out.println("current working directory is: " + System.getProperty("user.dir"));

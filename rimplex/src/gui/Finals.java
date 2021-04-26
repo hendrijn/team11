@@ -1,8 +1,5 @@
 package gui;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Houses all finals for the interface.
  * 

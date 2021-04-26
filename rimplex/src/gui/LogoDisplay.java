@@ -6,10 +6,7 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Taskbar;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-import java.util.concurrent.TimeUnit;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -18,7 +15,7 @@ import javax.swing.JWindow;
 
 public class LogoDisplay extends JWindow implements Finals
 {
-
+  static final long serialVersionUID = -1;
 	private static LogoDisplay logoDisplay = null;
 	ImageIcon logo;
 	Point origin;

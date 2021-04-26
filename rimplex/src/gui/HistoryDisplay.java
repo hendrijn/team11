@@ -2,16 +2,10 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
-import java.awt.Dimension;
 import java.awt.Point;
-import java.awt.Toolkit;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JWindow;
@@ -20,13 +14,14 @@ import javax.swing.JWindow;
  * Handles the history window.
  * 
  * @author Jacquelyn Hendricks
- * @version v2
+ * @version Sprint 3
  */
 
 // make component listener on the JFrame
 // implement component moved method
 public class HistoryDisplay extends JWindow implements Finals
 {
+  static final long serialVersionUID = -1;
   private static HistoryDisplay history = null;
   JButton open;
   JButton close;
@@ -50,7 +45,7 @@ public class HistoryDisplay extends JWindow implements Finals
     setLoc(515, 150);
   }
 
-  void setLoc(int x, int y)
+  void setLoc(final int x, final int y)
   {
     origin = new Point(x, y);
     setLocation(origin);
@@ -97,7 +92,7 @@ public class HistoryDisplay extends JWindow implements Finals
    * @param calc
    *          the calculation
    */
-  public void addCalculation(String calc)
+  public void addCalculation(final String calc)
   {
     String prevText = calcList.getText();
     calcList.setText(prevText + "\t" + calc + "\n");
@@ -113,7 +108,6 @@ public class HistoryDisplay extends JWindow implements Finals
     if (history == null)
       history = new HistoryDisplay();
     return history;
-
   }
   
   public JTextArea getCalcList() {

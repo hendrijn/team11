@@ -2,8 +2,6 @@ package gui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.print.PrinterException;
-import java.util.Locale;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -13,7 +11,7 @@ import javax.swing.JOptionPane;
  * Controls the functionality of the menu items.
  * 
  * @author Jacquelyn Hendricks
- * @version v3
+ * @version Sprint 3
  */
 public class MenuController implements ActionListener, Finals
 {
@@ -257,5 +255,4 @@ public class MenuController implements ActionListener, Finals
   {
     item.setEnabled(isEnabled);
   }
-
 }
