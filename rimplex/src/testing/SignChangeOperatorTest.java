@@ -10,15 +10,19 @@ import operations.SignChangeOperator;
  * Unit tests for SignChangeOperator.
  * 
  * @author may4sa - team11
- * @version Sprint 2
+ * @version Sprint 3
  */
 class SignChangeOperatorTest
 {
+  /**
+   * test constructor for full coverage.
+   */
   @Test
   public void testConstruction()
   {
     SignChangeOperator s = new SignChangeOperator();
   }
+
   /**
    * tests for Illegal Arguements.
    */
@@ -150,7 +154,10 @@ class SignChangeOperatorTest
     expected = "9";
     assertTrue(expected.equals(actual));
   }
-  
+
+  /**
+   * test only i operand.
+   */
   @Test
   public void justI()
   {

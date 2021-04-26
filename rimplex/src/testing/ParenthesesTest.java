@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 /**
  * Unit tests for parentheses handling.
  * 
- * @author willmsca
- * @version Sprint 2
+ * @author willmsca - team 11
+ * @version Sprint 3
  */
 public class ParenthesesTest
 {

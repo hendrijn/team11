@@ -12,7 +12,7 @@ import operations.TempContext;
  * Unit tests for DivisionOperator.
  * 
  * @author may4sa - team11
- * @version Sprint 2
+ * @version Sprint 3
  */
 class DivisonOperatorTest
 {
@@ -63,7 +63,7 @@ class DivisonOperatorTest
   {
     TempContext d = new TempContext(new DivisionOperator());
 
-    //empty L
+    // empty L
     try
     {
       String actual = d.evaluate("", "6");
@@ -73,7 +73,7 @@ class DivisonOperatorTest
       assertTrue(true);
     }
 
-    //empty R
+    // empty R
     try
     {
       String actual = d.evaluate("6", "");
@@ -83,8 +83,7 @@ class DivisonOperatorTest
       assertTrue(true);
     }
 
-    
-    //null L
+    // null L
     try
     {
       String actual = d.evaluate(null, "6");
@@ -94,8 +93,7 @@ class DivisonOperatorTest
       assertTrue(true);
     }
 
-    
-    //null R
+    // null R
     try
     {
       String actual = d.evaluate("6", null);
@@ -105,8 +103,7 @@ class DivisonOperatorTest
       assertTrue(true);
     }
 
-    
-    //empty both
+    // empty both
     try
     {
       String actual = d.evaluate("", "");
@@ -116,7 +113,7 @@ class DivisonOperatorTest
       assertTrue(true);
     }
 
-    //null both   
+    // null both
     try
     {
       String actual = d.evaluate(null, null);
@@ -126,7 +123,7 @@ class DivisonOperatorTest
       assertTrue(true);
     }
 
-    //just parens L
+    // just parens L
     try
     {
       String actual = d.evaluate("()", "7");
@@ -135,8 +132,8 @@ class DivisonOperatorTest
     {
       assertTrue(true);
     }
-    
-    //just paren R
+
+    // just paren R
     try
     {
       String actual = d.evaluate("7", "()");
@@ -145,7 +142,7 @@ class DivisonOperatorTest
     {
       assertTrue(true);
     }
-    
+
     // random chars
     try
     {
@@ -596,6 +593,7 @@ class DivisonOperatorTest
   {
     TempContext d = new TempContext(new DivisionOperator());
 
+    // complex 0 decimal
     try
     {
       String actual = d.evaluate("3.45+7.56i", "0.00+0.00i");
@@ -606,6 +604,7 @@ class DivisonOperatorTest
       assertTrue(true);
     }
 
+    // imaginary 0
     try
     {
       String actual = d.evaluate("3.45+7.56i", "0i");
@@ -616,16 +615,7 @@ class DivisonOperatorTest
       assertTrue(true);
     }
 
-    try
-    {
-      String actual = d.evaluate("3.45+7.56i", "0i");
-      assertTrue(false);
-    }
-    catch (IllegalArgumentException iae)
-    {
-      assertTrue(true);
-    }
-    
+    // imaginay 0 decimal
     try
     {
       String actual = d.evaluate("3.45+7.56i", "0.00i");
@@ -635,7 +625,8 @@ class DivisonOperatorTest
     {
       assertTrue(true);
     }
-    
+
+    // complex 0, negative imaginary 0
     try
     {
       String actual = d.evaluate("3.45+7.56i", "0-0i");
@@ -645,7 +636,8 @@ class DivisonOperatorTest
     {
       assertTrue(true);
     }
-    
+
+    // complex 0
     try
     {
       String actual = d.evaluate("3.45+7.56i", "0+0i");
@@ -655,7 +647,8 @@ class DivisonOperatorTest
     {
       assertTrue(true);
     }
-    
+
+    // real 0
     try
     {
       String actual = d.evaluate("3.45+7.56i", "0");
@@ -666,6 +659,7 @@ class DivisonOperatorTest
       assertTrue(true);
     }
 
+    // real 0 decimal
     try
     {
       String actual = d.evaluate("3.45+7.56i", "0.00");

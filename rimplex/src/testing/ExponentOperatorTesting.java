@@ -20,7 +20,7 @@ class ExponentOperatorTesting
     String actualResult = expOp.exponentation(operand, power);
     assertEquals(expectedResult, actualResult);
   }
-  
+
   @Test
   public void validRegularNumCubedTest()
   {
@@ -31,7 +31,7 @@ class ExponentOperatorTesting
     String actualResult = expOp.exponentation(operand, power);
     assertEquals(expectedResult, actualResult);
   }
-  
+
   @Test
   public void validiCubedTest()
   {
@@ -42,7 +42,7 @@ class ExponentOperatorTesting
     String actualResult = expOp.exponentation(operand, power);
     assertEquals(expectedResult, actualResult);
   }
-  
+
   @Test
   public void validiSixthedTest()
   {
@@ -53,7 +53,7 @@ class ExponentOperatorTesting
     String actualResult = expOp.exponentation(operand, power);
     assertEquals(expectedResult, actualResult);
   }
-  
+
   @Test
   public void validiSquaredTest()
   {
@@ -64,8 +64,7 @@ class ExponentOperatorTesting
     String actualResult = expOp.exponentation(operand, power);
     assertEquals(expectedResult, actualResult);
   }
-  
-  
+
   @Test
   public void validComplexNumTest()
   {
@@ -76,7 +75,7 @@ class ExponentOperatorTesting
     String actualResult = expOp.exponentation(operand, power);
     assertEquals(expectedResult, actualResult);
   }
-  
+
   @Test
   public void invalidOperand()
   {
@@ -89,7 +88,7 @@ class ExponentOperatorTesting
     });
     assertEquals(expectedMessage, exception.getMessage());
   }
-  
+
   @Test
   public void invalidBase()
   {
@@ -102,7 +101,7 @@ class ExponentOperatorTesting
     });
     assertEquals(expectedMessage, exception.getMessage());
   }
-  
+
   @Test
   public void invalidRealOperandGibbersh()
   {
@@ -115,8 +114,6 @@ class ExponentOperatorTesting
     });
     assertEquals(expectedMessage, exception.getMessage());
   }
-  
-  
 
   @Test
   public void invalidOperandImagGibbersh()
@@ -130,7 +127,7 @@ class ExponentOperatorTesting
     });
     assertEquals(expectedMessage, exception.getMessage());
   }
-  
+
   @Test
   public void validImagNegativeZero()
   {
@@ -141,8 +138,7 @@ class ExponentOperatorTesting
     String actualResult = expOp.exponentation(operand, power);
     assertEquals(expectedResult, actualResult);
   }
-  
-  
+
   @Test
   public void validImagZero()
   {
