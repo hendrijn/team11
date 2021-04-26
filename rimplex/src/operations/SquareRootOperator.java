@@ -2,13 +2,31 @@ package operations;
 
 import gui.NewMainInterface;
 
+/**
+ * Class that has operatirons for computing the square root.
+ * 
+ * @author pgleb - team 11
+ * @version Sprint 3
+ */
 public class SquareRootOperator
 {
 
+  // atrributes
   final private String BLANK_OPERAND = "0";
 
-  public String evaluate(String operand)
+  /**
+   * Computes the square root of a complex, real, or imaginary number
+   * 
+   * @param operand
+   *          a complex, real, or imaginary number.
+   * @return the square root of the given operand.
+   * @throws IllegalArgumentException
+   *           if the given operand is empty, null, or illegal (gibberish string or too many i's,
+   *           etc.)
+   */
+  public String evaluate(final String operand) throws IllegalArgumentException
   {
+    //error checking for null/empty operand
     if (operand == null || operand.equals(""))
     {
       throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NO_OPERAND"));
@@ -24,6 +42,7 @@ public class SquareRootOperator
       throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
     }
 
+    //checking for just parens
     if (alteredOp.equals(""))
     {
       throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NO_OPERAND"));
@@ -50,18 +69,16 @@ public class SquareRootOperator
     double finalResult = 0.0;
     String finalString = "";
 
-
-      if (dblRegNum >= 0)
-      {
-        finalResult = Math.sqrt(dblRegNum);
-        finalString = String.format("%.2f", finalResult) + "+0.00i";
-      }
-      else
-      {
-        finalResult = Math.sqrt(Math.abs(dblRegNum));
-        finalString = String.format("%.2fi", finalResult);
-      }
-
+    if (dblRegNum >= 0)
+    {
+      finalResult = Math.sqrt(dblRegNum);
+      finalString = String.format("%.2f", finalResult) + "+0.00i";
+    }
+    else
+    {
+      finalResult = Math.sqrt(Math.abs(dblRegNum));
+      finalString = String.format("%.2fi", finalResult);
+    }
 
     return finalString;
 

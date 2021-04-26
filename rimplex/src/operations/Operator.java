@@ -5,12 +5,11 @@ package operations;
  * mathematically correct calculation of them.
  * 
  * @author team11 (Patrick Glebus)
- * @version Sprint 2
+ * @version Sprint 3
  */
 
 public interface Operator
 {
-
   /**
    * Evaluates the result between two (complex) numbers.
    * 
@@ -21,7 +20,5 @@ public interface Operator
    *          operand.
    * @return The result of the performing the evaluation on the two operands.
    */
-
   public abstract String evaluate(String leftOperand, String rightOperand);
-
 }

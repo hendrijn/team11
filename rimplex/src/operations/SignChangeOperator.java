@@ -1,7 +1,5 @@
 package operations;
 
-import java.util.ResourceBundle;
-
 import gui.NewMainInterface;
 
 /**
@@ -9,7 +7,7 @@ import gui.NewMainInterface;
  * to 7 and vice versa.
  * 
  * @author may4sa - team 11
- * @version Sprint 2
+ * @version Sprint 3
  */
 public class SignChangeOperator
 {
@@ -47,8 +45,6 @@ public class SignChangeOperator
     }
 
     boolean complex = TempContext.isComplex(alteredOp);
-    boolean imaginary = TempContext.isImaginary(alteredOp);
-    boolean real = TempContext.isReal(alteredOp);
     String result = "";
 
     // error checking for illegal strings
