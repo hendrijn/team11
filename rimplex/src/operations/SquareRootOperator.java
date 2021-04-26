@@ -50,7 +50,8 @@ public class SquareRootOperator
     double finalResult = 0.0;
     String finalString = "";
 
-
+    if (dblImagNum == 0.0) 
+    {
       if (dblRegNum >= 0)
       {
         finalResult = Math.sqrt(dblRegNum);
@@ -61,6 +62,23 @@ public class SquareRootOperator
         finalResult = Math.sqrt(Math.abs(dblRegNum));
         finalString = String.format("%.2fi", finalResult);
       }
+    } 
+    else 
+    {
+      //This is intense math best explained here: http://stanleyrabinowitz.com/bibliography/complexSquareRoot.pdf
+      double a = dblRegNum;
+      double b = dblImagNum;
+      double p = 0;
+      double q = 0;
+      double firstPartOfP = (1.00 / Math.sqrt(2));
+      double secondPartOfP = Math.sqrt(Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2)) + a);
+      p = firstPartOfP * secondPartOfP;
+      double firstPartOfQ = Math.signum(b);
+      double secondPartOfQ = (firstPartOfQ / Math.sqrt(2));
+      double thirdPartOfQ = Math.sqrt(Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2)) - a);
+      q = secondPartOfQ * thirdPartOfQ;
+      finalString = p + "+" + q + "i";
+    }
 
 
     return finalString;

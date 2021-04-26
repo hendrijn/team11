@@ -119,4 +119,28 @@ public class SquareRootOperatorTesting
     String actual = sqrt.evaluate(operand);
     assertEquals(expected, actual);
   }
+  
+  
+  @Test
+  public void validComplexNumberTest1()
+  {
+    
+    SquareRootOperator sqrt = new SquareRootOperator(); 
+    String operand = "8-6i";
+    String expected = "3.00-1.00i,-3.00+1.00i";
+    String actual = sqrt.evaluate(operand);
+    assertEquals(expected, actual);
+  }
+  
+  
+  @Test
+  public void validComplexNumberTest2()
+  {
+    
+    SquareRootOperator sqrt = new SquareRootOperator(); 
+    String operand = "3+2i";
+    String expected = "1.81+0.55i,-1.81-0.55i";
+    String actual = sqrt.evaluate(operand);
+    assertEquals(expected, actual);
+  }
 }
