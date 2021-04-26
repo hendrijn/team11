@@ -385,7 +385,7 @@ public class NewMainInterface extends JFrame implements Finals
    */
   private void createMenu()
   {
-    MenuController menuListener = new MenuController();
+    MenuController menuListener = MenuController.getInstance();
     AboutController aboutListener = new AboutController();
    // HistoryPrinter historyPrinter = new HistoryPrinter(HistoryDisplay.getInstance());
     // LanguageController langListener = new LanguageController();

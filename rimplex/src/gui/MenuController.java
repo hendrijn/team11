@@ -17,11 +17,24 @@ import javax.swing.JOptionPane;
  */
 public class MenuController implements ActionListener, Finals
 {
+  private static MenuController instance = null;
   boolean isRunning;
   private CalculationRecorder recorder = new CalculationRecorder(1000, this);
   private JMenuItem add, play, pause, stop;
   private int elementsDisplayed = 0;
   private int calcCount = 0;
+
+  /**
+   * Singleton.
+   * 
+   * @return the one instance of menu controller
+   */
+  public static MenuController getInstance()
+  {
+    if (instance == null)
+      instance = new MenuController();
+    return instance;
+  }
 
   /**
    * Responds to menu button presses.
@@ -155,7 +168,7 @@ public class MenuController implements ActionListener, Finals
    */
   private void startPlayback(NewMainInterface ui)
   {
-    //ui.getInputLabel().setText(HTML);
+    // ui.getInputLabel().setText(HTML);
 
     isRunning = true;
     String speed = JOptionPane.showInputDialog(NewMainInterface.STRINGS.getString("SPEED"));
