@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import operations.InverseOperator;
-import operations.SignChangeOperator;
-import operations.TempContext;
 
 /**
  * Unit tests for the InverseOperator.
@@ -147,7 +145,7 @@ class InverseOperatorTest
     // test empty
     try
     {
-      String actual = inverseOperator.invert("");
+      inverseOperator.invert("");
     }
     catch (IllegalArgumentException iae)
     {
@@ -157,7 +155,7 @@ class InverseOperatorTest
     // test null
     try
     {
-      String actual = inverseOperator.invert(null);
+      inverseOperator.invert(null);
     }
     catch (IllegalArgumentException iae)
     {
@@ -167,7 +165,7 @@ class InverseOperatorTest
     // test random string
     try
     {
-      String actual = inverseOperator.invert("jfh3ourfh");
+      inverseOperator.invert("jfh3ourfh");
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)
@@ -178,7 +176,7 @@ class InverseOperatorTest
     // test space and parens
     try
     {
-      String actual = inverseOperator.invert("  ()      ");
+      inverseOperator.invert("  ()      ");
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)
@@ -189,7 +187,7 @@ class InverseOperatorTest
     // test random string with i
     try
     {
-      String actual = inverseOperator.invert("ilovecs");
+      inverseOperator.invert("ilovecs");
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)
@@ -200,7 +198,7 @@ class InverseOperatorTest
     // test two i's
     try
     {
-      String actual = inverseOperator.invert("5ii");
+      inverseOperator.invert("5ii");
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)

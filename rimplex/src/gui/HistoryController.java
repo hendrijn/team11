@@ -13,7 +13,7 @@ import javax.swing.JButton;
  * Controls the history window.
  * 
  * @author Jacquelyn Hendricks
- * @v2
+ * @version Sprint 3
  */
 public class HistoryController implements Finals, ActionListener, ComponentListener
 {
@@ -22,7 +22,6 @@ public class HistoryController implements Finals, ActionListener, ComponentListe
   public void actionPerformed(ActionEvent e)
   {
     HistoryDisplay history = HistoryDisplay.getInstance();
-    NewMainInterface ui = NewMainInterface.getInstance();
     JButton btn = (JButton) e.getSource();
 
     switch (btn.getText())
@@ -31,14 +30,14 @@ public class HistoryController implements Finals, ActionListener, ComponentListe
         history.setSize(500, 340);
         history.listPane.setVisible(true);
         history.close.setVisible(true);
-        ui.history.setVisible(false);
+        history.setVisible(false);
         // history.open.setVisible(false);
         break;
       case "<":
         history.setSize(1, 1);
         history.listPane.setVisible(false);
         history.close.setVisible(false);
-        ui.history.setVisible(true);
+        history.setVisible(true);
         // history.open.setVisible(true);
         break;
 

@@ -8,8 +8,6 @@ package testing;
  */
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.util.Random;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -372,7 +370,6 @@ class AdditonOperatorTesting
   @Test
   public void oneIInvalidLeftOperandTest()
   {
-
     String complexNumberOne = "iLoveCS345";
     String complexNumberTwo = "4 + 3i";
     TempContext tempContext = new TempContext(new AdditionOperator());
@@ -388,7 +385,6 @@ class AdditonOperatorTesting
   @Test
   public void oneIInvalidRightOperandTest()
   {
-
     String complexNumberOne = "4 + 3i";
     String complexNumberTwo = "iLoveCS345";
     TempContext tempContext = new TempContext(new AdditionOperator());
@@ -410,7 +406,6 @@ class AdditonOperatorTesting
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
-
   }
 
   //Testing i plus a complex number
@@ -423,7 +418,6 @@ class AdditonOperatorTesting
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
-
   }
 
   //Testing a complex number that has 1i plus another complex
@@ -436,7 +430,6 @@ class AdditonOperatorTesting
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
-
   }
 
   //Testing a complex number that has 1i plus another complex number that has 1i
@@ -449,7 +442,6 @@ class AdditonOperatorTesting
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
-
   }
 
   //Testing just a single i on the left being added to a complex number
@@ -462,7 +454,6 @@ class AdditonOperatorTesting
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
-
   }
 
   //Testing just a single i on the right being added to a complex number
@@ -475,7 +466,6 @@ class AdditonOperatorTesting
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
-
   }
 
   //Testing just a single negative i on the left being added to a complex number
@@ -488,7 +478,6 @@ class AdditonOperatorTesting
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
-
   }
 
   //Testing just a single negative i on the right being added to a complex number
@@ -501,7 +490,6 @@ class AdditonOperatorTesting
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
-
   }
 
   //Testing a negative imaginary number plus a complex number
@@ -514,7 +502,6 @@ class AdditonOperatorTesting
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
-
   }
 
   //Testing one positive and one complex number
@@ -527,7 +514,6 @@ class AdditonOperatorTesting
     TempContext tempContext = new TempContext(new AdditionOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
-
   }
 
   //Testing two complex decimal operands
@@ -588,7 +574,5 @@ class AdditonOperatorTesting
     String actual = a.evaluate("9.06", "2.66i");
     String expected = "9.06+2.66i";
     assertEquals(expected, actual);
-  }
-
-  
+  } 
 }

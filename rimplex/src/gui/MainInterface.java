@@ -4,8 +4,6 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.Border;
 
-import org.junit.platform.commons.util.StringUtils;
-
 /**
  * Serves as the main window for the interface.
  *

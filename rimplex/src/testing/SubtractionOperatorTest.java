@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import operations.AdditionOperator;
 import operations.SubtractionOperator;
 import operations.TempContext;
 
@@ -67,7 +66,7 @@ class SubtractionOperatorTest
     // both illegal
     try
     {
-      String illegal = s.evaluate("abcdefg", "hijklmn");
+      s.evaluate("abcdefg", "hijklmn");
       assertTrue(false);
     }
     catch (IllegalArgumentException e)
@@ -78,7 +77,7 @@ class SubtractionOperatorTest
     // first operand illegal
     try
     {
-      String illegal = s.evaluate("abc-defg", "5i");
+      s.evaluate("abc-defg", "5i");
       assertTrue(false);
     }
     catch (IllegalArgumentException e)
@@ -89,7 +88,7 @@ class SubtractionOperatorTest
     // second operand illegal
     try
     {
-      String illegal = s.evaluate("2", "hij+klmn");
+      s.evaluate("2", "hij+klmn");
       assertTrue(false);
     }
     catch (IllegalArgumentException e)
@@ -100,7 +99,7 @@ class SubtractionOperatorTest
     // test illegal i's
     try
     {
-      String illegal = s.evaluate("2", "iiiiiiii");
+      s.evaluate("2", "iiiiiiii");
       assertTrue(false);
     }
     catch (IllegalArgumentException e)
@@ -111,7 +110,7 @@ class SubtractionOperatorTest
     // test illegal i's with numbers
     try
     {
-      String illegal = s.evaluate("2ii", "3");
+      s.evaluate("2ii", "3");
       assertTrue(false);
     }
     catch (IllegalArgumentException e)
@@ -122,7 +121,7 @@ class SubtractionOperatorTest
     // single i illegal operand
     try
     {
-      String illegal = s.evaluate("i love cs", "5i");
+      s.evaluate("i love cs", "5i");
       assertTrue(false);
     }
     catch (IllegalArgumentException e)
@@ -142,7 +141,7 @@ class SubtractionOperatorTest
     // both operands null
     try
     {
-      String bothNull = s.evaluate(null, null);
+      s.evaluate(null, null);
       assertTrue(false);
     }
     catch (IllegalArgumentException e)
@@ -153,7 +152,7 @@ class SubtractionOperatorTest
     // first operand null
     try
     {
-      String firstNull = s.evaluate(null, "6+3i");
+      s.evaluate(null, "6+3i");
       assertTrue(false);
     }
     catch (IllegalArgumentException e)
@@ -164,7 +163,7 @@ class SubtractionOperatorTest
     // second operand null
     try
     {
-      String secondNull = s.evaluate("4+5i", null);
+      s.evaluate("4+5i", null);
       assertTrue(false);
     }
     catch (IllegalArgumentException e)
@@ -175,7 +174,7 @@ class SubtractionOperatorTest
     // both operands empty
     try
     {
-      String empty = s.evaluate("", "");
+      s.evaluate("", "");
       assertTrue(false);
     }
     catch (IllegalArgumentException e)
@@ -186,7 +185,7 @@ class SubtractionOperatorTest
     // first operand empty
     try
     {
-      String firstEmpty = s.evaluate("", "2+3i");
+      s.evaluate("", "2+3i");
       assertTrue(false);
     }
     catch (IllegalArgumentException e)
@@ -197,7 +196,7 @@ class SubtractionOperatorTest
     // second operand empty
     try
     {
-      String secondEmpty = s.evaluate("7+5i", "");
+      s.evaluate("7+5i", "");
       assertTrue(false);
     }
     catch (IllegalArgumentException e)
@@ -252,7 +251,7 @@ class SubtractionOperatorTest
     // first operand null
     try
     {
-      String firstNull = s.evaluate(null, "3i");
+      s.evaluate(null, "3i");
       assertTrue(false);
     }
     catch (IllegalArgumentException e)
@@ -263,7 +262,7 @@ class SubtractionOperatorTest
     // second operand null
     try
     {
-      String secondNull = s.evaluate("5i", null);
+      s.evaluate("5i", null);
       assertTrue(false);
     }
     catch (IllegalArgumentException e)
@@ -274,7 +273,7 @@ class SubtractionOperatorTest
     // first operand empty
     try
     {
-      String firstEmpty = s.evaluate("", "3i");
+      s.evaluate("", "3i");
       assertTrue(false);
     }
     catch (IllegalArgumentException e)
@@ -285,7 +284,7 @@ class SubtractionOperatorTest
     // second operand empty
     try
     {
-      String secondEmpty = s.evaluate("5i", "");
+      s.evaluate("5i", "");
       assertTrue(false);
     }
     catch (IllegalArgumentException e)
@@ -340,7 +339,7 @@ class SubtractionOperatorTest
     // first operand null
     try
     {
-      String firstNull = s.evaluate(null, "3");
+      s.evaluate(null, "3");
       assertTrue(false);
     }
     catch (IllegalArgumentException e)
@@ -351,7 +350,7 @@ class SubtractionOperatorTest
     // second operand null
     try
     {
-      String secondNull = s.evaluate("5", null);
+      s.evaluate("5", null);
       assertTrue(false);
     }
     catch (IllegalArgumentException e)
@@ -362,7 +361,7 @@ class SubtractionOperatorTest
     // first operand empty
     try
     {
-      String firstEmpty = s.evaluate("", "3");
+      s.evaluate("", "3");
       assertTrue(false);
     }
     catch (IllegalArgumentException e)
@@ -373,7 +372,7 @@ class SubtractionOperatorTest
     // second operand empty
     try
     {
-      String secondEmpty = s.evaluate("5", "");
+      s.evaluate("5", "");
       assertTrue(false);
     }
     catch (IllegalArgumentException e)

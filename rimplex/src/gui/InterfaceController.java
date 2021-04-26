@@ -50,7 +50,7 @@ public class InterfaceController
    * Handles soft button operations.
    */
   @Override
-  public void actionPerformed(ActionEvent e)
+  public void actionPerformed(final ActionEvent e)
   {
     NewMainInterface ui = NewMainInterface.getInstance();
     AbstractButton button = (AbstractButton) e.getSource();
@@ -107,28 +107,7 @@ public class InterfaceController
           handleInput(RPAREN);
           break;
         case BACKSPACE:
-          String text = ui.getInputLabel().getText();
-
-          // to cover cases when the user backspaces without typing anything
-          String cleanText = removeFormatting(text);
-          if (cleanText.length() == 1)
-          {
-            ui.getInputLabel().setText(HTML);
-            break;
-          }
-          if (text.length() > HTML.length())
-          {
-            if (text.substring(text.length() - I.length()).equals(I))
-            {
-              text = text.substring(0, text.length() - I.length());
-              ui.getInputLabel().setText(text);
-            }
-            else
-            {
-              text = text.substring(0, text.length() - 1);
-              ui.getInputLabel().setText(text);
-            }
-          }
+          handleBackspace(ui);
           break;
         case SIGN:
           JLabel input = ui.getInputLabel();
@@ -170,25 +149,23 @@ public class InterfaceController
           break;
         default:
           closeApplication();
-
       }
     }
-
   }
 
   /**
    * Handles when something is typed.
    */
   @Override
-  public void keyTyped(KeyEvent e)
+  public void keyTyped(final KeyEvent e)
   {
     // if a recording is being played back, don't accept keyboard presses
     MenuController playback = MenuController.getInstance();
     if (playback.isRunning)
       return;
-    
-    
+
     NewMainInterface ui = NewMainInterface.getInstance();
+
     char keyChar = e.getKeyChar();
     String keyText = Character.toString(keyChar);
     try
@@ -198,7 +175,7 @@ public class InterfaceController
     }
     catch (Throwable t)
     {
-      if (e.getKeyChar() == '\n')
+      if (keyChar == '\n')
       {
         try
         {
@@ -210,6 +187,10 @@ public class InterfaceController
           ui.errorMessage("Please input two valid operands.");
           resetInterface();
         }
+      }
+      else if (keyChar == '\b')
+      {
+        handleBackspace(ui);
       }
       else
       {
@@ -247,7 +228,37 @@ public class InterfaceController
   }
 
   /**
-   * closeApplication - handle all tasks at application close. 
+   * Backspaces the input field.
+   */
+  private void handleBackspace(final NewMainInterface ui)
+  {
+    String text = ui.getInputLabel().getText();
+
+    // to cover cases when the user backspaces without typing anything
+    String cleanText = removeFormatting(text);
+    if (cleanText.length() == 1)
+    {
+      ui.getInputLabel().setText(HTML);
+      return;
+    }
+    if (text.length() > HTML.length())
+    {
+      if (text.substring(text.length() - I.length()).equals(I))
+      {
+        text = text.substring(0, text.length() - I.length());
+        ui.getInputLabel().setText(text);
+      }
+      else
+      {
+        text = text.substring(0, text.length() - 1);
+        ui.getInputLabel().setText(text);
+      }
+    }
+
+  }
+
+  /**
+   * closeApplication - handle all tasks at application close.
    */
   private void closeApplication()
   {
@@ -260,7 +271,7 @@ public class InterfaceController
    * @param ui
    *          The ui of the entire rimplex program.
    */
-  private void equalsButtonHandling(NewMainInterface ui)
+  private void equalsButtonHandling(final NewMainInterface ui)
   {
     HistoryDisplay history = HistoryDisplay.getInstance();
     JLabel exLabel = ui.getExpressionLabel();
@@ -303,7 +314,7 @@ public class InterfaceController
    * @param input
    *          the number to change
    */
-  private void handleSign(String input)
+  private void handleSign(final String input)
   {
     String[] nums = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "i", ")"};
     NewMainInterface ui = NewMainInterface.getInstance();
@@ -321,7 +332,7 @@ public class InterfaceController
     }
   }
 
-  private void handleReal(String operand)
+  private void handleReal(final String operand)
   {
     NewMainInterface ui = NewMainInterface.getInstance();
     JLabel inLabel = ui.getInputLabel();
@@ -339,7 +350,7 @@ public class InterfaceController
     inLabel.setText(replaceFormatting(change));
   }
 
-  private void handleImaginary(String operand)
+  private void handleImaginary(final String operand)
   {
     NewMainInterface ui = NewMainInterface.getInstance();
     JLabel inLabel = ui.getInputLabel();
@@ -358,7 +369,7 @@ public class InterfaceController
     inLabel.setText(replaceFormatting(change));
   }
 
-  private void handleOperators(String operation)
+  private void handleOperators(final String operation)
   {
     NewMainInterface ui = NewMainInterface.getInstance();
     JLabel exLabel = ui.getExpressionLabel();
@@ -405,8 +416,8 @@ public class InterfaceController
    * @param resLabel
    *          the results label
    */
-  private void updateDisplayWithOperator(String operation, NewMainInterface ui, JLabel exLabel,
-      JLabel inLabel, JLabel resLabel)
+  private void updateDisplayWithOperator(final String operation, final NewMainInterface ui,
+      final JLabel exLabel, final JLabel inLabel, final JLabel resLabel)
   {
     operator = operation; // assigns the indicated operation to the class variable
 
@@ -444,7 +455,7 @@ public class InterfaceController
   /**
    * Adds soft or physical keyboard input to the display.
    */
-  private void handleInput(String input)
+  private void handleInput(final String input)
   {
     NewMainInterface ui = NewMainInterface.getInstance();
 
@@ -468,7 +479,7 @@ public class InterfaceController
    *          the string to change
    * @return the input without html formatting
    */
-  private String removeFormatting(String input)
+  private String removeFormatting(final String input)
   {
     String newString = EMPTY;
     newString = input.replace(HTML, EMPTY);
@@ -483,7 +494,7 @@ public class InterfaceController
    *          the string to change
    * @return the input without html formatting
    */
-  private String replaceFormatting(String input)
+  private String replaceFormatting(final String input)
   {
     String newString = HTML;
     newString = newString + input.replace("i", I);
@@ -509,7 +520,7 @@ public class InterfaceController
    *          the String to search
    * @return true if there are more open brackets, false if not
    */
-  public static boolean inParentheses(String input)
+  public static boolean inParentheses(final String input)
   {
     int left = 0;
     int right = 0;
@@ -527,7 +538,7 @@ public class InterfaceController
   }
 
   @Override
-  public void focusLost(FocusEvent e)
+  public void focusLost(final FocusEvent e)
   {
     // TODO Auto-generated method stub
     NewMainInterface ui = NewMainInterface.getInstance();
@@ -535,7 +546,7 @@ public class InterfaceController
   }
 
   @Override
-  public void focusGained(FocusEvent e)
+  public void focusGained(final FocusEvent e)
   {
     // TODO Auto-generated method stub
     NewMainInterface ui = NewMainInterface.getInstance();

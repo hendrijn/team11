@@ -1,11 +1,8 @@
 package testing;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
-
 import operations.ConjugateOperator;
-import operations.TempContext;
 
 /**
  * Unit Tests for the ConjugateOperator.
@@ -27,7 +24,7 @@ class ConjugateOperatorTest
     // null
     try
     {
-      String bothNull = c.conjugate(null);
+      c.conjugate(null);
       assertTrue(false);
     }
     catch (IllegalArgumentException e)
@@ -38,7 +35,7 @@ class ConjugateOperatorTest
     // empty
     try
     {
-      String empty = c.conjugate("");
+      c.conjugate("");
       assertTrue(false);
     }
     catch (IllegalArgumentException e)
@@ -49,7 +46,7 @@ class ConjugateOperatorTest
     // just parens
     try
     {
-      String emptyParen = c.conjugate("   ()");
+      c.conjugate("   ()");
       assertTrue(false);
     }
     catch (IllegalArgumentException e)
@@ -60,7 +57,7 @@ class ConjugateOperatorTest
     // string
     try
     {
-      String random = c.conjugate("rogphusdnjivbuo");
+      c.conjugate("rogphusdnjivbuo");
       assertTrue(false);
     }
     catch (IllegalArgumentException e)
@@ -71,7 +68,7 @@ class ConjugateOperatorTest
     // two i's
     try
     {
-      String doubleI = c.conjugate("5ii");
+      c.conjugate("5ii");
       assertTrue(false);
     }
     catch (IllegalArgumentException e)
@@ -82,7 +79,7 @@ class ConjugateOperatorTest
     // i in an illegal string
     try
     {
-      String iString = c.conjugate("ilovecs");
+      c.conjugate("ilovecs");
       assertTrue(false);
     }
     catch (IllegalArgumentException e)

@@ -49,7 +49,7 @@ class RealPartOperatorTest
     // just parens
     try
     {
-      String actual = r.evaluate("()");
+      r.evaluate("()");
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)
@@ -60,7 +60,7 @@ class RealPartOperatorTest
     // empty
     try
     {
-      String actual = r.evaluate("");
+      r.evaluate("");
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)
@@ -71,7 +71,7 @@ class RealPartOperatorTest
     // null
     try
     {
-      String actual = r.evaluate(null);
+      r.evaluate(null);
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)
@@ -82,7 +82,7 @@ class RealPartOperatorTest
     // string
     try
     {
-      String actual = r.evaluate("nsdbciwsjkvbq");
+      r.evaluate("nsdbciwsjkvbq");
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)
@@ -93,7 +93,7 @@ class RealPartOperatorTest
     // multi is
     try
     {
-      String actual = r.evaluate("5iii");
+      r.evaluate("5iii");
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)
@@ -104,7 +104,7 @@ class RealPartOperatorTest
     // ilovecs
     try
     {
-      String actual = r.evaluate("ilovecs");
+      r.evaluate("ilovecs");
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)
