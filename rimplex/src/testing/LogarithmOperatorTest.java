@@ -49,7 +49,7 @@ class LogarithmOperatorTest
     // empty
     try
     {
-      String actual = l.log("");
+      l.log("");
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)
@@ -60,7 +60,7 @@ class LogarithmOperatorTest
     // null
     try
     {
-      String actual = l.log(null);
+      l.log(null);
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)
@@ -71,7 +71,7 @@ class LogarithmOperatorTest
     // string
     try
     {
-      String actual = l.log("vhjb3yito");
+      l.log("vhjb3yito");
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)
@@ -82,7 +82,7 @@ class LogarithmOperatorTest
     // multi i's
     try
     {
-      String actual = l.log("6ii");
+      l.log("6ii");
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)
@@ -93,7 +93,7 @@ class LogarithmOperatorTest
     // ilovecs
     try
     {
-      String actual = l.log("ilovecs");
+      l.log("ilovecs");
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)
@@ -126,7 +126,6 @@ class LogarithmOperatorTest
     String actual = l.log("4i");
     String expected = "1.39+1.57i";
     assertEquals(expected, actual);
-    
   }
 
   /**
@@ -152,7 +151,7 @@ class LogarithmOperatorTest
 
     try
     {
-      String actual = l.log("-7i");
+      l.log("-7i");
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)
@@ -171,7 +170,7 @@ class LogarithmOperatorTest
 
     try
     {
-      String actual = l.log("0");
+      l.log("0");
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)
@@ -181,17 +180,17 @@ class LogarithmOperatorTest
 
     try
     {
-      String actual = l.log("0.00");
+      l.log("0.00");
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)
     {
       assertTrue(true);
     }
-    
+
     try
     {
-      String actual = l.log("-0.00");
+      l.log("-0.00");
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)

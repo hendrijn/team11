@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import operations.DivisionOperator;
-import operations.SubtractionOperator;
 import operations.TempContext;
 
 /**
@@ -66,7 +65,7 @@ class DivisonOperatorTest
     // empty L
     try
     {
-      String actual = d.evaluate("", "6");
+      d.evaluate("", "6");
     }
     catch (IllegalArgumentException iae)
     {
@@ -76,7 +75,7 @@ class DivisonOperatorTest
     // empty R
     try
     {
-      String actual = d.evaluate("6", "");
+      d.evaluate("6", "");
     }
     catch (IllegalArgumentException iae)
     {
@@ -86,7 +85,7 @@ class DivisonOperatorTest
     // null L
     try
     {
-      String actual = d.evaluate(null, "6");
+      d.evaluate(null, "6");
     }
     catch (IllegalArgumentException iae)
     {
@@ -96,7 +95,7 @@ class DivisonOperatorTest
     // null R
     try
     {
-      String actual = d.evaluate("6", null);
+      d.evaluate("6", null);
     }
     catch (IllegalArgumentException iae)
     {
@@ -106,7 +105,7 @@ class DivisonOperatorTest
     // empty both
     try
     {
-      String actual = d.evaluate("", "");
+      d.evaluate("", "");
     }
     catch (IllegalArgumentException iae)
     {
@@ -116,7 +115,7 @@ class DivisonOperatorTest
     // null both
     try
     {
-      String actual = d.evaluate(null, null);
+      d.evaluate(null, null);
     }
     catch (IllegalArgumentException iae)
     {
@@ -126,7 +125,7 @@ class DivisonOperatorTest
     // just parens L
     try
     {
-      String actual = d.evaluate("()", "7");
+      d.evaluate("()", "7");
     }
     catch (IllegalArgumentException iae)
     {
@@ -136,7 +135,7 @@ class DivisonOperatorTest
     // just paren R
     try
     {
-      String actual = d.evaluate("7", "()");
+      d.evaluate("7", "()");
     }
     catch (IllegalArgumentException iae)
     {
@@ -146,7 +145,7 @@ class DivisonOperatorTest
     // random chars
     try
     {
-      String actual = d.evaluate("nfouuvboa", "kleroiweygp");
+      d.evaluate("nfouuvboa", "kleroiweygp");
     }
     catch (IllegalArgumentException iae)
     {
@@ -156,7 +155,7 @@ class DivisonOperatorTest
     // numbers and operators with random chars
     try
     {
-      String actual = d.evaluate("5+heuq", "6++jbiogh");
+      d.evaluate("5+heuq", "6++jbiogh");
     }
     catch (IllegalArgumentException iae)
     {
@@ -166,7 +165,7 @@ class DivisonOperatorTest
     // too many i's
     try
     {
-      String actual = d.evaluate("5+6ii", "4i");
+      d.evaluate("5+6ii", "4i");
     }
     catch (IllegalArgumentException iae)
     {
@@ -176,7 +175,7 @@ class DivisonOperatorTest
     // one i in invalid string
     try
     {
-      String actual = d.evaluate("ilovecs", "6");
+      d.evaluate("ilovecs", "6");
     }
     catch (IllegalArgumentException iae)
     {
@@ -303,7 +302,6 @@ class DivisonOperatorTest
     // both negative
     String actual = d.evaluate("6", "9");
     String expected = "0.67+0.00i";
-    System.out.println(actual);
     assertTrue(actual.equals(expected));
 
     // both positive
@@ -596,7 +594,7 @@ class DivisonOperatorTest
     // complex 0 decimal
     try
     {
-      String actual = d.evaluate("3.45+7.56i", "0.00+0.00i");
+      d.evaluate("3.45+7.56i", "0.00+0.00i");
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)
@@ -607,7 +605,7 @@ class DivisonOperatorTest
     // imaginary 0
     try
     {
-      String actual = d.evaluate("3.45+7.56i", "0i");
+      d.evaluate("3.45+7.56i", "0i");
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)
@@ -618,7 +616,7 @@ class DivisonOperatorTest
     // imaginay 0 decimal
     try
     {
-      String actual = d.evaluate("3.45+7.56i", "0.00i");
+      d.evaluate("3.45+7.56i", "0.00i");
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)
@@ -629,7 +627,7 @@ class DivisonOperatorTest
     // complex 0, negative imaginary 0
     try
     {
-      String actual = d.evaluate("3.45+7.56i", "0-0i");
+      d.evaluate("3.45+7.56i", "0-0i");
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)
@@ -640,7 +638,7 @@ class DivisonOperatorTest
     // complex 0
     try
     {
-      String actual = d.evaluate("3.45+7.56i", "0+0i");
+      d.evaluate("3.45+7.56i", "0+0i");
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)
@@ -651,7 +649,7 @@ class DivisonOperatorTest
     // real 0
     try
     {
-      String actual = d.evaluate("3.45+7.56i", "0");
+      d.evaluate("3.45+7.56i", "0");
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)
@@ -662,7 +660,7 @@ class DivisonOperatorTest
     // real 0 decimal
     try
     {
-      String actual = d.evaluate("3.45+7.56i", "0.00");
+      d.evaluate("3.45+7.56i", "0.00");
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)
