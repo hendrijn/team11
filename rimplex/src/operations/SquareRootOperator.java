@@ -3,7 +3,7 @@ package operations;
 import gui.NewMainInterface;
 
 /**
- * Class that has operatirons for computing the square root.
+ * Class that has a operation for computing the square root.
  * 
  * @author pgleb - team 11
  * @version Sprint 3
