@@ -27,15 +27,7 @@ public class LogarithmOperator
     
     String leftRegularNumber = decomposedOperands[0];
     String leftImaginaryNumber = decomposedOperands[1];
-    double dblRegNum = 0;
-    try
-    {
-      dblRegNum = Double.parseDouble(leftRegularNumber);
-    }
-    catch (NumberFormatException e)
-    {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
-    }
+    double dblRegNum = Double.parseDouble(leftRegularNumber);
     double dblImagNum = 0.00;
     double finalResult = 0.00;
     

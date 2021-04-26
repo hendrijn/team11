@@ -38,6 +38,32 @@ public class SquareRootOperatorTesting
     
    SquareRootOperator sqrt = new SquareRootOperator(); 
    String operand = null;
+   String expectedMessage = "Please enter an operand";
+   Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+     sqrt.evaluate(operand);
+   });
+   assertEquals(expectedMessage, exception.getMessage());
+  }
+
+  @Test
+  public void invalidOperanEmptyTest()
+  {
+    
+   SquareRootOperator sqrt = new SquareRootOperator(); 
+   String operand = "";
+   String expectedMessage = "Please enter an operand";
+   Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+     sqrt.evaluate(operand);
+   });
+   assertEquals(expectedMessage, exception.getMessage());
+  }
+
+  @Test
+  public void invalidOperandMultiITest()
+  {
+    
+   SquareRootOperator sqrt = new SquareRootOperator(); 
+   String operand = "5iii";
    String expectedMessage = "Please provide a valid operand";
    Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
      sqrt.evaluate(operand);
@@ -45,6 +71,18 @@ public class SquareRootOperatorTesting
    assertEquals(expectedMessage, exception.getMessage());
   }
 
+  @Test
+  public void invalidOperandJustParensTest()
+  {
+    
+   SquareRootOperator sqrt = new SquareRootOperator(); 
+   String operand = "()";
+   String expectedMessage = "Please enter an operand";
+   Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+     sqrt.evaluate(operand);
+   });
+   assertEquals(expectedMessage, exception.getMessage());
+  }
   
   @Test
   public void invalidOperandGibbershTest()
@@ -52,7 +90,7 @@ public class SquareRootOperatorTesting
     
    SquareRootOperator sqrt = new SquareRootOperator(); 
    String operand = "abcascx";
-   String expectedMessage = "Please provide a valid operand";
+   String expectedMessage = "Please provide a valid operand, or simplify it";
    Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
      sqrt.evaluate(operand);
    });
