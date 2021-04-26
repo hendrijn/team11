@@ -49,7 +49,7 @@ class ImaginaryPartOperatorTest
     // just parens
     try
     {
-      String actual = i.evaluate("()");
+      i.evaluate("()");
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)
@@ -60,7 +60,7 @@ class ImaginaryPartOperatorTest
     // empty
     try
     {
-      String actual = i.evaluate("");
+      i.evaluate("");
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)
@@ -71,7 +71,7 @@ class ImaginaryPartOperatorTest
     // null
     try
     {
-      String actual = i.evaluate(null);
+      i.evaluate(null);
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)
@@ -82,7 +82,7 @@ class ImaginaryPartOperatorTest
     // string
     try
     {
-      String actual = i.evaluate("jnvu4ifho");
+      i.evaluate("jnvu4ifho");
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)
@@ -93,7 +93,7 @@ class ImaginaryPartOperatorTest
     // multi is
     try
     {
-      String actual = i.evaluate("4iii");
+      i.evaluate("4iii");
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)
@@ -104,7 +104,7 @@ class ImaginaryPartOperatorTest
     // ilovecs
     try
     {
-      String actual = i.evaluate("ilovecs");
+      i.evaluate("ilovecs");
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)

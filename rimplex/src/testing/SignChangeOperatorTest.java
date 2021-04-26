@@ -20,7 +20,7 @@ class SignChangeOperatorTest
   @Test
   public void testConstruction()
   {
-    SignChangeOperator s = new SignChangeOperator();
+    new SignChangeOperator();
   }
 
   /**
@@ -32,7 +32,7 @@ class SignChangeOperatorTest
     // test empty
     try
     {
-      String actual = SignChangeOperator.changeSign("");
+      SignChangeOperator.changeSign("");
     }
     catch (IllegalArgumentException iae)
     {
@@ -42,7 +42,7 @@ class SignChangeOperatorTest
     // test null
     try
     {
-      String actual = SignChangeOperator.changeSign(null);
+      SignChangeOperator.changeSign(null);
     }
     catch (IllegalArgumentException iae)
     {
@@ -52,7 +52,7 @@ class SignChangeOperatorTest
     // test random string
     try
     {
-      String actual = SignChangeOperator.changeSign("jfh3ourfh");
+      SignChangeOperator.changeSign("jfh3ourfh");
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)
@@ -63,7 +63,7 @@ class SignChangeOperatorTest
     // test space and parens
     try
     {
-      String actual = SignChangeOperator.changeSign("  ()      ");
+      SignChangeOperator.changeSign("  ()      ");
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)
@@ -74,7 +74,7 @@ class SignChangeOperatorTest
     // test random string with i
     try
     {
-      String actual = SignChangeOperator.changeSign("ilovecs");
+      SignChangeOperator.changeSign("ilovecs");
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)
@@ -85,7 +85,7 @@ class SignChangeOperatorTest
     // test two i's
     try
     {
-      String actual = SignChangeOperator.changeSign("5ii");
+      SignChangeOperator.changeSign("5ii");
       assertTrue(false);
     }
     catch (IllegalArgumentException iae)
