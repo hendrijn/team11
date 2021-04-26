@@ -6,7 +6,7 @@ import gui.NewMainInterface;
  * Addition Operator Class.
  * 
  * @author team 11 - pgleb and may4sa
- * @version Sprint 2
+ * @version Sprint 3
  */
 public class AdditionOperator implements Operator
 {
@@ -23,7 +23,7 @@ public class AdditionOperator implements Operator
    *           thrown if operands are null or empty.
    */
   @Override
-  public String evaluate(String leftOperand, String rightOperand)
+  public String evaluate(final String leftOperand, final String rightOperand)
   {
 
     String[] decomposedOperands = new String[3];

@@ -7,8 +7,8 @@ import gui.NewMainInterface;
  * pattern. This class may or may not prove to be redundant and therefore was named tempContext at
  * its inception.
  * 
- * @author pgleb
- * @version Sprint 2
+ * @author pgleb and may4sa - team 11
+ * @version Sprint 3
  *
  */
 public class TempContext
@@ -22,7 +22,7 @@ public class TempContext
    * @param operator
    *          Addition or subtraction operator.
    */
-  public TempContext(Operator operator)
+  public TempContext(final Operator operator)
   {
     this.operator = operator;
   }
@@ -36,7 +36,7 @@ public class TempContext
    *          The right operand the operation is to be performed on.
    * @return The result of the performing the evaluation on the two operands as a String.
    */
-  public String evaluate(String leftOperand, String rightOperand)
+  public String evaluate(final String leftOperand, final String rightOperand)
   {
     return operator.evaluate(leftOperand, rightOperand);
   }
@@ -47,9 +47,12 @@ public class TempContext
    * @param operand
    *          the operand to be formated.
    * @return a complex number formatted string.
+   * @throws IllegalArgumentException
+   *           if the operand is empty/null
    */
   public static String format(String operand) throws IllegalArgumentException
   {
+    // error checking for empty/null
     if (operand == null || operand.equals(""))
     {
       throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("TWO_OPERANDS"));
@@ -112,9 +115,12 @@ public class TempContext
    *          The rightOperand to get broken down.
    * @return A string array of the decomposedOperands. It very specifically is indexed in order:
    *         leftRegularNumber, leftImaginaryNumber, rightRegularNumber, rightImaginaryNumber.
-   *         Example: With 5+2i, and 4+3i, [0] = 5, [1] = 2, [2] = 4, [3] = 3;
+   *         Example: With 5+2i, and 4+3i, [0] = 5, [1] = 2, [2] = 4, [3] = 3.
+   * @throws IllegalArgumentException
+   *           if there are too many i's in the operand.
    */
-  public static String[] decomposeOperands(String leftOperand, String rightOperand)
+  public static String[] decomposeOperands(final String leftOperand, final String rightOperand)
+      throws IllegalArgumentException
   {
 
     String alteredROp = TempContext.format(rightOperand);
@@ -126,7 +132,8 @@ public class TempContext
 
     if (iCountLeft > 1 || iCountRight > 1)
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("TWO_VALID_OR_SIMPLIFY"));
+      throw new IllegalArgumentException(
+          NewMainInterface.STRINGS.getString("TWO_VALID_OR_SIMPLIFY"));
     }
 
     int leftPlusIndex = alteredLOp.indexOf("+");
@@ -199,7 +206,7 @@ public class TempContext
    *          the operand to check.
    * @return true if the operand is complex, false otherwise.
    */
-  public static boolean isComplex(String operand)
+  public static boolean isComplex(final String operand)
   {
     boolean complex = false;
 
@@ -228,7 +235,7 @@ public class TempContext
    *          the operand to check.
    * @return true if the operand is imaginary, false otherwise.
    */
-  public static boolean isImaginary(String operand)
+  public static boolean isImaginary(final String operand)
   {
     // if the operand is not complex and contains an i, must be imaginary
     boolean imaginary = false;
@@ -247,7 +254,7 @@ public class TempContext
    *          the operand to check.
    * @return true if the operand is real, false otherwise.
    */
-  public static boolean isReal(String operand)
+  public static boolean isReal(final String operand)
   {
     // if the operand is neither complex or imaginary, it's real
     boolean real = false;

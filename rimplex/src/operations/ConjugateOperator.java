@@ -7,7 +7,7 @@ import gui.NewMainInterface;
  * division.
  * 
  * @author may4sa - team 11
- * @version Sprint 2
+ * @version Sprint 3
  */
 public class ConjugateOperator
 {

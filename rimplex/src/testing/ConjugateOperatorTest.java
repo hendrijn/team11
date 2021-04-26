@@ -11,7 +11,7 @@ import operations.TempContext;
  * Unit Tests for the ConjugateOperator.
  * 
  * @author may4sa - team11
- * @version Sprint 2
+ * @version Sprint 3
  */
 class ConjugateOperatorTest
 {
@@ -89,7 +89,6 @@ class ConjugateOperatorTest
     {
       assertTrue(true);
     }
-
   }
 
   /**
@@ -129,5 +128,4 @@ class ConjugateOperatorTest
     expected = "4+8i";
     assertTrue(actual.equals(expected));
   }
-
 }

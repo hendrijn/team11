@@ -6,7 +6,7 @@ import gui.NewMainInterface;
  * class for computing the multiplicative inverse of an operand.
  * 
  * @author pgleb - team 11
- * @version Sprint 2
+ * @version Sprint 3
  */
 public class InverseOperator
 {
@@ -28,7 +28,7 @@ public class InverseOperator
    * @throws An
    *           IllegalArgumentExcpetion if invalid operands are provided.
    */
-  public String invert(String operand)
+  public String invert(final String operand)
   {
 
     if (operand == null || operand.equals(""))
@@ -37,20 +37,21 @@ public class InverseOperator
     }
 
     String alteredOp = ((operand.replaceAll(" ", "")).replace("(", "")).replace(")", "");
-    
+
     long iCount = alteredOp.chars().filter(ch -> ch == 'i').count();
     if (iCount > 1)
     {
       throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("VALID_OR_SIMPLIFY"));
     }
-    
+
     double finalOperand = 0;
-   
+
     if (!operand.contains("i"))
     {
       try
       {
-        finalOperand = Double.parseDouble((((alteredOp.replace("i", "")).replace("+", "")).replaceAll("-", "")));
+        finalOperand = Double
+            .parseDouble((((alteredOp.replace("i", "")).replace("+", "")).replaceAll("-", "")));
       }
       catch (NumberFormatException e)
       {
@@ -67,9 +68,11 @@ public class InverseOperator
 
     String conjugate = cjOperator.conjugate(alteredOp);
 
-    String denominator = multiContext.evaluate(alteredOp, conjugate);;
+    String denominator = multiContext.evaluate(alteredOp, conjugate);
+    ;
 
-    String finalResult =  divContext.evaluate(conjugate, denominator);;
+    String finalResult = divContext.evaluate(conjugate, denominator);
+    ;
 
     return finalResult;
   }

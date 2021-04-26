@@ -6,15 +6,24 @@ import gui.NewMainInterface;
  * the division operation for real, imaginary, and complex numbers.
  * 
  * @author may4sa - team11
- * @version Sprint 2
+ * @version Sprint 3
  */
 public class DivisionOperator implements Operator
 {
+  private final String FORM = "%.2f";
+
   /**
+   * Divides the given dividend by the given divisor.
    * 
+   * @param leftOperand
+   *          the dividend of the division operation.
+   * @param rightOperand
+   *          the divisor of the division operation.
+   * @return the quotient of the division.
    */
   @Override
-  public String evaluate(String leftOperand, String rightOperand)
+  public String evaluate(final String leftOperand, final String rightOperand)
+      throws IllegalArgumentException
   {
     // check for null and empty
     if (leftOperand == null || rightOperand == null || leftOperand.equals("")
@@ -44,9 +53,9 @@ public class DivisionOperator implements Operator
 
     String[] parts = new String[4];
 
+    // error checking to see if right operand is 0 (checking for divide by zero)
     String zeroCheckR = (((alteredROp.replaceAll("-", "")).replace("+", "")).replace("i", ""))
-          .replaceAll("0", "");
-
+        .replaceAll("0", "");
 
     if (!alteredROp.equals("i") && !alteredROp.equals("-i"))
     {
@@ -55,13 +64,14 @@ public class DivisionOperator implements Operator
         throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("RIGHT_OPERAND"));
       }
     }
+
     // gets the pieces of the operands (see TempContext)
     parts = TempContext.decomposeOperands(alteredLOp, alteredROp);
 
     double doubleResult = 0.0;
     String result = "0.00+0.00i";
 
-    // complex and imaginary in the R operand divison uses the conjugate
+    // complex and imaginary in the R operand division uses the conjugate
     if ((complexL && complexR) || (complexL && imaginaryR) || (imaginaryL && complexR)
         || (realL && complexR) || (realL && imaginaryR))
     {
@@ -75,35 +85,42 @@ public class DivisionOperator implements Operator
           / Double.parseDouble(conjugateParts[2]);
       double imgDiv = Double.parseDouble(conjugateParts[1]) / Double.parseDouble(conjugateParts[2]);
       result = TempContext
-          .format(String.format("%.2f", realDiv) + "+" + String.format("%.2f", imgDiv) + "i");
+          .format(String.format(FORM, realDiv) + "+" + String.format(FORM, imgDiv) + "i");
     }
+
+    // normal double division
     if (realL && realR)
     {
       double doubleL = Double.parseDouble(alteredLOp);
       double doubleR = Double.parseDouble(alteredROp);
       doubleResult = doubleL / doubleR;
-      result = TempContext.format(String.format("%.2f", doubleResult));
+      result = TempContext.format(String.format(FORM, doubleResult));
     }
+
+    // divides the non-i piece of the imaginary by the real then replaces the i at the end of the
+    // quotient
     if (imaginaryL && realR)
     {
       double doubleR = Double.parseDouble(alteredROp);
       doubleResult = Double.parseDouble(parts[1]) / doubleR;
-      result = TempContext.format(String.format("%.2f", doubleResult) + "i");
+      result = TempContext.format(String.format(FORM, doubleResult) + "i");
     }
+
+    // divides each part of the complex by the real
     if (complexL && realR)
     {
       double realNum = Double.parseDouble(parts[0]) / Double.parseDouble(parts[2]);
       double imgNum = Double.parseDouble(parts[1]) / Double.parseDouble(parts[2]);
       result = TempContext
-          .format(String.format("%.2f", realNum) + "+" + String.format("%.2f", imgNum) + "i");
+          .format(String.format(FORM, realNum) + "+" + String.format(FORM, imgNum) + "i");
     }
+
     // both imaginary and real as the right operand do not use the conjugate
     if (imaginaryL && imaginaryR)
     {
       doubleResult = Double.parseDouble(parts[1]) / Double.parseDouble(parts[3]);
-      result = TempContext.format(String.format("%.2f", doubleResult));
+      result = TempContext.format(String.format(FORM, doubleResult));
     }
-
     // formats result
 
     // edits any +- occurances to -

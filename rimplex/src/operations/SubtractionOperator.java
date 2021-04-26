@@ -6,7 +6,7 @@ import gui.NewMainInterface;
  * Subtraction Operator Class.
  * 
  * @author team 11 - may4sa
- * @version Sprint 2
+ * @version Sprint 3
  */
 public class SubtractionOperator implements Operator
 {
@@ -26,7 +26,6 @@ public class SubtractionOperator implements Operator
   public String evaluate(final String leftOperand, final String rightOperand)
       throws IllegalArgumentException
   {
-
     // error checking
     if (leftOperand == null || rightOperand == null || leftOperand.equals("")
         || rightOperand.equals(""))
@@ -47,7 +46,14 @@ public class SubtractionOperator implements Operator
     return result;
   }
 
-  private static String distribute(String rightOperand)
+  /**
+   * Distributes a negative to the given operand.
+   * 
+   * @param rightOperand
+   *          a complex, real, or imaginary number.
+   * @return the operand with a negative distributed to it.
+   */
+  private static String distribute(final String rightOperand)
   {
     int negMinus = rightOperand.indexOf("-");
     int minus = rightOperand.indexOf("-", negMinus + 1);
@@ -65,7 +71,6 @@ public class SubtractionOperator implements Operator
         distribute = "-" + rightOperand.substring(0, rightOperand.indexOf("+")) + "+-"
             + rightOperand.substring(rightOperand.indexOf("+") + 1);
       }
-
       else if (minus != -1)
       {
         distribute = rightOperand.substring(1, minus) + "+" + rightOperand.substring(minus + 1);
@@ -75,7 +80,6 @@ public class SubtractionOperator implements Operator
         distribute = "-" + rightOperand.substring(0, rightOperand.indexOf("-")) + "+"
             + rightOperand.substring(rightOperand.indexOf("-") + 1);
       }
-
     }
     if (imaginary || real)
     {
@@ -88,8 +92,6 @@ public class SubtractionOperator implements Operator
         distribute = "-" + rightOperand;
       }
     }
-
     return distribute;
   }
-
 }

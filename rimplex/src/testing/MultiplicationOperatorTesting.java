@@ -13,7 +13,7 @@ import operations.TempContext;
  * Unit tests for the MultiplcationOperator.
  * 
  * @author pgleb - team 11
- * @version Sprint 2
+ * @version Sprint 3
  */
 class MultiplicationOperatorTesting
 {

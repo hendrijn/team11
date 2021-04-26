@@ -12,10 +12,10 @@ import operations.TempContext;
  * Unit tests for the Subtraction class.
  * 
  * @author team 11 - may4sa
- * @version Sprint 2
+ * @version Sprint 3
  */
 class SubtractionOperatorTest
-{ 
+{
 
   /**
    * tests for operands with spaces.
@@ -63,7 +63,7 @@ class SubtractionOperatorTest
   public void testEvaluateIllegalArguments()
   {
     TempContext s = new TempContext(new SubtractionOperator());
-    
+
     // both illegal
     try
     {
@@ -129,9 +129,6 @@ class SubtractionOperatorTest
     {
       assertTrue(true);
     }
-    
-    //TODO: test complex spaces and parens
-
   }
 
   /**
@@ -141,7 +138,7 @@ class SubtractionOperatorTest
   public void testEvaluateComplex()
   {
     TempContext s = new TempContext(new SubtractionOperator());
-    
+
     // both operands null
     try
     {
@@ -237,12 +234,11 @@ class SubtractionOperatorTest
     actual = s.evaluate("-9-96i", "-2-42i");
     expected = "-7.00-54.00i";
     assertTrue(expected.equals(actual));
-    
-    //just i
+
+    // just i
     actual = s.evaluate("3+2i", "2-i");
     expected = "1.00+3.00i";
     assertTrue(expected.equals(actual));
-
   }
 
   /**
@@ -252,7 +248,7 @@ class SubtractionOperatorTest
   public void testEvaluateImaginary()
   {
     TempContext s = new TempContext(new SubtractionOperator());
-    
+
     // first operand null
     try
     {
@@ -331,7 +327,6 @@ class SubtractionOperatorTest
     actual = s.evaluate("-96i", "-42i");
     expected = "0.00-54.00i";
     assertTrue(expected.equals(actual));
-
   }
 
   /**
@@ -341,7 +336,7 @@ class SubtractionOperatorTest
   public void testEvaluateReal()
   {
     TempContext s = new TempContext(new SubtractionOperator());
-    
+
     // first operand null
     try
     {
@@ -420,7 +415,6 @@ class SubtractionOperatorTest
     actual = s.evaluate("-96", "-42");
     expected = "-54.00+0.00i";
     assertTrue(expected.equals(actual));
-
   }
 
   /**
@@ -430,7 +424,7 @@ class SubtractionOperatorTest
   public void testEvaluateComplexReal()
   {
     TempContext s = new TempContext(new SubtractionOperator());
-    
+
     // both positive, first operand complex, second operand real
     String actual = s.evaluate("5+3i", "3");
     String expected = "2.00+3.00i";
@@ -470,7 +464,6 @@ class SubtractionOperatorTest
     actual = s.evaluate("-6", "-2-7i");
     expected = "-4.00+7.00i";
     assertTrue(expected.equals(actual));
-
   }
 
   /**
@@ -480,7 +473,7 @@ class SubtractionOperatorTest
   public void testEvaluateImaginaryReal()
   {
     TempContext s = new TempContext(new SubtractionOperator());
-    
+
     // both positive, first operand imaginary, second operand real
     String actual = s.evaluate("3i", "3");
     String expected = "-3.00+3.00i";
@@ -529,7 +522,7 @@ class SubtractionOperatorTest
   public void testEvaluateImaginaryComplex()
   {
     TempContext s = new TempContext(new SubtractionOperator());
-    
+
     // both positive, first operand imaginary, second operand complex
     String actual = s.evaluate("3i", "9+6i");
     String expected = "-9.00-3.00i";
@@ -570,42 +563,43 @@ class SubtractionOperatorTest
     expected = "-6.00+3.00i";
     assertTrue(expected.equals(actual));
   }
-  
+
+  /**
+   * tests decimal operands.
+   */
   @Test
   public void testDecimalOperands()
   {
-    //TODO: implement
     TempContext s = new TempContext(new SubtractionOperator());
-    
-    //complex
+
+    // complex
     String actual = s.evaluate("3.45+7.56i", "2.98+5.04i");
     String expected = "0.47+2.52i";
     assertTrue(actual.equals(expected));
-    
-    //imaginary
+
+    // imaginary
     actual = s.evaluate("6.42i", "7.75i");
     expected = "0.00-1.33i";
     assertTrue(actual.equals(expected));
-    
-    //real
+
+    // real
     actual = s.evaluate("3.88", "2.94");
     expected = "0.94+0.00i";
     assertTrue(actual.equals(expected));
-    
-    //complex imaginary
+
+    // complex imaginary
     actual = s.evaluate("0.89+7.25i", "3.56i");
     expected = "0.89+3.69i";
     assertTrue(actual.equals(expected));
-    
-    //complex real
+
+    // complex real
     actual = s.evaluate("3.39+6.89i", "2.09");
     expected = "1.30+6.89i";
     assertTrue(actual.equals(expected));
-    
-    //real imaginary
+
+    // real imaginary
     actual = s.evaluate("9.06", "2.66i");
     expected = "9.06-2.66i";
     assertTrue(actual.equals(expected));
-
   }
 }

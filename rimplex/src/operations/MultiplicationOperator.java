@@ -6,11 +6,12 @@ import gui.NewMainInterface;
  * class for computing multiplication of complex, real, and imaginary numbers.
  * 
  * @author pgleb - team 11
- * @version Sprint 2
+ * @version Sprint 3
  */
 public class MultiplicationOperator implements Operator
 {
 
+  // attributes
   final int I_SQUARED = -1;
 
   /**

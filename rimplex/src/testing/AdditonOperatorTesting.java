@@ -4,7 +4,7 @@ package testing;
  * Unit tests for the Addition Operator Class.
  * 
  * @author team 11 - pgleb
- * @version Sprint 2
+ * @version Sprint 3
  */
 import static org.junit.jupiter.api.Assertions.*;
 
