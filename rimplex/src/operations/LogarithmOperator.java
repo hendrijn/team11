@@ -22,7 +22,6 @@ public class LogarithmOperator
    */
   public String log(String operand)
   {
-
     if (operand == null || operand.equals(""))
     {
       throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
@@ -73,8 +72,6 @@ public class LogarithmOperator
       lnComplexImag = Math.atan(dblImagNum/dblRegNum);
       finalString   =  String.format("%.2f+%.2fi", lnComplexReal, lnComplexImag);
     }
-
     return finalString;
-
   }
 }

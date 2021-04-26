@@ -37,7 +37,6 @@ public class SubtractionOperator implements Operator
     String noSpL = leftOperand.replaceAll(" ", "");
     String noSpR = rightOperand.replaceAll(" ", "");
 
-    // put left Operand in +- form if negative
     String distribute = SubtractionOperator.distribute(noSpR);
 
     // distribute and fix +- form to - form

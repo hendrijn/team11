@@ -23,8 +23,8 @@ public interface Finals
   static final String PDIVIDE = "/";
   static final String EQUALS = "=";
   static final String SIGN = "±";
-  static final String RPARTS = "Real";
-  static final String IPARTS = "Imag";
+  static final String RPARTS = "ℝ";
+  static final String IPARTS = "xi";
   static final String LOG = "log";
   static final String EXP = "exp";
   static final String LPAREN = "(";
@@ -34,18 +34,9 @@ public interface Finals
   static final String EMPTY = "";
   static final String I = "<i>i</i>";
   static final String HTML = "<html>";
-  static final String FILE = "File";
-  static final String ADDTOREC = "Add to Recording";
-  static final String START = "Start Recording";
-  static final String PAUSE = "Pause Recording";
-  static final String STOP = "Stop Recording";
-  static final String ABOUT = "About";
-  static final String HELP = "Help";
-  static final String SETTINGS = "Settings";
   static final String ENG = "English";
   static final String FRE = "Français";
   static final String GER = "Deutsch";
-
   static final String[] FUNCTIONS = {ADD, RESET, INVERSE, SUBTRACT, LOG, EXP, MULTIPLY, RPARTS,
       IPARTS, DIVIDE, LPAREN, RPAREN, EQUALS, DECIMAL};
 }
