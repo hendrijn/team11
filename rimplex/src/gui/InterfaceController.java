@@ -177,17 +177,20 @@ public class InterfaceController
   }
 
   /**
-   * Handles when something is typed. 
+   * Handles when something is typed.
    */
   @Override
   public void keyTyped(KeyEvent e)
   {
+    // if a recording is being played back, don't accept keyboard presses
+    MenuController playback = MenuController.getInstance();
+    if (playback.isRunning)
+      return;
+    
+    
     NewMainInterface ui = NewMainInterface.getInstance();
-    System.out.println("you typed");
     char keyChar = e.getKeyChar();
     String keyText = Character.toString(keyChar);
-    System.out.println(keyText);
-    System.out.println(keyChar);
     try
     {
       Integer.parseInt(keyText);
@@ -244,7 +247,7 @@ public class InterfaceController
   }
 
   /**
-   * closeApplication - handle all tasks at application close.
+   * closeApplication - handle all tasks at application close. 
    */
   private void closeApplication()
   {
@@ -275,7 +278,6 @@ public class InterfaceController
     }
     catch (IllegalArgumentException e)
     {
-      System.out.println(firstOperand + "\t" + secondOperand);
       ui.errorMessage(e.getMessage());
       result = EMPTY;
       shownError = true;
@@ -367,7 +369,6 @@ public class InterfaceController
     if (inParentheses(inLabel.getText()))
     {
       handleInput(operation);
-      System.out.println("in Parentheses");
       return;
     }
     else
@@ -486,7 +487,6 @@ public class InterfaceController
   {
     String newString = HTML;
     newString = newString + input.replace("i", I);
-    System.out.println(newString);
     return newString;
   }
 
