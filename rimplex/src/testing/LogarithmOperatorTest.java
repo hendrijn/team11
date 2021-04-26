@@ -29,12 +29,12 @@ class LogarithmOperatorTest
 
     // real
     actual = l.log("  4      ");
-    expected = "1.39";
-    assertTrue(actual.equals(expected));
+    expected = "1.39+0.00i";
+    assertEquals(expected, actual);
 
     // imaginary
     actual = l.log("  8      i      ");
-    expected = "ln(8.00i)";
+    expected = "ln(0.00+8.00i)";
     assertTrue(actual.equals(expected));
   }
 
@@ -111,7 +111,7 @@ class LogarithmOperatorTest
     LogarithmOperator l = new LogarithmOperator();
 
     String actual = l.log("18");
-    String expected = "2.89";
+    String expected = "2.89+0.00i";
     assertEquals(actual, expected);
   }
 
@@ -124,8 +124,8 @@ class LogarithmOperatorTest
     LogarithmOperator l = new LogarithmOperator();
 
     String actual = l.log("4i");
-    String expected = "ln(4.00i)";
-    assertEquals(actual, expected);
+    String expected = "ln(0.00+4.00i)";
+    assertEquals(expected, actual);
     
   }
 
@@ -139,7 +139,7 @@ class LogarithmOperatorTest
 
     String actual = l.log("3+7i");
     String expected = "ln(3.00+7.00i)";
-    assertEquals(actual, expected);
+    assertEquals(expected, actual);
   }
 
   /**

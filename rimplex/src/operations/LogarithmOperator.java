@@ -27,9 +27,17 @@ public class LogarithmOperator
     
     String leftRegularNumber = decomposedOperands[0];
     String leftImaginaryNumber = decomposedOperands[1];
-    double dblRegNum = Double.parseDouble(leftRegularNumber);
-    double dblImagNum = 0.0;
-    double finalResult = 0.0;
+    double dblRegNum = 0;
+    try
+    {
+      dblRegNum = Double.parseDouble(leftRegularNumber);
+    }
+    catch (NumberFormatException e)
+    {
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
+    }
+    double dblImagNum = 0.00;
+    double finalResult = 0.00;
     
     try
     {
@@ -42,21 +50,19 @@ public class LogarithmOperator
     
     String finalString = "";
     
-    if (dblImagNum == 0.00 /*|| dblImagNum == -0.00*/) 
+    if (dblRegNum <= 0 && dblImagNum <= 0) 
     {
-      if (dblRegNum > 0) 
-      {
-        finalResult = Math.log(dblRegNum);
-        finalString = String.valueOf(finalResult) + "+00.0i";
-      } 
-      else 
-      {
-        throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("LOGARITHM"));
-      }
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("LOGARITHM"));
+    }
+    
+    if (dblImagNum == 0.00) 
+    {
+      finalResult = Math.log(dblRegNum);
+      finalString = String.format("%.2f", finalResult) + "+0.00i";
     } 
     else 
     {
-      finalString = "ln(" + alteredOp + ")";
+      finalString = "ln(" + dblRegNum + "0+" + dblImagNum + "0i" + ")";
     }
     
     return finalString;

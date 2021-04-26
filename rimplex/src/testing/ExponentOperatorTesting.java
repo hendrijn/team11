@@ -44,6 +44,17 @@ class ExponentOperatorTesting
   }
   
   @Test
+  public void validiSixthedTest()
+  {
+    String operand = "i";
+    String power = "6";
+    String expectedResult = "-1.00+0.00i";
+    ExponentOperator expOp = new ExponentOperator();
+    String actualResult = expOp.exponentation(operand, power);
+    assertEquals(expectedResult, actualResult);
+  }
+  
+  @Test
   public void validiSquaredTest()
   {
     String operand = "i";
