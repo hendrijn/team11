@@ -36,9 +36,9 @@ public interface Finals
   static final String HTML = "<html>";
   static final String FILE = "File";
   static final String ADDTOREC = "Add to Recording";
-  static final String START = "Start Recording";
-  static final String PAUSE = "Pause Recording";
-  static final String STOP = "Stop Recording";
+  static final String START = "Start Playback";
+  static final String PAUSE = "Pause Playback";
+  static final String STOP = "Stop Playback";
   static final String ABOUT = "About";
   static final String HELP = "Help";
   static final String SETTINGS = "Settings";

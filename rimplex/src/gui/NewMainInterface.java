@@ -414,7 +414,7 @@ public class NewMainInterface extends JFrame implements Finals
     pause = new JMenuItem();
     print = new JMenuItem();
 
-    JMenuItem[] fileItems = {add, start, stop, pause, print};
+    JMenuItem[] fileItems = {add, start, pause, stop, print};
     for (JMenuItem item : fileItems)
     {
       increaseSize(item);
