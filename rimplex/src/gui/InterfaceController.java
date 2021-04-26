@@ -177,7 +177,7 @@ public class InterfaceController
   }
 
   /**
-   * Handles when something is typed.
+   * Handles when something is typed. 
    */
   @Override
   public void keyTyped(KeyEvent e)
