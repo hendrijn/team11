@@ -100,7 +100,7 @@ public class SquareRootOperator
       double thirdPartOfQ = Math.sqrt(Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2)) - a);
       q = secondPartOfQ * thirdPartOfQ;
       
-      finalString = p + "+" + q + "i";
+      finalString =  String.format("%.2f+%.2fi", p,q);
     }
 
 
