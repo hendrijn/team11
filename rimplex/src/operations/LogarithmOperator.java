@@ -58,7 +58,7 @@ public class LogarithmOperator
     if (dblImagNum == 0.00) 
     {
       finalResult = Math.log(dblRegNum);
-      finalString = String.format("%.2f", finalResult) + "+0.00i";
+      finalString = String.format("%.2f+0.00i", finalResult);
     } 
     else 
     {
