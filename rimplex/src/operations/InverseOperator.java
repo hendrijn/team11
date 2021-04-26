@@ -30,7 +30,6 @@ public class InverseOperator
    */
   public String invert(final String operand)
   {
-
     if (operand == null || operand.equals(""))
     {
       throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));

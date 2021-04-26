@@ -23,8 +23,8 @@ public interface Finals
   static final String PDIVIDE = "/";
   static final String EQUALS = "=";
   static final String SIGN = "±";
-  static final String RPARTS = "Real";
-  static final String IPARTS = "Imag";
+  static final String RPARTS = "ℝ";
+  static final String IPARTS = "xi";
   static final String LOG = "log";
   static final String EXP = "exp";
   static final String LPAREN = "(";
@@ -45,7 +45,6 @@ public interface Finals
   static final String ENG = "English";
   static final String FRE = "Français";
   static final String GER = "Deutsch";
-
   static final String[] FUNCTIONS = {ADD, RESET, INVERSE, SUBTRACT, LOG, EXP, MULTIPLY, RPARTS,
       IPARTS, DIVIDE, LPAREN, RPAREN, EQUALS, DECIMAL};
 }
