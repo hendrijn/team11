@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  */
 public class MenuController implements ActionListener, Finals
 {
-  boolean isPaused;
+  boolean isRunning;
   private CalculationRecorder recorder = new CalculationRecorder(1000, this);
   private JMenuItem add, play, pause, stop;
   private int elementsDisplayed = 0;
@@ -52,8 +52,10 @@ public class MenuController implements ActionListener, Finals
       }
       else if (item.equals(NewMainInterface.STRINGS.getString("PAUSE")))
       {
+        System.out.println("Pausing");
         setItemsEnabled(play, true);
         setItemsEnabled(pause, false);
+        pausePlayback(ui);
       }
       else if (item.equals(NewMainInterface.STRINGS.getString("STOP")))
       {
@@ -65,15 +67,15 @@ public class MenuController implements ActionListener, Finals
       }
       else if (item.equals(NewMainInterface.STRINGS.getString("PRINT")))
       {
-    	  HistoryDisplay hd = HistoryDisplay.getInstance();
-    	  HistoryPrinter.printComponent(hd.getCalcList());
-//    	  HistoryDisplay hd = HistoryDisplay.getInstance();
-//    	  try {
-//			hd.getCalcList().print();
-//		} catch (PrinterException e1) {
-//			// TODO Auto-generated catch block
-//			System.out.println("print failed");
-//		}
+        HistoryDisplay hd = HistoryDisplay.getInstance();
+        HistoryPrinter.printComponent(hd.getCalcList());
+        // HistoryDisplay hd = HistoryDisplay.getInstance();
+        // try {
+        // hd.getCalcList().print();
+        // } catch (PrinterException e1) {
+        // // TODO Auto-generated catch block
+        // System.out.println("print failed");
+        // }
       }
       else
       {
@@ -95,7 +97,6 @@ public class MenuController implements ActionListener, Finals
   private void pausePlayback(NewMainInterface ui)
   {
     recorder.stop();
-
   }
 
   /**
@@ -108,7 +109,6 @@ public class MenuController implements ActionListener, Finals
   {
     if (calcCount < recorder.getRecording().size())
     {
-      isPaused = false;
       // if we're starting a new calculation...
       if (elementsDisplayed == 0)
         resetDisplay(ui);
@@ -155,25 +155,19 @@ public class MenuController implements ActionListener, Finals
    */
   private void startPlayback(NewMainInterface ui)
   {
-    ui.getInputLabel().setText(HTML);
+    //ui.getInputLabel().setText(HTML);
 
-    if (!isPaused)
+    isRunning = true;
+    String speed = JOptionPane.showInputDialog(NewMainInterface.STRINGS.getString("SPEED"));
+    try
     {
-      String speed = JOptionPane.showInputDialog(NewMainInterface.STRINGS.getString("SPEED"));
-      try
-      {
-        recorder.setDelay(Integer.parseInt(speed) * 1000);
-        recorder.start();
-      }
-      catch (NumberFormatException nfe)
-      {
-        ui.errorMessage(NewMainInterface.STRINGS.getString("NOT_VALID"));
-        stopPlayback(ui);
-      }
-    }
-    else
-    {
+      recorder.setDelay(Integer.parseInt(speed) * 1000);
       recorder.start();
+    }
+    catch (NumberFormatException nfe)
+    {
+      ui.errorMessage(NewMainInterface.STRINGS.getString("NOT_VALID"));
+      stopPlayback(ui);
     }
 
   }
@@ -193,6 +187,7 @@ public class MenuController implements ActionListener, Finals
     setItemsEnabled(pause, false);
     setItemsEnabled(stop, false);
     setItemsEnabled(add, true);
+    isRunning = false;
   }
 
   /**
@@ -207,8 +202,8 @@ public class MenuController implements ActionListener, Finals
       ui.errorMessage(NewMainInterface.STRINGS.getString("INCOMPLETE"));
     else
     {
-      int choice = JOptionPane.showConfirmDialog(null, NewMainInterface.STRINGS.getString("CONFIRM"), null,
-          JOptionPane.YES_NO_OPTION);
+      int choice = JOptionPane.showConfirmDialog(null,
+          NewMainInterface.STRINGS.getString("CONFIRM"), null, JOptionPane.YES_NO_OPTION);
 
       if (choice == JOptionPane.YES_OPTION)
       {

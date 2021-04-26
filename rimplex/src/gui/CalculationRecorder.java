@@ -87,7 +87,6 @@ public class CalculationRecorder extends Timer implements Finals
   public void displayNextElement(int calcCount, int elementsDisplayed, NewMainInterface ui)
   {
     String calcElement = recording.get(calcCount)[elementsDisplayed];
-
     if (elementsDisplayed == 0 || elementsDisplayed == 2)
     {
       updateInputLabel(ui, calcElement);
