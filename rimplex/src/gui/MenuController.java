@@ -38,7 +38,7 @@ public class MenuController implements ActionListener, Finals
    * Responds to menu button presses.
    */
   @Override
-  public void actionPerformed(ActionEvent e)
+  public void actionPerformed(final ActionEvent e)
   {
     NewMainInterface ui = NewMainInterface.getInstance();
     assignMenuItems(ui);
@@ -80,6 +80,19 @@ public class MenuController implements ActionListener, Finals
         HistoryDisplay hd = HistoryDisplay.getInstance();
         HistoryPrinter.printComponent(hd.getCalcList());
       }
+      else if (item.equals(NewMainInterface.STRINGS.getString("SET_SPEED")))
+      {
+        String speed = JOptionPane.showInputDialog(NewMainInterface.STRINGS.getString("SPEED"));
+        try
+        {
+          recorder.setDelay(Integer.parseInt(speed) * 1000);
+        }
+        catch (NumberFormatException nfe)
+        {
+          ui.errorMessage(NewMainInterface.STRINGS.getString("NOT_VALID"));
+        }
+
+      }
       else
       {
         System.exit(0);
@@ -97,18 +110,20 @@ public class MenuController implements ActionListener, Finals
    * @param ui
    *          the interface
    */
-  private void pausePlayback(NewMainInterface ui)
+  private void pausePlayback(final NewMainInterface ui)
   {
     recorder.stop();
   }
 
   /**
-   * Handles playback functionality.
+   * Handles playback functionality. This method is called every x seconds as indicated by the user.
+   * It keeps track of what calculation we're on, how many elements have been shown on the screen,
+   * and whether we have finished playing back all calculations.
    * 
    * @param ui
    *          the interface
    */
-  private void handlePlayback(NewMainInterface ui)
+  private void handlePlayback(final NewMainInterface ui)
   {
     if (calcCount < recorder.getRecording().size())
     {
@@ -140,7 +155,7 @@ public class MenuController implements ActionListener, Finals
    * @param ui
    *          the interface
    */
-  private void assignMenuItems(NewMainInterface ui)
+  private void assignMenuItems(final NewMainInterface ui)
   {
     JMenu fileMenu = (JMenu) ui.menuBar.getMenu(0);
 
@@ -151,28 +166,15 @@ public class MenuController implements ActionListener, Finals
   }
 
   /**
-   * Plays the recording on the screen. Recorder is run() located within the calculation recorder.
+   * Plays the recording on the screen. Start() cues handlePlayback() within actionPerformed().
    * 
    * @param ui
    *          the interface
    */
-  private void startPlayback(NewMainInterface ui)
+  private void startPlayback(final NewMainInterface ui)
   {
-    // ui.getInputLabel().setText(HTML);
-
     isRunning = true;
-    String speed = JOptionPane.showInputDialog(NewMainInterface.STRINGS.getString("SPEED"));
-    try
-    {
-      recorder.setDelay(Integer.parseInt(speed) * 1000);
-      recorder.start();
-    }
-    catch (NumberFormatException nfe)
-    {
-      ui.errorMessage(NewMainInterface.STRINGS.getString("NOT_VALID"));
-      stopPlayback(ui);
-    }
-
+    recorder.start();
   }
 
   /**
@@ -181,7 +183,7 @@ public class MenuController implements ActionListener, Finals
    * @param ui
    *          the interface
    */
-  private void stopPlayback(NewMainInterface ui)
+  private void stopPlayback(final NewMainInterface ui)
   {
     recorder.stop();
     resetDisplay(ui);
@@ -199,7 +201,7 @@ public class MenuController implements ActionListener, Finals
    * @param ui
    *          the interface.
    */
-  private void handleAdding(NewMainInterface ui)
+  private void handleAdding(final NewMainInterface ui)
   {
     if (ui.getResultLabel().getText().equals(HTML))
       ui.errorMessage(NewMainInterface.STRINGS.getString("INCOMPLETE"));
@@ -222,7 +224,7 @@ public class MenuController implements ActionListener, Finals
    * @param ui
    *          the interface
    */
-  private void resetDisplay(NewMainInterface ui)
+  private void resetDisplay(final NewMainInterface ui)
   {
     ui.getExpressionLabel().setText(HTML);
     ui.getResultLabel().setText(HTML);
@@ -236,7 +238,7 @@ public class MenuController implements ActionListener, Finals
    * @param isEnabled
    *          true to enable, false to disable
    */
-  private void setButtonsEnabled(NewMainInterface ui, boolean isEnabled)
+  private void setButtonsEnabled(final NewMainInterface ui, final boolean isEnabled)
   {
     recorder.setPanelEnabled(ui.bar, isEnabled);
     recorder.setPanelEnabled(ui.centerPanel, isEnabled);
@@ -251,7 +253,7 @@ public class MenuController implements ActionListener, Finals
    * @param isEnabled
    *          true to enable, false to disable
    */
-  private void setItemsEnabled(JMenuItem item, boolean isEnabled)
+  private void setItemsEnabled(final JMenuItem item, final boolean isEnabled)
   {
     item.setEnabled(isEnabled);
   }
