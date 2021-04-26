@@ -38,13 +38,13 @@ public class LogarithmOperator
 
     String[] decomposedOperands = TempContext.decomposeOperands(alteredOp, BLANK_OPERAND);
 
-    String leftRegularNumber = decomposedOperands[0];
+    String leftRegularNumber   = decomposedOperands[0];
     String leftImaginaryNumber = decomposedOperands[1];
-    double dblRegNum = Double.parseDouble(leftRegularNumber);
-    double dblImagNum = 0.00;
-    double finalResult = 0.00;
-    double lnComplexReal = 0.00;
-    double lnComplexImag = 0.00;
+    double dblRegNum           = Double.parseDouble(leftRegularNumber);
+    double dblImagNum          = 0.00;
+    double finalResult         = 0.00;
+    double lnComplexReal       = 0.00;
+    double lnComplexImag       = 0.00;
     
     try
     {
@@ -71,7 +71,7 @@ public class LogarithmOperator
     {
       lnComplexReal = (0.5) * Math.log(Math.pow(dblRegNum, 2) + Math.pow(dblImagNum, 2));
       lnComplexImag = Math.atan(dblImagNum/dblRegNum);
-      finalString =  String.format("%.2f+%.2fi", lnComplexReal, lnComplexImag);
+      finalString   =  String.format("%.2f+%.2fi", lnComplexReal, lnComplexImag);
     }
 
     return finalString;
