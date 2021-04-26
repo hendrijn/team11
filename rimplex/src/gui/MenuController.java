@@ -65,7 +65,6 @@ public class MenuController implements ActionListener, Finals
       }
       else if (item.equals(NewMainInterface.STRINGS.getString("PAUSE")))
       {
-        System.out.println("Pausing");
         setItemsEnabled(play, true);
         setItemsEnabled(pause, false);
         pausePlayback(ui);
@@ -82,13 +81,6 @@ public class MenuController implements ActionListener, Finals
       {
         HistoryDisplay hd = HistoryDisplay.getInstance();
         HistoryPrinter.printComponent(hd.getCalcList());
-        // HistoryDisplay hd = HistoryDisplay.getInstance();
-        // try {
-        // hd.getCalcList().print();
-        // } catch (PrinterException e1) {
-        // // TODO Auto-generated catch block
-        // System.out.println("print failed");
-        // }
       }
       else
       {
