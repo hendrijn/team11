@@ -247,7 +247,7 @@ public class InterfaceController
   }
 
   /**
-   * closeApplication - handle all tasks at application close.
+   * closeApplication - handle all tasks at application close. 
    */
   private void closeApplication()
   {
