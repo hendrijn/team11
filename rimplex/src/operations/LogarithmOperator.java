@@ -43,7 +43,9 @@ public class LogarithmOperator
     double dblRegNum = Double.parseDouble(leftRegularNumber);
     double dblImagNum = 0.00;
     double finalResult = 0.00;
-
+    double lnComplexReal = 0.00;
+    double lnComplexImag = 0.00;
+    
     try
     {
       dblImagNum = Double.parseDouble(leftImaginaryNumber);
@@ -67,7 +69,9 @@ public class LogarithmOperator
     }
     else
     {
-      finalString = "ln(" + dblRegNum + "0+" + dblImagNum + "0i" + ")";
+      lnComplexReal = (0.5) * Math.log(Math.pow(dblRegNum, 2) + Math.pow(dblImagNum, 2));
+      lnComplexImag = Math.atan(dblImagNum/dblRegNum);
+      finalString =  String.format("%.2f+%.2fi", lnComplexReal, lnComplexImag);
     }
 
     return finalString;

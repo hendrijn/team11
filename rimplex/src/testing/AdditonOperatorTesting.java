@@ -19,6 +19,7 @@ import operations.TempContext;
 class AdditonOperatorTesting
 {
 
+  //Testing for two valid complex numbers
   @Test
   public void twoValidComplexNumbersTest()
   {
@@ -30,6 +31,7 @@ class AdditonOperatorTesting
     assertEquals(expectedResult, actualResult);
   }
 
+  //Testing for two valid complex numbers
   @Test
   public void twoValidComplex2NumbersTest()
   {
@@ -41,6 +43,7 @@ class AdditonOperatorTesting
     assertEquals(expectedResult, actualResult);
   }
 
+  //Testing for two valid with varying spacing complex numbers
   @Test
   public void twoValidNoSpaceComplexNumbersTest()
   {
@@ -52,8 +55,9 @@ class AdditonOperatorTesting
     assertEquals(expectedResult, actualResult);
   }
 
+  //Testing with one complex and one imaginary
   @Test
-  public void twoValidComplexNumbersOnlyTest()
+  public void oneValidComplexOneImaginaryTest()
   {
     String complexNumberOne = "3 + 2i";
     String complexNumberTwo = "2i";
@@ -63,6 +67,7 @@ class AdditonOperatorTesting
     assertEquals(expectedResult, actualResult);
   }
 
+  //Testing with one real and one complex number
   @Test
   public void twoValidNumbersCombinedTest()
   {
@@ -74,6 +79,7 @@ class AdditonOperatorTesting
     assertEquals(expectedResult, actualResult);
   }
 
+  //Testing with one negative complex and one positive complex number
   @Test
   public void twoValidComplexNumbersNegTest()
   {
@@ -85,6 +91,7 @@ class AdditonOperatorTesting
     assertEquals(expectedResult, actualResult);
   }
 
+  //Testing with one fully negative complex number and one positive complex number
   @Test
   public void twoValidComplexNumbersNegITest()
   {
@@ -96,6 +103,7 @@ class AdditonOperatorTesting
     assertEquals(expectedResult, actualResult);
   }
 
+  //Testing two complex numbers with one out of traditional format
   @Test
   public void twoValidComplexNumbersDiffIPlacementTest()
   {
@@ -107,6 +115,7 @@ class AdditonOperatorTesting
     assertEquals(expectedResult, actualResult);
   }
 
+  //Testing two complex numbers both out of traditional format
   @Test
   public void twoValidComplexNumbersDiffIPlacementTest2()
   {
@@ -118,6 +127,7 @@ class AdditonOperatorTesting
     assertEquals(expectedResult, actualResult);
   }
 
+  //Testing two valid real numbers
   @Test
   public void twoValidRealNumbersTest()
   {
@@ -129,6 +139,7 @@ class AdditonOperatorTesting
     assertEquals(expectedResult, actualResult);
   }
 
+  //Testing two valid real numbers, one negative in the first spot
   @Test
   public void twoValidRealNegNumbersTest()
   {
@@ -140,6 +151,7 @@ class AdditonOperatorTesting
     assertEquals(expectedResult, actualResult);
   }
 
+  //Testing two valid real numbers, one negative in the second spot
   @Test
   public void twoValidRealNegNumbers2Test()
   {
@@ -151,6 +163,8 @@ class AdditonOperatorTesting
     assertEquals(expectedResult, actualResult);
   }
 
+  
+  //Testing one real and one complex number.
   @Test
   public void validOneRealOneComplexNumbersTest()
   {
@@ -162,29 +176,7 @@ class AdditonOperatorTesting
     assertEquals(expectedResult, actualResult);
   }
 
-  // had to comment out because sometimes works and sometimes doesn't
-  // and was not able to get a standard result during this sprint
-  /*
-   * @Test public void twoRandomComplexNumbersTest() { Random random = new Random(); int
-   * firstRandomNum = random.nextInt(); int secondRandomNum = random.nextInt(); int firstRandomI =
-   * random.nextInt(); int secondRandomI = random.nextInt(); String complexNumberOne =
-   * String.valueOf(firstRandomNum) + "+" + String.valueOf(firstRandomI) + "i"; String
-   * complexNumberTwo = String.valueOf(secondRandomNum) + "+" + String.valueOf(secondRandomI) + "i";
-   * String expectedResult = String.valueOf(firstRandomNum + secondRandomNum) + "+" +
-   * String.valueOf(firstRandomI + secondRandomI) + "i"; TempContext tempContext = new
-   * TempContext(new AdditionOperator()); String actualResult =
-   * tempContext.evaluate(complexNumberOne, complexNumberTwo); assertEquals(expectedResult,
-   * actualResult); }
-   * 
-   * @Test public void twoRandomRealNumbersTest() { Random random = new Random(); int firstRandomNum
-   * = random.nextInt(); int secondRandomNum = random.nextInt(); String firstStringRandomNum =
-   * String.valueOf(firstRandomNum); String secondStringRandomNum = String.valueOf(secondRandomNum);
-   * String expectedResult = String.valueOf(firstRandomNum + secondRandomNum) + "+0i"; TempContext
-   * tempContext = new TempContext(new AdditionOperator()); String actualResult =
-   * tempContext.evaluate(firstStringRandomNum, secondStringRandomNum); assertEquals(expectedResult,
-   * actualResult); }
-   */
-
+  //Testing an null left operand
   @Test
   public void inValidNullLeftOperandTest()
   {
@@ -200,6 +192,7 @@ class AdditonOperatorTesting
     assertEquals(expectedException, actualException);
   }
 
+  //Testing an null right operand
   @Test
   public void inValidNullRightOperandTest()
   {
@@ -215,6 +208,7 @@ class AdditonOperatorTesting
     assertEquals(expectedException, actualException);
   }
 
+  //Testing an empty left operand
   @Test
   public void inValidEmptyLeftOperandTest()
   {
@@ -230,6 +224,7 @@ class AdditonOperatorTesting
     assertEquals(expectedException, actualException);
   }
 
+  //Testing an empty right operand
   @Test
   public void inValidEmptyRightOperandTest()
   {
@@ -245,6 +240,7 @@ class AdditonOperatorTesting
     assertEquals(expectedException, actualException);
   }
 
+  //Testing a complex number with an invalid real num component
   @Test
   public void inValidRegLeftOperandTest()
   {
@@ -260,6 +256,7 @@ class AdditonOperatorTesting
     assertEquals(expectedException, actualException);
   }
 
+  //Testing a complex number with an invalid imaginary and real num component
   @Test
   public void inValidImagLeftOperandTest()
   {
@@ -275,6 +272,7 @@ class AdditonOperatorTesting
     assertEquals(expectedException, actualException);
   }
 
+  //Testing a complex number with an invalid real num component
   @Test
   public void inValidRegRightOperandTest()
   {
@@ -290,6 +288,7 @@ class AdditonOperatorTesting
     assertEquals(expectedException, actualException);
   }
 
+  //Testing a complex number with an invalid imaginary num component
   @Test
   public void inValidImagRightOperandTest()
   {
@@ -305,6 +304,7 @@ class AdditonOperatorTesting
     assertEquals(expectedException, actualException);
   }
 
+  //Testing a nonsensical operand on the left
   @Test
   public void inValidGibberishLeftOperandTest()
   {
@@ -320,6 +320,7 @@ class AdditonOperatorTesting
     assertEquals(expectedException, actualException);
   }
 
+  //Testing a nonsensical operand on the right
   @Test
   public void inValidGibberishRightOperandTest()
   {
@@ -335,6 +336,7 @@ class AdditonOperatorTesting
     assertEquals(expectedException, actualException);
   }
 
+  //Testing too many is on the left operand imaginary part
   @Test
   public void tooManyIsLeftTest()
   {
@@ -350,6 +352,7 @@ class AdditonOperatorTesting
     assertEquals(expectedException, actualException);
   }
 
+  //Testing too many is on the right operand imaginary part
   @Test
   public void tooManyIsRightTest()
   {
@@ -365,6 +368,7 @@ class AdditonOperatorTesting
     assertEquals(expectedException, actualException);
   }
 
+  //Testing a nonsensical operand (that has an i in it) on the left
   @Test
   public void oneIInvalidLeftOperandTest()
   {
@@ -380,6 +384,7 @@ class AdditonOperatorTesting
     assertEquals(expectedException, actualException);
   }
 
+  //Testing a nonsensical operand (that has an i in it) on the right
   @Test
   public void oneIInvalidRightOperandTest()
   {
@@ -395,6 +400,7 @@ class AdditonOperatorTesting
     assertEquals(expectedException, actualException);
   }
 
+  //Testing i + i
   @Test
   public void iPlusI1Test()
   {
@@ -407,6 +413,7 @@ class AdditonOperatorTesting
 
   }
 
+  //Testing i plus a complex number
   @Test
   public void iPlusI2Test()
   {
@@ -419,6 +426,7 @@ class AdditonOperatorTesting
 
   }
 
+  //Testing a complex number that has 1i plus another complex
   @Test
   public void iPlusILeftTest()
   {
@@ -431,6 +439,7 @@ class AdditonOperatorTesting
 
   }
 
+  //Testing a complex number that has 1i plus another complex number that has 1i
   @Test
   public void iPlusIRightTest()
   {
@@ -443,6 +452,7 @@ class AdditonOperatorTesting
 
   }
 
+  //Testing just a single i on the left being added to a complex number
   @Test
   public void singleILeftTest()
   {
@@ -455,6 +465,7 @@ class AdditonOperatorTesting
 
   }
 
+  //Testing just a single i on the right being added to a complex number
   @Test
   public void singleIRightTest()
   {
@@ -467,6 +478,7 @@ class AdditonOperatorTesting
 
   }
 
+  //Testing just a single negative i on the left being added to a complex number
   @Test
   public void singleNegILeftTest()
   {
@@ -479,6 +491,7 @@ class AdditonOperatorTesting
 
   }
 
+  //Testing just a single negative i on the right being added to a complex number
   @Test
   public void singleNegIRightTest()
   {
@@ -491,6 +504,7 @@ class AdditonOperatorTesting
 
   }
 
+  //Testing a negative imaginary number plus a complex number
   @Test
   public void singleNegMIRightTest()
   {
@@ -503,6 +517,7 @@ class AdditonOperatorTesting
 
   }
 
+  //Testing one positive and one complex number
   @Test
   public void operandsWithSubtractionTest()
   {
@@ -515,26 +530,7 @@ class AdditonOperatorTesting
 
   }
 
-  /*
-   * //Hi sydney here. I broke these. My bad
-   * 
-   * @Test public void largeNumberTest() { String complexNumberOne = "100000000i"; String
-   * complexNumberTwo = "100000000i"; String expectedResult = "0.00+2.00E7i"; TempContext
-   * tempContext = new TempContext(new AdditionOperator()); String actualResult =
-   * tempContext.evaluate(complexNumberOne, complexNumberTwo); assertEquals(expectedResult,
-   * actualResult);
-   * 
-   * }
-   * 
-   * //Hi sydney here. I broke these. My bad
-   * 
-   * @Test public void largeNumber2Test() { String complexNumberOne = "100000000000i"; String
-   * complexNumberTwo = "100000000000i"; String expectedResult = "0.00+2.00E10i"; TempContext
-   * tempContext = new TempContext(new AdditionOperator()); String actualResult =
-   * tempContext.evaluate(complexNumberOne, complexNumberTwo); assertEquals(expectedResult,
-   * actualResult); }
-   */
-
+  //Testing two complex decimal operands
   @Test
   public void testDecimalOperands1()
   {
@@ -544,6 +540,7 @@ class AdditonOperatorTesting
     assertEquals(expected, actual);
   }
 
+  //Testing two imaginary decimal operands
   @Test
   public void testDecimalOperands2()
   {
@@ -553,6 +550,7 @@ class AdditonOperatorTesting
     assertEquals(expected, actual);
   }
 
+  //Testing two real decimal operands
   @Test
   public void testDecimalOperands3()
   {
@@ -562,6 +560,7 @@ class AdditonOperatorTesting
     assertEquals(expected, actual);
   }
 
+  //Testing one complex and one imaginary decimal operands
   @Test
   public void testDecimalOperands4()
   {
@@ -571,6 +570,7 @@ class AdditonOperatorTesting
     assertEquals(expected, actual);
   }
 
+  //Testing one complex and one real decimal operands
   @Test
   public void testDecimalOperands5()
   {
@@ -580,6 +580,7 @@ class AdditonOperatorTesting
     assertEquals(expected, actual);
   }
 
+  //Testing one real and one imaginary decimal operands
   @Test
   public void testDecimalOperands6()
   {
@@ -589,5 +590,5 @@ class AdditonOperatorTesting
     assertEquals(expected, actual);
   }
 
-  // TODO: test complex spaces and parens
+  
 }
