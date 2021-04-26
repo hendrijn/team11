@@ -18,8 +18,8 @@ public class NewMainInterface extends JFrame implements Finals
   private static NewMainInterface ui;
   private InterfaceController listener;
   JMenuBar menuBar;
-  JMenu settingsMenu, aboutMenu, fileMenu;
-  JMenuItem about, add, start, pause, stop, print;
+  JMenu settingsMenu, aboutMenu, fileMenu, langMenu;
+  JMenuItem about, add, start, pause, stop, print, speed;
   JPanel northPanel, eastPanel, centerPanel, bar;
 
   static JButton history;
@@ -363,12 +363,14 @@ public class NewMainInterface extends JFrame implements Finals
     settingsMenu.setText(STRINGS.getString("SETTINGS"));
     fileMenu.setText(STRINGS.getString("FILE"));
     aboutMenu.setText(STRINGS.getString("HELP"));
+    langMenu.setText(STRINGS.getString("LANG"));
     about.setText(STRINGS.getString("ABOUT"));
     add.setText(STRINGS.getString("ADDTOREC"));
     start.setText(STRINGS.getString("START"));
     stop.setText(STRINGS.getString("STOP"));
     pause.setText(STRINGS.getString("PAUSE"));
     print.setText(STRINGS.getString("PRINT"));
+    speed.setText(STRINGS.getString("SET_SPEED"));
 
   }
 
@@ -379,7 +381,7 @@ public class NewMainInterface extends JFrame implements Finals
   {
     MenuController menuListener = MenuController.getInstance();
     AboutController aboutListener = new AboutController();
-   // HistoryPrinter historyPrinter = new HistoryPrinter(HistoryDisplay.getInstance());
+    // HistoryPrinter historyPrinter = new HistoryPrinter(HistoryDisplay.getInstance());
     // LanguageController langListener = new LanguageController();
 
     menuBar = new JMenuBar();
@@ -415,7 +417,7 @@ public class NewMainInterface extends JFrame implements Finals
       item.setEnabled(false);
     }
 
-    //fileMenu.getItem(4).addActionListener(historyPrinter);
+    // fileMenu.getItem(4).addActionListener(historyPrinter);
 
     fileMenu.getItem(0).setEnabled(true);
     fileMenu.getItem(4).setEnabled(true);
@@ -423,6 +425,15 @@ public class NewMainInterface extends JFrame implements Finals
     // settingsMenu = new JMenu(STRINGS.getString("SETTINGS"));
     settingsMenu = new JMenu();
     increaseSize(settingsMenu);
+    speed = new JMenuItem();
+    increaseSize(speed);
+    speed.addActionListener(menuListener);
+    settingsMenu.add(speed);
+
+    langMenu = new JMenu();
+    increaseSize(langMenu);
+    settingsMenu.add(langMenu);
+
     JMenuItem english = new JMenuItem(ENG);
     JMenuItem french = new JMenuItem(FRE);
     JMenuItem german = new JMenuItem(GER);
@@ -432,17 +443,17 @@ public class NewMainInterface extends JFrame implements Finals
     english.addActionListener((ActionEvent e) -> {
       updateLanguage(new Locale("en", "US"));
     });
-    settingsMenu.add(english);
+    langMenu.add(english);
 
     french.addActionListener((ActionEvent e) -> {
       updateLanguage(new Locale("fr", "FR"));
     });
-    settingsMenu.add(french);
+    langMenu.add(french);
 
     german.addActionListener((ActionEvent e) -> {
       updateLanguage(new Locale("de", "DE"));
     });
-    settingsMenu.add(german);
+    langMenu.add(german);
     menuBar.add(settingsMenu);
 
     aboutMenu = new JMenu();
