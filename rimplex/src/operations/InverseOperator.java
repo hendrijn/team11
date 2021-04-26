@@ -30,6 +30,7 @@ public class InverseOperator
    */
   public String invert(final String operand)
   {
+
     if (operand == null || operand.equals(""))
     {
       throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
@@ -61,17 +62,16 @@ public class InverseOperator
       return String.valueOf(finalReturnOperand) + "+0.00i";
     }
 
-    TempContext multiContext = new TempContext(new MultiplicationOperator());
-    TempContext divContext = new TempContext(new DivisionOperator());
+    TempContext multiContext     = new TempContext(new MultiplicationOperator());
+    TempContext divContext       = new TempContext(new DivisionOperator());
     ConjugateOperator cjOperator = new ConjugateOperator();
 
-    String conjugate = cjOperator.conjugate(alteredOp);
+    String conjugate   = cjOperator.conjugate(alteredOp);
 
     String denominator = multiContext.evaluate(alteredOp, conjugate);
-    ;
-
+    
     String finalResult = divContext.evaluate(conjugate, denominator);
-    ;
+    
 
     return finalResult;
   }

@@ -62,9 +62,9 @@ public class SquareRootOperator
     String[] decomposedOperands = new String[3];
     decomposedOperands = TempContext.decomposeOperands(alteredOp, BLANK_OPERAND);
 
-    String leftRegularNumber = decomposedOperands[0];
+    String leftRegularNumber   = decomposedOperands[0];
     String leftImaginaryNumber = decomposedOperands[1];
-    double dblRegNum = Double.parseDouble(leftRegularNumber);
+    double dblRegNum  = Double.parseDouble(leftRegularNumber);
     double dblImagNum = Double.parseDouble(leftImaginaryNumber);
     double finalResult = 0.0;
     String finalString = "";
@@ -90,13 +90,16 @@ public class SquareRootOperator
       double b = dblImagNum;
       double p = 0;
       double q = 0;
+      
       double firstPartOfP = (1.00 / Math.sqrt(2));
       double secondPartOfP = Math.sqrt(Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2)) + a);
       p = firstPartOfP * secondPartOfP;
+      
       double firstPartOfQ = Math.signum(b);
       double secondPartOfQ = (firstPartOfQ / Math.sqrt(2));
       double thirdPartOfQ = Math.sqrt(Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2)) - a);
       q = secondPartOfQ * thirdPartOfQ;
+      
       finalString = p + "+" + q + "i";
     }
 

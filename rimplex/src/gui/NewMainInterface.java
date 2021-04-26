@@ -33,8 +33,6 @@ public class NewMainInterface extends JFrame implements Finals
   {
     setSize(670, 550);
     setTitle("Rimplex");
-    // ImageIcon icon = new ImageIcon(
-    // "C:\\Users\\Brooke\\git\\team11\\rimplex\\src\\gui\\iconRimplex.png");
 
     // For OS X
 
@@ -59,10 +57,6 @@ public class NewMainInterface extends JFrame implements Finals
     }
 
     setIconImage(icon.getImage());
-    System.out.println("before1");
-    System.out.println("before2");
-    // making NewMainInterface run repeatedly????????
-    // LogoDisplay logo = LogoDisplay.getInstance();
 
     setupFrame();
     setVisible(true); // display this

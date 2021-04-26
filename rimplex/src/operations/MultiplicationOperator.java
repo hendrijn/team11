@@ -39,9 +39,9 @@ public class MultiplicationOperator implements Operator
       throw new IllegalArgumentException(e1.getMessage());
     }
 
-    String leftRegularNumber = decomposedOperands[0];
-    String leftImaginaryNumber = decomposedOperands[1];
-    String rightRegularNumber = decomposedOperands[2];
+    String leftRegularNumber    = decomposedOperands[0];
+    String leftImaginaryNumber  = decomposedOperands[1];
+    String rightRegularNumber   = decomposedOperands[2];
     String rightImaginaryNumber = decomposedOperands[3];
 
     // Integer processing
@@ -88,12 +88,12 @@ public class MultiplicationOperator implements Operator
       throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
     }
 
-    double fOILFirst = leftRegNumDouble * rightRegNumDouble;
-    double fOILOuters = leftRegNumDouble * rightImagNumDouble;
+    double fOILFirst  = leftRegNumDouble  * rightRegNumDouble;
+    double fOILOuters = leftRegNumDouble  * rightImagNumDouble;
     double fOILInners = leftImagNumDouble * rightRegNumDouble;
-    double fOILLasts = leftImagNumDouble * rightImagNumDouble * I_SQUARED;
+    double fOILLasts  = leftImagNumDouble * rightImagNumDouble * I_SQUARED;
 
-    double finalRegTotal = fOILFirst + fOILLasts;
+    double finalRegTotal  = fOILFirst + fOILLasts;
     double finalImagTotal = fOILOuters + fOILInners;
 
     String result = String.format("%.2f", finalRegTotal) + "+"
