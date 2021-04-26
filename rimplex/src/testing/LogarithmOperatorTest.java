@@ -125,7 +125,7 @@ class LogarithmOperatorTest
 
     String actual = l.log("4i");
     String expected = "ln(4.00i)";
-    assertEquals(actual, expected);
+    assertEquals(expected, actual);
   }
 
   /**
