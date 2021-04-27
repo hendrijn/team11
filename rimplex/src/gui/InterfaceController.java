@@ -23,6 +23,7 @@ public class InterfaceController
   private String firstOperand = EMPTY;
   private String secondOperand = EMPTY;
   private String result = EMPTY;
+  private boolean expFlag = false;
 
   private boolean shownError = false;
 
@@ -147,6 +148,11 @@ public class InterfaceController
           String imag = iPart.getText();
           handleImaginary(imag);
           break;
+        case EXP:
+          expFlag = true;
+          handleOperators(EXP);
+          break;
+          
         default:
           closeApplication();
       }
@@ -276,6 +282,27 @@ public class InterfaceController
     HistoryDisplay history = HistoryDisplay.getInstance();
     JLabel exLabel = ui.getExpressionLabel();
     secondOperand = removeFormatting(ui.getInputLabel().getText());
+    
+    if (expFlag) 
+    {
+      String finalExp = "";
+      ExponentOperator expOp = new ExponentOperator();
+      try
+      {
+        finalExp = expOp.exponentation(firstOperand, secondOperand);
+      }
+      catch (IllegalArgumentException e1)
+      {
+        ui.errorMessage(e1.getMessage());
+        resetInterface();
+        return;
+      }
+      ui.getInputLabel().setText(finalExp);
+      expFlag = false;
+      secondOperand = "";
+      firstOperand = "";
+      return;
+    }
 
     try
     {
@@ -443,6 +470,11 @@ public class InterfaceController
         break;
       case DIVIDE:
         context = new TempContext(new DivisionOperator());
+        exLabel.setText(replaceFormatting(firstOperand) + SP + operation + SP);
+        resLabel.setText(HTML);
+        inLabel.setText(HTML);
+        break;
+      case EXP:
         exLabel.setText(replaceFormatting(firstOperand) + SP + operation + SP);
         resLabel.setText(HTML);
         inLabel.setText(HTML);
