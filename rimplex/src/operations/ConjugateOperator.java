@@ -11,22 +11,27 @@ import gui.NewMainInterface;
  */
 public class ConjugateOperator
 {
+  private final String noOp = "NO_OPERAND";
+  private final String invalid = "NOT_VALID_OPERAND";
+  private final String i = "i";
+  private final String minus = "-";
+  private final String plus = "+";
+      
   /**
    * computes the conjugate of a complex/imaginary operand.
    * 
    * @param operand
    *          the operand to compute the conjugate of.
    * @return the conjugate.
+   * @throws IllegalArgumentException
+   *           if the operand is null, empty, or invalid.
    */
-  public String conjugate(String operand)
+  public String conjugate(final String operand) throws IllegalArgumentException
   {
     // error checking
-    // no error checking needs to be done for whether the
-    // operand is complex/imaginary or not because this is used internally
-    // for division and the inverse
     if (operand == null || operand.equals(""))
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NO_OPERAND"));
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(noOp));
     }
 
     // operand w/o spaces and parens
@@ -35,17 +40,17 @@ public class ConjugateOperator
     // error checking for empty and bad operands
     if (alteredOp.equals(""))
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NO_OPERAND"));
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(noOp));
     }
 
-    if ((alteredOp.indexOf("i", alteredOp.indexOf("i") + 1) != -1))
+    if ((alteredOp.indexOf(i, alteredOp.indexOf(i) + 1) != -1))
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(invalid));
     }
 
-    if ((alteredOp.replace("i", "")).matches(".*[a-zA-Z]+.*"))
+    if ((alteredOp.replace(i, "")).matches(".*[a-zA-Z]+.*"))
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(invalid));
     }
 
     String result = "";
@@ -54,31 +59,29 @@ public class ConjugateOperator
     boolean complex = TempContext.isComplex(alteredOp);
     boolean imaginary = TempContext.isImaginary(alteredOp);
 
-    // conjugate for complex
     if (complex)
     {
-      int negMin = alteredOp.indexOf("-");
-      int min = alteredOp.indexOf("-", negMin + 1);
+      int negMin = alteredOp.indexOf(minus);
+      int min = alteredOp.indexOf(minus, negMin + 1);
 
-      if (alteredOp.contains("+"))
+      if (alteredOp.contains(plus))
       {
-        result = alteredOp.substring(0, alteredOp.indexOf("+")) + "-"
-            + alteredOp.substring(alteredOp.indexOf("+") + 1);
+        result = alteredOp.substring(0, alteredOp.indexOf(plus)) + minus
+            + alteredOp.substring(alteredOp.indexOf(plus) + 1);
       }
       else
       {
         if (min != -1)
         {
-          result = alteredOp.substring(0, min) + "+" + alteredOp.substring(min + 1);
+          result = alteredOp.substring(0, min) + plus + alteredOp.substring(min + 1);
         }
         else
         {
-          result = alteredOp.substring(0, negMin) + "+" + alteredOp.substring(negMin + 1);
+          result = alteredOp.substring(0, negMin) + plus + alteredOp.substring(negMin + 1);
         }
       }
     }
 
-    // conjugate for imginary
     if (imaginary)
     {
       if (alteredOp.charAt(0) == '-')
@@ -87,7 +90,7 @@ public class ConjugateOperator
       }
       else
       {
-        result = "-" + alteredOp;
+        result = minus + alteredOp;
       }
     }
     return result;

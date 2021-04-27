@@ -11,6 +11,9 @@ import gui.NewMainInterface;
 public class InverseOperator
 {
 
+  private final String invalid = "NOT_VALID_OPERAND";
+  private final String i = "i";
+
   /**
    * Blank Constructor to use for invert.
    */
@@ -20,7 +23,7 @@ public class InverseOperator
   }
 
   /**
-   * Takes in a number, and returns its mulitplicative inverse.
+   * Takes in a number, and returns its multiplicative inverse.
    * 
    * @param operand
    *          The number to be inverted.
@@ -28,50 +31,47 @@ public class InverseOperator
    * @throws An
    *           IllegalArgumentExcpetion if invalid operands are provided.
    */
-  public String invert(final String operand)
+  public String invert(final String operand) throws IllegalArgumentException
   {
-
+    // error checking for null/emoty
     if (operand == null || operand.equals(""))
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(invalid));
     }
 
     String alteredOp = ((operand.replaceAll(" ", "")).replace("(", "")).replace(")", "");
 
+    // error checking for invalid
     long iCount = alteredOp.chars().filter(ch -> ch == 'i').count();
     if (iCount > 1)
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("VALID_OR_SIMPLIFY"));
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(invalid));
     }
 
     double finalOperand = 0;
-
-    if (!operand.contains("i"))
+    if (!operand.contains(i))
     {
       try
       {
         finalOperand = Double
-            .parseDouble((((alteredOp.replace("i", "")).replace("+", "")).replaceAll("-", "")));
+            .parseDouble((((alteredOp.replace(i, "")).replace("+", "")).replaceAll("-", "")));
       }
       catch (NumberFormatException e)
       {
-        throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
+        throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(invalid));
       }
       double finalReturnOperand = (1 / finalOperand);
 
-      return  String.format("%.2f", finalReturnOperand) + "+0.00i";
+      return String.format("%.2f", finalReturnOperand) + "+0.00i";
     }
 
-    TempContext multiContext     = new TempContext(new MultiplicationOperator());
-    TempContext divContext       = new TempContext(new DivisionOperator());
+    TempContext multiContext = new TempContext(new MultiplicationOperator());
+    TempContext divContext = new TempContext(new DivisionOperator());
     ConjugateOperator cjOperator = new ConjugateOperator();
 
-    String conjugate   = cjOperator.conjugate(alteredOp);
-
+    String conjugate = cjOperator.conjugate(alteredOp);
     String denominator = multiContext.evaluate(alteredOp, conjugate);
-    
     String finalResult = divContext.evaluate(conjugate, denominator);
-    
 
     return finalResult;
   }
