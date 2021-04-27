@@ -16,6 +16,7 @@ public class ConjugateOperator
   private final String i = "i";
   private final String minus = "-";
   private final String plus = "+";
+  private NewMainInterface ui = NewMainInterface.getInstance();
       
   /**
    * computes the conjugate of a complex/imaginary operand.
@@ -31,7 +32,7 @@ public class ConjugateOperator
     // error checking
     if (operand == null || operand.equals(""))
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(noOp));
+      throw new IllegalArgumentException(ui.getStrings().getString(noOp));
     }
 
     // operand w/o spaces and parens
@@ -40,17 +41,17 @@ public class ConjugateOperator
     // error checking for empty and bad operands
     if (alteredOp.equals(""))
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(noOp));
+      throw new IllegalArgumentException(ui.getStrings().getString(noOp));
     }
 
     if ((alteredOp.indexOf(i, alteredOp.indexOf(i) + 1) != -1))
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(invalid));
+      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
     }
 
     if ((alteredOp.replace(i, "")).matches(".*[a-zA-Z]+.*"))
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(invalid));
+      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
     }
 
     String result = "";

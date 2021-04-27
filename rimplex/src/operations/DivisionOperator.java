@@ -19,6 +19,7 @@ public class DivisionOperator implements Operator
   private final String plus = "+";
   private final String minus = "-";
   private final String i = "i";
+  private NewMainInterface ui = NewMainInterface.getInstance();
 
   /**
    * Divides the given dividend by the given divisor.
@@ -39,7 +40,7 @@ public class DivisionOperator implements Operator
     if (leftOperand == null || rightOperand == null || leftOperand.equals("")
         || rightOperand.equals(""))
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(noOp));
+      throw new IllegalArgumentException(ui.getStrings().getString(noOp));
     }
 
     // removes spaces and parens from l and r operands
@@ -71,7 +72,7 @@ public class DivisionOperator implements Operator
     {
       if (zeroCheckR.equals("") || zeroCheckR.equals(".") || zeroCheckR.equals(".."))
       {
-        throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("RIGHT_OPERAND"));
+        throw new IllegalArgumentException(ui.getStrings().getString("RIGHT_OPERAND"));
       }
     }
 

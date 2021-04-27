@@ -15,6 +15,7 @@ public class RealPartOperator
   private final String invalid = "VALID_OR_SIMPLIFY";
   private final String plus = "+";
   private final String minusSign = "-";
+  private NewMainInterface ui = NewMainInterface.getInstance();
 
   /**
    * Isolates the real part of the given operand.
@@ -39,13 +40,13 @@ public class RealPartOperator
     // error checking invalid
     if (alteredOp.equals(""))
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NO_OPERAND"));
+      throw new IllegalArgumentException(ui.getStrings().getString("NO_OPERAND"));
     }
 
     long iCount = alteredOp.chars().filter(ch -> ch == 'i').count();
     if (iCount > 1)
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(invalid));
+      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
     }
 
     try
@@ -55,7 +56,7 @@ public class RealPartOperator
     }
     catch (NumberFormatException nfe)
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(invalid));
+      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
     }
 
     boolean isComplex = TempContext.isComplex(alteredOp);

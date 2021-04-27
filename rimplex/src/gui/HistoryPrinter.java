@@ -17,55 +17,73 @@ import javax.swing.RepaintManager;
  * @author Corwin Willms
  * @version Sprint 3
  */
-public class HistoryPrinter implements Printable {
+public class HistoryPrinter implements Printable
+{
 
-	JTextArea historyList;
+  JTextArea historyList;
 
-	public static void printComponent(JTextArea h) {
-		new HistoryPrinter(h).doPrint();
-	}
+  /**
+   * Constructor.
+   * 
+   * @param text
+   *          the JTextArea containing the history of calculations.
+   */
+  public HistoryPrinter(final JTextArea text)
+  {
+    this.historyList = text;
+  }
+  
+  /**
+   * Prints the given text area.
+   * 
+   * @param h the text area to print.
+   */
+  public static void printComponent(final JTextArea h)
+  {
+    new HistoryPrinter(h).doPrint();
+  }
 
-	/**
-	 * Constructor
-	 * 
-	 * @param text the JTextArea containing the history of calculations.
-	 */
-	public HistoryPrinter(JTextArea text) {
-		this.historyList = text;
-	}
+  /**
+   * Starts printing process by creating a PrinterJob and displaying the print dialog for the user.
+   * Prints depending on user input in the print dialog.
+   */
+  public void doPrint()
+  {
+    PrinterJob printJob = PrinterJob.getPrinterJob();
+    printJob.setPrintable(this);
+    if (printJob.printDialog())
+    {
+      try
+      {
+        printJob.print();
+      }
+      catch (PrinterException pe)
+      {
+        System.out.println("Error printing: " + pe);
+      }
+    }
+  }
 
-	/**
-	 * Starts printing process by creating a PrinterJob and displaying the print
-	 * dialog for the user. Prints depending on user input in the print dialog.
-	 */
-	public void doPrint() {
-		PrinterJob printJob = PrinterJob.getPrinterJob();
-		printJob.setPrintable(this);
-		if (printJob.printDialog()) {
-			try {
-				printJob.print();
-			} catch (PrinterException pe) {
-				System.out.println("Error printing: " + pe);
-			}
-		}
-	}
-
-	/**
-	 * Overrides normal print method for JTextArea printing
-	 */
-	@Override
-	public int print(Graphics g, PageFormat pageFormat, int pageIndex) {
-		if (pageIndex > 0) {
-			return (NO_SUCH_PAGE);
-		} else {
-			Graphics2D g2d = (Graphics2D) g;
-			g2d.translate(pageFormat.getImageableX(), pageFormat.getImageableY());
-			RepaintManager currentManager = RepaintManager.currentManager(historyList);
-			currentManager.setDoubleBufferingEnabled(false);
-			historyList.paint(g2d);
-			currentManager = RepaintManager.currentManager(historyList);
-			currentManager.setDoubleBufferingEnabled(true);
-			return (PAGE_EXISTS);
-		}
-	}
+  /**
+   * Overrides normal print method for JTextArea printing.
+   */
+  @Override
+  public int print(final Graphics g, final PageFormat pageFormat, final int pageIndex)
+  {
+    if (pageIndex > 0)
+    {
+      return (NO_SUCH_PAGE);
+    }
+    else
+    {
+      Graphics2D g2d = (Graphics2D) g;
+      g2d.translate(pageFormat.getImageableX(), pageFormat.getImageableY());
+      RepaintManager currentManager = RepaintManager.currentManager(historyList);
+      currentManager.setDoubleBufferingEnabled(false);
+      historyList.paint(g2d);
+      currentManager = RepaintManager.currentManager(historyList);
+      currentManager.setDoubleBufferingEnabled(true);
+      return (PAGE_EXISTS);
+    }
+  }
 }

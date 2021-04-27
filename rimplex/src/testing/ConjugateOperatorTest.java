@@ -108,7 +108,7 @@ class ConjugateOperatorTest
   }
 
   /**
-   * tests change from negative to positive
+   * tests change from negative to positive.
    */
   @Test
   public void testMinustoPlus()

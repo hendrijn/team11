@@ -15,6 +15,7 @@ public class ExponentOperator
   private final String blankOperand = "0";
   private final String invalid = "NOT_VALID_OPERAND";
   private final String zeroBase = "1.00+0.00i";
+  private NewMainInterface ui = NewMainInterface.getInstance();
 
   /**
    * Evaluates an operand raised to a power.
@@ -37,7 +38,7 @@ public class ExponentOperator
     }
     catch (IllegalArgumentException e)
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(invalid));
+      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
     }
 
     int powerOf = 0;
@@ -47,7 +48,7 @@ public class ExponentOperator
     }
     catch (NumberFormatException e)
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("BASE"));
+      throw new IllegalArgumentException(ui.getStrings().getString("BASE"));
     }
     
     if (powerOf == 0) 
@@ -70,7 +71,7 @@ public class ExponentOperator
     }
     catch (NumberFormatException e1)
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(invalid));
+      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
     }
 
     try
@@ -79,7 +80,7 @@ public class ExponentOperator
     }
     catch (NumberFormatException e2)
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(invalid));
+      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
     }
     
 

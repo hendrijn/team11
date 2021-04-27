@@ -13,6 +13,7 @@ public class SubtractionOperator implements Operator
 {
 
   private final String space = " ";
+  private NewMainInterface ui = NewMainInterface.getInstance();
 
   /**
    * Evaluates a subtraction of two operands.
@@ -33,7 +34,7 @@ public class SubtractionOperator implements Operator
     if (leftOperand == null || rightOperand == null || leftOperand.equals("")
         || rightOperand.equals(""))
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("TWO_OPERANDS"));
+      throw new IllegalArgumentException(ui.getStrings().getString("TWO_OPERANDS"));
     }
 
     String noSpL = leftOperand.replaceAll(space, "");

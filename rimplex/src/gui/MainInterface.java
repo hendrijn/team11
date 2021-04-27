@@ -15,11 +15,6 @@ public class MainInterface extends JFrame implements Finals
   // The serial ID for serialization
   private static final long serialVersionUID = 1L;
   private static MainInterface frame;
-
-  private JPanel displayPanel;
-  private JPanel inputPanel;
-  private JPanel buttonPanel;
-
   JButton resetButton;
   JButton clearButton;
   JButton addButton;
@@ -28,13 +23,16 @@ public class MainInterface extends JFrame implements Finals
   JButton divideButton;
   JButton equalsButton;
   JButton squareRootButton;
-
   JTextField inputField = new JTextField();
-
+  private JPanel displayPanel;
+  private JPanel inputPanel;
+  private JPanel buttonPanel;
   private InterfaceController listener = new InterfaceController();
-
   private String input;
-
+  private final String html = "<html>";
+  private final String openParen = "(";
+  private final String closedParen = ")";
+  
   /**
    * Default constructor.
    */
@@ -186,22 +184,22 @@ public class MainInterface extends JFrame implements Finals
    * @param result
    *          a string containing the result of an equation
    */
-  void updateDisplay(String buttonText, String result)
+  void updateDisplay(final String buttonText, final String result)
   {
-	boolean parenthesis = false;
-	if (inputField.getText().contains(ADD) || inputField.getText().contains(SUBTRACT))
-		parenthesis = true;
+    boolean parenthesis = false;
+    if (inputField.getText().contains(ADD) || inputField.getText().contains(SUBTRACT))
+      parenthesis = true;
 
     if (result == null && (input == null || input.isEmpty()))
     {
-      
-      input = "<html>";
+
+      input = html;
       if (parenthesis)
-        input = input.concat("(");
+        input = input.concat(openParen);
       input = input.concat(inputField.getText());
       input = italicizeI(input);
       if (parenthesis)
-        input = input.concat(")");
+        input = input.concat(closedParen);
       input = input.concat(buttonText);
       inputField.setText(EMPTY);
 
@@ -210,17 +208,17 @@ public class MainInterface extends JFrame implements Finals
     }
     else if (result != null)
     {
-    	if (parenthesis)
-      	  input = input.concat("(");
+      if (parenthesis)
+        input = input.concat(openParen);
       String inputText = ((JTextField) inputPanel.getComponent(0)).getText();
       inputText = italicizeI(inputText);
       input = input.concat(inputText);
       if (parenthesis)
-    	  input = input.concat(")");
+        input = input.concat(closedParen);
       input = input.concat(buttonText);
       inputField.setText(EMPTY);
       ((JLabel) displayPanel.getComponent(0)).setText(input);
-      String displayResult = "<html>";
+      String displayResult = html;
       displayResult = displayResult.concat(result);
       displayResult = italicizeI(displayResult);
       displayResult = displayResult.substring(0, displayResult.length() - 1);
@@ -231,12 +229,12 @@ public class MainInterface extends JFrame implements Finals
   }
 
   /**
-   * Makes i italic
+   * Makes i italic.
    * 
-   * @param text
-   * @return the input with italic i
+   * @param text the text to italicize.
+   * @return the input with italic i.
    */
-  private static String italicizeI(String text)
+  private static String italicizeI(final String text)
   {
     String ret = text;
     int index;
@@ -277,7 +275,7 @@ public class MainInterface extends JFrame implements Finals
    * @param errorMessage
    *          The error message from the relevant exception.
    */
-  protected void errorMessage(String errorMessage)
+  protected void errorMessage(final String errorMessage)
   {
     JOptionPane.showMessageDialog(null, errorMessage, errorMessage, JOptionPane.ERROR_MESSAGE);
   }
@@ -293,5 +291,4 @@ public class MainInterface extends JFrame implements Finals
       frame = new MainInterface();
     return frame;
   }
-
 }
