@@ -10,8 +10,8 @@ import operations.*;
 /**
  * Handles all button functionalities.
  * 
- * @author Jacquelyn Hendricks
- * @version March 23 2021
+ * @author Jacquelyn Hendricks, Brooke Sindelar, Corwin Willms, Patrick Glebus
+ * @version v3
  */
 public class InterfaceController
     implements Finals, ActionListener, KeyListener, MouseListener, FocusListener
@@ -24,7 +24,6 @@ public class InterfaceController
   private String secondOperand = EMPTY;
   private String result = EMPTY;
   private boolean expFlag = false;
-
   private boolean shownError = false;
 
   /**
@@ -116,27 +115,7 @@ public class InterfaceController
           handleSign(in);
           break;
         case INVERSE:
-          String invertNum = ui.getInputLabel().getText();
-          String cleaninvertNum = removeFormatting(invertNum);
-          if (cleaninvertNum.equals(""))
-          {
-            invertNum = ui.getResultLabel().getText();
-            cleaninvertNum = removeFormatting(invertNum);
-          }
-          InverseOperator inverseOP = new InverseOperator();
-          String invertedOperand = "";
-          try
-          {
-            invertedOperand = inverseOP.invert(cleaninvertNum);
-          }
-          catch (IllegalArgumentException e1)
-          {
-            ui.errorMessage(e1.getMessage());
-            resetInterface();
-            break;
-          }
-          invertedOperand = "(" + invertedOperand + ")";
-          ui.getInputLabel().setText(replaceFormatting(invertedOperand));
+          handleInverse(ui);
           break;
         case RPARTS:
           JLabel rPart = ui.getInputLabel();
@@ -153,51 +132,11 @@ public class InterfaceController
           handleOperators(EXP);
           break;
         case LOG:
-          String logNum = ui.getInputLabel().getText();
-          String cleanLogNum = removeFormatting(logNum);
-          if (cleanLogNum.equals(""))
-          {
-            logNum = ui.getResultLabel().getText();
-            cleanLogNum = removeFormatting(logNum);
-          }
-          LogarithmOperator logOp = new LogarithmOperator();
-          String logOperand = "";
-          try
-          {
-            logOperand = logOp.log(cleanLogNum);
-          }
-          catch (IllegalArgumentException e1)
-          {
-            ui.errorMessage(e1.getMessage());
-            resetInterface();
-            break;
-          }
-          invertedOperand = "(" + logOperand + ")";
-          ui.getInputLabel().setText(replaceFormatting(logOperand));
+          handleLog(ui);
           break;
         case SQRT:
-          String sqrtNum = ui.getInputLabel().getText();
-          String cleansqrtNum = removeFormatting(sqrtNum);
-          if (cleansqrtNum.equals(""))
-          {
-            sqrtNum = ui.getResultLabel().getText();
-            cleansqrtNum = removeFormatting(sqrtNum);
-          }
-          SquareRootOperator sqrtOp = new SquareRootOperator();
-          String sqrtOperand = "";
-          try
-          {
-            sqrtOperand = sqrtOp.evaluate(cleansqrtNum);
-          }
-          catch (IllegalArgumentException e1)
-          {
-            ui.errorMessage(e1.getMessage());
-            resetInterface();
-            break;
-          }
-          invertedOperand = "(" + sqrtOperand + ")";
-          ui.getInputLabel().setText(replaceFormatting(sqrtOperand));
-          break;   
+          handleSquareRoot(ui);
+          break;
         default:
           closeApplication();
       }
@@ -279,36 +218,6 @@ public class InterfaceController
   }
 
   /**
-   * Backspaces the input field.
-   */
-  private void handleBackspace(final NewMainInterface ui)
-  {
-    String text = ui.getInputLabel().getText();
-
-    // to cover cases when the user backspaces without typing anything
-    String cleanText = removeFormatting(text);
-    if (cleanText.length() == 1)
-    {
-      ui.getInputLabel().setText(HTML);
-      return;
-    }
-    if (text.length() > HTML.length())
-    {
-      if (text.substring(text.length() - I.length()).equals(I))
-      {
-        text = text.substring(0, text.length() - I.length());
-        ui.getInputLabel().setText(text);
-      }
-      else
-      {
-        text = text.substring(0, text.length() - 1);
-        ui.getInputLabel().setText(text);
-      }
-    }
-
-  }
-
-  /**
    * closeApplication - handle all tasks at application close.
    */
   private void closeApplication()
@@ -327,25 +236,10 @@ public class InterfaceController
     HistoryDisplay history = HistoryDisplay.getInstance();
     JLabel exLabel = ui.getExpressionLabel();
     secondOperand = removeFormatting(ui.getInputLabel().getText());
-    
-    if (expFlag) 
+
+    if (expFlag)
     {
-      String finalExp = "";
-      ExponentOperator expOp = new ExponentOperator();
-      try
-      {
-        finalExp = expOp.exponentation(firstOperand, secondOperand);
-      }
-      catch (IllegalArgumentException e1)
-      {
-        ui.errorMessage(e1.getMessage());
-        resetInterface();
-        return;
-      }
-      ui.getInputLabel().setText(finalExp);
-      expFlag = false;
-      secondOperand = "";
-      firstOperand = "";
+      handleExponentiation(ui, exLabel);
       return;
     }
 
@@ -381,45 +275,63 @@ public class InterfaceController
   }
 
   /**
-   * Helper method to change sign of a number.
-   * 
-   * @param input
-   *          the number to change
+   * Backspaces the input field.
    */
-  private void handleSign(final String input)
+  private void handleBackspace(final NewMainInterface ui)
   {
-    String[] nums = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "i", ")"};
-    NewMainInterface ui = NewMainInterface.getInstance();
-    JLabel inLabel = ui.getInputLabel();
-    String actual = removeFormatting(input);
+    String text = ui.getInputLabel().getText();
 
-    for (int i = 0; i < nums.length; i++)
+    // to cover cases when the user backspaces without typing anything
+    String cleanText = removeFormatting(text);
+    if (cleanText.length() == 1)
     {
-      if (actual.endsWith(nums[i]))
+      ui.getInputLabel().setText(HTML);
+      return;
+    }
+    if (text.length() > HTML.length())
+    {
+      if (text.substring(text.length() - I.length()).equals(I))
       {
-        String change = operations.SignChangeOperator.changeSign(actual);
-        inLabel.setText(replaceFormatting(change));
-        break;
+        text = text.substring(0, text.length() - I.length());
+        ui.getInputLabel().setText(text);
+      }
+      else
+      {
+        text = text.substring(0, text.length() - 1);
+        ui.getInputLabel().setText(text);
       }
     }
+
   }
 
-  private void handleReal(final String operand)
+  /**
+   * Performs the exponentiation operation.
+   * 
+   * @param ui
+   *          the main interface
+   * @param exLabel
+   *          the expression label
+   */
+  private void handleExponentiation(final NewMainInterface ui, final JLabel exLabel)
   {
-    NewMainInterface ui = NewMainInterface.getInstance();
-    JLabel inLabel = ui.getInputLabel();
-    String actual = removeFormatting(operand);
-    RealPartOperator r = new RealPartOperator();
-    String change = "";
+    String expResult = EMPTY;
+    ExponentOperator expOp = new ExponentOperator();
     try
     {
-      change = r.evaluate(actual);
+      expResult = expOp.exponentation(firstOperand, secondOperand);
     }
-    catch (IllegalArgumentException iae)
+    catch (IllegalArgumentException e1)
     {
-      ui.errorMessage(iae.getMessage());
+      ui.errorMessage(e1.getMessage());
+      resetInterface();
+      return;
     }
-    inLabel.setText(replaceFormatting(change));
+    ui.getInputLabel().setText(HTML);
+    exLabel.setText(exLabel.getText() + replaceFormatting(secondOperand) + SP + EQUALS);
+    ui.getResultLabel().setText(expResult);
+    expFlag = false;
+    secondOperand = EMPTY;
+    firstOperand = EMPTY;
   }
 
   private void handleImaginary(final String operand)
@@ -439,6 +351,88 @@ public class InterfaceController
       ui.errorMessage(iae.getMessage());
     }
     inLabel.setText(replaceFormatting(change));
+  }
+
+  /**
+   * Adds soft or physical keyboard input to the display.
+   */
+  private void handleInput(final String input)
+  {
+    NewMainInterface ui = NewMainInterface.getInstance();
+
+    String displayText = ui.getInputLabel().getText();
+    switch (input)
+    {
+      case I:
+        ui.getInputLabel().setText(displayText + I);
+        break;
+      default:
+        ui.getInputLabel().setText(displayText + input);
+        break;
+
+    }
+  }
+
+  /**
+   * Handles inverse functionality.
+   * 
+   * @param ui
+   *          the main interface
+   */
+  private void handleInverse(NewMainInterface ui)
+  {
+    String invertNum = ui.getInputLabel().getText();
+    String cleaninvertNum = removeFormatting(invertNum);
+    if (cleaninvertNum.equals(""))
+    {
+      invertNum = ui.getResultLabel().getText();
+      cleaninvertNum = removeFormatting(invertNum);
+    }
+    InverseOperator inverseOP = new InverseOperator();
+    String invertedOperand = "";
+    try
+    {
+      invertedOperand = inverseOP.invert(cleaninvertNum);
+    }
+    catch (IllegalArgumentException e1)
+    {
+      ui.errorMessage(e1.getMessage());
+      resetInterface();
+      return;
+    }
+    invertedOperand = "(" + invertedOperand + ")";
+    ui.getInputLabel().setText(replaceFormatting(invertedOperand));
+  }
+
+  /**
+   * Handles the log functionality.
+   * 
+   * @param ui
+   *          the main interface
+   */
+  private void handleLog(NewMainInterface ui)
+  {
+    String logNum = ui.getInputLabel().getText();
+    String cleanLogNum = removeFormatting(logNum);
+    if (cleanLogNum.equals(""))
+    {
+      logNum = ui.getResultLabel().getText();
+      cleanLogNum = removeFormatting(logNum);
+    }
+    LogarithmOperator logOp = new LogarithmOperator();
+    String logOperand = "";
+    try
+    {
+      logOperand = logOp.log(cleanLogNum);
+    }
+    catch (IllegalArgumentException e1)
+    {
+      ui.errorMessage(e1.getMessage());
+      resetInterface();
+      return;
+    }
+    logOperand = "(" + logOperand + ")";
+    ui.getInputLabel().setText(replaceFormatting(logOperand));
   }
 
   private void handleOperators(final String operation)
@@ -472,6 +466,79 @@ public class InterfaceController
         resetInterface();
       }
     }
+  }
+
+  private void handleReal(final String operand)
+  {
+    NewMainInterface ui = NewMainInterface.getInstance();
+    JLabel inLabel = ui.getInputLabel();
+    String actual = removeFormatting(operand);
+    RealPartOperator r = new RealPartOperator();
+    String change = "";
+    try
+    {
+      change = r.evaluate(actual);
+    }
+    catch (IllegalArgumentException iae)
+    {
+      ui.errorMessage(iae.getMessage());
+    }
+    inLabel.setText(replaceFormatting(change));
+  }
+
+  /**
+   * Helper method to change sign of a number.
+   * 
+   * @param input
+   *          the number to change
+   */
+  private void handleSign(final String input)
+  {
+    String[] nums = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "i", ")"};
+    NewMainInterface ui = NewMainInterface.getInstance();
+    JLabel inLabel = ui.getInputLabel();
+    String actual = removeFormatting(input);
+
+    for (int i = 0; i < nums.length; i++)
+    {
+      if (actual.endsWith(nums[i]))
+      {
+        String change = operations.SignChangeOperator.changeSign(actual);
+        inLabel.setText(replaceFormatting(change));
+        break;
+      }
+    }
+  }
+
+  /**
+   * Handles the square root functionality.
+   * 
+   * @param ui
+   *          the main interface
+   */
+  private void handleSquareRoot(NewMainInterface ui)
+  {
+    String sqrtNum = ui.getInputLabel().getText();
+    String cleansqrtNum = removeFormatting(sqrtNum);
+    if (cleansqrtNum.equals(""))
+    {
+      sqrtNum = ui.getResultLabel().getText();
+      cleansqrtNum = removeFormatting(sqrtNum);
+    }
+    SquareRootOperator sqrtOp = new SquareRootOperator();
+    String sqrtOperand = "";
+    try
+    {
+      sqrtOperand = sqrtOp.evaluate(cleansqrtNum);
+    }
+    catch (IllegalArgumentException e1)
+    {
+      ui.errorMessage(e1.getMessage());
+      resetInterface();
+      return;
+    }
+    sqrtOperand = "(" + sqrtOperand + ")";
+    ui.getInputLabel().setText(replaceFormatting(sqrtOperand));
   }
 
   /**
@@ -526,26 +593,6 @@ public class InterfaceController
         break;
       default:
         ui.errorMessage("Not a valid operator");
-    }
-  }
-
-  /**
-   * Adds soft or physical keyboard input to the display.
-   */
-  private void handleInput(final String input)
-  {
-    NewMainInterface ui = NewMainInterface.getInstance();
-
-    String displayText = ui.getInputLabel().getText();
-    switch (input)
-    {
-      case I:
-        ui.getInputLabel().setText(displayText + I);
-        break;
-      default:
-        ui.getInputLabel().setText(displayText + input);
-        break;
-
     }
   }
 
