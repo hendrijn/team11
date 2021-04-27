@@ -237,12 +237,14 @@ public class InterfaceController
     JLabel exLabel = ui.getExpressionLabel();
     secondOperand = removeFormatting(ui.getInputLabel().getText());
 
+    // exponentiation
     if (expFlag)
     {
       handleExponentiation(ui, exLabel);
       return;
     }
 
+    // regular equals button
     try
     {
       result = context.evaluate(firstOperand, secondOperand);
@@ -328,12 +330,18 @@ public class InterfaceController
     }
     ui.getInputLabel().setText(HTML);
     exLabel.setText(exLabel.getText() + replaceFormatting(secondOperand) + SP + EQUALS);
-    ui.getResultLabel().setText(expResult);
+    ui.getResultLabel().setText(replaceFormatting(expResult));
     expFlag = false;
     secondOperand = EMPTY;
     firstOperand = EMPTY;
   }
 
+  /**
+   * Handles the imaginary only functionality.
+   * 
+   * @param operand
+   *          the operand to edit
+   */
   private void handleImaginary(final String operand)
   {
     NewMainInterface ui = NewMainInterface.getInstance();
@@ -369,7 +377,6 @@ public class InterfaceController
       default:
         ui.getInputLabel().setText(displayText + input);
         break;
-
     }
   }
 
@@ -379,17 +386,17 @@ public class InterfaceController
    * @param ui
    *          the main interface
    */
-  private void handleInverse(NewMainInterface ui)
+  private void handleInverse(final NewMainInterface ui)
   {
     String invertNum = ui.getInputLabel().getText();
     String cleaninvertNum = removeFormatting(invertNum);
-    if (cleaninvertNum.equals(""))
+    if (cleaninvertNum.equals(EMPTY))
     {
       invertNum = ui.getResultLabel().getText();
       cleaninvertNum = removeFormatting(invertNum);
     }
     InverseOperator inverseOP = new InverseOperator();
-    String invertedOperand = "";
+    String invertedOperand = EMPTY;
     try
     {
       invertedOperand = inverseOP.invert(cleaninvertNum);
@@ -400,7 +407,7 @@ public class InterfaceController
       resetInterface();
       return;
     }
-    invertedOperand = "(" + invertedOperand + ")";
+    invertedOperand = LPAREN + invertedOperand + RPAREN;
     ui.getInputLabel().setText(replaceFormatting(invertedOperand));
   }
 
@@ -410,17 +417,17 @@ public class InterfaceController
    * @param ui
    *          the main interface
    */
-  private void handleLog(NewMainInterface ui)
+  private void handleLog(final NewMainInterface ui)
   {
     String logNum = ui.getInputLabel().getText();
     String cleanLogNum = removeFormatting(logNum);
-    if (cleanLogNum.equals(""))
+    if (cleanLogNum.equals(EMPTY))
     {
       logNum = ui.getResultLabel().getText();
       cleanLogNum = removeFormatting(logNum);
     }
     LogarithmOperator logOp = new LogarithmOperator();
-    String logOperand = "";
+    String logOperand = EMPTY;
     try
     {
       logOperand = logOp.log(cleanLogNum);
@@ -435,6 +442,13 @@ public class InterfaceController
     ui.getInputLabel().setText(replaceFormatting(logOperand));
   }
 
+  /**
+   * Determines what operator is being performed. Sends the labels to updateDisplayWithOperators to
+   * put them on screen.
+   * 
+   * @param operation
+   *          the operation to set
+   */
   private void handleOperators(final String operation)
   {
     NewMainInterface ui = NewMainInterface.getInstance();
@@ -457,7 +471,7 @@ public class InterfaceController
       }
       else if (!result.equals(EMPTY))// takes prev result as firstOperand
       {
-        firstOperand = "(" + result + ")";
+        firstOperand = LPAREN + result + RPAREN;
         updateDisplayWithOperator(operation, ui, exLabel, inLabel, resLabel);
       }
       else
@@ -468,13 +482,19 @@ public class InterfaceController
     }
   }
 
+  /**
+   * Handles the real only functionality.
+   * 
+   * @param operand
+   *          the operand to edit
+   */
   private void handleReal(final String operand)
   {
     NewMainInterface ui = NewMainInterface.getInstance();
     JLabel inLabel = ui.getInputLabel();
     String actual = removeFormatting(operand);
     RealPartOperator r = new RealPartOperator();
-    String change = "";
+    String change = EMPTY;
     try
     {
       change = r.evaluate(actual);
@@ -494,7 +514,7 @@ public class InterfaceController
    */
   private void handleSign(final String input)
   {
-    String[] nums = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "i", ")"};
+    String[] nums = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "i", RPAREN};
     NewMainInterface ui = NewMainInterface.getInstance();
     JLabel inLabel = ui.getInputLabel();
     String actual = removeFormatting(input);
@@ -516,17 +536,17 @@ public class InterfaceController
    * @param ui
    *          the main interface
    */
-  private void handleSquareRoot(NewMainInterface ui)
+  private void handleSquareRoot(final NewMainInterface ui)
   {
     String sqrtNum = ui.getInputLabel().getText();
     String cleansqrtNum = removeFormatting(sqrtNum);
-    if (cleansqrtNum.equals(""))
+    if (cleansqrtNum.equals(EMPTY))
     {
       sqrtNum = ui.getResultLabel().getText();
       cleansqrtNum = removeFormatting(sqrtNum);
     }
     SquareRootOperator sqrtOp = new SquareRootOperator();
-    String sqrtOperand = "";
+    String sqrtOperand = EMPTY;
     try
     {
       sqrtOperand = sqrtOp.evaluate(cleansqrtNum);
@@ -537,7 +557,7 @@ public class InterfaceController
       resetInterface();
       return;
     }
-    sqrtOperand = "(" + sqrtOperand + ")";
+    sqrtOperand = LPAREN + sqrtOperand + RPAREN;
     ui.getInputLabel().setText(replaceFormatting(sqrtOperand));
   }
 
@@ -625,6 +645,9 @@ public class InterfaceController
     return newString;
   }
 
+  /**
+   * resets the entire interface and operands.
+   */
   private void resetInterface()
   {
     NewMainInterface ui = NewMainInterface.getInstance();
@@ -664,7 +687,6 @@ public class InterfaceController
   @Override
   public void focusLost(final FocusEvent e)
   {
-    // TODO Auto-generated method stub
     NewMainInterface ui = NewMainInterface.getInstance();
     ui.getInputLabel().requestFocusInWindow();
   }
@@ -672,7 +694,6 @@ public class InterfaceController
   @Override
   public void focusGained(final FocusEvent e)
   {
-    // TODO Auto-generated method stub
     NewMainInterface ui = NewMainInterface.getInstance();
     ui.getInputLabel().requestFocusInWindow();
   }
