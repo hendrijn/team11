@@ -15,6 +15,8 @@ public class SquareRootOperator
   private final String blankOperand = "0";
   private final String noOp = "NO_OPERAND";
   private final String invalid = "NOT_VALID_OPERAND";
+  private final String plus = "+";
+  private final String minusSign = "-";
 
   /**
    * Computes the square root of a complex, real, or imaginary number.
@@ -51,7 +53,8 @@ public class SquareRootOperator
     if (alteredOp.length() > 1)
       try
       {
-        Double.parseDouble(((alteredOp.replace("i", "")).replace("+", "")).replaceAll("-", ""));
+        Double.parseDouble(
+            ((alteredOp.replace("i", "")).replace(plus, "")).replaceAll(minusSign, ""));
       }
       catch (NumberFormatException nfe)
       {
@@ -126,6 +129,11 @@ public class SquareRootOperator
       q = secondPartOfQ * thirdPartOfQ;
 
       finalString = String.format("%.2f+%.2fi", p, q);
+    }
+    if (finalString.contains("+-"))
+    {
+      finalString = finalString.substring(0, finalString.indexOf(plus)) + minusSign
+          + finalString.substring(finalString.indexOf(plus) + 2);
     }
     return finalString;
   }
