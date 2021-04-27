@@ -31,7 +31,7 @@ public class NewMainInterface extends JFrame implements Finals
   JMenuItem about, add, start, pause, stop, print, speed;
   JPanel northPanel, eastPanel, centerPanel, bar;
   private InterfaceController listener;
- 
+
   /**
    * Default constructor.
    */
@@ -68,7 +68,7 @@ public class NewMainInterface extends JFrame implements Finals
     setVisible(true); // display this
     // System.out.println("current working directory is: " + System.getProperty("user.dir"));
   }
-  
+
   /**
    * Getter for the STRINGS attribute.
    * 
@@ -77,6 +77,11 @@ public class NewMainInterface extends JFrame implements Finals
   public ResourceBundle getStrings()
   {
     return STRINGS;
+  }
+
+  public JButton getHistory()
+  {
+    return history;
   }
 
   /**
@@ -463,20 +468,17 @@ public class NewMainInterface extends JFrame implements Finals
     increaseSize(english);
     increaseSize(french);
     increaseSize(german);
-    english.addActionListener((ActionEvent e) -> 
-    {
+    english.addActionListener((ActionEvent e) -> {
       updateLanguage(new Locale(EN, US));
     });
     langMenu.add(english);
 
-    french.addActionListener((ActionEvent e) -> 
-    {
+    french.addActionListener((ActionEvent e) -> {
       updateLanguage(new Locale("fr", "FR"));
     });
     langMenu.add(french);
 
-    german.addActionListener((ActionEvent e) -> 
-    {
+    german.addActionListener((ActionEvent e) -> {
       updateLanguage(new Locale("de", "DE"));
     });
     langMenu.add(german);
