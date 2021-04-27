@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import operations.ExponentOperator;
 
-class ExponentOperatorTesting
+class ExponentOperatorTest
 {
 
   @Test

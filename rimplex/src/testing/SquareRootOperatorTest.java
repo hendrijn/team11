@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import operations.SquareRootOperator;
 
-public class SquareRootOperatorTesting
+public class SquareRootOperatorTest
 {
 
   @Test

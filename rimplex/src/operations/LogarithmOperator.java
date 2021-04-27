@@ -35,11 +35,28 @@ public class LogarithmOperator
       throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("VALID_OR_SIMPLIFY"));
     }
 
-    String[] decomposedOperands = TempContext.decomposeOperands(alteredOp, BLANK_OPERAND);
+    String[] decomposedOperands = new String[3];
+    try
+    {
+      decomposedOperands = TempContext.decomposeOperands(alteredOp, BLANK_OPERAND);
+    }
+    catch (IllegalArgumentException e)
+    {
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
+    }
 
     String leftRegularNumber   = decomposedOperands[0];
     String leftImaginaryNumber = decomposedOperands[1];
-    double dblRegNum           = Double.parseDouble(leftRegularNumber);
+    double dblRegNum = 0.0;
+    try
+    {
+      dblRegNum = Double.parseDouble(leftRegularNumber);
+    }
+    catch (NumberFormatException e)
+    {
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
+    }
+    
     double dblImagNum          = 0.00;
     double finalResult         = 0.00;
     double lnComplexReal       = 0.00;

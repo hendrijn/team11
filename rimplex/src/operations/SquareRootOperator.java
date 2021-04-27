@@ -60,12 +60,36 @@ public class SquareRootOperator
       }
 
     String[] decomposedOperands = new String[3];
-    decomposedOperands = TempContext.decomposeOperands(alteredOp, BLANK_OPERAND);
+    
+    try
+    {
+      decomposedOperands = TempContext.decomposeOperands(alteredOp, BLANK_OPERAND);
+    }
+    catch (IllegalArgumentException e)
+    {
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
+    }
 
     String leftRegularNumber   = decomposedOperands[0];
     String leftImaginaryNumber = decomposedOperands[1];
-    double dblRegNum  = Double.parseDouble(leftRegularNumber);
-    double dblImagNum = Double.parseDouble(leftImaginaryNumber);
+    double dblRegNum = 0.0;
+    try
+    {
+      dblRegNum = Double.parseDouble(leftRegularNumber);
+    }
+    catch (NumberFormatException e)
+    {
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
+    }
+    double dblImagNum = 0.0;
+    try
+    {
+      dblImagNum = Double.parseDouble(leftImaginaryNumber);
+    }
+    catch (NumberFormatException e)
+    {
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
+    }
     double finalResult = 0.0;
     String finalString = "";
 
