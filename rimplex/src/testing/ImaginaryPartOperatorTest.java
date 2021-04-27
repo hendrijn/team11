@@ -14,6 +14,7 @@ import operations.ImaginaryPartOperator;
  */
 class ImaginaryPartOperatorTest
 {
+  private final String imagZero = "0.00i";
   /**
    * tests for operands with spaces.
    */
@@ -29,7 +30,7 @@ class ImaginaryPartOperatorTest
 
     // real
     actual = i.evaluate("   9     ");
-    expected = "0.00i";
+    expected = imagZero;
     assertTrue(actual.equals(expected));
 
     // imaginary
@@ -123,12 +124,12 @@ class ImaginaryPartOperatorTest
 
     // positive
     String actual = i.evaluate("2");
-    String expected = "0.00i";
+    String expected = imagZero;
     assertTrue(actual.equals(expected));
 
     // negative
     actual = i.evaluate("-4");
-    expected = "0.00i";
+    expected = imagZero;
     assertTrue(actual.equals(expected));
   }
 

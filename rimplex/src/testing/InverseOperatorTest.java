@@ -15,6 +15,7 @@ import operations.InverseOperator;
  */
 class InverseOperatorTest
 {
+  private final String empty =  "Please provide a valid operand";
   @Test
   public void invertComplexTest1()
   {
@@ -90,10 +91,11 @@ class InverseOperatorTest
   {
     String operand = "-4+3iiii";
     InverseOperator inverseOperator = new InverseOperator();
-    Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+    Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> 
+    {
       inverseOperator.invert(operand);
     });
-    String expectedException = "Please provide a valid operand";
+    String expectedException = empty;
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
@@ -103,10 +105,11 @@ class InverseOperatorTest
   {
     String operand = "";
     InverseOperator inverseOperator = new InverseOperator();
-    Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+    Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> 
+    {
       inverseOperator.invert(operand);
     });
-    String expectedException = "Please provide a valid operand";
+    String expectedException = empty;
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
@@ -116,10 +119,11 @@ class InverseOperatorTest
   {
     String operand = null;
     InverseOperator inverseOperator = new InverseOperator();
-    Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+    Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> 
+    {
       inverseOperator.invert(operand);
     });
-    String expectedException = "Please provide a valid operand";
+    String expectedException = empty;
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
@@ -129,10 +133,11 @@ class InverseOperatorTest
   {
     String operand = "3+2asczxi";
     InverseOperator inverseOperator = new InverseOperator();
-    Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+    Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> 
+    {
       inverseOperator.invert(operand);
     });
-    String expectedException = "Please provide a valid operand";
+    String expectedException = empty;
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }

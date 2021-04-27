@@ -17,6 +17,9 @@ import operations.TempContext;
 class MultiplicationOperatorTest
 {
 
+  /**
+   * 
+   */
   @Test
   public void twoValidComplexNumbersTest()
   {
@@ -28,6 +31,9 @@ class MultiplicationOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
+  /**
+   * 
+   */
   @Test
   public void twoValidRealNumTest()
   {
@@ -39,6 +45,9 @@ class MultiplicationOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
+  /**
+   * 
+   */
   @Test
   public void twoValidComplexNumMix1Test()
   {
@@ -50,6 +59,9 @@ class MultiplicationOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
+  /**
+   * 
+   */
   @Test
   public void twoValidComplexNumMix2Test()
   {
@@ -61,6 +73,9 @@ class MultiplicationOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
+  /**
+   * 
+   */
   @Test
   public void twoValidZero1Test()
   {
@@ -72,6 +87,9 @@ class MultiplicationOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
+  /**
+   * 
+   */
   @Test
   public void twoValidZero2Test()
   {
@@ -83,6 +101,9 @@ class MultiplicationOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
+  /**
+   * 
+   */
   @Test
   public void twoValidZero3Test()
   {
@@ -94,6 +115,9 @@ class MultiplicationOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
+  /**
+   * 
+   */
   @Test
   public void twoValidComplexNumI1Test()
   {
@@ -105,6 +129,9 @@ class MultiplicationOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
+  /**
+   * 
+   */
   @Test
   public void twoValidComplexNumI2Test()
   {
@@ -116,10 +143,12 @@ class MultiplicationOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
+  /**
+   * 
+   */
   @Test
   public void inValidNullLeftOperandTest()
   {
-
     String complexNumberOne = null;
     String complexNumberTwo = "4 + 2i";
     TempContext tempContext = new TempContext(new MultiplicationOperator());
@@ -131,6 +160,9 @@ class MultiplicationOperatorTest
     assertEquals(expectedException, actualException);
   }
 
+  /**
+   * 
+   */
   @Test
   public void inValidNullRightOperandTest()
   {
@@ -146,6 +178,9 @@ class MultiplicationOperatorTest
     assertEquals(expectedException, actualException);
   }
 
+  /**
+   * 
+   */
   @Test
   public void inValidEmptyLeftOperandTest()
   {
@@ -161,6 +196,9 @@ class MultiplicationOperatorTest
     assertEquals(expectedException, actualException);
   }
 
+  /**
+   * 
+   */
   @Test
   public void inValidEmptyRightOperandTest()
   {
@@ -176,6 +214,9 @@ class MultiplicationOperatorTest
     assertEquals(expectedException, actualException);
   }
 
+  /**
+   * 
+   */
   @Test
   public void inValidRegLeftOperandTest()
   {
@@ -191,6 +232,9 @@ class MultiplicationOperatorTest
     assertEquals(expectedException, actualException);
   }
 
+  /**
+   * 
+   */
   @Test
   public void inValidImagLeftOperandTest()
   {
@@ -206,6 +250,9 @@ class MultiplicationOperatorTest
     assertEquals(expectedException, actualException);
   }
 
+  /**
+   * 
+   */
   @Test
   public void inValidRegRightOperandTest()
   {
@@ -221,6 +268,9 @@ class MultiplicationOperatorTest
     assertEquals(expectedException, actualException);
   }
 
+  /**
+   * 
+   */
   @Test
   public void inValidImagRightOperandTest()
   {
@@ -236,6 +286,9 @@ class MultiplicationOperatorTest
     assertEquals(expectedException, actualException);
   }
 
+  /**
+   * 
+   */
   @Test
   public void inValidGibberishLeftOperandTest()
   {
@@ -251,6 +304,9 @@ class MultiplicationOperatorTest
     assertEquals(expectedException, actualException);
   }
 
+  /**
+   * 
+   */
   @Test
   public void inValidGibberishRightOperandTest()
   {
@@ -266,6 +322,9 @@ class MultiplicationOperatorTest
     assertEquals(expectedException, actualException);
   }
 
+  /**
+   * 
+   */
   @Test
   public void tooManyIsLeftTest()
   {
@@ -281,6 +340,9 @@ class MultiplicationOperatorTest
     assertEquals(expectedException, actualException);
   }
 
+  /**
+   * 
+   */
   @Test
   public void tooManyIsRightTest()
   {
@@ -296,6 +358,9 @@ class MultiplicationOperatorTest
     assertEquals(expectedException, actualException);
   }
 
+  /**
+   * 
+   */
   @Test
   public void oneIInvalidLeftOperandTest()
   {
@@ -311,6 +376,9 @@ class MultiplicationOperatorTest
     assertEquals(expectedException, actualException);
   }
 
+  /**
+   * 
+   */
   @Test
   public void oneIInvalidRightOperandTest()
   {
@@ -326,6 +394,9 @@ class MultiplicationOperatorTest
     assertEquals(expectedException, actualException);
   }
 
+  /**
+   * 
+   */
   @Test
   public void twoValidComplexNumbersNeg1Test()
   {
@@ -337,6 +408,9 @@ class MultiplicationOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
+  /**
+   * 
+   */
   @Test
   public void twoValidComplexNumbersNeg2Test()
   {
@@ -348,6 +422,9 @@ class MultiplicationOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
+  /**
+   * 
+   */
   @Test
   public void twoValidComplexNumbersNeg3Test()
   {
@@ -359,6 +436,9 @@ class MultiplicationOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
+  /**
+   * 
+   */
   @Test
   public void twoValidRegNumbersNeg1Test()
   {
@@ -370,6 +450,9 @@ class MultiplicationOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
+  /**
+   * 
+   */
   @Test
   public void twoValidRegNumbersNeg2Test()
   {
@@ -381,6 +464,9 @@ class MultiplicationOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
+  /**
+   * 
+   */
   @Test
   public void twoValidRegNumbersNeg3Test()
   {
@@ -392,6 +478,9 @@ class MultiplicationOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
+  /**
+   * 
+   */
   @Test
   public void twoValidMixedNumbersNeg1Test()
   {
@@ -403,6 +492,9 @@ class MultiplicationOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
+  /**
+   * 
+   */
   @Test
   public void twoValidMixedNumbersNeg2Test()
   {
@@ -414,6 +506,9 @@ class MultiplicationOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
+  /**
+   * 
+   */
   @Test
   public void twoValidMixedNumbersNeg3Test()
   {
@@ -425,6 +520,9 @@ class MultiplicationOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
+  /**
+   * 
+   */
   @Test
   public void testDecimalOperands2()
   {
@@ -434,6 +532,9 @@ class MultiplicationOperatorTest
     assertEquals(expected, actual);
   }
 
+  /**
+   * 
+   */
   @Test
   public void testDecimalOperands3()
   {
@@ -443,6 +544,9 @@ class MultiplicationOperatorTest
     assertEquals(expected, actual);
   }
 
+  /**
+   * 
+   */
   @Test
   public void testDecimalOperands4()
   {
@@ -452,6 +556,9 @@ class MultiplicationOperatorTest
     assertEquals(expected, actual);
   }
 
+  /**
+   * 
+   */
   @Test
   public void testDecimalOperands5()
   {
@@ -461,6 +568,9 @@ class MultiplicationOperatorTest
     assertEquals(expected, actual);
   }
 
+  /**
+   * 
+   */
   @Test
   public void testDecimalOperands6()
   {
@@ -470,6 +580,9 @@ class MultiplicationOperatorTest
     assertEquals(expected, actual);
   }
 
+  /**
+   * 
+   */
   @Test
   public void testNegComplex()
   {
@@ -479,6 +592,9 @@ class MultiplicationOperatorTest
     assertEquals(expected, actual);
   }
 
+  /**
+   * 
+   */
   @Test
   public void testNegComplex2()
   {
