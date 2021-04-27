@@ -70,26 +70,30 @@ public class ExponentOperator
       throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
     }
 
+    String finalOperand = "";
+    
     if (dblImagNum == 0.00)
     {
       finalResult = Math.pow(dblRegNum, powerOf);
-      return String.valueOf(finalResult) + "+00.0i";
+      finalOperand = String.format("%.2f+0.00i",finalResult);
     }
-
-    String runningOperand = operand;
-    String finalOperand = "";
-    TempContext multiOp = new TempContext(new MultiplicationOperator());
-
-    for (int i = 1; i < powerOf; i++)
+    else 
     {
-      finalOperand = multiOp.evaluate(operand, runningOperand);
-      runningOperand = finalOperand;
-    }
-
-    //If negative zero is in the string, change it to 0.00
-    if (finalOperand.substring(0, 4).equals("-0.0"))
-    {
-      finalOperand = "0.00" + finalOperand.substring(5);
+      String runningOperand = operand;
+      
+      TempContext multiOp = new TempContext(new MultiplicationOperator());
+  
+      for (int i = 1; i < powerOf; i++)
+      {
+        finalOperand = multiOp.evaluate(operand, runningOperand);
+        runningOperand = finalOperand;
+      }
+  
+      //If negative zero is in the string, change it to 0.00
+      if (finalOperand.substring(0, 4).equals("-0.0"))
+      {
+        finalOperand = "0.00" + finalOperand.substring(5);
+      }
     }
     return finalOperand;
   }
