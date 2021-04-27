@@ -119,7 +119,6 @@ public class MenuController implements ActionListener, Finals
     if (ui.getResultLabel().getText().equals(HTML))
     {
       ui.errorMessage(NewMainInterface.STRINGS.getString("INCOMPLETE"));
-      resetDisplay(ui);
     }
     else
     {
