@@ -226,7 +226,7 @@ public class InterfaceController
   }
 
   /**
-   * A private helper method for dealing with equalsButtonHandling.
+   * A private helper method for dealing with equalsButtonHandling. 
    * 
    * @param ui
    *          The ui of the entire rimplex program.
