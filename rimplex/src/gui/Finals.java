@@ -21,7 +21,7 @@ public interface Finals
   static final String EQUALS = "=";
   static final String SIGN = "±";
   static final String RPARTS = "ℝ";
-  static final String IPARTS = "xi";
+  static final String IPARTS = "<html>x<i>i</i>";
   static final String LOG = "log";
   static final String EXP = "exp";
   static final String SQRT =  "\u221A";
@@ -35,6 +35,6 @@ public interface Finals
   static final String ENG = "English";
   static final String FRE = "Français";
   static final String GER = "Deutsch";
-  static final String[] FUNCTIONS = {ADD, RESET, INVERSE, SUBTRACT, LOG, EXP, SQRT, MULTIPLY, RPARTS,
-      IPARTS, DIVIDE, LPAREN, RPAREN, EQUALS, DECIMAL};
+  static final String[] FUNCTIONS = {ADD, RESET, INVERSE, SUBTRACT, LOG, EXP, MULTIPLY, RPARTS,
+      IPARTS, DIVIDE, DECIMAL, SQRT, EQUALS, LPAREN, RPAREN};
 }
