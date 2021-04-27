@@ -3,7 +3,7 @@ package operations;
 import gui.NewMainInterface;
 
 /**
- * Class that contains methods for evaluating operands raised to the exponential.
+ * Class for evaluating operands raised to the exponential.
  * 
  * @author pgleb - team 11
  * @version Sprint 3

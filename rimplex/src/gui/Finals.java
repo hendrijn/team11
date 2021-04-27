@@ -23,7 +23,7 @@ public interface Finals
   static final String RPARTS = "ℝ";
   static final String IPARTS = "<html>x<i>i</i>";
   static final String LOG = "log";
-  static final String EXP = "exp";
+  static final String EXP = "^";
   static final String SQRT =  "\u221A";
   static final String LPAREN = "(";
   static final String RPAREN = ")";

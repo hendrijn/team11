@@ -370,7 +370,7 @@ public class NewMainInterface extends JFrame implements Finals
     inputDisplay.requestFocusInWindow();
 
     Font oldFont = expressionDisplay.getFont();
-    Font newFont = new Font("Times New Roman", oldFont.getStyle(), 40);
+    Font newFont = new Font("Times New Roman", oldFont.getStyle(), 30);
     expressionDisplay.setFont(newFont);
     resultDisplay.setFont(newFont);
     inputDisplay.setFont(newFont);

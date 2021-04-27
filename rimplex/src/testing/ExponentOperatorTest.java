@@ -15,7 +15,7 @@ class ExponentOperatorTest
   {
     String operand = "3";
     String power = "2";
-    String expectedResult = "9.0+00.0i";
+    String expectedResult = "9.00+0.00i";
     ExponentOperator expOp = new ExponentOperator();
     String actualResult = expOp.exponentation(operand, power);
     assertEquals(expectedResult, actualResult);
@@ -26,7 +26,7 @@ class ExponentOperatorTest
   {
     String operand = "4";
     String power = "3";
-    String expectedResult = "64.0+00.0i";
+    String expectedResult = "64.00+0.00i";
     ExponentOperator expOp = new ExponentOperator();
     String actualResult = expOp.exponentation(operand, power);
     assertEquals(expectedResult, actualResult);
@@ -133,7 +133,7 @@ class ExponentOperatorTest
   {
     String operand = "3-0.0i";
     String power = "2";
-    String expectedResult = "9.0+00.0i";
+    String expectedResult = "9.00+0.00i";
     ExponentOperator expOp = new ExponentOperator();
     String actualResult = expOp.exponentation(operand, power);
     assertEquals(expectedResult, actualResult);
@@ -144,7 +144,7 @@ class ExponentOperatorTest
   {
     String operand = "3+0.0i";
     String power = "2";
-    String expectedResult = "9.0+00.0i";
+    String expectedResult = "9.00+0.00i";
     ExponentOperator expOp = new ExponentOperator();
     String actualResult = expOp.exponentation(operand, power);
     assertEquals(expectedResult, actualResult);
