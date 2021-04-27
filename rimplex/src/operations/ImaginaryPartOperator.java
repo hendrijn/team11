@@ -17,6 +17,7 @@ public class ImaginaryPartOperator
   private final String plus = "+";
   private final String minusSign = "-";
   private final String i = "i";
+  private NewMainInterface ui = NewMainInterface.getInstance();
 
   /**
    * Isolates the imaginary part of the given operand.
@@ -32,7 +33,7 @@ public class ImaginaryPartOperator
     // error checking for null/empty operand
     if (operand == null || operand.equals(""))
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(noOp));
+      throw new IllegalArgumentException(ui.getStrings().getString(noOp));
     }
 
     String alteredOp = ((operand.replaceAll(" ", "")).replace("(", "")).replace(")", "");
@@ -41,13 +42,13 @@ public class ImaginaryPartOperator
     // error checkng for invalid operand
     if (alteredOp.equals(""))
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(noOp));
+      throw new IllegalArgumentException(ui.getStrings().getString(noOp));
     }
 
     long iCount = alteredOp.chars().filter(ch -> ch == 'i').count();
     if (iCount > 1)
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(invalid));
+      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
     }
 
     try
@@ -56,7 +57,7 @@ public class ImaginaryPartOperator
     }
     catch (NumberFormatException nfe)
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(invalid));
+      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
     }
 
     boolean isComplex = TempContext.isComplex(alteredOp);

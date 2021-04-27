@@ -14,6 +14,7 @@ public class LogarithmOperator
   private final String blankOp = "0";
   private final String invalid = "NOT_VALID_OPERAND";
   private final String closedParen = ")";
+  private NewMainInterface ui = NewMainInterface.getInstance();
 
   /**
    * Computes the natural log of the given operand.
@@ -29,7 +30,7 @@ public class LogarithmOperator
     // error checking empty/null
     if (operand == null || operand.equals(""))
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(invalid));
+      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
     }
 
     String alteredOp = ((operand.replaceAll(" ", "")).replace("(", "")).replace(closedParen, "");
@@ -38,7 +39,7 @@ public class LogarithmOperator
     long iCount = alteredOp.chars().filter(ch -> ch == 'i').count();
     if (iCount > 1)
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(invalid));
+      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
     }
 
     String[] decomposedOperands = new String[3];
@@ -48,7 +49,7 @@ public class LogarithmOperator
     }
     catch (IllegalArgumentException e)
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(invalid));
+      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
     }
 
     String leftRegularNumber = decomposedOperands[0];
@@ -61,7 +62,7 @@ public class LogarithmOperator
     }
     catch (NumberFormatException e)
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(invalid));
+      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
     }
 
     double dblImagNum = 0.00;
@@ -80,7 +81,7 @@ public class LogarithmOperator
 
     if (dblRegNum <= 0 && dblImagNum <= 0)
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("LOGARITHM"));
+      throw new IllegalArgumentException(ui.getStrings().getString("LOGARITHM"));
     }
 
     if (dblImagNum == 0.00)

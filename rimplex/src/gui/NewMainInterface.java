@@ -18,20 +18,26 @@ public class NewMainInterface extends JFrame implements Finals
 {
   private static final long serialVersionUID = 5691196863267451960L;
 
-  static final Locale LOCALE = Locale.getDefault();
-  public static ResourceBundle STRINGS = ResourceBundle.getBundle("gui.Strings", LOCALE);
-
+  private static final Locale LOCALE = Locale.getDefault();
+  private static final String US = "US";
+  private static final String EN = "EN";
+  private static final String TIMES_NEW_ROMAN = "Times New Roman";
+  private static JButton history;
   private static NewMainInterface ui;
+  private static ResourceBundle STRINGS = ResourceBundle.getBundle("gui.Strings", LOCALE);
+
+  
   private InterfaceController listener;
+  JLabel expressionDisplay, resultDisplay, inputDisplay;
   JMenuBar menuBar;
   JMenu settingsMenu, aboutMenu, fileMenu, langMenu;
   JMenuItem about, add, start, pause, stop, print, speed;
   JPanel northPanel, eastPanel, centerPanel, bar;
 
-  static JButton history;
-
-  JLabel expressionDisplay, resultDisplay, inputDisplay;
-
+  public ResourceBundle getStrings()
+  {
+    return STRINGS;
+  }
   /**
    * Default constructor.
    */
@@ -75,7 +81,7 @@ public class NewMainInterface extends JFrame implements Finals
    * @param errorMessage
    *          The error message from the relevant exception.
    */
-  protected void errorMessage(String errorMessage)
+  protected void errorMessage(final String errorMessage)
   {
     JOptionPane.showMessageDialog(null, errorMessage, errorMessage, JOptionPane.ERROR_MESSAGE);
   }
@@ -99,7 +105,7 @@ public class NewMainInterface extends JFrame implements Finals
     setUpCenterPanel();
     setupWestPanel(contentPane);
 
-    updateLanguage(new Locale("en", "US"));
+    updateLanguage(new Locale(EN, US));
 
     setJMenuBar(menuBar);
     contentPane.add(northPanel, BorderLayout.NORTH);
@@ -114,7 +120,7 @@ public class NewMainInterface extends JFrame implements Finals
    * @param contentPane
    *          the main content pane.
    */
-  private void setupWestPanel(Container contentPane)
+  private void setupWestPanel(final Container contentPane)
   {
     bar = new JPanel();
     bar.setLayout(new GridLayout(1, 1));
@@ -315,10 +321,10 @@ public class NewMainInterface extends JFrame implements Finals
    * @param button
    *          the sign button
    */
-  private void sign(JToggleButton button)
+  private void sign(final JToggleButton button)
   {
     Font oldFont = button.getFont();
-    Font newFont = new Font("Times New Roman", oldFont.getStyle(), 30);
+    Font newFont = new Font(TIMES_NEW_ROMAN, oldFont.getStyle(), 30);
     button.setFont(newFont);
   }
 
@@ -328,18 +334,18 @@ public class NewMainInterface extends JFrame implements Finals
    * @param button
    *          the button on the calculator
    */
-  private void increaseSize(JComponent button)
+  private void increaseSize(final JComponent button)
   {
     Font oldFont = button.getFont();
 
     if (button instanceof JButton || button instanceof JToggleButton)
     {
-      Font newFont = new Font("Times New Roman", oldFont.getStyle(), 30);
+      Font newFont = new Font(TIMES_NEW_ROMAN, oldFont.getStyle(), 30);
       button.setFont(newFont);
     }
     else if (button instanceof JMenu || button instanceof JMenuItem)
     {
-      Font newFont = new Font("Times New Roman", oldFont.getStyle(), 20);
+      Font newFont = new Font(TIMES_NEW_ROMAN, oldFont.getStyle(), 20);
       button.setFont(newFont);
     }
   }
@@ -370,7 +376,7 @@ public class NewMainInterface extends JFrame implements Finals
     inputDisplay.requestFocusInWindow();
 
     Font oldFont = expressionDisplay.getFont();
-    Font newFont = new Font("Times New Roman", oldFont.getStyle(), 30);
+    Font newFont = new Font(TIMES_NEW_ROMAN, oldFont.getStyle(), 30);
     expressionDisplay.setFont(newFont);
     resultDisplay.setFont(newFont);
     inputDisplay.setFont(newFont);
@@ -388,7 +394,7 @@ public class NewMainInterface extends JFrame implements Finals
    * @param locale
    *          the locale
    */
-  public void updateLanguage(Locale locale)
+  public void updateLanguage(final Locale locale)
   {
     NewMainInterface.STRINGS = ResourceBundle.getBundle("gui.Strings", locale);
     settingsMenu.setText(STRINGS.getString("SETTINGS"));
@@ -453,17 +459,20 @@ public class NewMainInterface extends JFrame implements Finals
     increaseSize(english);
     increaseSize(french);
     increaseSize(german);
-    english.addActionListener((ActionEvent e) -> {
-      updateLanguage(new Locale("en", "US"));
+    english.addActionListener((ActionEvent e) -> 
+    {
+      updateLanguage(new Locale(EN, US));
     });
     langMenu.add(english);
 
-    french.addActionListener((ActionEvent e) -> {
+    french.addActionListener((ActionEvent e) -> 
+    {
       updateLanguage(new Locale("fr", "FR"));
     });
     langMenu.add(french);
 
-    german.addActionListener((ActionEvent e) -> {
+    german.addActionListener((ActionEvent e) -> 
+    {
       updateLanguage(new Locale("de", "DE"));
     });
     langMenu.add(german);

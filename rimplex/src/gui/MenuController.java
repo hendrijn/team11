@@ -49,11 +49,11 @@ public class MenuController implements ActionListener, Finals
       JMenuItem itemClicked = (JMenuItem) e.getSource();
       String item = itemClicked.getText();
 
-      if (item.equals(NewMainInterface.STRINGS.getString("ADDTOREC")))
+      if (item.equals(ui.getStrings().getString("ADDTOREC")))
       {
         handleAdding(ui);
       }
-      else if (item.equals(NewMainInterface.STRINGS.getString("START")))
+      else if (item.equals(ui.getStrings().getString("START")))
       {
         setButtonsEnabled(ui, false);
         setItemsEnabled(add, false);
@@ -62,22 +62,22 @@ public class MenuController implements ActionListener, Finals
         setItemsEnabled(play, false);
         startPlayback(ui);
       }
-      else if (item.equals(NewMainInterface.STRINGS.getString("PAUSE")))
+      else if (item.equals(ui.getStrings().getString("PAUSE")))
       {
         setItemsEnabled(play, true);
         setItemsEnabled(pause, false);
         pausePlayback(ui);
       }
-      else if (item.equals(NewMainInterface.STRINGS.getString("STOP")))
+      else if (item.equals(ui.getStrings().getString("STOP")))
       {
         stopPlayback(ui);
       }
-      else if (item.equals(NewMainInterface.STRINGS.getString("PRINT")))
+      else if (item.equals(ui.getStrings().getString("PRINT")))
       {
         HistoryDisplay hd = HistoryDisplay.getInstance();
         HistoryPrinter.printComponent(hd.getCalcList());
       }
-      else if (item.equals(NewMainInterface.STRINGS.getString("SET_SPEED")))
+      else if (item.equals(ui.getStrings().getString("SET_SPEED")))
       {
         handleSetSpeed(ui);
       }
@@ -118,12 +118,12 @@ public class MenuController implements ActionListener, Finals
   {
     if (ui.getResultLabel().getText().equals(HTML))
     {
-      ui.errorMessage(NewMainInterface.STRINGS.getString("INCOMPLETE"));
+      ui.errorMessage(ui.getStrings().getString("INCOMPLETE"));
     }
     else
     {
       int choice = JOptionPane.showConfirmDialog(null,
-          NewMainInterface.STRINGS.getString("CONFIRM"), null, JOptionPane.YES_NO_OPTION);
+          ui.getStrings().getString("CONFIRM"), null, JOptionPane.YES_NO_OPTION);
 
       if (choice == JOptionPane.YES_OPTION)
       {
@@ -175,14 +175,14 @@ public class MenuController implements ActionListener, Finals
    */
   private void handleSetSpeed(final NewMainInterface ui)
   {
-    String speed = JOptionPane.showInputDialog(NewMainInterface.STRINGS.getString("SPEED"));
+    String speed = JOptionPane.showInputDialog(ui.getStrings().getString("SPEED"));
     try
     {
       recorder.setDelay(Integer.parseInt(speed) * 1000);
     }
     catch (NumberFormatException nfe)
     {
-      ui.errorMessage(NewMainInterface.STRINGS.getString("NOT_VALID"));
+      ui.errorMessage(ui.getStrings().getString("NOT_VALID"));
     }
   }
 

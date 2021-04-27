@@ -19,7 +19,9 @@ public class TempContext
   private static final String ONE = "1";
   private static final String NEG_ONE = "-1";
   private static final String I = "i";
+  private static NewMainInterface ui = NewMainInterface.getInstance();
   private Operator operator;
+  
 
   /**
    * Constructs a context with a certain operator (addition or subtraction).
@@ -60,7 +62,7 @@ public class TempContext
     // error checking for empty/null
     if (operand == null || operand.equals(""))
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("TWO_OPERANDS"));
+      throw new IllegalArgumentException(ui.getStrings().getString("TWO_OPERANDS"));
     }
 
     boolean complex = isComplex(operand);
@@ -131,7 +133,7 @@ public class TempContext
     if (iCountLeft > 1 || iCountRight > 1)
     {
       throw new IllegalArgumentException(
-          NewMainInterface.STRINGS.getString("TWO_VALID_OR_SIMPLIFY"));
+          ui.getStrings().getString("TWO_VALID_OR_SIMPLIFY"));
     }
 
     int leftPlusIndex = alteredLOp.indexOf(PLUS);

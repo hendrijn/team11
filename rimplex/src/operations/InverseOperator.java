@@ -13,6 +13,7 @@ public class InverseOperator
 
   private final String invalid = "NOT_VALID_OPERAND";
   private final String i = "i";
+  private NewMainInterface ui = NewMainInterface.getInstance();
 
   /**
    * Blank Constructor to use for invert.
@@ -36,7 +37,7 @@ public class InverseOperator
     // error checking for null/emoty
     if (operand == null || operand.equals(""))
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(invalid));
+      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
     }
 
     String alteredOp = ((operand.replaceAll(" ", "")).replace("(", "")).replace(")", "");
@@ -45,7 +46,7 @@ public class InverseOperator
     long iCount = alteredOp.chars().filter(ch -> ch == 'i').count();
     if (iCount > 1)
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(invalid));
+      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
     }
 
     double finalOperand = 0;
@@ -58,7 +59,7 @@ public class InverseOperator
       }
       catch (NumberFormatException e)
       {
-        throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(invalid));
+        throw new IllegalArgumentException(ui.getStrings().getString(invalid));
       }
       double finalReturnOperand = (1 / finalOperand);
 

@@ -16,6 +16,7 @@ public class MultiplicationOperator implements Operator
   private final String invalid = "NOT_VALID_OPERAND";
   private final String plus = "+";
   private final String form = "%.2f";
+  private NewMainInterface ui = NewMainInterface.getInstance();
 
   /**
    * This evaluates two operands using multiplication!
@@ -55,7 +56,7 @@ public class MultiplicationOperator implements Operator
     }
     catch (NumberFormatException e)
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(invalid));
+      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
     }
 
     Double leftRegNumDouble = 0.0;
@@ -66,7 +67,7 @@ public class MultiplicationOperator implements Operator
     catch (NumberFormatException e)
     {
 
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(invalid));
+      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
     }
 
     Double rightImagNumDouble = 0.0;
@@ -77,7 +78,7 @@ public class MultiplicationOperator implements Operator
     catch (NumberFormatException e)
     {
 
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(invalid));
+      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
     }
 
     Double rightRegNumDouble = 0.0;
@@ -88,7 +89,7 @@ public class MultiplicationOperator implements Operator
     catch (NumberFormatException e)
     {
 
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(invalid));
+      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
     }
 
     double fOILFirst = leftRegNumDouble * rightRegNumDouble;

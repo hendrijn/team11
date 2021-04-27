@@ -17,6 +17,7 @@ public class SquareRootOperator
   private final String invalid = "NOT_VALID_OPERAND";
   private final String plus = "+";
   private final String minusSign = "-";
+  private NewMainInterface ui = NewMainInterface.getInstance();
 
   /**
    * Computes the square root of a complex, real, or imaginary number.
@@ -33,7 +34,7 @@ public class SquareRootOperator
     // error checking for null/empty operand
     if (operand == null || operand.equals(""))
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(noOp));
+      throw new IllegalArgumentException(ui.getStrings().getString(noOp));
     }
 
     String alteredOp = ((operand.replaceAll(" ", "")).replace("(", "")).replace(")", "");
@@ -42,12 +43,12 @@ public class SquareRootOperator
     long iCount = alteredOp.chars().filter(ch -> ch == 'i').count();
     if (iCount > 1)
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(invalid));
+      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
     }
 
     if (alteredOp.equals(""))
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(noOp));
+      throw new IllegalArgumentException(ui.getStrings().getString(noOp));
     }
 
     if (alteredOp.length() > 1)
@@ -58,7 +59,7 @@ public class SquareRootOperator
       }
       catch (NumberFormatException nfe)
       {
-        throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(invalid));
+        throw new IllegalArgumentException(ui.getStrings().getString(invalid));
       }
 
     String[] decomposedOperands = new String[3];
@@ -69,7 +70,7 @@ public class SquareRootOperator
     }
     catch (IllegalArgumentException e)
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(invalid));
+      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
     }
 
     String leftRegularNumber = decomposedOperands[0];
@@ -83,7 +84,7 @@ public class SquareRootOperator
     }
     catch (NumberFormatException e)
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(invalid));
+      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
     }
     double dblImagNum = 0.0;
     try
@@ -92,7 +93,7 @@ public class SquareRootOperator
     }
     catch (NumberFormatException e)
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(invalid));
+      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
     }
     double finalResult = 0.0;
     String finalString = "";

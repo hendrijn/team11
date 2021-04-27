@@ -16,6 +16,7 @@ public class SignChangeOperator
   private static final String CLOSED_PAREN = ")";
   private static final String INVALID = "VALID_OR_SIMPLIFY";
   private static final String MINUS = "-";
+  private static NewMainInterface ui = NewMainInterface.getInstance();
 
   /**
    * changes the sign of an operand.
@@ -32,7 +33,7 @@ public class SignChangeOperator
     // error checking null/empty
     if (operand == null || operand.equals(""))
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(NO_OPERAND));
+      throw new IllegalArgumentException(ui.getStrings().getString(NO_OPERAND));
     }
 
     String alteredOp = ((operand.replaceAll(" ", "")).replace(OPEN_PAREN, "")).replace(CLOSED_PAREN,
@@ -42,12 +43,12 @@ public class SignChangeOperator
     long iCount = alteredOp.chars().filter(ch -> ch == 'i').count();
     if (iCount > 1)
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(INVALID));
+      throw new IllegalArgumentException(ui.getStrings().getString(INVALID));
     }
 
     if (alteredOp.equals(""))
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(NO_OPERAND));
+      throw new IllegalArgumentException(ui.getStrings().getString(NO_OPERAND));
     }
 
     boolean complex = TempContext.isComplex(alteredOp);
@@ -60,7 +61,7 @@ public class SignChangeOperator
       }
       catch (NumberFormatException nfe)
       {
-        throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(INVALID));
+        throw new IllegalArgumentException(ui.getStrings().getString(INVALID));
       }
 
     if (complex)
