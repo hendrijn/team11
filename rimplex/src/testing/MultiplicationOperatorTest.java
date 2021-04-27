@@ -16,15 +16,38 @@ import operations.TempContext;
  */
 class MultiplicationOperatorTest
 {
-
+  private final String invalid = "Please provide two valid operands";
+  private final String simplify = "Please provide two valid operands, or simplify them";
+  private final String empty = "Please provide a valid operand";
+  private final String complexZero = "0.00+0.00i";
+  private final String complexOne = "3 + 2i";
+  private final String complexTwo = "4 + 2i";
+  private final String complexThree = "4 + 3i";
+  private final String complexFour = "3 + 3i";
+  private final String complexFive = "3 - 2i";
+  private final String complexSix = "4 - 2i";
+  private final String complexSeven = "400 - 3i";
+  private final String complexEight = "-4-2i";
+  private final String complexNine = "-3+5i";
+  private final String complexDecimalOne = "-120000.00+0.00i";
+  private final String negFourHun = "-400";
+  private final String negThreeHun = "-300";
+  private final String zero = "0";
+  private final String four = "4";
+  private final String six = "6";
+  private final String threeHun = "300";
+  private final String fourHun = "400";
+  private final String i = "i";
+  private final String iLoveCS345 = "iLoveCS345";
+  
   /**
    * 
    */
   @Test
   public void twoValidComplexNumbersTest()
   {
-    String complexNumberOne = "3 + 2i";
-    String complexNumberTwo = "4 + 2i";
+    String complexNumberOne = complexOne;
+    String complexNumberTwo = complexTwo;
     String expectedResult = "8.00+14.00i";
     TempContext tempContext = new TempContext(new MultiplicationOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
@@ -38,7 +61,7 @@ class MultiplicationOperatorTest
   public void twoValidRealNumTest()
   {
     String complexNumberOne = "3";
-    String complexNumberTwo = "4";
+    String complexNumberTwo = four;
     String expectedResult = "12.00+0.00i";
     TempContext tempContext = new TempContext(new MultiplicationOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
@@ -51,8 +74,8 @@ class MultiplicationOperatorTest
   @Test
   public void twoValidComplexNumMix1Test()
   {
-    String complexNumberOne = "3 + 2i";
-    String complexNumberTwo = "4";
+    String complexNumberOne = complexOne;
+    String complexNumberTwo = four;
     String expectedResult = "12.00+8.00i";
     TempContext tempContext = new TempContext(new MultiplicationOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
@@ -65,7 +88,7 @@ class MultiplicationOperatorTest
   @Test
   public void twoValidComplexNumMix2Test()
   {
-    String complexNumberOne = "6";
+    String complexNumberOne = six;
     String complexNumberTwo = "4i + 4";
     String expectedResult = "24.00+24.00i";
     TempContext tempContext = new TempContext(new MultiplicationOperator());
@@ -79,9 +102,9 @@ class MultiplicationOperatorTest
   @Test
   public void twoValidZero1Test()
   {
-    String complexNumberOne = "6";
-    String complexNumberTwo = "0";
-    String expectedResult = "0.00+0.00i";
+    String complexNumberOne = six;
+    String complexNumberTwo = zero;
+    String expectedResult = complexZero;
     TempContext tempContext = new TempContext(new MultiplicationOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -93,9 +116,9 @@ class MultiplicationOperatorTest
   @Test
   public void twoValidZero2Test()
   {
-    String complexNumberOne = "0";
+    String complexNumberOne = zero;
     String complexNumberTwo = "3i+2";
-    String expectedResult = "0.00+0.00i";
+    String expectedResult = complexZero;
     TempContext tempContext = new TempContext(new MultiplicationOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -107,9 +130,9 @@ class MultiplicationOperatorTest
   @Test
   public void twoValidZero3Test()
   {
-    String complexNumberOne = "i";
-    String complexNumberTwo = "0";
-    String expectedResult = "0.00+0.00i";
+    String complexNumberOne = i;
+    String complexNumberTwo = zero;
+    String expectedResult = complexZero;
     TempContext tempContext = new TempContext(new MultiplicationOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -121,8 +144,8 @@ class MultiplicationOperatorTest
   @Test
   public void twoValidComplexNumI1Test()
   {
-    String complexNumberOne = "i";
-    String complexNumberTwo = "i";
+    String complexNumberOne = i;
+    String complexNumberTwo = i;
     String expectedResult = "-1.00+0.00i";
     TempContext tempContext = new TempContext(new MultiplicationOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
@@ -150,12 +173,13 @@ class MultiplicationOperatorTest
   public void inValidNullLeftOperandTest()
   {
     String complexNumberOne = null;
-    String complexNumberTwo = "4 + 2i";
+    String complexNumberTwo = complexTwo;
     TempContext tempContext = new TempContext(new MultiplicationOperator());
-    Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+    Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> 
+    {
       tempContext.evaluate(complexNumberOne, complexNumberTwo);
     });
-    String expectedException = "Please provide two valid operands";
+    String expectedException = invalid;
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
@@ -167,13 +191,14 @@ class MultiplicationOperatorTest
   public void inValidNullRightOperandTest()
   {
 
-    String complexNumberOne = "4 + 2i";
+    String complexNumberOne = complexTwo;
     String complexNumberTwo = null;
     TempContext tempContext = new TempContext(new MultiplicationOperator());
-    Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+    Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> 
+    {
       tempContext.evaluate(complexNumberOne, complexNumberTwo);
     });
-    String expectedException = "Please provide two valid operands";
+    String expectedException = invalid;
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
@@ -186,12 +211,13 @@ class MultiplicationOperatorTest
   {
 
     String complexNumberOne = "";
-    String complexNumberTwo = "4 + 2i";
+    String complexNumberTwo = complexTwo;
     TempContext tempContext = new TempContext(new MultiplicationOperator());
-    Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+    Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> 
+    {
       tempContext.evaluate(complexNumberOne, complexNumberTwo);
     });
-    String expectedException = "Please provide two valid operands";
+    String expectedException = invalid;
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
@@ -203,13 +229,14 @@ class MultiplicationOperatorTest
   public void inValidEmptyRightOperandTest()
   {
 
-    String complexNumberOne = "4 + 3i";
+    String complexNumberOne = complexThree;
     String complexNumberTwo = "";
     TempContext tempContext = new TempContext(new MultiplicationOperator());
-    Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+    Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> 
+    {
       tempContext.evaluate(complexNumberOne, complexNumberTwo);
     });
-    String expectedException = "Please provide two valid operands";
+    String expectedException = invalid;
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
@@ -222,12 +249,13 @@ class MultiplicationOperatorTest
   {
 
     String complexNumberOne = "4b + 3i";
-    String complexNumberTwo = "3 + 3i";
+    String complexNumberTwo = complexFour;
     TempContext tempContext = new TempContext(new MultiplicationOperator());
-    Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+    Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> 
+    {
       tempContext.evaluate(complexNumberOne, complexNumberTwo);
     });
-    String expectedException = "Please provide a valid operand";
+    String expectedException = empty;
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
@@ -240,12 +268,13 @@ class MultiplicationOperatorTest
   {
 
     String complexNumberOne = "4b + 3iiabc";
-    String complexNumberTwo = "3 + 3i";
+    String complexNumberTwo = complexFour;
     TempContext tempContext = new TempContext(new MultiplicationOperator());
-    Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+    Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> 
+    {
       tempContext.evaluate(complexNumberOne, complexNumberTwo);
     });
-    String expectedException = "Please provide two valid operands, or simplify them";
+    String expectedException = simplify;
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
@@ -257,13 +286,14 @@ class MultiplicationOperatorTest
   public void inValidRegRightOperandTest()
   {
 
-    String complexNumberOne = "4 + 3i";
+    String complexNumberOne = complexThree;
     String complexNumberTwo = "bvxc + 3i";
     TempContext tempContext = new TempContext(new MultiplicationOperator());
-    Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+    Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> 
+    {
       tempContext.evaluate(complexNumberOne, complexNumberTwo);
     });
-    String expectedException = "Please provide a valid operand";
+    String expectedException = empty;
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
@@ -275,13 +305,14 @@ class MultiplicationOperatorTest
   public void inValidImagRightOperandTest()
   {
 
-    String complexNumberOne = "4 + 3i";
+    String complexNumberOne = complexThree;
     String complexNumberTwo = "4 + 3iasdsads";
     TempContext tempContext = new TempContext(new MultiplicationOperator());
-    Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+    Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> 
+    {
       tempContext.evaluate(complexNumberOne, complexNumberTwo);
     });
-    String expectedException = "Please provide a valid operand";
+    String expectedException = empty;
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
@@ -294,12 +325,13 @@ class MultiplicationOperatorTest
   {
 
     String complexNumberOne = "dsfgfdsgdsfg";
-    String complexNumberTwo = "4 + 3i";
+    String complexNumberTwo = complexThree;
     TempContext tempContext = new TempContext(new MultiplicationOperator());
-    Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+    Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> 
+    {
       tempContext.evaluate(complexNumberOne, complexNumberTwo);
     });
-    String expectedException = "Please provide a valid operand";
+    String expectedException = empty;
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
@@ -311,13 +343,14 @@ class MultiplicationOperatorTest
   public void inValidGibberishRightOperandTest()
   {
 
-    String complexNumberOne = "4 + 3i";
-    String complexNumberTwo = "iLoveCS345";
+    String complexNumberOne = complexThree;
+    String complexNumberTwo = iLoveCS345;
     TempContext tempContext = new TempContext(new MultiplicationOperator());
-    Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+    Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> 
+    {
       tempContext.evaluate(complexNumberOne, complexNumberTwo);
     });
-    String expectedException = "Please provide a valid operand";
+    String expectedException = empty;
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
@@ -330,12 +363,13 @@ class MultiplicationOperatorTest
   {
 
     String complexNumberOne = "4 + 3iiiiiiiii";
-    String complexNumberTwo = "iLoveCS345";
+    String complexNumberTwo = iLoveCS345;
     TempContext tempContext = new TempContext(new MultiplicationOperator());
-    Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+    Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> 
+    {
       tempContext.evaluate(complexNumberOne, complexNumberTwo);
     });
-    String expectedException = "Please provide two valid operands, or simplify them";
+    String expectedException = simplify;
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
@@ -347,13 +381,14 @@ class MultiplicationOperatorTest
   public void tooManyIsRightTest()
   {
 
-    String complexNumberOne = "4 + 3i";
+    String complexNumberOne = complexThree;
     String complexNumberTwo = "4iiiiii + 3i";
     TempContext tempContext = new TempContext(new MultiplicationOperator());
-    Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+    Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> 
+    {
       tempContext.evaluate(complexNumberOne, complexNumberTwo);
     });
-    String expectedException = "Please provide two valid operands, or simplify them";
+    String expectedException = simplify;
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
@@ -365,13 +400,14 @@ class MultiplicationOperatorTest
   public void oneIInvalidLeftOperandTest()
   {
 
-    String complexNumberOne = "iLoveCS345";
-    String complexNumberTwo = "4 + 3i";
+    String complexNumberOne = iLoveCS345;
+    String complexNumberTwo = complexThree;
     TempContext tempContext = new TempContext(new MultiplicationOperator());
-    Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+    Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> 
+    {
       tempContext.evaluate(complexNumberOne, complexNumberTwo);
     });
-    String expectedException = "Please provide a valid operand";
+    String expectedException = empty;
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
@@ -383,13 +419,14 @@ class MultiplicationOperatorTest
   public void oneIInvalidRightOperandTest()
   {
 
-    String complexNumberOne = "4 + 3i";
-    String complexNumberTwo = "iLoveCS345";
+    String complexNumberOne = complexThree;
+    String complexNumberTwo = iLoveCS345;
     TempContext tempContext = new TempContext(new MultiplicationOperator());
-    Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+    Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> 
+    {
       tempContext.evaluate(complexNumberOne, complexNumberTwo);
     });
-    String expectedException = "Please provide a valid operand";
+    String expectedException = empty;
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }
@@ -400,8 +437,8 @@ class MultiplicationOperatorTest
   @Test
   public void twoValidComplexNumbersNeg1Test()
   {
-    String complexNumberOne = "3 - 2i";
-    String complexNumberTwo = "4 + 2i";
+    String complexNumberOne = complexFive;
+    String complexNumberTwo = complexTwo;
     String expectedResult = "16.00-2.00i";
     TempContext tempContext = new TempContext(new MultiplicationOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
@@ -414,8 +451,8 @@ class MultiplicationOperatorTest
   @Test
   public void twoValidComplexNumbersNeg2Test()
   {
-    String complexNumberOne = "3 + 2i";
-    String complexNumberTwo = "4 - 2i";
+    String complexNumberOne = complexOne;
+    String complexNumberTwo = complexSix;
     String expectedResult = "16.00+2.00i";
     TempContext tempContext = new TempContext(new MultiplicationOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
@@ -428,8 +465,8 @@ class MultiplicationOperatorTest
   @Test
   public void twoValidComplexNumbersNeg3Test()
   {
-    String complexNumberOne = "3 - 2i";
-    String complexNumberTwo = "4 - 2i";
+    String complexNumberOne = complexFive;
+    String complexNumberTwo = complexSix;
     String expectedResult = "8.00-14.00i";
     TempContext tempContext = new TempContext(new MultiplicationOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
@@ -442,9 +479,9 @@ class MultiplicationOperatorTest
   @Test
   public void twoValidRegNumbersNeg1Test()
   {
-    String complexNumberOne = "-300";
-    String complexNumberTwo = "400";
-    String expectedResult = "-120000.00+0.00i";
+    String complexNumberOne = negThreeHun;
+    String complexNumberTwo = fourHun;
+    String expectedResult = complexDecimalOne;
     TempContext tempContext = new TempContext(new MultiplicationOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -456,9 +493,9 @@ class MultiplicationOperatorTest
   @Test
   public void twoValidRegNumbersNeg2Test()
   {
-    String complexNumberOne = "300";
-    String complexNumberTwo = "-400";
-    String expectedResult = "-120000.00+0.00i";
+    String complexNumberOne = threeHun;
+    String complexNumberTwo = negFourHun;
+    String expectedResult = complexDecimalOne;
     TempContext tempContext = new TempContext(new MultiplicationOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
@@ -470,8 +507,8 @@ class MultiplicationOperatorTest
   @Test
   public void twoValidRegNumbersNeg3Test()
   {
-    String complexNumberOne = "-300";
-    String complexNumberTwo = "-400";
+    String complexNumberOne = negThreeHun;
+    String complexNumberTwo = negFourHun;
     String expectedResult = "120000.00-0.00i";
     TempContext tempContext = new TempContext(new MultiplicationOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
@@ -485,7 +522,7 @@ class MultiplicationOperatorTest
   public void twoValidMixedNumbersNeg1Test()
   {
     String complexNumberOne = "-300 + 4i";
-    String complexNumberTwo = "400";
+    String complexNumberTwo = fourHun;
     String expectedResult = "-120000.00+1600.00i";
     TempContext tempContext = new TempContext(new MultiplicationOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
@@ -499,7 +536,7 @@ class MultiplicationOperatorTest
   public void twoValidMixedNumbersNeg2Test()
   {
     String complexNumberOne = "20";
-    String complexNumberTwo = "400 - 3i";
+    String complexNumberTwo = complexSeven;
     String expectedResult = "8000.00-60.00i";
     TempContext tempContext = new TempContext(new MultiplicationOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
@@ -513,7 +550,7 @@ class MultiplicationOperatorTest
   public void twoValidMixedNumbersNeg3Test()
   {
     String complexNumberOne = "-20";
-    String complexNumberTwo = "400 - 3i";
+    String complexNumberTwo = complexSeven;
     String expectedResult = "-8000.00+60.00i";
     TempContext tempContext = new TempContext(new MultiplicationOperator());
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
@@ -587,7 +624,7 @@ class MultiplicationOperatorTest
   public void testNegComplex()
   {
     TempContext a = new TempContext(new MultiplicationOperator());
-    String actual = a.evaluate("-3+5i", "-4-2i");
+    String actual = a.evaluate(complexNine, complexEight);
     String expected = "22.00-14.00i";
     assertEquals(expected, actual);
   }
@@ -599,7 +636,7 @@ class MultiplicationOperatorTest
   public void testNegComplex2()
   {
     TempContext a = new TempContext(new MultiplicationOperator());
-    String actual = a.evaluate("-3+5i", "-4");
+    String actual = a.evaluate(complexNine, "-4");
     String expected = "12.00-20.00i";
     assertEquals(expected, actual);
   }
