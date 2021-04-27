@@ -226,7 +226,7 @@ public class InterfaceController
   }
 
   /**
-   * A private helper method for dealing with equalsButtonHandling. 
+   * A private helper method for dealing with equalsButtonHandling.
    * 
    * @param ui
    *          The ui of the entire rimplex program.
@@ -240,13 +240,13 @@ public class InterfaceController
     // regular equals button
     try
     {
-      if (expFlag) 
+      if (expFlag)
       {
         ExponentOperator expOp = new ExponentOperator();
         result = expOp.exponentation(firstOperand, secondOperand);
         expFlag = false;
-      } 
-      else 
+      }
+      else
       {
         result = context.evaluate(firstOperand, secondOperand);
       }
@@ -307,36 +307,6 @@ public class InterfaceController
       }
     }
 
-  }
-
-  /**
-   * Performs the exponentiation operation.
-   * 
-   * @param ui
-   *          the main interface
-   * @param exLabel
-   *          the expression label
-   */
-  private void handleExponentiation(final NewMainInterface ui, final JLabel exLabel)
-  {
-//    String expResult = EMPTY;
-//    ExponentOperator expOp = new ExponentOperator();
-//    try
-//    {
-//      expResult = expOp.exponentation(firstOperand, secondOperand);
-//    }
-//    catch (IllegalArgumentException e1)
-//    {
-//      ui.errorMessage(e1.getMessage());
-//      resetInterface();
-//      return;
-//    }
-//    ui.getInputLabel().setText(HTML);
-//    exLabel.setText(exLabel.getText() + replaceFormatting(secondOperand) + SP + EQUALS);
-//    ui.getResultLabel().setText(replaceFormatting(expResult));
-//    expFlag = false;
-//    secondOperand = EMPTY;
-    firstOperand = EMPTY;
   }
 
   /**
