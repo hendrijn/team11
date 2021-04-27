@@ -117,7 +117,10 @@ public class MenuController implements ActionListener, Finals
   private void handleAdding(final NewMainInterface ui)
   {
     if (ui.getResultLabel().getText().equals(HTML))
+    {
       ui.errorMessage(NewMainInterface.STRINGS.getString("INCOMPLETE"));
+      resetDisplay(ui);
+    }
     else
     {
       int choice = JOptionPane.showConfirmDialog(null,
