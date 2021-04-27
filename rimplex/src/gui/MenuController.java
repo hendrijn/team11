@@ -10,17 +10,18 @@ import javax.swing.JOptionPane;
 /**
  * Controls the functionality of the menu items.
  * 
- * @author Jacquelyn Hendricks
+ * @author Jacquelyn Hendricks, Corwin Willms
  * @version Sprint 3
  */
 public class MenuController implements ActionListener, Finals
 {
   private static MenuController instance = null;
-  boolean isRunning;
   private CalculationRecorder recorder = new CalculationRecorder(1000, this);
   private JMenuItem add, play, pause, stop;
   private int elementsDisplayed = 0;
   private int calcCount = 0;
+
+  boolean isRunning;
 
   /**
    * Singleton.
@@ -82,16 +83,7 @@ public class MenuController implements ActionListener, Finals
       }
       else if (item.equals(NewMainInterface.STRINGS.getString("SET_SPEED")))
       {
-        String speed = JOptionPane.showInputDialog(NewMainInterface.STRINGS.getString("SPEED"));
-        try
-        {
-          recorder.setDelay(Integer.parseInt(speed) * 1000);
-        }
-        catch (NumberFormatException nfe)
-        {
-          ui.errorMessage(NewMainInterface.STRINGS.getString("NOT_VALID"));
-        }
-
+        handleSetSpeed(ui);
       }
       else
       {
@@ -105,14 +97,42 @@ public class MenuController implements ActionListener, Finals
   }
 
   /**
-   * Pauses playback.
+   * Gets each menu item and assigns it to the right variable.
    * 
    * @param ui
    *          the interface
    */
-  private void pausePlayback(final NewMainInterface ui)
+  private void assignMenuItems(final NewMainInterface ui)
   {
-    recorder.stop();
+    JMenu fileMenu = (JMenu) ui.menuBar.getMenu(0);
+
+    add = fileMenu.getItem(0);
+    play = fileMenu.getItem(1);
+    pause = fileMenu.getItem(2);
+    stop = fileMenu.getItem(3);
+  }
+
+  /**
+   * Handles adding a new calculation to the recording.
+   * 
+   * @param ui
+   *          the interface.
+   */
+  private void handleAdding(final NewMainInterface ui)
+  {
+    if (ui.getResultLabel().getText().equals(HTML))
+      ui.errorMessage(NewMainInterface.STRINGS.getString("INCOMPLETE"));
+    else
+    {
+      int choice = JOptionPane.showConfirmDialog(null,
+          NewMainInterface.STRINGS.getString("CONFIRM"), null, JOptionPane.YES_NO_OPTION);
+
+      if (choice == JOptionPane.YES_OPTION)
+      {
+        recorder.add(ui.getExpressionLabel(), ui.getResultLabel());
+        setItemsEnabled(play, true);
+      }
+    }
   }
 
   /**
@@ -150,19 +170,22 @@ public class MenuController implements ActionListener, Finals
   }
 
   /**
-   * Gets each menu item and assigns it to the right variable.
+   * Asks the user for a playback speed and sets the delay in CalculationRecorder.
    * 
    * @param ui
    *          the interface
    */
-  private void assignMenuItems(final NewMainInterface ui)
+  private void handleSetSpeed(final NewMainInterface ui)
   {
-    JMenu fileMenu = (JMenu) ui.menuBar.getMenu(0);
-
-    add = fileMenu.getItem(0);
-    play = fileMenu.getItem(1);
-    pause = fileMenu.getItem(2);
-    stop = fileMenu.getItem(3);
+    String speed = JOptionPane.showInputDialog(NewMainInterface.STRINGS.getString("SPEED"));
+    try
+    {
+      recorder.setDelay(Integer.parseInt(speed) * 1000);
+    }
+    catch (NumberFormatException nfe)
+    {
+      ui.errorMessage(NewMainInterface.STRINGS.getString("NOT_VALID"));
+    }
   }
 
   /**
@@ -175,6 +198,17 @@ public class MenuController implements ActionListener, Finals
   {
     isRunning = true;
     recorder.start();
+  }
+
+  /**
+   * Pauses playback.
+   * 
+   * @param ui
+   *          the interface
+   */
+  private void pausePlayback(final NewMainInterface ui)
+  {
+    recorder.stop();
   }
 
   /**
@@ -193,29 +227,6 @@ public class MenuController implements ActionListener, Finals
     setItemsEnabled(stop, false);
     setItemsEnabled(add, true);
     isRunning = false;
-  }
-
-  /**
-   * Handles adding a new calculation to the recording.
-   * 
-   * @param ui
-   *          the interface.
-   */
-  private void handleAdding(final NewMainInterface ui)
-  {
-    if (ui.getResultLabel().getText().equals(HTML))
-      ui.errorMessage(NewMainInterface.STRINGS.getString("INCOMPLETE"));
-    else
-    {
-      int choice = JOptionPane.showConfirmDialog(null,
-          NewMainInterface.STRINGS.getString("CONFIRM"), null, JOptionPane.YES_NO_OPTION);
-
-      if (choice == JOptionPane.YES_OPTION)
-      {
-        recorder.add(ui.getExpressionLabel(), ui.getResultLabel());
-        setItemsEnabled(play, true);
-      }
-    }
   }
 
   /**
