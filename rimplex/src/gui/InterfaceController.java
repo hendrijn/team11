@@ -327,31 +327,19 @@ public class InterfaceController
     HistoryDisplay history = HistoryDisplay.getInstance();
     JLabel exLabel = ui.getExpressionLabel();
     secondOperand = removeFormatting(ui.getInputLabel().getText());
-    
-    if (expFlag) 
-    {
-      String finalExp = "";
-      ExponentOperator expOp = new ExponentOperator();
-      try
-      {
-        finalExp = expOp.exponentation(firstOperand, secondOperand);
-      }
-      catch (IllegalArgumentException e1)
-      {
-        ui.errorMessage(e1.getMessage());
-        resetInterface();
-        return;
-      }
-      ui.getInputLabel().setText(finalExp);
-      expFlag = false;
-      secondOperand = "";
-      firstOperand = "";
-      return;
-    }
 
     try
     {
-      result = context.evaluate(firstOperand, secondOperand);
+      if (expFlag) 
+      {
+        ExponentOperator expOp = new ExponentOperator();
+        result = expOp.exponentation(firstOperand, secondOperand);
+        expFlag = false;
+      } 
+      else 
+      {
+        result = context.evaluate(firstOperand, secondOperand);
+      }
       ui.getInputLabel().setText(HTML);
       exLabel.setText(exLabel.getText() + replaceFormatting(secondOperand) + SP + EQUALS);
       ui.getResultLabel().setText(replaceFormatting(result));
@@ -363,6 +351,7 @@ public class InterfaceController
     {
       ui.errorMessage(e.getMessage());
       result = EMPTY;
+      expFlag = false;
       shownError = true;
     }
     finally
