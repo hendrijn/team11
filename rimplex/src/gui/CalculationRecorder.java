@@ -19,7 +19,15 @@ public class CalculationRecorder extends Timer implements Finals
   private ArrayList<String[]> recording;
   private String[] calculation;
 
-  public CalculationRecorder(int delay, ActionListener listener)
+  /**
+   * Constructor.
+   * 
+   * @param delay
+   *          the speed of playback
+   * @param listener
+   *          the listener
+   */
+  public CalculationRecorder(final int delay, final ActionListener listener)
   {
     super(delay, listener);
     recording = new ArrayList<>();
@@ -34,7 +42,7 @@ public class CalculationRecorder extends Timer implements Finals
    * @param resultLabel
    *          result
    */
-  void add(JLabel expressionLabel, JLabel resultLabel)
+  void add(final JLabel expressionLabel, final JLabel resultLabel)
   {
     calculation = expressionLabel.getText().split("\\s");
     calculation[3] = resultLabel.getText();
@@ -58,7 +66,7 @@ public class CalculationRecorder extends Timer implements Finals
    * @param isEnabled
    *          true to enable, false to disable
    */
-  void setPanelEnabled(JPanel panel, boolean isEnabled)
+  void setPanelEnabled(final JPanel panel, final boolean isEnabled)
   {
     Component[] components = panel.getComponents();
 
@@ -83,7 +91,8 @@ public class CalculationRecorder extends Timer implements Finals
    * @param ui
    *          the main interface
    */
-  public void displayNextElement(int calcCount, int elementsDisplayed, NewMainInterface ui)
+  public void displayNextElement(final int calcCount, final int elementsDisplayed,
+      final NewMainInterface ui)
   {
     String calcElement = recording.get(calcCount)[elementsDisplayed];
     if (elementsDisplayed == 0 || elementsDisplayed == 2)
@@ -108,7 +117,7 @@ public class CalculationRecorder extends Timer implements Finals
    * @param calcElement
    *          the element to display
    */
-  private void updateResultLabel(NewMainInterface ui, String calcElement)
+  private void updateResultLabel(final NewMainInterface ui, final String calcElement)
   {
     ui.getExpressionLabel().setText(
         ui.getExpressionLabel().getText() + SP + ui.getInputLabel().getText() + SP + EQUALS);
@@ -124,7 +133,7 @@ public class CalculationRecorder extends Timer implements Finals
    * @param calcElement
    *          the element to display
    */
-  private void updateExpressionLabel(NewMainInterface ui, String calcElement)
+  private void updateExpressionLabel(final NewMainInterface ui, final String calcElement)
   {
     ui.getExpressionLabel().setText(ui.getInputLabel().getText() + SP + calcElement);
     ui.getInputLabel().setText(HTML);
@@ -138,7 +147,7 @@ public class CalculationRecorder extends Timer implements Finals
    * @param calcElement
    *          the operand to display
    */
-  private void updateInputLabel(NewMainInterface ui, String calcElement)
+  private void updateInputLabel(final NewMainInterface ui, final String calcElement)
   {
     ui.getInputLabel().setText(calcElement);
   }
