@@ -79,6 +79,11 @@ public class NewMainInterface extends JFrame implements Finals
     return STRINGS;
   }
 
+  /**
+   * Getter for the history attribute.
+   * 
+   * @return the history attribute.
+   */
   public JButton getHistory()
   {
     return history;
@@ -468,17 +473,20 @@ public class NewMainInterface extends JFrame implements Finals
     increaseSize(english);
     increaseSize(french);
     increaseSize(german);
-    english.addActionListener((ActionEvent e) -> {
+    english.addActionListener((ActionEvent e) -> 
+    {
       updateLanguage(new Locale(EN, US));
     });
     langMenu.add(english);
 
-    french.addActionListener((ActionEvent e) -> {
+    french.addActionListener((ActionEvent e) -> 
+    {
       updateLanguage(new Locale("fr", "FR"));
     });
     langMenu.add(french);
 
-    german.addActionListener((ActionEvent e) -> {
+    german.addActionListener((ActionEvent e) -> 
+    {
       updateLanguage(new Locale("de", "DE"));
     });
     langMenu.add(german);

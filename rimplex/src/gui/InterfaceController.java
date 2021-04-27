@@ -17,7 +17,7 @@ public class InterfaceController
     implements Finals, ActionListener, KeyListener, MouseListener, FocusListener
 {
   private static InterfaceController instance;
-
+  private static final String TWO_OPERANDS = "TWO_OPERANDS";
   private TempContext context = null;
   private String operator = EMPTY;
   private String firstOperand = EMPTY;
@@ -85,7 +85,7 @@ public class InterfaceController
           catch (NullPointerException nullP)
           {
             firstOperand = EMPTY;
-            ui.errorMessage(ui.getStrings().getString("TWO_OPERANDS"));
+            ui.errorMessage(ui.getStrings().getString(TWO_OPERANDS));
             resetInterface();
           }
           break;
@@ -166,7 +166,7 @@ public class InterfaceController
         catch (NullPointerException nullP)
         {
           firstOperand = EMPTY;
-          ui.errorMessage(ui.getStrings().getString("TWO_OPERANDS"));
+          ui.errorMessage(ui.getStrings().getString(TWO_OPERANDS));
           resetInterface();
         }
       }
