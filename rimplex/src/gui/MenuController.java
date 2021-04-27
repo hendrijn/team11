@@ -217,6 +217,7 @@ public class MenuController implements ActionListener, Finals
   {
     recorder.stop();
     resetDisplay(ui);
+    ui.getInputLabel().setText(HTML);
     setButtonsEnabled(ui, true);
     setItemsEnabled(play, true);
     setItemsEnabled(pause, false);
