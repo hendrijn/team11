@@ -24,6 +24,7 @@ public interface Finals
   static final String IPARTS = "xi";
   static final String LOG = "log";
   static final String EXP = "exp";
+  static final String SQRT =  "\u221A";
   static final String LPAREN = "(";
   static final String RPAREN = ")";
   static final String DECIMAL = ".";
@@ -34,6 +35,6 @@ public interface Finals
   static final String ENG = "English";
   static final String FRE = "Français";
   static final String GER = "Deutsch";
-  static final String[] FUNCTIONS = {ADD, RESET, INVERSE, SUBTRACT, LOG, EXP, MULTIPLY, RPARTS,
+  static final String[] FUNCTIONS = {ADD, RESET, INVERSE, SUBTRACT, LOG, EXP, SQRT, MULTIPLY, RPARTS,
       IPARTS, DIVIDE, LPAREN, RPAREN, EQUALS, DECIMAL};
 }

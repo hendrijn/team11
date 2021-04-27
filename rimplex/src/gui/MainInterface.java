@@ -27,6 +27,7 @@ public class MainInterface extends JFrame implements Finals
   JButton multiplyButton;
   JButton divideButton;
   JButton equalsButton;
+  JButton squareRootButton;
 
   JTextField inputField = new JTextField();
 
@@ -63,6 +64,7 @@ public class MainInterface extends JFrame implements Finals
     multiplyButton = new JButton(MULTIPLY);
     divideButton = new JButton(DIVIDE);
     equalsButton = new JButton(EQUALS);
+    squareRootButton = new JButton(SQRT);
 
     resetButton.setForeground(Color.RED);
     clearButton.setForeground(Color.GREEN);
@@ -74,6 +76,7 @@ public class MainInterface extends JFrame implements Finals
     multiplyButton.addActionListener(listener);
     divideButton.addActionListener(listener);
     equalsButton.addActionListener(listener);
+    squareRootButton.addActionListener(listener);
 
     addButton.setEnabled(false);
     subtractButton.setEnabled(false);
@@ -87,6 +90,7 @@ public class MainInterface extends JFrame implements Finals
     buttonPanel.add(multiplyButton);
     buttonPanel.add(divideButton);
     buttonPanel.add(equalsButton);
+    buttonPanel.add(squareRootButton);
   }
 
   /**

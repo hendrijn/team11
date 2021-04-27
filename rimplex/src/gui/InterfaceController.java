@@ -152,7 +152,52 @@ public class InterfaceController
           expFlag = true;
           handleOperators(EXP);
           break;
-          
+        case LOG:
+          String logNum = ui.getInputLabel().getText();
+          String cleanLogNum = removeFormatting(logNum);
+          if (cleanLogNum.equals(""))
+          {
+            logNum = ui.getResultLabel().getText();
+            cleanLogNum = removeFormatting(logNum);
+          }
+          LogarithmOperator logOp = new LogarithmOperator();
+          String logOperand = "";
+          try
+          {
+            logOperand = logOp.log(cleanLogNum);
+          }
+          catch (IllegalArgumentException e1)
+          {
+            ui.errorMessage(e1.getMessage());
+            resetInterface();
+            break;
+          }
+          invertedOperand = "(" + logOperand + ")";
+          ui.getInputLabel().setText(replaceFormatting(logOperand));
+          break;
+        case SQRT:
+          String sqrtNum = ui.getInputLabel().getText();
+          String cleansqrtNum = removeFormatting(sqrtNum);
+          if (cleansqrtNum.equals(""))
+          {
+            sqrtNum = ui.getResultLabel().getText();
+            cleansqrtNum = removeFormatting(sqrtNum);
+          }
+          SquareRootOperator sqrtOp = new SquareRootOperator();
+          String sqrtOperand = "";
+          try
+          {
+            sqrtOperand = sqrtOp.evaluate(cleansqrtNum);
+          }
+          catch (IllegalArgumentException e1)
+          {
+            ui.errorMessage(e1.getMessage());
+            resetInterface();
+            break;
+          }
+          invertedOperand = "(" + sqrtOperand + ")";
+          ui.getInputLabel().setText(replaceFormatting(sqrtOperand));
+          break;   
         default:
           closeApplication();
       }
