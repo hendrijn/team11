@@ -20,6 +20,39 @@ class ExponentOperatorTest
     String actualResult = expOp.exponentation(operand, power);
     assertEquals(expectedResult, actualResult);
   }
+  
+  @Test
+  public void validRegularNumSqredZeroBaseTest()
+  {
+    String operand = "3";
+    String power = "0";
+    String expectedResult = "1.00+0.00i";
+    ExponentOperator expOp = new ExponentOperator();
+    String actualResult = expOp.exponentation(operand, power);
+    assertEquals(expectedResult, actualResult);
+  }
+  
+  @Test
+  public void validImagNumSqredBaseZeroTest()
+  {
+    String operand = "3i";
+    String power = "0";
+    String expectedResult = "1.00+0.00i";
+    ExponentOperator expOp = new ExponentOperator();
+    String actualResult = expOp.exponentation(operand, power);
+    assertEquals(expectedResult, actualResult);
+  }
+  
+  @Test
+  public void validImagNumSqredBase1Test()
+  {
+    String operand = "3i";
+    String power = "1";
+    String expectedResult = "0.00+3.00i";
+    ExponentOperator expOp = new ExponentOperator();
+    String actualResult = expOp.exponentation(operand, power);
+    assertEquals(expectedResult, actualResult);
+  }
 
   @Test
   public void validRegularNumCubedTest()
@@ -37,7 +70,7 @@ class ExponentOperatorTest
   {
     String operand = "i";
     String power = "3";
-    String expectedResult = "0.00-1.00i";
+    String expectedResult = "-0.00-1.00i";
     ExponentOperator expOp = new ExponentOperator();
     String actualResult = expOp.exponentation(operand, power);
     assertEquals(expectedResult, actualResult);

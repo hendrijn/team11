@@ -93,7 +93,7 @@ class InverseOperatorTest
     Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
       inverseOperator.invert(operand);
     });
-    String expectedException = "Please provide a valid operand, or simplify it";
+    String expectedException = "Please provide a valid operand";
     String actualException = exception.getMessage();
     assertEquals(expectedException, actualException);
   }

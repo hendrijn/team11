@@ -90,7 +90,7 @@ public class SquareRootOperatorTest
     
    SquareRootOperator sqrt = new SquareRootOperator(); 
    String operand = "abcascx";
-   String expectedMessage = "Please provide a valid operand, or simplify it";
+   String expectedMessage = "Please provide a valid operand";
    Exception exception = Assertions.assertThrows(IllegalArgumentException.class, () -> {
      sqrt.evaluate(operand);
    });
