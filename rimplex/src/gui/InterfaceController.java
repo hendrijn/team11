@@ -308,7 +308,7 @@ public class InterfaceController
     }
 
   }
-
+ 
   /**
    * Handles the imaginary only functionality.
    * 
