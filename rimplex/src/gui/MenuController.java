@@ -70,11 +70,7 @@ public class MenuController implements ActionListener, Finals
       }
       else if (item.equals(NewMainInterface.STRINGS.getString("STOP")))
       {
-        setButtonsEnabled(ui, true);
-        setItemsEnabled(play, true);
-        setItemsEnabled(pause, false);
-        setItemsEnabled(stop, false);
-        setItemsEnabled(add, true);
+        stopPlayback(ui);
       }
       else if (item.equals(NewMainInterface.STRINGS.getString("PRINT")))
       {
