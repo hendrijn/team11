@@ -102,9 +102,6 @@ public class SquareRootOperator
       
       finalString = p + "+" + q + "i";
     }
-
-
     return finalString;
-
   }
 }
