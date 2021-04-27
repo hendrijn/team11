@@ -24,7 +24,6 @@ public class InterfaceController
   private String secondOperand = EMPTY;
   private String result = EMPTY;
   private boolean expFlag = false;
-  private final String invalid = "Please input two valid operands.";
   private final String iString = "i";
 
   /**
@@ -86,7 +85,7 @@ public class InterfaceController
           catch (NullPointerException nullP)
           {
             firstOperand = EMPTY;
-            ui.errorMessage(invalid);
+            ui.errorMessage(ui.getStrings().getString("TWO_OPERANDS"));
             resetInterface();
           }
           break;
@@ -167,7 +166,7 @@ public class InterfaceController
         catch (NullPointerException nullP)
         {
           firstOperand = EMPTY;
-          ui.errorMessage(invalid);
+          ui.errorMessage(ui.getStrings().getString("TWO_OPERANDS"));
           resetInterface();
         }
       }
@@ -438,7 +437,7 @@ public class InterfaceController
       }
       else
       {
-        ui.errorMessage("No previous result");
+        ui.errorMessage(ui.getStrings().getString("NO_RESULT"));
       }
     }
   }
