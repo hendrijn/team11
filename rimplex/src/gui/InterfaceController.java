@@ -210,6 +210,10 @@ public class InterfaceController
           case RPAREN:
             handleInput(RPAREN);
             break;
+          case EXP:
+        	expFlag = true;
+            handleOperators(EXP);
+            break;
           default:
         }
       }
