@@ -14,6 +14,7 @@ public class ExponentOperator
   // attributes
   private final String blankOperand = "0";
   private final String invalid = "NOT_VALID_OPERAND";
+  private final String zeroBase = "1.00+0.00i";
 
   /**
    * Evaluates an operand raised to a power.
@@ -48,12 +49,19 @@ public class ExponentOperator
     {
       throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("BASE"));
     }
+    
+    if (powerOf == 0) 
+    {
+      return zeroBase; 
+    }
 
     String leftRegularNumber = decomposedOperands[0];
     String leftImaginaryNumber = decomposedOperands[1];
     double dblRegNum = 0.0;
     double dblImagNum = 0.0;
     double finalResult = 0.0;
+    String finalOperand = "";   
+    
 
     // Processing the parts of the operand as doubles
     try
@@ -73,28 +81,30 @@ public class ExponentOperator
     {
       throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(invalid));
     }
+    
 
     if (dblImagNum == 0.00)
     {
       finalResult = Math.pow(dblRegNum, powerOf);
-      return String.valueOf(finalResult) + "+00.0i";
+      finalOperand = String.format("%.2f+0.00i", finalResult);
     }
-
-    String runningOperand = operand;
-    String finalOperand = "";
-    TempContext multiOp = new TempContext(new MultiplicationOperator());
-
-    // iterative multiplication
-    for (int i = 1; i < powerOf; i++)
+    else 
     {
-      finalOperand = multiOp.evaluate(operand, runningOperand);
-      runningOperand = finalOperand;
-    }
-
-    // If negative zero is in the string, change it to 0.00
-    if (finalOperand.substring(0, 4).equals("-0.0"))
-    {
-      finalOperand = "0.00" + finalOperand.substring(5);
+      String runningOperand = operand;
+      TempContext multiOp = new TempContext(new MultiplicationOperator());
+      
+      if (powerOf == 1) 
+      {
+        finalOperand = String.format("%.2f+%.2fi", dblRegNum, dblImagNum); 
+      }
+  
+      // iterative multiplication
+      for (int i = 1; i < powerOf; i++)
+      {
+        finalOperand = multiOp.evaluate(operand, runningOperand);
+        runningOperand = finalOperand;
+      }
+      
     }
     return finalOperand;
   }
