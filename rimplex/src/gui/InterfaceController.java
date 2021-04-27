@@ -258,6 +258,7 @@ public class InterfaceController
       result = EMPTY;
       secondOperand = EMPTY;
       expFlag = false;
+      ui.getInputLabel().setText(HTML);
     }
   }
 
