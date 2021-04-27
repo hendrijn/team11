@@ -8,6 +8,12 @@ import java.util.ResourceBundle;
 import javax.swing.*;
 import javax.swing.border.Border;
 
+/**
+ * Creates the main interface.
+ * 
+ * @author Jacquelyn Hendricks, Brooke Sindelar, Corwin Willms
+ * @version v3
+ */
 public class NewMainInterface extends JFrame implements Finals
 {
   private static final long serialVersionUID = 5691196863267451960L;
@@ -74,40 +80,55 @@ public class NewMainInterface extends JFrame implements Finals
     JOptionPane.showMessageDialog(null, errorMessage, errorMessage, JOptionPane.ERROR_MESSAGE);
   }
 
+  /**
+   * Creates all frame containers and components. Adds containers to the contentPane. Sets close
+   * default and language.
+   */
   private void setupFrame()
   {
     Container contentPane = getContentPane();
-
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    contentPane.setLayout(new BorderLayout(20, 20));
 
     listener = InterfaceController.getInstance();
-
-    contentPane.setLayout(new BorderLayout(20, 20));
 
     createMenu();
 
     setupNorthPanel();
-    setupCenterPanel();
-    setUpEastPanel();
+    setupEastPanel();
+    setUpCenterPanel();
+    setupWestPanel(contentPane);
+
+    updateLanguage(new Locale("en", "US"));
+
+    setJMenuBar(menuBar);
+    contentPane.add(northPanel, BorderLayout.NORTH);
+    contentPane.add(bar, BorderLayout.EAST);
+    contentPane.add(eastPanel, BorderLayout.CENTER);
+    contentPane.add(centerPanel, BorderLayout.WEST);
+  }
+
+  /**
+   * Creates the history display button in the west panel.
+   * 
+   * @param contentPane
+   *          the main content pane.
+   */
+  private void setupWestPanel(Container contentPane)
+  {
     bar = new JPanel();
     bar.setLayout(new GridLayout(1, 1));
     history = new JButton(">");
     HistoryController cont = new HistoryController();
     history.addActionListener(cont);
     bar.add(history);
-
-    updateLanguage(new Locale("en", "US"));
-
     contentPane.addComponentListener(cont);
-
-    setJMenuBar(menuBar);
-    contentPane.add(northPanel, BorderLayout.NORTH);
-    contentPane.add(centerPanel, BorderLayout.WEST);
-    contentPane.add(eastPanel, BorderLayout.CENTER);
-    contentPane.add(bar, BorderLayout.EAST);
   }
 
-  private void setUpEastPanel()
+  /**
+   * Creates the center panel that houses all the function buttons.
+   */
+  private void setUpCenterPanel()
   {
     GridLayout layout = new GridLayout(5, 3);
     layout.setHgap(20);
@@ -125,7 +146,10 @@ public class NewMainInterface extends JFrame implements Finals
     }
   }
 
-  private void setupCenterPanel()
+  /**
+   * Creates the east panel with all numbers and sign, clear, and backspace.
+   */
+  private void setupEastPanel()
   {
     GridBagLayout layout = new GridBagLayout();
     centerPanel = new JPanel();
@@ -321,7 +345,8 @@ public class NewMainInterface extends JFrame implements Finals
   }
 
   /**
-   * Corwin adds the north items.
+   * Creates the display in the north panel. Adds three labels for the input, expression, and
+   * results.
    */
   private void setupNorthPanel()
   {
@@ -357,6 +382,12 @@ public class NewMainInterface extends JFrame implements Finals
     northPanel.add(inputDisplay);
   }
 
+  /**
+   * Sets language settings for the words on screen.
+   * 
+   * @param locale
+   *          the locale
+   */
   public void updateLanguage(Locale locale)
   {
     NewMainInterface.STRINGS = ResourceBundle.getBundle("gui.Strings", locale);
@@ -381,32 +412,18 @@ public class NewMainInterface extends JFrame implements Finals
   {
     MenuController menuListener = MenuController.getInstance();
     AboutController aboutListener = new AboutController();
-    // LanguageController langListener = new LanguageController();
 
     menuBar = new JMenuBar();
 
-    // fileMenu = new JMenu(STRINGS.getString("FILE"));
     fileMenu = new JMenu();
     increaseSize(fileMenu);
     menuBar.add(fileMenu);
 
-    // String[] fileItemsStrings = {STRINGS.getString("ADDTOREC"), STRINGS.getString("START"),
-    // STRINGS.getString("PAUSE"), STRINGS.getString("STOP"), STRINGS.getString("PRINT")};
-    //
-    // for (String item : fileItemsStrings)
-    // {
-    // JMenuItem menuItem = new JMenuItem(item);
-    // increaseSize(menuItem);
-    // menuItem.addActionListener(menuListener);
-    // fileMenu.add(menuItem);
-    // menuItem.setEnabled(false);
-    // }
     add = new JMenuItem();
     start = new JMenuItem();
     stop = new JMenuItem();
     pause = new JMenuItem();
     print = new JMenuItem();
-
     JMenuItem[] fileItems = {add, start, pause, stop, print};
     for (JMenuItem item : fileItems)
     {
@@ -415,13 +432,10 @@ public class NewMainInterface extends JFrame implements Finals
       fileMenu.add(item);
       item.setEnabled(false);
     }
-
-    // fileMenu.getItem(4).addActionListener(historyPrinter);
-
+    // prevents recording playback
     fileMenu.getItem(0).setEnabled(true);
     fileMenu.getItem(4).setEnabled(true);
 
-    // settingsMenu = new JMenu(STRINGS.getString("SETTINGS"));
     settingsMenu = new JMenu();
     increaseSize(settingsMenu);
     speed = new JMenuItem();
@@ -464,16 +478,31 @@ public class NewMainInterface extends JFrame implements Finals
     menuBar.add(aboutMenu);
   }
 
+  /**
+   * Gets the expression label.
+   * 
+   * @return the expression label
+   */
   public JLabel getExpressionLabel()
   {
     return expressionDisplay;
   }
 
+  /**
+   * Gets the results label.
+   * 
+   * @return the results label
+   */
   public JLabel getResultLabel()
   {
     return resultDisplay;
   }
 
+  /**
+   * Gets the input label.
+   * 
+   * @return the input label
+   */
   public JLabel getInputLabel()
   {
     return inputDisplay;
