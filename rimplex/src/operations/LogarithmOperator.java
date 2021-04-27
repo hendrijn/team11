@@ -11,7 +11,9 @@ import gui.NewMainInterface;
 public class LogarithmOperator
 {
   // attributes
-  final private String BLANK_OPERAND = "0";
+  private final String blankOp = "0";
+  private final String invalid = "NOT_VALID_OPERAND";
+  private final String closedParen = ")";
 
   /**
    * Computes the natural log of the given operand.
@@ -19,33 +21,37 @@ public class LogarithmOperator
    * @param operand
    *          a real, imaginary, or complex number.
    * @return the natural log of the operand.
+   * @throws IllegalArgumentException
+   *           if the operand is empty, null or invalid.
    */
-  public String log(String operand)
+  public String log(final String operand) throws IllegalArgumentException
   {
+    // error checking empty/null
     if (operand == null || operand.equals(""))
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(invalid));
     }
 
-    String alteredOp = ((operand.replaceAll(" ", "")).replace("(", "")).replace(")", "");
-    
+    String alteredOp = ((operand.replaceAll(" ", "")).replace("(", "")).replace(closedParen, "");
+
+    // error checking invalid
     long iCount = alteredOp.chars().filter(ch -> ch == 'i').count();
     if (iCount > 1)
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("VALID_OR_SIMPLIFY"));
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(invalid));
     }
 
     String[] decomposedOperands = new String[3];
     try
     {
-      decomposedOperands = TempContext.decomposeOperands(alteredOp, BLANK_OPERAND);
+      decomposedOperands = TempContext.decomposeOperands(alteredOp, blankOp);
     }
     catch (IllegalArgumentException e)
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(invalid));
     }
 
-    String leftRegularNumber   = decomposedOperands[0];
+    String leftRegularNumber = decomposedOperands[0];
     String leftImaginaryNumber = decomposedOperands[1];
 
     double dblRegNum = 0.0;
@@ -55,14 +61,12 @@ public class LogarithmOperator
     }
     catch (NumberFormatException e)
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(invalid));
     }
-    
-    double dblImagNum          = 0.00;
-    double finalResult         = 0.00;
-    //double lnComplexReal       = 0.00;
-    //double lnComplexImag       = 0.00;
-    
+
+    double dblImagNum = 0.00;
+    double finalResult = 0.00;
+
     try
     {
       dblImagNum = Double.parseDouble(leftImaginaryNumber);
@@ -71,24 +75,24 @@ public class LogarithmOperator
     {
       throw new IllegalArgumentException(e2.getMessage());
     }
-    
+
     String finalString = "";
-    
-    if (dblRegNum <= 0 && dblImagNum <= 0) 
+
+    if (dblRegNum <= 0 && dblImagNum <= 0)
     {
       throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("LOGARITHM"));
     }
-    
-    if (dblImagNum == 0.00) 
+
+    if (dblImagNum == 0.00)
     {
       finalResult = Math.log(dblRegNum);
       finalString = String.format("%.2f+0.00i", finalResult);
-    } 
-    else 
-    {
-      finalString = "ln(" + dblRegNum + "0+" + dblImagNum + "0i" + ")";
     }
-    
+    else
+    {
+      finalString = "ln(" + dblRegNum + "0+" + dblImagNum + "0i" + closedParen;
+    }
+
     return finalString;
   }
 }

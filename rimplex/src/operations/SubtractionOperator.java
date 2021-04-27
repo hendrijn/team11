@@ -3,13 +3,16 @@ package operations;
 import gui.NewMainInterface;
 
 /**
- * Subtraction Operator Class.
+ * class that has an operation for performing a subtraction on two complex, real, or imaginary
+ * numbers.
  * 
  * @author team 11 - may4sa
  * @version Sprint 3
  */
 public class SubtractionOperator implements Operator
 {
+
+  private final String space = " ";
 
   /**
    * Evaluates a subtraction of two operands.
@@ -20,26 +23,22 @@ public class SubtractionOperator implements Operator
    *          the operand that will be subtracted from the leftOperand.
    * @return the result of the subtraction.
    * @throws IllegalArgumentException
-   *           thrown if operands are null or empty.
+   *           thrown if operands are null, empty, or invalid.
    */
   @Override
   public String evaluate(final String leftOperand, final String rightOperand)
       throws IllegalArgumentException
   {
-    // error checking
+    // error checking for null/empty
     if (leftOperand == null || rightOperand == null || leftOperand.equals("")
         || rightOperand.equals(""))
     {
       throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("TWO_OPERANDS"));
     }
 
-    // remove spaces
-    String noSpL = leftOperand.replaceAll(" ", "");
-    String noSpR = rightOperand.replaceAll(" ", "");
-
+    String noSpL = leftOperand.replaceAll(space, "");
+    String noSpR = rightOperand.replaceAll(space, "");
     String distribute = SubtractionOperator.distribute(noSpR);
-
-    // distribute and fix +- form to - form
     String result = new AdditionOperator().evaluate(noSpL, distribute);
 
     return result;
@@ -54,8 +53,10 @@ public class SubtractionOperator implements Operator
    */
   private static String distribute(final String rightOperand)
   {
-    int negMinus = rightOperand.indexOf("-");
-    int minus = rightOperand.indexOf("-", negMinus + 1);
+    final String minusSign = "-";
+    final String plus = "+";
+    int negMinus = rightOperand.indexOf(minusSign);
+    int minus = rightOperand.indexOf(minusSign, negMinus + 1);
     String distribute = "";
 
     boolean complex = TempContext.isComplex(rightOperand);
@@ -64,31 +65,33 @@ public class SubtractionOperator implements Operator
 
     if (complex)
     {
-      if (rightOperand.contains("+"))
+      // form x+yi -> -x-yi
+      if (rightOperand.contains(plus))
       {
-
-        distribute = "-" + rightOperand.substring(0, rightOperand.indexOf("+")) + "+-"
-            + rightOperand.substring(rightOperand.indexOf("+") + 1);
+        distribute = minusSign + rightOperand.substring(0, rightOperand.indexOf(plus)) + "+-"
+            + rightOperand.substring(rightOperand.indexOf(plus) + 1);
       }
+      // form -x-yi -> x+yi
       else if (minus != -1)
       {
-        distribute = rightOperand.substring(1, minus) + "+" + rightOperand.substring(minus + 1);
+        distribute = rightOperand.substring(1, minus) + plus + rightOperand.substring(minus + 1);
       }
+      // form x-yi -> -x+yi
       else
       {
-        distribute = "-" + rightOperand.substring(0, rightOperand.indexOf("-")) + "+"
-            + rightOperand.substring(rightOperand.indexOf("-") + 1);
+        distribute = minusSign + rightOperand.substring(0, rightOperand.indexOf(minusSign)) + plus
+            + rightOperand.substring(rightOperand.indexOf(minusSign) + 1);
       }
     }
     if (imaginary || real)
     {
-      if (rightOperand.contains("-"))
+      if (rightOperand.contains(minusSign))
       {
         distribute = rightOperand.substring(1);
       }
       else
       {
-        distribute = "-" + rightOperand;
+        distribute = minusSign + rightOperand;
       }
     }
     return distribute;

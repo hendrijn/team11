@@ -12,7 +12,10 @@ public class MultiplicationOperator implements Operator
 {
 
   // attributes
-  final int I_SQUARED = -1;
+  private final int iSquared = -1;
+  private final String invalid = "NOT_VALID_OPERAND";
+  private final String plus = "+";
+  private final String form = "%.2f";
 
   /**
    * This evaluates two operands using multiplication!
@@ -26,25 +29,25 @@ public class MultiplicationOperator implements Operator
    *           thrown if operands are null or empty.
    */
   @Override
-  public String evaluate(String leftOperand, String rightOperand)
+  public String evaluate(final String leftOperand, final String rightOperand)
+      throws IllegalArgumentException
   {
-
     String[] decomposedOperands = new String[3];
     try
     {
       decomposedOperands = TempContext.decomposeOperands(leftOperand, rightOperand);
     }
-    catch (Exception e1)
+    catch (IllegalArgumentException e1)
     {
       throw new IllegalArgumentException(e1.getMessage());
     }
 
-    String leftRegularNumber    = decomposedOperands[0];
-    String leftImaginaryNumber  = decomposedOperands[1];
-    String rightRegularNumber   = decomposedOperands[2];
+    String leftRegularNumber = decomposedOperands[0];
+    String leftImaginaryNumber = decomposedOperands[1];
+    String rightRegularNumber = decomposedOperands[2];
     String rightImaginaryNumber = decomposedOperands[3];
 
-    // Integer processing
+    // Integer processing/invalid error checking
     Double leftImagNumDouble = 0.0;
     try
     {
@@ -52,7 +55,7 @@ public class MultiplicationOperator implements Operator
     }
     catch (NumberFormatException e)
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(invalid));
     }
 
     Double leftRegNumDouble = 0.0;
@@ -63,7 +66,7 @@ public class MultiplicationOperator implements Operator
     catch (NumberFormatException e)
     {
 
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(invalid));
     }
 
     Double rightImagNumDouble = 0.0;
@@ -74,7 +77,7 @@ public class MultiplicationOperator implements Operator
     catch (NumberFormatException e)
     {
 
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(invalid));
     }
 
     Double rightRegNumDouble = 0.0;
@@ -85,24 +88,25 @@ public class MultiplicationOperator implements Operator
     catch (NumberFormatException e)
     {
 
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(invalid));
     }
 
-    double fOILFirst  = leftRegNumDouble  * rightRegNumDouble;
-    double fOILOuters = leftRegNumDouble  * rightImagNumDouble;
+    double fOILFirst = leftRegNumDouble * rightRegNumDouble;
+    double fOILOuters = leftRegNumDouble * rightImagNumDouble;
     double fOILInners = leftImagNumDouble * rightRegNumDouble;
-    double fOILLasts  = leftImagNumDouble * rightImagNumDouble * I_SQUARED;
+    double fOILLasts = leftImagNumDouble * rightImagNumDouble * iSquared;
 
-    double finalRegTotal  = fOILFirst + fOILLasts;
+    double finalRegTotal = fOILFirst + fOILLasts;
     double finalImagTotal = fOILOuters + fOILInners;
 
-    String result = String.format("%.2f", finalRegTotal) + "+"
-        + String.format("%.2f", finalImagTotal) + "i";
+    String result = String.format(form, finalRegTotal) + plus + String.format(form, finalImagTotal)
+        + "i";
 
+    // format to fix +- occurrence
     if (result.contains("+-"))
     {
-      result = result.substring(0, result.indexOf("+")) + "-"
-          + result.substring(result.indexOf("+") + 2);
+      result = result.substring(0, result.indexOf(plus)) + "-"
+          + result.substring(result.indexOf(plus) + 2);
     }
     return result;
   }

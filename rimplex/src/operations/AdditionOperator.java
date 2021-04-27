@@ -3,13 +3,16 @@ package operations;
 import gui.NewMainInterface;
 
 /**
- * Addition Operator Class.
+ * Class that includes operations to compute the sum of two complex, real, or imaginary numbers.
  * 
  * @author team 11 - pgleb and may4sa
  * @version Sprint 3
  */
 public class AdditionOperator implements Operator
 {
+  private final String invalid = "NOT_VALID_OPERAND";
+  private final String form = "%.2f";
+  private final String plus = "+";
 
   /**
    * Evaluates an addition of two operands.
@@ -24,6 +27,7 @@ public class AdditionOperator implements Operator
    */
   @Override
   public String evaluate(final String leftOperand, final String rightOperand)
+      throws IllegalArgumentException
   {
 
     String[] decomposedOperands = new String[3];
@@ -31,7 +35,7 @@ public class AdditionOperator implements Operator
     {
       decomposedOperands = TempContext.decomposeOperands(leftOperand, rightOperand);
     }
-    catch (Exception e1)
+    catch (IllegalArgumentException e1)
     {
       throw new IllegalArgumentException(e1.getMessage());
     }
@@ -41,7 +45,7 @@ public class AdditionOperator implements Operator
     String rightRegularNumber = decomposedOperands[2];
     String rightImaginaryNumber = decomposedOperands[3];
 
-    //Process the parts of operands as doubles.
+    // Process the parts of operands as doubles.
     Double leftImagNumDouble = 0.0;
     try
     {
@@ -49,7 +53,7 @@ public class AdditionOperator implements Operator
     }
     catch (NumberFormatException e)
     {
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(invalid));
     }
 
     Double leftRegNumDouble = 0.0;
@@ -60,7 +64,7 @@ public class AdditionOperator implements Operator
     catch (NumberFormatException e)
     {
 
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(invalid));
     }
 
     Double rightImagNumDouble = 0.0;
@@ -71,7 +75,7 @@ public class AdditionOperator implements Operator
     catch (NumberFormatException e)
     {
 
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(invalid));
     }
 
     Double rightRegNumDouble = 0.0;
@@ -82,22 +86,22 @@ public class AdditionOperator implements Operator
     catch (NumberFormatException e)
     {
 
-      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("NOT_VALID_OPERAND"));
+      throw new IllegalArgumentException(NewMainInterface.STRINGS.getString(invalid));
     }
 
     Double finalRegTotal = leftRegNumDouble + rightRegNumDouble;
     Double finalImagTotal = leftImagNumDouble + rightImagNumDouble;
 
-    String formattedRegTotal = String.format("%.2f", finalRegTotal);
-    String formattedImagTotal = String.format("%.2f", finalImagTotal);
+    String formattedRegTotal = String.format(form, finalRegTotal);
+    String formattedImagTotal = String.format(form, finalImagTotal);
 
-    String result = formattedRegTotal + "+" + formattedImagTotal + "i";
+    String result = formattedRegTotal + plus + formattedImagTotal + "i";
 
-    //If the result ends up with +-, revert to the proper -
+    // If the result ends up with +-, revert to the proper -
     if (result.contains("+-"))
     {
-      result = result.substring(0, result.indexOf("+")) + "-"
-          + result.substring(result.indexOf("+") + 2);
+      result = result.substring(0, result.indexOf(plus)) + "-"
+          + result.substring(result.indexOf(plus) + 2);
     }
     return result;
   }

@@ -13,7 +13,12 @@ import gui.NewMainInterface;
  */
 public class TempContext
 {
-
+  private static final String PLUS = "+";
+  private static final String MINUS_SIGN = "-";
+  private static final String PLUS_MINUS = "+-";
+  private static final String ONE = "1";
+  private static final String NEG_ONE = "-1";
+  private static final String I = "i";
   private Operator operator;
 
   /**
@@ -50,7 +55,7 @@ public class TempContext
    * @throws IllegalArgumentException
    *           if the operand is empty/null
    */
-  public static String format(String operand) throws IllegalArgumentException
+  public static String format(final String operand) throws IllegalArgumentException
   {
     // error checking for empty/null
     if (operand == null || operand.equals(""))
@@ -62,28 +67,24 @@ public class TempContext
     boolean imaginary = isImaginary(operand);
     boolean real = isReal(operand);
     String result = "";
-
-    // gets rid of spaces
     String alteredOp = operand.replaceAll(" ", "");
+    int negative = alteredOp.indexOf(MINUS_SIGN);
+    int minus = alteredOp.indexOf(MINUS_SIGN, negative + 1);
 
-    int negative = alteredOp.indexOf("-");
-    int minus = alteredOp.indexOf("-", negative + 1);
-
-    // makes all complex in + form (- -> +-)
+    // changes - -> +- for use in the addition operator
     if (complex)
     {
-      // gets rid of paren
       String noParenOp = (alteredOp.replace("(", "")).replace(")", "");
 
-      if (noParenOp.charAt(0) == '-' && !noParenOp.contains("+-") && minus != -1)
+      if (noParenOp.charAt(0) == '-' && !noParenOp.contains(PLUS_MINUS) && minus != -1)
       {
-        result = noParenOp.substring(0, noParenOp.indexOf("-", minus)) + "+-"
-            + noParenOp.substring(noParenOp.indexOf("-", minus) + 1);
+        result = noParenOp.substring(0, noParenOp.indexOf(MINUS_SIGN, minus)) + PLUS_MINUS
+            + noParenOp.substring(noParenOp.indexOf(MINUS_SIGN, minus) + 1);
       }
-      else if (negative != -1 && !noParenOp.contains("+-") && !noParenOp.contains("+"))
+      else if (negative != -1 && !noParenOp.contains(PLUS_MINUS) && !noParenOp.contains(PLUS))
       {
-        result = noParenOp.substring(0, noParenOp.indexOf("-", minus)) + "+-"
-            + noParenOp.substring(noParenOp.indexOf("-", minus) + 1);
+        result = noParenOp.substring(0, noParenOp.indexOf(MINUS_SIGN, minus)) + PLUS_MINUS
+            + noParenOp.substring(noParenOp.indexOf(MINUS_SIGN, minus) + 1);
       }
       else
       {
@@ -91,13 +92,11 @@ public class TempContext
       }
     }
 
-    // add the empty real num
     if (imaginary)
     {
       result = "0.00+" + alteredOp;
     }
 
-    // add the empty i
     if (real)
     {
       result = alteredOp + "+0.00i";
@@ -122,7 +121,6 @@ public class TempContext
   public static String[] decomposeOperands(final String leftOperand, final String rightOperand)
       throws IllegalArgumentException
   {
-
     String alteredROp = TempContext.format(rightOperand);
     String alteredLOp = TempContext.format(leftOperand);
 
@@ -136,8 +134,8 @@ public class TempContext
           NewMainInterface.STRINGS.getString("TWO_VALID_OR_SIMPLIFY"));
     }
 
-    int leftPlusIndex = alteredLOp.indexOf("+");
-    int rightPlusIndex = alteredROp.indexOf("+");
+    int leftPlusIndex = alteredLOp.indexOf(PLUS);
+    int rightPlusIndex = alteredROp.indexOf(PLUS);
 
     // Getting the two parts of the complex number
     String simplifedLeftOperand1 = alteredLOp.substring(0, leftPlusIndex);
@@ -151,46 +149,47 @@ public class TempContext
     String rightRegularNumber = "";
 
     // Figuring out which part is the i units
-    if (simplifedLeftOperand1.contains("i"))
+    if (simplifedLeftOperand1.contains(I))
     {
-      leftImaginaryNumber = simplifedLeftOperand1.replaceAll("i", "");
+      leftImaginaryNumber = simplifedLeftOperand1.replaceAll(I, "");
       leftRegularNumber = simplifedLeftOperand2;
     }
     else
     {
-      leftImaginaryNumber = simplifedLeftOperand2.replaceAll("i", "");
+      leftImaginaryNumber = simplifedLeftOperand2.replaceAll(I, "");
       leftRegularNumber = simplifedLeftOperand1;
     }
 
-    if (simplifedRightOperand1.contains("i"))
+    if (simplifedRightOperand1.contains(I))
     {
-      rightImaginaryNumber = simplifedRightOperand1.replaceAll("i", "");
+      rightImaginaryNumber = simplifedRightOperand1.replaceAll(I, "");
       rightRegularNumber = simplifedRightOperand2;
     }
     else
     {
-      rightImaginaryNumber = simplifedRightOperand2.replaceAll("i", "");
+      rightImaginaryNumber = simplifedRightOperand2.replaceAll(I, "");
       rightRegularNumber = simplifedRightOperand1;
     }
 
+    // handling for just i operands
     if (leftImaginaryNumber.equals(""))
     {
-      leftImaginaryNumber = "1";
+      leftImaginaryNumber = ONE;
     }
 
-    if (leftImaginaryNumber.equals("-"))
+    if (leftImaginaryNumber.equals(MINUS_SIGN))
     {
-      leftImaginaryNumber = "-1";
+      leftImaginaryNumber = NEG_ONE;
     }
 
     if (rightImaginaryNumber.equals(""))
     {
-      rightImaginaryNumber = "1";
+      rightImaginaryNumber = ONE;
     }
 
-    if (rightImaginaryNumber.equals("-"))
+    if (rightImaginaryNumber.equals(MINUS_SIGN))
     {
-      rightImaginaryNumber = "-1";
+      rightImaginaryNumber = NEG_ONE;
     }
 
     String[] operandArray = {leftRegularNumber, leftImaginaryNumber, rightRegularNumber,
@@ -210,18 +209,15 @@ public class TempContext
   {
     boolean complex = false;
 
-    // + is operator so must be complex
-    if (operand.contains("+"))
+    if (operand.contains(PLUS))
     {
       complex = true;
     }
-    // has negative and minus
-    else if (operand.charAt(0) == '-' && operand.indexOf("-", 1) != -1)
+    else if (operand.charAt(0) == '-' && operand.indexOf((MINUS_SIGN), 1) != -1)
     {
       complex = true;
     }
-    // no negative and minus
-    else if (operand.charAt(0) != '-' && operand.contains("-"))
+    else if (operand.charAt(0) != '-' && operand.contains(MINUS_SIGN))
     {
       complex = true;
     }
@@ -237,10 +233,9 @@ public class TempContext
    */
   public static boolean isImaginary(final String operand)
   {
-    // if the operand is not complex and contains an i, must be imaginary
     boolean imaginary = false;
     boolean complex = isComplex(operand);
-    if (!complex && operand.contains("i"))
+    if (!complex && operand.contains(I))
     {
       imaginary = true;
     }
@@ -256,7 +251,6 @@ public class TempContext
    */
   public static boolean isReal(final String operand)
   {
-    // if the operand is neither complex or imaginary, it's real
     boolean real = false;
     boolean imaginary = isImaginary(operand);
     boolean complex = isComplex(operand);
