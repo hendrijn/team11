@@ -24,7 +24,6 @@ public class InterfaceController
   private String secondOperand = EMPTY;
   private String result = EMPTY;
   private boolean expFlag = false;
-  private boolean shownError = false;
 
   /**
    * Singleton.
@@ -36,14 +35,6 @@ public class InterfaceController
     if (instance == null)
       instance = new InterfaceController();
     return instance;
-  }
-
-  /**
-   * @return the shownError
-   */
-  public boolean isShownError()
-  {
-    return shownError;
   }
 
   /**
@@ -211,7 +202,7 @@ public class InterfaceController
             handleInput(RPAREN);
             break;
           case EXP:
-        	expFlag = true;
+            expFlag = true;
             handleOperators(EXP);
             break;
           default:
@@ -230,7 +221,7 @@ public class InterfaceController
   }
 
   /**
-   * A private helper method for dealing with equalsButtonHandling.
+   * A private helper method for dealing with equalsButtonHandling and exponentiation.
    * 
    * @param ui
    *          The ui of the entire rimplex program.
@@ -241,7 +232,6 @@ public class InterfaceController
     JLabel exLabel = ui.getExpressionLabel();
     secondOperand = removeFormatting(ui.getInputLabel().getText());
 
-    // regular equals button
     try
     {
       if (expFlag)
@@ -257,29 +247,17 @@ public class InterfaceController
       ui.getInputLabel().setText(HTML);
       exLabel.setText(exLabel.getText() + replaceFormatting(secondOperand) + SP + EQUALS);
       ui.getResultLabel().setText(replaceFormatting(result));
-      shownError = false;
       history.addCalculation(
           firstOperand + SP + operator + SP + secondOperand + SP + EQUALS + SP + result);
+      firstOperand = EMPTY;
+      secondOperand = EMPTY;
     }
     catch (IllegalArgumentException e)
     {
       ui.errorMessage(e.getMessage());
       result = EMPTY;
-      expFlag = false;
-      shownError = true;
-    }
-    finally
-    {
-      firstOperand = EMPTY;
       secondOperand = EMPTY;
-    }
-    if (shownError)
-    {
-      resetInterface();
-    }
-    else
-    {
-      shownError = false;
+      expFlag = false;
     }
   }
 
@@ -312,7 +290,7 @@ public class InterfaceController
     }
 
   }
-  
+
   /**
    * Handles the imaginary only functionality.
    * 
@@ -454,7 +432,6 @@ public class InterfaceController
       else
       {
         ui.errorMessage("No previous result");
-        resetInterface();
       }
     }
   }
