@@ -34,12 +34,6 @@ public class LogarithmOperator
     {
       throw new IllegalArgumentException(NewMainInterface.STRINGS.getString("VALID_OR_SIMPLIFY"));
     }
-<<<<<<< HEAD
-    
-    String[] decomposedOperands = TempContext.decomposeOperands(alteredOp, BLANK_OPERAND);
-    
-    String leftRegularNumber = decomposedOperands[0];
-=======
 
     String[] decomposedOperands = new String[3];
     try
@@ -52,13 +46,8 @@ public class LogarithmOperator
     }
 
     String leftRegularNumber   = decomposedOperands[0];
->>>>>>> branch 'master' of https://github.com/bernstdh/team11
     String leftImaginaryNumber = decomposedOperands[1];
-<<<<<<< HEAD
-    double dblRegNum = Double.parseDouble(leftRegularNumber);
-    double dblImagNum = 0.00;
-    double finalResult = 0.00;
-=======
+
     double dblRegNum = 0.0;
     try
     {
@@ -71,9 +60,8 @@ public class LogarithmOperator
     
     double dblImagNum          = 0.00;
     double finalResult         = 0.00;
-    double lnComplexReal       = 0.00;
-    double lnComplexImag       = 0.00;
->>>>>>> branch 'master' of https://github.com/bernstdh/team11
+    //double lnComplexReal       = 0.00;
+    //double lnComplexImag       = 0.00;
     
     try
     {
