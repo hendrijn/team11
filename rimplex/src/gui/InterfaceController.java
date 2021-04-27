@@ -24,6 +24,8 @@ public class InterfaceController
   private String secondOperand = EMPTY;
   private String result = EMPTY;
   private boolean expFlag = false;
+  private final String invalid = "Please input two valid operands.";
+  private final String iString = "i";
 
   /**
    * Singleton.
@@ -51,7 +53,7 @@ public class InterfaceController
       Integer.parseInt(button.getText());
       handleInput(button.getText());
     }
-    catch (Throwable t)
+    catch (NumberFormatException t)
     {
       switch (button.getText())
       {
@@ -84,7 +86,7 @@ public class InterfaceController
           catch (NullPointerException nullP)
           {
             firstOperand = EMPTY;
-            ui.errorMessage("Please input two valid operands.");
+            ui.errorMessage(invalid);
             resetInterface();
           }
           break;
@@ -154,7 +156,7 @@ public class InterfaceController
       Integer.parseInt(keyText);
       handleInput(keyText);
     }
-    catch (Throwable t)
+    catch (NumberFormatException t)
     {
       if (keyChar == '\n')
       {
@@ -165,7 +167,7 @@ public class InterfaceController
         catch (NullPointerException nullP)
         {
           firstOperand = EMPTY;
-          ui.errorMessage("Please input two valid operands.");
+          ui.errorMessage(invalid);
           resetInterface();
         }
       }
@@ -189,7 +191,7 @@ public class InterfaceController
           case PDIVIDE:
             handleOperators(DIVIDE);
             break;
-          case "i":
+          case iString:
             handleInput(I);
             break;
           case DECIMAL:
@@ -264,6 +266,8 @@ public class InterfaceController
 
   /**
    * Backspaces the input field.
+   * 
+   * @param ui the user interface to backspace from.
    */
   private void handleBackspace(final NewMainInterface ui)
   {
@@ -303,12 +307,12 @@ public class InterfaceController
     NewMainInterface ui = NewMainInterface.getInstance();
     JLabel inLabel = ui.getInputLabel();
     String actual = removeFormatting(operand);
-    ImaginaryPartOperator i = new ImaginaryPartOperator();
+    ImaginaryPartOperator iOp = new ImaginaryPartOperator();
 
     String change = "";
     try
     {
-      change = i.evaluate(actual);
+      change = iOp.evaluate(actual);
     }
     catch (IllegalArgumentException iae)
     {
@@ -319,6 +323,8 @@ public class InterfaceController
 
   /**
    * Adds soft or physical keyboard input to the display.
+   * 
+   * @param input the String to add to the display.
    */
   private void handleInput(final String input)
   {
@@ -469,7 +475,7 @@ public class InterfaceController
    */
   private void handleSign(final String input)
   {
-    String[] nums = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "i", RPAREN};
+    String[] nums = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0", iString, RPAREN};
     NewMainInterface ui = NewMainInterface.getInstance();
     JLabel inLabel = ui.getInputLabel();
     String actual = removeFormatting(input);
@@ -582,7 +588,7 @@ public class InterfaceController
   {
     String newString = EMPTY;
     newString = input.replace(HTML, EMPTY);
-    newString = newString.replace(I, "i");
+    newString = newString.replace(I, iString);
     return newString;
   }
 
@@ -596,7 +602,7 @@ public class InterfaceController
   private String replaceFormatting(final String input)
   {
     String newString = HTML;
-    newString = newString + input.replace("i", I);
+    newString = newString + input.replace(iString, I);
     return newString;
   }
 
@@ -655,47 +661,47 @@ public class InterfaceController
 
   // ----------------- Unimplemented -------------//
   @Override
-  public void keyPressed(KeyEvent e)
+  public void keyPressed(final KeyEvent e)
   {
   }
 
   @Override
-  public void keyReleased(KeyEvent e)
-  {
-    // TODO Auto-generated method stub
-
-  }
-
-  @Override
-  public void mouseClicked(MouseEvent e)
+  public void keyReleased(final KeyEvent e)
   {
     // TODO Auto-generated method stub
 
   }
 
   @Override
-  public void mousePressed(MouseEvent e)
+  public void mouseClicked(final MouseEvent e)
   {
     // TODO Auto-generated method stub
 
   }
 
   @Override
-  public void mouseReleased(MouseEvent e)
+  public void mousePressed(final MouseEvent e)
   {
     // TODO Auto-generated method stub
 
   }
 
   @Override
-  public void mouseEntered(MouseEvent e)
+  public void mouseReleased(final MouseEvent e)
   {
     // TODO Auto-generated method stub
 
   }
 
   @Override
-  public void mouseExited(MouseEvent e)
+  public void mouseEntered(final MouseEvent e)
+  {
+    // TODO Auto-generated method stub
+
+  }
+
+  @Override
+  public void mouseExited(final MouseEvent e)
   {
     // TODO Auto-generated method stub
 

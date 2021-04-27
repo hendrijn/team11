@@ -17,27 +17,21 @@ import javax.swing.border.Border;
 public class NewMainInterface extends JFrame implements Finals
 {
   private static final long serialVersionUID = 5691196863267451960L;
-
   private static final Locale LOCALE = Locale.getDefault();
   private static final String US = "US";
   private static final String EN = "EN";
   private static final String TIMES_NEW_ROMAN = "Times New Roman";
   private static JButton history;
   private static NewMainInterface ui;
-  private static ResourceBundle STRINGS = ResourceBundle.getBundle("gui.Strings", LOCALE);
-
-  
-  private InterfaceController listener;
+  private static String GUI_STRINGS = "gui.Strings";
+  private static ResourceBundle STRINGS = ResourceBundle.getBundle(GUI_STRINGS, LOCALE);
   JLabel expressionDisplay, resultDisplay, inputDisplay;
   JMenuBar menuBar;
   JMenu settingsMenu, aboutMenu, fileMenu, langMenu;
   JMenuItem about, add, start, pause, stop, print, speed;
   JPanel northPanel, eastPanel, centerPanel, bar;
-
-  public ResourceBundle getStrings()
-  {
-    return STRINGS;
-  }
+  private InterfaceController listener;
+ 
   /**
    * Default constructor.
    */
@@ -73,6 +67,16 @@ public class NewMainInterface extends JFrame implements Finals
     setupFrame();
     setVisible(true); // display this
     // System.out.println("current working directory is: " + System.getProperty("user.dir"));
+  }
+  
+  /**
+   * Getter for the STRINGS attribute.
+   * 
+   * @return the STRINGS attribute.
+   */
+  public ResourceBundle getStrings()
+  {
+    return STRINGS;
   }
 
   /**
@@ -396,7 +400,7 @@ public class NewMainInterface extends JFrame implements Finals
    */
   public void updateLanguage(final Locale locale)
   {
-    NewMainInterface.STRINGS = ResourceBundle.getBundle("gui.Strings", locale);
+    NewMainInterface.STRINGS = ResourceBundle.getBundle(GUI_STRINGS, locale);
     settingsMenu.setText(STRINGS.getString("SETTINGS"));
     fileMenu.setText(STRINGS.getString("FILE"));
     aboutMenu.setText(STRINGS.getString("HELP"));

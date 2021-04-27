@@ -109,8 +109,14 @@ public class HistoryDisplay extends JWindow implements Finals
       history = new HistoryDisplay();
     return history;
   }
-  
-  public JTextArea getCalcList() {
-	  return calcList;
+
+  /**
+   * Getter for the calcList attribute.
+   * 
+   * @return the calcList attribute.
+   */
+  public JTextArea getCalcList()
+  {
+    return calcList;
   }
 }

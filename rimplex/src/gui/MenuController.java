@@ -16,12 +16,13 @@ import javax.swing.JOptionPane;
 public class MenuController implements ActionListener, Finals
 {
   private static MenuController instance = null;
+  boolean isRunning;
   private CalculationRecorder recorder = new CalculationRecorder(1000, this);
   private JMenuItem add, play, pause, stop;
   private int elementsDisplayed = 0;
   private int calcCount = 0;
 
-  boolean isRunning;
+  
 
   /**
    * Singleton.
@@ -258,7 +259,7 @@ public class MenuController implements ActionListener, Finals
   /**
    * Either enables or disables menu items on the main interface.
    * 
-   * @param play2
+   * @param item
    *          the menu item.
    * @param isEnabled
    *          true to enable, false to disable

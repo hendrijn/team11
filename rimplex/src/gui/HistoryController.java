@@ -19,7 +19,7 @@ public class HistoryController implements Finals, ActionListener, ComponentListe
 {
 
   @Override
-  public void actionPerformed(ActionEvent e)
+  public void actionPerformed(final ActionEvent e)
   {
     HistoryDisplay history = HistoryDisplay.getInstance();
     JButton btn = (JButton) e.getSource();
@@ -40,19 +40,21 @@ public class HistoryController implements Finals, ActionListener, ComponentListe
         history.setVisible(true);
         // history.open.setVisible(true);
         break;
+      default:
+        break;
 
     }
   }
 
   @Override
-  public void componentResized(ComponentEvent e)
+  public void componentResized(final ComponentEvent e)
   {
     // TODO Auto-generated method stub
 
   }
 
   @Override
-  public void componentMoved(ComponentEvent e)
+  public void componentMoved(final ComponentEvent e)
   {
     HistoryDisplay history = HistoryDisplay.getInstance();
     Component comp = (Component) e.getSource();
@@ -66,14 +68,14 @@ public class HistoryController implements Finals, ActionListener, ComponentListe
   }
 
   @Override
-  public void componentShown(ComponentEvent e)
+  public void componentShown(final ComponentEvent e)
   {
     // TODO Auto-generated method stub
 
   }
 
   @Override
-  public void componentHidden(ComponentEvent e)
+  public void componentHidden(final ComponentEvent e)
   {
     // TODO Auto-generated method stub
 
