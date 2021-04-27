@@ -14,7 +14,7 @@ import operations.TempContext;
  * @author pgleb - team 11
  * @version Sprint 3
  */
-class MultiplicationOperatorTesting
+class MultiplicationOperatorTest
 {
 
   @Test

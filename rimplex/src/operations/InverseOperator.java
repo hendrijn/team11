@@ -59,7 +59,7 @@ public class InverseOperator
       }
       double finalReturnOperand = (1 / finalOperand);
 
-      return String.valueOf(finalReturnOperand) + "+0.00i";
+      return  String.format("%.2f", finalReturnOperand) + "+0.00i";
     }
 
     TempContext multiContext     = new TempContext(new MultiplicationOperator());

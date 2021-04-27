@@ -29,7 +29,7 @@ class InverseOperatorTest
   public void invertRealTest1()
   {
     String operand = "8";
-    String expectedInverse = "0.125+0.00i";
+    String expectedInverse = "0.13+0.00i";
     InverseOperator inverseOperator = new InverseOperator();
     String actualInverse = inverseOperator.invert(operand);
     assertEquals(expectedInverse, actualInverse);

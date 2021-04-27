@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 import operations.AdditionOperator;
 import operations.TempContext;
 
-class AdditonOperatorTesting
+class AdditionOperatorTest
 {
 
   //Testing for two valid complex numbers
