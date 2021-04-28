@@ -44,7 +44,7 @@ public class ImaginaryPartOperator
     try
     {
       Double.parseDouble(((alteredOp.replace(Strings.I, "")).replace(Strings.PLUS, ""))
-          .replaceAll(Strings.MINUS, ""));
+          .replaceAll(Strings.MINUS, "").replace(".", ""));
     }
     catch (NumberFormatException nfe)
     {
