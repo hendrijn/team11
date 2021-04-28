@@ -1,7 +1,5 @@
 package operations;
 
-import gui.NewMainInterface;
-
 /**
  * Class for evaluating operands raised to the exponential.
  * 
@@ -10,13 +8,6 @@ import gui.NewMainInterface;
  */
 public class ExponentOperator
 {
-
-  // attributes
-  private final String blankOperand = "0";
-  private final String invalid = "NOT_VALID_OPERAND";
-  private final String zeroBase = "1.00+0.00i";
-  private NewMainInterface ui = NewMainInterface.getInstance();
-
   /**
    * Evaluates an operand raised to a power.
    * 
@@ -34,11 +25,11 @@ public class ExponentOperator
     String[] decomposedOperands = new String[3];
     try
     {
-      decomposedOperands = TempContext.decomposeOperands(operand, blankOperand);
+      decomposedOperands = TempContext.decomposeOperands(operand, Strings.NO_OPERAND);
     }
     catch (IllegalArgumentException e)
     {
-      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
+      throw new IllegalArgumentException(Strings.UI.getStrings().getString(Strings.INVALID));
     }
 
     int powerOf = 0;
@@ -48,13 +39,13 @@ public class ExponentOperator
     }
     catch (NumberFormatException e)
     {
-      throw new IllegalArgumentException(ui.getStrings().getString("BASE"));
+      throw new IllegalArgumentException(Strings.UI.getStrings().getString("BASE"));
     }
-    
-    //If to the zero power, return 1. Done here to save work
-    if (powerOf == 0) 
+
+    // If to the zero power, return 1. Done here to save work
+    if (powerOf == 0)
     {
-      return zeroBase; 
+      return Strings.ZERO_BASE;
     }
 
     String leftRegularNumber = decomposedOperands[0];
@@ -62,8 +53,7 @@ public class ExponentOperator
     double dblRegNum = 0.0;
     double dblImagNum = 0.0;
     double finalResult = 0.0;
-    String finalOperand = "";   
-    
+    String finalOperand = "";
 
     // Processing the parts of the operand as doubles
     try
@@ -72,7 +62,7 @@ public class ExponentOperator
     }
     catch (NumberFormatException e1)
     {
-      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
+      throw new IllegalArgumentException(Strings.UI.getStrings().getString(Strings.INVALID));
     }
 
     try
@@ -81,32 +71,31 @@ public class ExponentOperator
     }
     catch (NumberFormatException e2)
     {
-      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
+      throw new IllegalArgumentException(Strings.UI.getStrings().getString(Strings.INVALID));
     }
-    
 
     if (dblImagNum == 0.00)
     {
       finalResult = Math.pow(dblRegNum, powerOf);
       finalOperand = String.format("%.2f+0.00i", finalResult);
     }
-    else 
+    else
     {
       String runningOperand = operand;
       TempContext multiOp = new TempContext(new MultiplicationOperator());
-      
-      if (powerOf == 1) 
+
+      if (powerOf == 1)
       {
-        finalOperand = String.format("%.2f+%.2fi", dblRegNum, dblImagNum); 
+        finalOperand = String.format("%.2f+%.2fi", dblRegNum, dblImagNum);
       }
-  
+
       // iterative multiplication
       for (int i = 1; i < powerOf; i++)
       {
         finalOperand = multiOp.evaluate(operand, runningOperand);
         runningOperand = finalOperand;
       }
-      
+
     }
     return finalOperand;
   }

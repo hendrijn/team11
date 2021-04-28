@@ -1,7 +1,5 @@
 package operations;
 
-import gui.NewMainInterface;
-
 /**
  * class that includes operations for computing the quotient of two real, imaginary, and complex
  * numbers.
@@ -11,16 +9,6 @@ import gui.NewMainInterface;
  */
 public class DivisionOperator implements Operator
 {
-  private final String form = "%.2f";
-  private final String noOp = "NO_OPERAND";
-  private final String space = " ";
-  private final String openParen = "(";
-  private final String closedParen = ")";
-  private final String plus = "+";
-  private final String minus = "-";
-  private final String i = "i";
-  private NewMainInterface ui = NewMainInterface.getInstance();
-
   /**
    * Divides the given dividend by the given divisor.
    * 
@@ -40,14 +28,14 @@ public class DivisionOperator implements Operator
     if (leftOperand == null || rightOperand == null || leftOperand.equals("")
         || rightOperand.equals(""))
     {
-      throw new IllegalArgumentException(ui.getStrings().getString(noOp));
+      throw new IllegalArgumentException(Strings.UI.getStrings().getString(Strings.NO_OPERAND));
     }
 
     // removes spaces and parens from l and r operands
-    String alteredLOp = ((leftOperand.replaceAll(space, "")).replace(openParen, ""))
-        .replace(closedParen, "");
-    String alteredROp = ((rightOperand.replaceAll(space, "")).replace(openParen, ""))
-        .replace(closedParen, "");
+    String alteredLOp = ((leftOperand.replaceAll(Strings.SPACE, "")).replace(Strings.OPEN_PAREN,
+        "")).replace(Strings.CLOSED_PAREN, "");
+    String alteredROp = ((rightOperand.replaceAll(Strings.SPACE, "")).replace(Strings.OPEN_PAREN,
+        "")).replace(Strings.CLOSED_PAREN, "");
 
     if (alteredLOp.equals("") || alteredROp.equals(""))
     {
@@ -65,21 +53,21 @@ public class DivisionOperator implements Operator
     String[] parts = new String[4];
 
     // error checking to see if right operand is 0 (checking for divide by zero)
-    String zeroCheckR = (((alteredROp.replaceAll(minus, "")).replace(plus, "")).replace(i, ""))
-        .replaceAll("0", "");
+    String zeroCheckR = (((alteredROp.replaceAll(Strings.MINUS, "")).replace(Strings.PLUS, ""))
+        .replace(Strings.I, "")).replaceAll("0", "");
 
-    if (!alteredROp.equals(i) && !alteredROp.equals("-i"))
+    if (!alteredROp.equals(Strings.I) && !alteredROp.equals(Strings.NEGATIVE_I))
     {
       if (zeroCheckR.equals("") || zeroCheckR.equals(".") || zeroCheckR.equals(".."))
       {
-        throw new IllegalArgumentException(ui.getStrings().getString("RIGHT_OPERAND"));
+        throw new IllegalArgumentException(Strings.UI.getStrings().getString(Strings.NO_OPERAND));
       }
     }
 
     parts = TempContext.decomposeOperands(alteredLOp, alteredROp);
 
     double doubleResult = 0.0;
-    String result = "0.00+0.00i";
+    String result = Strings.ZERO_BASE;
 
     if ((complexL && complexR) || (complexL && imaginaryR) || (imaginaryL && complexR)
         || (realL && complexR) || (realL && imaginaryR))
@@ -94,8 +82,8 @@ public class DivisionOperator implements Operator
       double realDiv = Double.parseDouble(conjugateParts[0])
           / Double.parseDouble(conjugateParts[2]);
       double imgDiv = Double.parseDouble(conjugateParts[1]) / Double.parseDouble(conjugateParts[2]);
-      result = TempContext
-          .format(String.format(form, realDiv) + plus + String.format(form, imgDiv) + i);
+      result = TempContext.format(String.format(Strings.FORM, realDiv) + Strings.PLUS
+          + String.format(Strings.FORM, imgDiv) + Strings.I);
     }
 
     if (realL && realR)
@@ -103,35 +91,35 @@ public class DivisionOperator implements Operator
       double doubleL = Double.parseDouble(alteredLOp);
       double doubleR = Double.parseDouble(alteredROp);
       doubleResult = doubleL / doubleR;
-      result = TempContext.format(String.format(form, doubleResult));
+      result = TempContext.format(String.format(Strings.FORM, doubleResult));
     }
 
     if (imaginaryL && realR)
     {
       double doubleR = Double.parseDouble(alteredROp);
       doubleResult = Double.parseDouble(parts[1]) / doubleR;
-      result = TempContext.format(String.format(form, doubleResult) + i);
+      result = TempContext.format(String.format(Strings.FORM, doubleResult) + Strings.I);
     }
 
     if (complexL && realR)
     {
       double realNum = Double.parseDouble(parts[0]) / Double.parseDouble(parts[2]);
       double imgNum = Double.parseDouble(parts[1]) / Double.parseDouble(parts[2]);
-      result = TempContext
-          .format(String.format(form, realNum) + plus + String.format(form, imgNum) + i);
+      result = TempContext.format(String.format(Strings.FORM, realNum) + Strings.PLUS
+          + String.format(Strings.FORM, imgNum) + Strings.I);
     }
 
     if (imaginaryL && imaginaryR)
     {
       doubleResult = Double.parseDouble(parts[1]) / Double.parseDouble(parts[3]);
-      result = TempContext.format(String.format(form, doubleResult));
+      result = TempContext.format(String.format(Strings.FORM, doubleResult));
     }
 
     // edits any +- occurances to -
-    if (result.contains("+-"))
+    if (result.contains(Strings.PLUS_MINUS))
     {
-      result = result.substring(0, result.indexOf(plus)) + minus
-          + result.substring(result.indexOf(plus) + 2);
+      result = result.substring(0, result.indexOf(Strings.PLUS)) + Strings.MINUS
+          + result.substring(result.indexOf(Strings.PLUS) + 2);
     }
 
     // fixes weird case where -0.00 was occurring

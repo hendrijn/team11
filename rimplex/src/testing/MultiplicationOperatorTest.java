@@ -1,10 +1,8 @@
 package testing;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
 import operations.MultiplicationOperator;
 import operations.TempContext;
 
@@ -16,9 +14,6 @@ import operations.TempContext;
  */
 class MultiplicationOperatorTest
 {
-
-
-  //Testing two complex numbers
   private final String invalid = "Please provide two valid operands";
   private final String simplify = "Please provide two valid operands, or simplify them";
   private final String empty = "Please provide a valid operand";
@@ -44,7 +39,7 @@ class MultiplicationOperatorTest
   private final String iLoveCS345 = "iLoveCS345";
   
   /**
-   * Testing two complex numbers
+   * Testing two complex numbers.
    */
   @Test
   public void twoValidComplexNumbersTest()
@@ -56,12 +51,9 @@ class MultiplicationOperatorTest
     String actualResult = tempContext.evaluate(complexNumberOne, complexNumberTwo);
     assertEquals(expectedResult, actualResult);
   }
-
-
- 
-
+  
   /**
-   *  Testing two real numbers
+   *  Testing two real numbers.
    */
   @Test
   public void twoValidRealNumTest()
@@ -74,10 +66,8 @@ class MultiplicationOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
- 
-
   /**
-   * Testing one complex one real
+   * Testing one complex one real.
    */
   @Test
   public void twoValidComplexNumMix1Test()
@@ -90,9 +80,8 @@ class MultiplicationOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
-
   /**
-   * Testing one complex one real with mixed formatting
+   * Testing one complex one real with mixed formatting.
    */
   @Test
   public void twoValidComplexNumMix2Test()
@@ -106,7 +95,7 @@ class MultiplicationOperatorTest
   }
 
   /**
-   * Testing times zero with a real number
+   * Testing times zero with a real number.
    */
   @Test
   public void twoValidZero1Test()
@@ -120,7 +109,7 @@ class MultiplicationOperatorTest
   }
 
   /**
-   * Testing times zero with a complex number
+   * Testing times zero with a complex number.
    */
   @Test
   public void twoValidZero2Test()
@@ -133,10 +122,8 @@ class MultiplicationOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
-
-
   /**
-   * Testing times zero with just i
+   * Testing times zero with just i.
    */
   @Test
   public void twoValidZero3Test()
@@ -149,9 +136,8 @@ class MultiplicationOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
-
   /**
-   * Testing i times i
+   * Testing i times i.
    */
   @Test
   public void twoValidComplexNumI1Test()
@@ -164,9 +150,8 @@ class MultiplicationOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
-
   /**
-   * Testing two imaginary numbers times each other
+   * Testing two imaginary numbers times each other.
    */
   @Test
   public void twoValidComplexNumI2Test()
@@ -179,9 +164,8 @@ class MultiplicationOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
-
   /**
-   * Testing a null left operand
+   * Testing a null left operand.
    */
   @Test
   public void inValidNullLeftOperandTest()
@@ -199,12 +183,11 @@ class MultiplicationOperatorTest
   }
 
   /**
-   * Testing a null right operand
+   * Testing a null right operand.
    */
   @Test
   public void inValidNullRightOperandTest()
   {
-
     String complexNumberOne = complexTwo;
     String complexNumberTwo = null;
     TempContext tempContext = new TempContext(new MultiplicationOperator());
@@ -218,12 +201,11 @@ class MultiplicationOperatorTest
   }
 
   /**
-   * Testing an empty left operand
+   * Testing an empty left operand.
    */
   @Test
   public void inValidEmptyLeftOperandTest()
   {
-
     String complexNumberOne = "";
     String complexNumberTwo = complexTwo;
     TempContext tempContext = new TempContext(new MultiplicationOperator());
@@ -237,12 +219,11 @@ class MultiplicationOperatorTest
   }
 
   /**
-   * Testing an empty right operand
+   * Testing an empty right operand.
    */
   @Test
   public void inValidEmptyRightOperandTest()
   {
-
     String complexNumberOne = complexThree;
     String complexNumberTwo = "";
     TempContext tempContext = new TempContext(new MultiplicationOperator());
@@ -256,12 +237,11 @@ class MultiplicationOperatorTest
   }
 
   /**
-   * Testing an invalid regular part of a complex number left operand 
+   * Testing an invalid regular part of a complex number left operand.
    */
   @Test
   public void inValidRegLeftOperandTest()
   {
-
     String complexNumberOne = "4b + 3i";
     String complexNumberTwo = complexFour;
     TempContext tempContext = new TempContext(new MultiplicationOperator());
@@ -275,12 +255,11 @@ class MultiplicationOperatorTest
   }
 
   /**
-   * Testing an invalid complex number left operand;
+   * Testing an invalid complex number left operand.
    */
   @Test
   public void inValidImagLeftOperandTest()
   {
-
     String complexNumberOne = "4b + 3iiabc";
     String complexNumberTwo = complexFour;
     TempContext tempContext = new TempContext(new MultiplicationOperator());
@@ -294,12 +273,11 @@ class MultiplicationOperatorTest
   }
 
   /**
-   * Testing an invalid regular part of a complex number right operand  
+   * Testing an invalid regular part of a complex number right operand.  
    */
   @Test
   public void inValidRegRightOperandTest()
   {
-
     String complexNumberOne = complexThree;
     String complexNumberTwo = "bvxc + 3i";
     TempContext tempContext = new TempContext(new MultiplicationOperator());
@@ -313,12 +291,11 @@ class MultiplicationOperatorTest
   }
 
   /**
-   * Testing an invalid imaginary number in the right operand
+   * Testing an invalid imaginary number in the right operand.
    */
   @Test
   public void inValidImagRightOperandTest()
   {
-
     String complexNumberOne = complexThree;
     String complexNumberTwo = "4 + 3iasdsads";
     TempContext tempContext = new TempContext(new MultiplicationOperator());
@@ -332,12 +309,11 @@ class MultiplicationOperatorTest
   }
 
   /**
-   * Testing an nonsense left operand
+   * Testing an nonsense left operand.
    */
   @Test
   public void inValidGibberishLeftOperandTest()
   {
-
     String complexNumberOne = "dsfgfdsgdsfg";
     String complexNumberTwo = complexThree;
     TempContext tempContext = new TempContext(new MultiplicationOperator());
@@ -351,12 +327,11 @@ class MultiplicationOperatorTest
   }
 
   /**
-   * Testing an nonsense right operand
+   * Testing an nonsense right operand.
    */
   @Test
   public void inValidGibberishRightOperandTest()
   {
-
     String complexNumberOne = complexThree;
     String complexNumberTwo = iLoveCS345;
     TempContext tempContext = new TempContext(new MultiplicationOperator());
@@ -370,12 +345,11 @@ class MultiplicationOperatorTest
   }
 
   /**
-   * Testing invalid imaginary unit format on the left
+   * Testing invalid imaginary unit format on the left.
    */
   @Test
   public void tooManyIsLeftTest()
   {
-
     String complexNumberOne = "4 + 3iiiiiiiii";
     String complexNumberTwo = iLoveCS345;
     TempContext tempContext = new TempContext(new MultiplicationOperator());
@@ -389,12 +363,11 @@ class MultiplicationOperatorTest
   }
 
   /**
-   * Testing invalid imaginary unit format on the right
+   * Testing invalid imaginary unit format on the right.
    */
   @Test
   public void tooManyIsRightTest()
   {
-
     String complexNumberOne = complexThree;
     String complexNumberTwo = "4iiiiii + 3i";
     TempContext tempContext = new TempContext(new MultiplicationOperator());
@@ -408,12 +381,11 @@ class MultiplicationOperatorTest
   }
 
   /**
-   * Testing an invalid left operand with an i in it
+   * Testing an invalid left operand with an i in it.
    */
   @Test
   public void oneIInvalidLeftOperandTest()
   {
-
     String complexNumberOne = iLoveCS345;
     String complexNumberTwo = complexThree;
     TempContext tempContext = new TempContext(new MultiplicationOperator());
@@ -427,12 +399,11 @@ class MultiplicationOperatorTest
   }
 
   /**
-   * Testing an invalid right operand with an i in it
+   * Testing an invalid right operand with an i in it.
    */
   @Test
   public void oneIInvalidRightOperandTest()
   {
-
     String complexNumberOne = complexThree;
     String complexNumberTwo = iLoveCS345;
     TempContext tempContext = new TempContext(new MultiplicationOperator());
@@ -446,7 +417,7 @@ class MultiplicationOperatorTest
   }
 
   /**
-   * Testing one positive and one negative complex number
+   * Testing one positive and one negative complex number.
    */
   @Test
   public void twoValidComplexNumbersNeg1Test()
@@ -460,7 +431,7 @@ class MultiplicationOperatorTest
   }
 
   /**
-   * Testing one positive and one negative complex numbers
+   * Testing one positive and one negative complex numbers.
    */
   @Test
   public void twoValidComplexNumbersNeg2Test()
@@ -474,7 +445,7 @@ class MultiplicationOperatorTest
   }
 
   /**
-   * Testing one positive and one negative complex numbers
+   * Testing one positive and one negative complex numbers.
    */
   @Test
   public void twoValidComplexNumbersNeg3Test()
@@ -489,7 +460,7 @@ class MultiplicationOperatorTest
 
 
   /**
-   * Testing multiplying with negative numbers and decimals
+   * Testing multiplying with negative numbers and decimals.
    */
   @Test
   public void twoValidRegNumbersNeg1Test()
@@ -503,7 +474,7 @@ class MultiplicationOperatorTest
   }
 
   /**
-   * Testing multiplying with one positive and one negative numbers with decimals
+   * Testing multiplying with one positive and one negative numbers with decimals.
    */
   @Test
   public void twoValidRegNumbersNeg2Test()
@@ -517,7 +488,7 @@ class MultiplicationOperatorTest
   }
 
   /**
-   * Testing multiplying with negative numbers with decimals
+   * Testing multiplying with negative numbers with decimals.
    */
   @Test
   public void twoValidRegNumbersNeg3Test()
@@ -531,7 +502,7 @@ class MultiplicationOperatorTest
   }
 
   /**
-   * Testing multiplying with real and complex numbers with decimals
+   * Testing multiplying with real and complex numbers with decimals.
    */
   @Test
   public void twoValidMixedNumbersNeg1Test()
@@ -545,7 +516,7 @@ class MultiplicationOperatorTest
   }
 
   /**
-   * Testing multiplying with real and complex numbers with negatives
+   * Testing multiplying with real and complex numbers with negatives.
    */
   @Test
   public void twoValidMixedNumbersNeg2Test()
@@ -559,7 +530,7 @@ class MultiplicationOperatorTest
   }
 
   /**
-   * Testing multiplying with real and complex numbers with negatives
+   * Testing multiplying with real and complex numbers with negatives.
    */
   @Test
   public void twoValidMixedNumbersNeg3Test()
@@ -572,9 +543,8 @@ class MultiplicationOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
-
   /**
-   * Testing two imaginary decimal operands
+   * Testing two imaginary decimal operands.
    */
   @Test
   public void testDecimalOperands2()
@@ -586,7 +556,7 @@ class MultiplicationOperatorTest
   }
 
   /**
-   * Testing two real decimal operands
+   * Testing two real decimal operands.
    */
   @Test
   public void testDecimalOperands3()
@@ -598,7 +568,7 @@ class MultiplicationOperatorTest
   }
 
   /**
-   * Testing one complex decimal operand and one imaginary
+   * Testing one complex decimal operand and one imaginary.
    */
   @Test
   public void testDecimalOperands4()
@@ -610,7 +580,7 @@ class MultiplicationOperatorTest
   }
 
   /**
-   * Testing one complex decimal operand and one real
+   * Testing one complex decimal operand and one real.
    */
   @Test
   public void testDecimalOperands5()
@@ -622,7 +592,7 @@ class MultiplicationOperatorTest
   }
 
   /**
-   * Testing one imaginary decimal operand and one real
+   * Testing one imaginary decimal operand and one real.
    */
   @Test
   public void testDecimalOperands6()
@@ -634,7 +604,7 @@ class MultiplicationOperatorTest
   }
 
   /**
-   * Testing two negative complex numbers with decimals
+   * Testing two negative complex numbers with decimals.
    */
   @Test
   public void testNegComplex()
@@ -646,7 +616,7 @@ class MultiplicationOperatorTest
   }
 
   /**
-   * Testing one negative complex number and one real
+   * Testing one negative complex number and one real.
    */
   @Test
   public void testNegComplex2()
@@ -656,5 +626,4 @@ class MultiplicationOperatorTest
     String expected = "12.00-20.00i";
     assertEquals(expected, actual);
   }
-
 }

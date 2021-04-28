@@ -1,7 +1,5 @@
 package operations;
 
-import gui.NewMainInterface;
-
 /**
  * Class for picking out the imaginary part of a complex (or real/imaginary) number.
  * 
@@ -10,15 +8,6 @@ import gui.NewMainInterface;
  */
 public class ImaginaryPartOperator
 {
-  // attributes
-  private final String form = "%.2f";
-  private final String noOp = "NO_OPERAND";
-  private final String invalid = "VALID_OR_SIMPLIFY";
-  private final String plus = "+";
-  private final String minusSign = "-";
-  private final String i = "i";
-  private NewMainInterface ui = NewMainInterface.getInstance();
-
   /**
    * Isolates the imaginary part of the given operand.
    * 
@@ -33,31 +22,33 @@ public class ImaginaryPartOperator
     // error checking for null/empty operand
     if (operand == null || operand.equals(""))
     {
-      throw new IllegalArgumentException(ui.getStrings().getString(noOp));
+      throw new IllegalArgumentException(Strings.UI.getStrings().getString(Strings.NO_OPERAND));
     }
 
-    String alteredOp = ((operand.replaceAll(" ", "")).replace("(", "")).replace(")", "");
+    String alteredOp = ((operand.replaceAll(Strings.SPACE, "")).replace(Strings.OPEN_PAREN, ""))
+        .replace(Strings.CLOSED_PAREN, "");
     String result = "";
 
     // error checkng for invalid operand
     if (alteredOp.equals(""))
     {
-      throw new IllegalArgumentException(ui.getStrings().getString(noOp));
+      throw new IllegalArgumentException(Strings.UI.getStrings().getString(Strings.NO_OPERAND));
     }
 
     long iCount = alteredOp.chars().filter(ch -> ch == 'i').count();
     if (iCount > 1)
     {
-      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
+      throw new IllegalArgumentException(Strings.UI.getStrings().getString(Strings.INVALID));
     }
 
     try
     {
-      Double.parseDouble(((alteredOp.replace(i, "")).replace(plus, "")).replaceAll(minusSign, ""));
+      Double.parseDouble(((alteredOp.replace(Strings.I, "")).replace(Strings.PLUS, ""))
+          .replaceAll(Strings.MINUS, ""));
     }
     catch (NumberFormatException nfe)
     {
-      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
+      throw new IllegalArgumentException(Strings.UI.getStrings().getString(Strings.INVALID));
     }
 
     boolean isComplex = TempContext.isComplex(alteredOp);
@@ -70,35 +61,37 @@ public class ImaginaryPartOperator
     if (isComplex)
     {
       // operand with form -x-yi
-      if (alteredOp.contains(minusSign) && minus != -1)
+      if (alteredOp.contains(Strings.MINUS) && minus != -1)
       {
-        result = String.format(form,
-            Double.parseDouble(alteredOp.substring(minus, alteredOp.indexOf('i')))) + i;
+        result = String.format(Strings.FORM,
+            Double.parseDouble(alteredOp.substring(minus, alteredOp.indexOf('i')))) + Strings.I;
       }
       // operand with form x+yi or -x+yi
-      else if (alteredOp.contains(plus))
+      else if (alteredOp.contains(Strings.PLUS))
       {
-        result = String.format(form, Double
-            .parseDouble(alteredOp.substring(alteredOp.indexOf('+') + 1, alteredOp.indexOf('i'))))
-            + i;
+        result = String.format(Strings.FORM,
+            Double.parseDouble(
+                alteredOp.substring(alteredOp.indexOf('+') + 1, alteredOp.indexOf('i'))))
+            + Strings.I;
       }
       // operand with from x-yi
       else
       {
-        result = String.format(form,
-            Double.parseDouble(alteredOp.substring(negativeMinus, alteredOp.indexOf('i')))) + i;
+        result = String.format(Strings.FORM,
+            Double.parseDouble(alteredOp.substring(negativeMinus, alteredOp.indexOf('i'))))
+            + Strings.I;
       }
     }
 
     if (isImaginary)
     {
-      result = String.format(form,
-          Double.parseDouble(alteredOp.substring(0, alteredOp.indexOf('i')))) + i;
+      result = String.format(Strings.FORM,
+          Double.parseDouble(alteredOp.substring(0, alteredOp.indexOf('i')))) + Strings.I;
     }
 
     if (isReal)
     {
-      result = String.format(form, 0.0) + i;
+      result = String.format(Strings.FORM, 0.0) + Strings.I;
     }
     return result;
   }

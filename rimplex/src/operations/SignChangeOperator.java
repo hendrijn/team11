@@ -1,7 +1,5 @@
 package operations;
 
-import gui.NewMainInterface;
-
 /**
  * class for changing the sign of an operand from its current sign to the opposite. ex: if currently
  * -7 changes to 7 and vice versa.
@@ -11,13 +9,6 @@ import gui.NewMainInterface;
  */
 public class SignChangeOperator
 {
-  private static final String NO_OPERAND = "NO_OPERAND";
-  private static final String OPEN_PAREN = "(";
-  private static final String CLOSED_PAREN = ")";
-  private static final String INVALID = "VALID_OR_SIMPLIFY";
-  private static final String MINUS = "-";
-  private static NewMainInterface ui = NewMainInterface.getInstance();
-
   /**
    * changes the sign of an operand.
    * 
@@ -33,22 +24,22 @@ public class SignChangeOperator
     // error checking null/empty
     if (operand == null || operand.equals(""))
     {
-      throw new IllegalArgumentException(ui.getStrings().getString(NO_OPERAND));
+      throw new IllegalArgumentException(Strings.UI.getStrings().getString(Strings.NO_OPERAND));
     }
 
-    String alteredOp = ((operand.replaceAll(" ", "")).replace(OPEN_PAREN, "")).replace(CLOSED_PAREN,
-        "");
+    String alteredOp = ((operand.replaceAll(Strings.SPACE, "")).replace(Strings.OPEN_PAREN, ""))
+        .replace(Strings.CLOSED_PAREN, "");
 
     // error checking invalid
     long iCount = alteredOp.chars().filter(ch -> ch == 'i').count();
     if (iCount > 1)
     {
-      throw new IllegalArgumentException(ui.getStrings().getString(INVALID));
+      throw new IllegalArgumentException(Strings.UI.getStrings().getString(Strings.INVALID));
     }
 
     if (alteredOp.equals(""))
     {
-      throw new IllegalArgumentException(ui.getStrings().getString(NO_OPERAND));
+      throw new IllegalArgumentException(Strings.UI.getStrings().getString(Strings.NO_OPERAND));
     }
 
     boolean complex = TempContext.isComplex(alteredOp);
@@ -57,11 +48,12 @@ public class SignChangeOperator
     if (alteredOp.length() > 1)
       try
       {
-        Double.parseDouble(((alteredOp.replace("i", "")).replace("+", "")).replaceAll(MINUS, ""));
+        Double.parseDouble(((alteredOp.replace(Strings.I, "")).replace(Strings.PLUS, ""))
+            .replaceAll(Strings.MINUS, ""));
       }
       catch (NumberFormatException nfe)
       {
-        throw new IllegalArgumentException(ui.getStrings().getString(INVALID));
+        throw new IllegalArgumentException(Strings.UI.getStrings().getString(Strings.INVALID));
       }
 
     if (complex)
@@ -70,11 +62,12 @@ public class SignChangeOperator
       String conjugatedOp = c.conjugate(alteredOp);
       if (conjugatedOp.charAt(0) == '-')
       {
-        result = OPEN_PAREN + conjugatedOp.substring(1) + CLOSED_PAREN; // put back parens
+        result = Strings.OPEN_PAREN + conjugatedOp.substring(1) + Strings.CLOSED_PAREN; // put back
+                                                                                        // parens
       }
       else
       {
-        result = "(-" + conjugatedOp + CLOSED_PAREN;
+        result = "(-" + conjugatedOp + Strings.CLOSED_PAREN;
       }
     }
     else
@@ -85,7 +78,7 @@ public class SignChangeOperator
       }
       else
       {
-        result = MINUS + alteredOp;
+        result = Strings.MINUS + alteredOp;
       }
     }
     return result;

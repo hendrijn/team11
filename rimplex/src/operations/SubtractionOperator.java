@@ -1,7 +1,5 @@
 package operations;
 
-import gui.NewMainInterface;
-
 /**
  * class that has an operation for performing a subtraction on two complex, real, or imaginary
  * numbers.
@@ -11,10 +9,6 @@ import gui.NewMainInterface;
  */
 public class SubtractionOperator implements Operator
 {
-
-  private final String space = " ";
-  private NewMainInterface ui = NewMainInterface.getInstance();
-
   /**
    * Evaluates a subtraction of two operands.
    * 
@@ -34,11 +28,11 @@ public class SubtractionOperator implements Operator
     if (leftOperand == null || rightOperand == null || leftOperand.equals("")
         || rightOperand.equals(""))
     {
-      throw new IllegalArgumentException(ui.getStrings().getString("TWO_OPERANDS"));
+      throw new IllegalArgumentException(Strings.UI.getStrings().getString(Strings.TWO_OPERANDS));
     }
 
-    String noSpL = leftOperand.replaceAll(space, "");
-    String noSpR = rightOperand.replaceAll(space, "");
+    String noSpL = leftOperand.replaceAll(Strings.SPACE, "");
+    String noSpR = rightOperand.replaceAll(Strings.SPACE, "");
     String distribute = SubtractionOperator.distribute(noSpR);
     String result = new AdditionOperator().evaluate(noSpL, distribute);
 
@@ -54,8 +48,8 @@ public class SubtractionOperator implements Operator
    */
   private static String distribute(final String rightOperand)
   {
-    final String minusSign = "-";
-    final String plus = "+";
+    final String minusSign = Strings.MINUS;
+    final String plus = Strings.PLUS;
     int negMinus = rightOperand.indexOf(minusSign);
     int minus = rightOperand.indexOf(minusSign, negMinus + 1);
     String distribute = "";
@@ -69,8 +63,8 @@ public class SubtractionOperator implements Operator
       // form x+yi -> -x-yi
       if (rightOperand.contains(plus))
       {
-        distribute = minusSign + rightOperand.substring(0, rightOperand.indexOf(plus)) + "+-"
-            + rightOperand.substring(rightOperand.indexOf(plus) + 1);
+        distribute = minusSign + rightOperand.substring(0, rightOperand.indexOf(plus))
+            + Strings.PLUS_MINUS + rightOperand.substring(rightOperand.indexOf(plus) + 1);
       }
       // form -x-yi -> x+yi
       else if (minus != -1)

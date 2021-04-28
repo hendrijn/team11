@@ -1,9 +1,7 @@
 package testing;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
-
 import operations.ImaginaryPartOperator;
 
 /**
@@ -15,6 +13,7 @@ import operations.ImaginaryPartOperator;
 class ImaginaryPartOperatorTest
 {
   private final String imagZero = "0.00i";
+  
   /**
    * tests for operands with spaces.
    */
@@ -180,5 +179,4 @@ class ImaginaryPartOperatorTest
     expected = "6.00i";
     assertTrue(actual.equals(expected));
   }
-
 }

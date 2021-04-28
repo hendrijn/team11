@@ -1,7 +1,5 @@
 package operations;
 
-import gui.NewMainInterface;
-
 /**
  * Class that includes operations to compute the sum of two complex, real, or imaginary numbers.
  * 
@@ -10,11 +8,6 @@ import gui.NewMainInterface;
  */
 public class AdditionOperator implements Operator
 {
-  private final String invalid = "NOT_VALID_OPERAND";
-  private final String form = "%.2f";
-  private final String plus = "+";
-  private NewMainInterface ui = NewMainInterface.getInstance();
-
   /**
    * Evaluates an addition of two operands.
    * 
@@ -54,7 +47,7 @@ public class AdditionOperator implements Operator
     }
     catch (NumberFormatException e)
     {
-      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
+      throw new IllegalArgumentException(Strings.UI.getStrings().getString(Strings.INVALID));
     }
 
     Double leftRegNumDouble = 0.0;
@@ -65,7 +58,7 @@ public class AdditionOperator implements Operator
     catch (NumberFormatException e)
     {
 
-      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
+      throw new IllegalArgumentException(Strings.UI.getStrings().getString(Strings.INVALID));
     }
 
     Double rightImagNumDouble = 0.0;
@@ -76,7 +69,7 @@ public class AdditionOperator implements Operator
     catch (NumberFormatException e)
     {
 
-      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
+      throw new IllegalArgumentException(Strings.UI.getStrings().getString(Strings.INVALID));
     }
 
     Double rightRegNumDouble = 0.0;
@@ -87,22 +80,22 @@ public class AdditionOperator implements Operator
     catch (NumberFormatException e)
     {
 
-      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
+      throw new IllegalArgumentException(Strings.UI.getStrings().getString(Strings.INVALID));
     }
 
     Double finalRegTotal = leftRegNumDouble + rightRegNumDouble;
     Double finalImagTotal = leftImagNumDouble + rightImagNumDouble;
 
-    String formattedRegTotal = String.format(form, finalRegTotal);
-    String formattedImagTotal = String.format(form, finalImagTotal);
+    String formattedRegTotal = String.format(Strings.FORM, finalRegTotal);
+    String formattedImagTotal = String.format(Strings.FORM, finalImagTotal);
 
-    String result = formattedRegTotal + plus + formattedImagTotal + "i";
+    String result = formattedRegTotal + Strings.PLUS + formattedImagTotal + Strings.I;
 
     // If the result ends up with +-, revert to the proper -
-    if (result.contains("+-"))
+    if (result.contains(Strings.PLUS_MINUS))
     {
-      result = result.substring(0, result.indexOf(plus)) + "-"
-          + result.substring(result.indexOf(plus) + 2);
+      result = result.substring(0, result.indexOf(Strings.PLUS)) + Strings.MINUS
+          + result.substring(result.indexOf(Strings.PLUS) + 2);
     }
     return result;
   }

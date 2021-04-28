@@ -1,19 +1,17 @@
 package testing;
 
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import operations.AdditionOperator;
+import operations.TempContext;
+
 /**
  * Unit tests for the Addition Operator Class.
  * 
  * @author team 11 - pgleb
  * @version Sprint 3
  */
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
-import operations.AdditionOperator;
-import operations.TempContext;
-
 class AdditionOperatorTest
 {
   private final String complexOne = "3 + 2i";
@@ -34,7 +32,9 @@ class AdditionOperatorTest
   private final String simplify = "Please provide two valid operands, or simplify them";
   private final String iLoveCS345 = "iLoveCS345";
 
-  //Testing for two valid complex numbers
+  /**
+   * Testing for two valid complex numbers.
+   */
   @Test
   public void twoValidComplexNumbersTest()
   {
@@ -46,7 +46,9 @@ class AdditionOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
-  //Testing for two valid complex numbers
+  /**
+   * Testing for two valid complex numbers.
+   */
   @Test
   public void twoValidComplex2NumbersTest()
   {
@@ -58,7 +60,9 @@ class AdditionOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
-  //Testing for two valid with varying spacing complex numbers
+  /**
+   * Testing for two valid with varying spacing complex numbers.
+   */
   @Test
   public void twoValidNoSpaceComplexNumbersTest()
   {
@@ -70,7 +74,9 @@ class AdditionOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
-  //Testing with one complex and one imaginary
+  /**
+   * Testing with one complex and one imaginary.
+   */
   @Test
   public void oneValidComplexOneImaginaryTest()
   {
@@ -82,7 +88,9 @@ class AdditionOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
-  //Testing with one real and one complex number
+  /**
+   * Testing with one real and one complex number.
+   */
   @Test
   public void twoValidNumbersCombinedTest()
   {
@@ -94,7 +102,9 @@ class AdditionOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
-  //Testing with one negative complex and one positive complex number
+  /**
+   * Testing with one negative complex and one positive complex number.
+   */
   @Test
   public void twoValidComplexNumbersNegTest()
   {
@@ -106,7 +116,9 @@ class AdditionOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
-  //Testing with one fully negative complex number and one positive complex number
+  /**
+   * Testing with one fully negative complex number and one positive complex number.
+   */
   @Test
   public void twoValidComplexNumbersNegITest()
   {
@@ -118,7 +130,9 @@ class AdditionOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
-  //Testing two complex numbers with one out of traditional format
+  /**
+   * Testing two complex numbers with one out of traditional format.
+   */
   @Test
   public void twoValidComplexNumbersDiffIPlacementTest()
   {
@@ -130,7 +144,9 @@ class AdditionOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
-  //Testing two complex numbers both out of traditional format
+  /**
+   * Testing two complex numbers both out of traditional format.
+   */
   @Test
   public void twoValidComplexNumbersDiffIPlacementTest2()
   {
@@ -142,7 +158,9 @@ class AdditionOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
-  //Testing two valid real numbers
+  /**
+   * Testing two valid real numbers.
+   */
   @Test
   public void twoValidRealNumbersTest()
   {
@@ -154,7 +172,9 @@ class AdditionOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
-  //Testing two valid real numbers, one negative in the first spot
+  /**
+   * Testing two valid real numbers, one negative in the first spot.
+   */
   @Test
   public void twoValidRealNegNumbersTest()
   {
@@ -166,7 +186,9 @@ class AdditionOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
-  //Testing two valid real numbers, one negative in the second spot
+  /**
+   * Testing two valid real numbers, one negative in the second spot.
+   */
   @Test
   public void twoValidRealNegNumbers2Test()
   {
@@ -179,7 +201,9 @@ class AdditionOperatorTest
   }
 
   
-  //Testing one real and one complex number.
+  /**
+   * Testing one real and one complex number.
+   */
   @Test
   public void validOneRealOneComplexNumbersTest()
   {
@@ -191,11 +215,12 @@ class AdditionOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
-  //Testing an null left operand
+  /**
+   * Testing an null left operand.
+   */
   @Test
   public void inValidNullLeftOperandTest()
   {
-
     String complexNumberOne = null;
     String complexNumberTwo = complexTwo;
     TempContext tempContext = new TempContext(new AdditionOperator());
@@ -208,11 +233,12 @@ class AdditionOperatorTest
     assertEquals(expectedException, actualException);
   }
 
-  //Testing an null right operand
+  /**
+   * Testing an null right operand.
+   */
   @Test
   public void inValidNullRightOperandTest()
   {
-
     String complexNumberOne = complexTwo;
     String complexNumberTwo = null;
     TempContext tempContext = new TempContext(new AdditionOperator());
@@ -225,11 +251,12 @@ class AdditionOperatorTest
     assertEquals(expectedException, actualException);
   }
 
-  //Testing an empty left operand
+  /**
+   * Testing an empty left operand.
+   */
   @Test
   public void inValidEmptyLeftOperandTest()
   {
-
     String complexNumberOne = "";
     String complexNumberTwo = complexTwo;
     TempContext tempContext = new TempContext(new AdditionOperator());
@@ -242,11 +269,12 @@ class AdditionOperatorTest
     assertEquals(expectedException, actualException);
   }
 
-  //Testing an empty right operand
+  /**
+   * Testing an empty right operand.
+   */
   @Test
   public void inValidEmptyRightOperandTest()
   {
-
     String complexNumberOne = complexFour;
     String complexNumberTwo = "";
     TempContext tempContext = new TempContext(new AdditionOperator());
@@ -259,11 +287,12 @@ class AdditionOperatorTest
     assertEquals(expectedException, actualException);
   }
 
-  //Testing a complex number with an invalid real num component
+  /**
+   * Testing a complex number with an invalid real num component.
+   */
   @Test
   public void inValidRegLeftOperandTest()
   {
-
     String complexNumberOne = "4b + 3i";
     String complexNumberTwo = complexFive;
     TempContext tempContext = new TempContext(new AdditionOperator());
@@ -276,11 +305,12 @@ class AdditionOperatorTest
     assertEquals(expectedException, actualException);
   }
 
-  //Testing a complex number with an invalid imaginary and real num component
+  /**
+   * Testing a complex number with an invalid imaginary and real num component.
+   */
   @Test
   public void inValidImagLeftOperandTest()
   {
-
     String complexNumberOne = "4b + 3iiabc";
     String complexNumberTwo = complexFive;
     TempContext tempContext = new TempContext(new AdditionOperator());
@@ -293,11 +323,12 @@ class AdditionOperatorTest
     assertEquals(expectedException, actualException);
   }
 
-  //Testing a complex number with an invalid real num component
+  /**
+   * Testing a complex number with an invalid real num component.
+   */
   @Test
   public void inValidRegRightOperandTest()
   {
-
     String complexNumberOne = complexFour;
     String complexNumberTwo = "bvxc + 3i";
     TempContext tempContext = new TempContext(new AdditionOperator());
@@ -310,11 +341,12 @@ class AdditionOperatorTest
     assertEquals(expectedException, actualException);
   }
 
-  //Testing a complex number with an invalid imaginary num component
+  /**
+   * Testing a complex number with an invalid imaginary num component.
+   */
   @Test
   public void inValidImagRightOperandTest()
   {
-
     String complexNumberOne = complexFour;
     String complexNumberTwo = "4 + 3iasdsads";
     TempContext tempContext = new TempContext(new AdditionOperator());
@@ -327,11 +359,12 @@ class AdditionOperatorTest
     assertEquals(expectedException, actualException);
   }
 
-  //Testing a nonsensical operand on the left
+  /**
+   * Testing a nonsensical operand on the left.
+   */
   @Test
   public void inValidGibberishLeftOperandTest()
   {
-
     String complexNumberOne = "dsfgfdsgdsfg";
     String complexNumberTwo = complexFour;
     TempContext tempContext = new TempContext(new AdditionOperator());
@@ -344,11 +377,12 @@ class AdditionOperatorTest
     assertEquals(expectedException, actualException);
   }
 
-  //Testing a nonsensical operand on the right
+  /**
+   * Testing a nonsensical operand on the right.
+   */
   @Test
   public void inValidGibberishRightOperandTest()
   {
-
     String complexNumberOne = complexFour;
     String complexNumberTwo = iLoveCS345;
     TempContext tempContext = new TempContext(new AdditionOperator());
@@ -361,11 +395,12 @@ class AdditionOperatorTest
     assertEquals(expectedException, actualException);
   }
 
-  //Testing too many is on the left operand imaginary part
+  /**
+   * Testing too many is on the left operand imaginary part.
+   */
   @Test
   public void tooManyIsLeftTest()
   {
-
     String complexNumberOne = "4 + 3iiiiiiiii";
     String complexNumberTwo = iLoveCS345;
     TempContext tempContext = new TempContext(new AdditionOperator());
@@ -378,11 +413,12 @@ class AdditionOperatorTest
     assertEquals(expectedException, actualException);
   }
 
-  //Testing too many is on the right operand imaginary part
+  /**
+   * Testing too many is on the right operand imaginary part.
+   */
   @Test
   public void tooManyIsRightTest()
   {
-
     String complexNumberOne = complexFour;
     String complexNumberTwo = "4iiiiii + 3i";
     TempContext tempContext = new TempContext(new AdditionOperator());
@@ -395,7 +431,9 @@ class AdditionOperatorTest
     assertEquals(expectedException, actualException);
   }
 
-  //Testing a nonsensical operand (that has an i in it) on the left
+  /**
+   * Testing a nonsensical operand (that has an i in it) on the left.
+   */
   @Test
   public void oneIInvalidLeftOperandTest()
   {
@@ -411,7 +449,9 @@ class AdditionOperatorTest
     assertEquals(expectedException, actualException);
   }
 
-  //Testing a nonsensical operand (that has an i in it) on the right
+  /**
+   * Testing a nonsensical operand (that has an i in it) on the right.
+   */
   @Test
   public void oneIInvalidRightOperandTest()
   {
@@ -427,7 +467,9 @@ class AdditionOperatorTest
     assertEquals(expectedException, actualException);
   }
 
-  //Testing i + i
+  /**
+   * Testing i + i.
+   */
   @Test
   public void iPlusI1Test()
   {
@@ -439,7 +481,9 @@ class AdditionOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
-  //Testing i plus a complex number
+  /**
+   * Testing i plus a complex number.
+   */
   @Test
   public void iPlusI2Test()
   {
@@ -451,7 +495,9 @@ class AdditionOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
-  //Testing a complex number that has 1i plus another complex
+  /**
+   * Testing a complex number that has 1i plus another complex.
+   */
   @Test
   public void iPlusILeftTest()
   {
@@ -463,7 +509,9 @@ class AdditionOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
-  //Testing a complex number that has 1i plus another complex number that has 1i
+  /**
+   * Testing a complex number that has 1i plus another complex number that has 1i.
+   */
   @Test
   public void iPlusIRightTest()
   {
@@ -475,7 +523,9 @@ class AdditionOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
-  //Testing just a single i on the left being added to a complex number
+  /**
+   * Testing just a single i on the left being added to a complex number.
+   */
   @Test
   public void singleILeftTest()
   {
@@ -487,7 +537,9 @@ class AdditionOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
-  //Testing just a single i on the right being added to a complex number
+  /**
+   * Testing just a single i on the right being added to a complex number.
+   */
   @Test
   public void singleIRightTest()
   {
@@ -499,7 +551,9 @@ class AdditionOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
-  //Testing just a single negative i on the left being added to a complex number
+  /**
+   * Testing just a single negative i on the left being added to a complex number.
+   */
   @Test
   public void singleNegILeftTest()
   {
@@ -511,7 +565,9 @@ class AdditionOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
-  //Testing just a single negative i on the right being added to a complex number
+  /**
+   * Testing just a single negative i on the right being added to a complex number.
+   */
   @Test
   public void singleNegIRightTest()
   {
@@ -523,7 +579,9 @@ class AdditionOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
-  //Testing a negative imaginary number plus a complex number
+  /**
+   * Testing a negative imaginary number plus a complex number.
+   */
   @Test
   public void singleNegMIRightTest()
   {
@@ -535,7 +593,9 @@ class AdditionOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
-  //Testing one positive and one complex number
+  /**
+   * Testing one positive and one complex number.
+   */
   @Test
   public void operandsWithSubtractionTest()
   {
@@ -547,7 +607,9 @@ class AdditionOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
-  //Testing two complex decimal operands
+  /**
+   * Testing two complex decimal operands.
+   */
   @Test
   public void testDecimalOperands1()
   {
@@ -557,7 +619,9 @@ class AdditionOperatorTest
     assertEquals(expected, actual);
   }
 
-  //Testing two imaginary decimal operands
+  /**
+   * Testing two imaginary decimal operands.
+   */
   @Test
   public void testDecimalOperands2()
   {
@@ -567,7 +631,9 @@ class AdditionOperatorTest
     assertEquals(expected, actual);
   }
 
-  //Testing two real decimal operands
+  /**
+   * Testing two real decimal operands.
+   */
   @Test
   public void testDecimalOperands3()
   {
@@ -577,7 +643,9 @@ class AdditionOperatorTest
     assertEquals(expected, actual);
   }
 
-  //Testing one complex and one imaginary decimal operands
+  /**
+   * Testing one complex and one imaginary decimal operands.
+   */
   @Test
   public void testDecimalOperands4()
   {
@@ -587,7 +655,9 @@ class AdditionOperatorTest
     assertEquals(expected, actual);
   }
 
-  //Testing one complex and one real decimal operands
+  /**
+   * Testing one complex and one real decimal operands.
+   */
   @Test
   public void testDecimalOperands5()
   {
@@ -597,7 +667,9 @@ class AdditionOperatorTest
     assertEquals(expected, actual);
   }
 
-  //Testing one real and one imaginary decimal operands
+  /**
+   * Testing one real and one imaginary decimal operands.
+   */
   @Test
   public void testDecimalOperands6()
   {

@@ -1,10 +1,8 @@
 package testing;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
 import operations.SquareRootOperator;
 
 /**
@@ -15,7 +13,6 @@ import operations.SquareRootOperator;
  */
 public class SquareRootOperatorTest
 {
-
   private final String empty = "Please enter an operand";
   private final String invalid = "Please provide a valid operand";
   
@@ -25,7 +22,6 @@ public class SquareRootOperatorTest
   @Test
   public void validRealNumberTest1()
   {
-
     SquareRootOperator sqrt = new SquareRootOperator();
     String operand = "4";
     String expected = "2.00+0.00i";
@@ -33,14 +29,12 @@ public class SquareRootOperatorTest
     assertEquals(expected, actual);
   }
 
-
   /**
    * tests valid real numbers.
    */
   @Test
   public void validRealNumberTest2()
   {
-
     SquareRootOperator sqrt = new SquareRootOperator();
     String operand = "78";
     String expected = "8.83+0.00i";
@@ -54,7 +48,6 @@ public class SquareRootOperatorTest
   @Test
   public void invalidOperandNullTest()
   {
-
     SquareRootOperator sqrt = new SquareRootOperator();
     String operand = null;
     String expectedMessage = empty;
@@ -81,7 +74,6 @@ public class SquareRootOperatorTest
     assertEquals(expectedMessage, exception.getMessage());
   }
 
-
   /**
    * tests operand with multiple i's.
    */
@@ -97,7 +89,6 @@ public class SquareRootOperatorTest
     });
     assertEquals(expectedMessage, exception.getMessage());
   }
-
 
   /**
    * tests operand with just parentheses.
@@ -144,7 +135,6 @@ public class SquareRootOperatorTest
     assertEquals(expected, actual);
   }
 
-
   /**
    * tests negative real number.
    */
@@ -159,14 +149,12 @@ public class SquareRootOperatorTest
     assertEquals(expected, actual);
   }
 
-
   /**
    * tests a complex number.
    */
   @Test
   public void validComplexNumberTest1()
   {
-
     SquareRootOperator sqrt = new SquareRootOperator();
     String operand = "8-6i";
     String expected = "3.00-1.00i";
@@ -180,7 +168,6 @@ public class SquareRootOperatorTest
   @Test
   public void validComplexNumberTest2()
   {
-
     SquareRootOperator sqrt = new SquareRootOperator();
     String operand = "3+2i";
     String expected = "1.82+0.55i";

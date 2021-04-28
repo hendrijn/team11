@@ -1,7 +1,5 @@
 package operations;
 
-import gui.NewMainInterface;
-
 /**
  * Class for picking out the real part of a complex (or real/imaginary) number.
  * 
@@ -10,13 +8,6 @@ import gui.NewMainInterface;
  */
 public class RealPartOperator
 {
-  // attributes
-  private final String form = "%.2f";
-  private final String invalid = "VALID_OR_SIMPLIFY";
-  private final String plus = "+";
-  private final String minusSign = "-";
-  private NewMainInterface ui = NewMainInterface.getInstance();
-
   /**
    * Isolates the real part of the given operand.
    * 
@@ -34,29 +25,30 @@ public class RealPartOperator
       throw new IllegalArgumentException("Please enter an operand");
     }
 
-    String alteredOp = ((operand.replaceAll(" ", "")).replace("(", "")).replace(")", "");
+    String alteredOp = ((operand.replaceAll(Strings.SPACE, "")).replace(Strings.OPEN_PAREN, ""))
+        .replace(Strings.CLOSED_PAREN, "");
     String result = "";
 
     // error checking invalid
     if (alteredOp.equals(""))
     {
-      throw new IllegalArgumentException(ui.getStrings().getString("NO_OPERAND"));
+      throw new IllegalArgumentException(Strings.UI.getStrings().getString(Strings.NO_OPERAND));
     }
 
     long iCount = alteredOp.chars().filter(ch -> ch == 'i').count();
     if (iCount > 1)
     {
-      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
+      throw new IllegalArgumentException(Strings.UI.getStrings().getString(Strings.INVALID));
     }
 
     try
     {
-      Double
-          .parseDouble(((alteredOp.replace("i", "")).replace(plus, "")).replaceAll(minusSign, ""));
+      Double.parseDouble(((alteredOp.replace(Strings.I, "")).replace(Strings.PLUS, ""))
+          .replaceAll(Strings.MINUS, ""));
     }
     catch (NumberFormatException nfe)
     {
-      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
+      throw new IllegalArgumentException(Strings.UI.getStrings().getString(Strings.INVALID));
     }
 
     boolean isComplex = TempContext.isComplex(alteredOp);
@@ -68,31 +60,32 @@ public class RealPartOperator
     if (isComplex)
     {
       // operand with form -x-yi
-      if (alteredOp.contains(minusSign) && minus != -1)
+      if (alteredOp.contains(Strings.MINUS) && minus != -1)
       {
-        result = String.format(form, Double.parseDouble(alteredOp.substring(0, minus)));
+        result = String.format(Strings.FORM, Double.parseDouble(alteredOp.substring(0, minus)));
       }
       // operand with form x+yi or -x+yi
-      else if (alteredOp.contains(plus))
+      else if (alteredOp.contains(Strings.PLUS))
       {
-        result = String.format(form,
+        result = String.format(Strings.FORM,
             Double.parseDouble(alteredOp.substring(0, alteredOp.indexOf('+'))));
       }
       // operand with from x-yi
       else
       {
-        result = String.format(form, Double.parseDouble(alteredOp.substring(0, negativeMinus)));
+        result = String.format(Strings.FORM,
+            Double.parseDouble(alteredOp.substring(0, negativeMinus)));
       }
     }
 
     if (isImaginary)
     {
-      result = String.format(form, 0.0);
+      result = String.format(Strings.FORM, 0.0);
     }
 
     if (isReal)
     {
-      result = String.format(form, Double.parseDouble(alteredOp));
+      result = String.format(Strings.FORM, Double.parseDouble(alteredOp));
     }
     return result;
   }

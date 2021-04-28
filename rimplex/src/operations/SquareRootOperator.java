@@ -1,7 +1,5 @@
 package operations;
 
-import gui.NewMainInterface;
-
 /**
  * Class that has an operation for computing the square root.
  * 
@@ -10,15 +8,6 @@ import gui.NewMainInterface;
  */
 public class SquareRootOperator
 {
-
-  // atrributes
-  private final String blankOperand = "0";
-  private final String noOp = "NO_OPERAND";
-  private final String invalid = "NOT_VALID_OPERAND";
-  private final String plus = "+";
-  private final String minusSign = "-";
-  private NewMainInterface ui = NewMainInterface.getInstance();
-
   /**
    * Computes the square root of a complex, real, or imaginary number.
    * 
@@ -34,43 +23,44 @@ public class SquareRootOperator
     // error checking for null/empty operand
     if (operand == null || operand.equals(""))
     {
-      throw new IllegalArgumentException(ui.getStrings().getString(noOp));
+      throw new IllegalArgumentException(Strings.UI.getStrings().getString(Strings.NO_OPERAND));
     }
 
-    String alteredOp = ((operand.replaceAll(" ", "")).replace("(", "")).replace(")", "");
+    String alteredOp = ((operand.replaceAll(Strings.SPACE, "")).replace(Strings.OPEN_PAREN, ""))
+        .replace(Strings.CLOSED_PAREN, "");
 
     // error checking for illegal
     long iCount = alteredOp.chars().filter(ch -> ch == 'i').count();
     if (iCount > 1)
     {
-      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
+      throw new IllegalArgumentException(Strings.UI.getStrings().getString(Strings.INVALID));
     }
 
     if (alteredOp.equals(""))
     {
-      throw new IllegalArgumentException(ui.getStrings().getString(noOp));
+      throw new IllegalArgumentException(Strings.UI.getStrings().getString(Strings.NO_OPERAND));
     }
 
     if (alteredOp.length() > 1)
       try
       {
-        Double.parseDouble(
-            ((alteredOp.replace("i", "")).replace(plus, "")).replaceAll(minusSign, ""));
+        Double.parseDouble(((alteredOp.replace(Strings.I, "")).replace(Strings.PLUS, ""))
+            .replaceAll(Strings.MINUS, ""));
       }
       catch (NumberFormatException nfe)
       {
-        throw new IllegalArgumentException(ui.getStrings().getString(invalid));
+        throw new IllegalArgumentException(Strings.UI.getStrings().getString(Strings.INVALID));
       }
 
     String[] decomposedOperands = new String[3];
 
     try
     {
-      decomposedOperands = TempContext.decomposeOperands(alteredOp, blankOperand);
+      decomposedOperands = TempContext.decomposeOperands(alteredOp, Strings.NO_OPERAND);
     }
     catch (IllegalArgumentException e)
     {
-      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
+      throw new IllegalArgumentException(Strings.UI.getStrings().getString(Strings.INVALID));
     }
 
     String leftRegularNumber = decomposedOperands[0];
@@ -84,7 +74,7 @@ public class SquareRootOperator
     }
     catch (NumberFormatException e)
     {
-      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
+      throw new IllegalArgumentException(Strings.UI.getStrings().getString(Strings.INVALID));
     }
     double dblImagNum = 0.0;
     try
@@ -93,7 +83,7 @@ public class SquareRootOperator
     }
     catch (NumberFormatException e)
     {
-      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
+      throw new IllegalArgumentException(Strings.UI.getStrings().getString(Strings.INVALID));
     }
     double finalResult = 0.0;
     String finalString = "";
@@ -103,7 +93,7 @@ public class SquareRootOperator
       if (dblRegNum >= 0)
       {
         finalResult = Math.sqrt(dblRegNum);
-        finalString = String.format("%.2f", finalResult) + "+0.00i";
+        finalString = String.format(Strings.FORM, finalResult) + "+0.00i";
       }
       else
       {
@@ -131,10 +121,10 @@ public class SquareRootOperator
 
       finalString = String.format("%.2f+%.2fi", p, q);
     }
-    if (finalString.contains("+-"))
+    if (finalString.contains(Strings.PLUS_MINUS))
     {
-      finalString = finalString.substring(0, finalString.indexOf(plus)) + minusSign
-          + finalString.substring(finalString.indexOf(plus) + 2);
+      finalString = finalString.substring(0, finalString.indexOf(Strings.PLUS)) + Strings.MINUS
+          + finalString.substring(finalString.indexOf(Strings.PLUS) + 2);
     }
     return finalString;
   }

@@ -1,9 +1,7 @@
 package testing;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
-
 import operations.SubtractionOperator;
 import operations.TempContext;
 
@@ -15,7 +13,6 @@ import operations.TempContext;
  */
 class SubtractionOperatorTest
 {
-
   private final String imagOne = "5i";
   private final String imagTwo = "3i";
   private final String imagThree = "15i";
@@ -44,6 +41,7 @@ class SubtractionOperatorTest
   private final String complexSix = "5+6i";
   private final String complexSeven = "-4-2i";
   private final String complexEight = "-2-7i";
+  
   /**
    * tests for operands with spaces.
    */

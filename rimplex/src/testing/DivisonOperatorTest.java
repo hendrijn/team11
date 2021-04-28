@@ -1,9 +1,7 @@
 package testing;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
-
 import operations.DivisionOperator;
 import operations.TempContext;
 
@@ -45,14 +43,14 @@ class DivisonOperatorTest
   private final String imagTen = "-7i";
   private final String imagEleven = "-2i";
   private final String imagTwelve = "-9i";
+  private final String two = "2";
+  private final String three = "3";
+  private final String four = "4";
+  private final String five = "5";
   private final String six = "6";
   private final String seven = "7";
-  private final String nine = "9";
   private final String eight = "8";
-  private final String three = "3";
-  private final String five = "5";
-  private final String two = "2";
-  private final String four = "4";
+  private final String nine = "9";
   private final String negFive = "-5";
   private final String negFour = "-4";
   private final String negNine = "-9";

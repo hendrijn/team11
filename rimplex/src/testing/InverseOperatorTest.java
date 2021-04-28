@@ -1,10 +1,8 @@
 package testing;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
 import operations.InverseOperator;
 
 /**
@@ -15,11 +13,11 @@ import operations.InverseOperator;
  */
 class InverseOperatorTest
 {
-  
-
   private final String empty =  "Please provide a valid operand";
 
-  //Testing inverting on complex number
+  /**
+   * Testing inverting on complex number.
+   */
   @Test
   public void invertComplexTest1()
   {
@@ -30,7 +28,9 @@ class InverseOperatorTest
     assertEquals(expectedInverse, actualInverse);
   }
 
-  //Testing inverting on complex number
+  /**
+   * Testing inverting on complex number.
+   */
   @Test
   public void invertRealTest1()
   {
@@ -41,7 +41,9 @@ class InverseOperatorTest
     assertEquals(expectedInverse, actualInverse);
   }
 
-  //Testing inverting a complex number with a minus
+  /**
+   * Testing inverting a complex number with a minus.
+   */
   @Test
   public void invertComplexTest2()
   {
@@ -52,7 +54,9 @@ class InverseOperatorTest
     assertEquals(expectedInverse, actualInverse);
   }
 
-  //Testing inverting an imaginary number
+  /**
+   * Testing inverting an imaginary number.
+   */
   @Test
   public void invertI()
   {
@@ -63,7 +67,9 @@ class InverseOperatorTest
     assertEquals(expectedInverse, actualInverse);
   }
 
-  //Testing inverting just i
+  /**
+   * Testing inverting just i.
+   */
   @Test
   public void invertI2()
   {
@@ -74,7 +80,9 @@ class InverseOperatorTest
     assertEquals(expectedInverse, actualInverse);
   }
 
-  //Testing inverting a negative real number
+  /**
+   * Testing inverting a negative real number.
+   */
   @Test
   public void invertNegReal()
   {
@@ -85,7 +93,9 @@ class InverseOperatorTest
     assertEquals(expectedInverse, actualInverse);
   }
   
-  //Testing inverting negative complex number
+  /**
+   * Testing inverting negative complex number.
+   */
   @Test
   public void invertNegComplex()
   {
@@ -96,7 +106,9 @@ class InverseOperatorTest
     assertEquals(expectedInverse, actualInverse);
   }
 
-  //Testing an invalid operand
+  /**
+   * Testing an invalid operand.
+   */
   @Test
   public void invertInvalid1()
   {
@@ -111,7 +123,9 @@ class InverseOperatorTest
     assertEquals(expectedException, actualException);
   }
 
-  //Testing an empty operand
+  /**
+   * Testing an empty operand.
+   */
   @Test
   public void invertInvalid2()
   {
@@ -126,7 +140,9 @@ class InverseOperatorTest
     assertEquals(expectedException, actualException);
   }
 
-  //Testing a null operand
+  /**
+   * Testing a null operand.
+   */
   @Test
   public void invertInvalid3()
   {
@@ -141,7 +157,9 @@ class InverseOperatorTest
     assertEquals(expectedException, actualException);
   }
 
-  //Testing an operand with extra invalid text
+  /**
+   * Testing an operand with extra invalid text.
+   */
   @Test
   public void invertInvalid4()
   {
@@ -156,6 +174,9 @@ class InverseOperatorTest
     assertEquals(expectedException, actualException);
   }
 
+  /**
+   * tests for illegal arguments.
+   */
   @Test
   public void testIllgealArgs()
   {

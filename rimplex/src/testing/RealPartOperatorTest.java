@@ -1,9 +1,7 @@
 package testing;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Test;
-
 import operations.RealPartOperator;
 
 /**
@@ -16,6 +14,7 @@ class RealPartOperatorTest
 {
   private final String decimalZero = "0.00";
   private final String decimalNegTwo = "-2.00";
+  
   /**
    * tests for operands with spaces.
    */
@@ -181,5 +180,4 @@ class RealPartOperatorTest
     expected = "-4.00";
     assertTrue(actual.equals(expected));
   }
-
 }

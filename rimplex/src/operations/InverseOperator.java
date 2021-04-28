@@ -1,7 +1,5 @@
 package operations;
 
-import gui.NewMainInterface;
-
 /**
  * class for computing the multiplicative inverse of an operand.
  * 
@@ -10,19 +8,6 @@ import gui.NewMainInterface;
  */
 public class InverseOperator
 {
-
-  private final String invalid = "NOT_VALID_OPERAND";
-  private final String i = "i";
-  private NewMainInterface ui = NewMainInterface.getInstance();
-
-  /**
-   * Blank Constructor to use for invert.
-   */
-  public InverseOperator()
-  {
-
-  }
-
   /**
    * Takes in a number, and returns its multiplicative inverse.
    * 
@@ -37,33 +22,35 @@ public class InverseOperator
     // error checking for null/emoty
     if (operand == null || operand.equals(""))
     {
-      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
+      throw new IllegalArgumentException(Strings.UI.getStrings().getString(Strings.INVALID));
     }
 
-    String alteredOp = ((operand.replaceAll(" ", "")).replace("(", "")).replace(")", "");
+    String alteredOp = ((operand.replaceAll(Strings.SPACE, "")).replace(Strings.OPEN_PAREN, ""))
+        .replace(Strings.CLOSED_PAREN, "");
 
     // error checking for invalid
     long iCount = alteredOp.chars().filter(ch -> ch == 'i').count();
     if (iCount > 1)
     {
-      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
+      throw new IllegalArgumentException(Strings.UI.getStrings().getString(Strings.INVALID));
     }
 
     double finalOperand = 0;
-    if (!operand.contains(i))
+    if (!operand.contains(Strings.I))
     {
       try
       {
         finalOperand = Double
-            .parseDouble((((alteredOp.replace(i, "")).replace("+", "")).replaceAll("-", "")));
+            .parseDouble((((alteredOp.replace(Strings.I, "")).replace(Strings.PLUS, ""))
+                .replaceAll(Strings.MINUS, "")));
       }
       catch (NumberFormatException e)
       {
-        throw new IllegalArgumentException(ui.getStrings().getString(invalid));
+        throw new IllegalArgumentException(Strings.UI.getStrings().getString(Strings.INVALID));
       }
       double finalReturnOperand = (1 / finalOperand);
 
-      return String.format("%.2f", finalReturnOperand) + "+0.00i";
+      return String.format(Strings.FORM, finalReturnOperand) + "+0.00i";
     }
 
     TempContext multiContext = new TempContext(new MultiplicationOperator());
@@ -76,5 +63,4 @@ public class InverseOperator
 
     return finalResult;
   }
-
 }

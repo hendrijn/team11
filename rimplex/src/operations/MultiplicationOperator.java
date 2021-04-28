@@ -1,7 +1,5 @@
 package operations;
 
-import gui.NewMainInterface;
-
 /**
  * class for computing multiplication of complex, real, and imaginary numbers.
  * 
@@ -10,13 +8,7 @@ import gui.NewMainInterface;
  */
 public class MultiplicationOperator implements Operator
 {
-
-  // attributes
   private final int iSquared = -1;
-  private final String invalid = "NOT_VALID_OPERAND";
-  private final String plus = "+";
-  private final String form = "%.2f";
-  private NewMainInterface ui = NewMainInterface.getInstance();
 
   /**
    * This evaluates two operands using multiplication!
@@ -56,7 +48,7 @@ public class MultiplicationOperator implements Operator
     }
     catch (NumberFormatException e)
     {
-      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
+      throw new IllegalArgumentException(Strings.UI.getStrings().getString(Strings.INVALID));
     }
 
     Double leftRegNumDouble = 0.0;
@@ -67,7 +59,7 @@ public class MultiplicationOperator implements Operator
     catch (NumberFormatException e)
     {
 
-      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
+      throw new IllegalArgumentException(Strings.UI.getStrings().getString(Strings.INVALID));
     }
 
     Double rightImagNumDouble = 0.0;
@@ -78,7 +70,7 @@ public class MultiplicationOperator implements Operator
     catch (NumberFormatException e)
     {
 
-      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
+      throw new IllegalArgumentException(Strings.UI.getStrings().getString(Strings.INVALID));
     }
 
     Double rightRegNumDouble = 0.0;
@@ -89,7 +81,7 @@ public class MultiplicationOperator implements Operator
     catch (NumberFormatException e)
     {
 
-      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
+      throw new IllegalArgumentException(Strings.UI.getStrings().getString(Strings.INVALID));
     }
 
     double fOILFirst = leftRegNumDouble * rightRegNumDouble;
@@ -100,14 +92,14 @@ public class MultiplicationOperator implements Operator
     double finalRegTotal = fOILFirst + fOILLasts;
     double finalImagTotal = fOILOuters + fOILInners;
 
-    String result = String.format(form, finalRegTotal) + plus + String.format(form, finalImagTotal)
-        + "i";
+    String result = String.format(Strings.FORM, finalRegTotal) + Strings.PLUS
+        + String.format(Strings.FORM, finalImagTotal) + Strings.I;
 
     // format to fix +- occurrence
-    if (result.contains("+-"))
+    if (result.contains(Strings.PLUS_MINUS))
     {
-      result = result.substring(0, result.indexOf(plus)) + "-"
-          + result.substring(result.indexOf(plus) + 2);
+      result = result.substring(0, result.indexOf(Strings.PLUS)) + Strings.MINUS
+          + result.substring(result.indexOf(Strings.PLUS) + 2);
     }
     return result;
   }

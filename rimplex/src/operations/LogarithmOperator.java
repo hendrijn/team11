@@ -1,7 +1,5 @@
 package operations;
 
-import gui.NewMainInterface;
-
 /**
  * Class that provides methods for evaluating problems that involve logarithms.
  * 
@@ -10,12 +8,6 @@ import gui.NewMainInterface;
  */
 public class LogarithmOperator
 {
-  // attributes
-  private final String blankOp = "0";
-  private final String invalid = "NOT_VALID_OPERAND";
-  private final String closedParen = ")";
-  private NewMainInterface ui = NewMainInterface.getInstance();
-
   /**
    * Computes the natural log of the given operand.
    * 
@@ -30,26 +22,27 @@ public class LogarithmOperator
     // error checking empty/null
     if (operand == null || operand.equals(""))
     {
-      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
+      throw new IllegalArgumentException(Strings.UI.getStrings().getString(Strings.INVALID));
     }
 
-    String alteredOp = ((operand.replaceAll(" ", "")).replace("(", "")).replace(closedParen, "");
+    String alteredOp = ((operand.replaceAll(Strings.SPACE, "")).replace(Strings.OPEN_PAREN, ""))
+        .replace(Strings.CLOSED_PAREN, "");
 
     // error checking invalid
     long iCount = alteredOp.chars().filter(ch -> ch == 'i').count();
     if (iCount > 1)
     {
-      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
+      throw new IllegalArgumentException(Strings.UI.getStrings().getString(Strings.INVALID));
     }
 
     String[] decomposedOperands = new String[3];
     try
     {
-      decomposedOperands = TempContext.decomposeOperands(alteredOp, blankOp);
+      decomposedOperands = TempContext.decomposeOperands(alteredOp, Strings.NO_OPERAND);
     }
     catch (IllegalArgumentException e)
     {
-      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
+      throw new IllegalArgumentException(Strings.UI.getStrings().getString(Strings.INVALID));
     }
 
     String leftRegularNumber = decomposedOperands[0];
@@ -62,7 +55,7 @@ public class LogarithmOperator
     }
     catch (NumberFormatException e)
     {
-      throw new IllegalArgumentException(ui.getStrings().getString(invalid));
+      throw new IllegalArgumentException(Strings.UI.getStrings().getString(Strings.INVALID));
     }
 
     double dblImagNum = 0.00;
@@ -83,7 +76,7 @@ public class LogarithmOperator
 
     if (dblRegNum <= 0 && dblImagNum <= 0)
     {
-      throw new IllegalArgumentException(ui.getStrings().getString("LOGARITHM"));
+      throw new IllegalArgumentException(Strings.UI.getStrings().getString("LOGARITHM"));
     }
 
     if (dblImagNum == 0.00)
@@ -93,11 +86,11 @@ public class LogarithmOperator
     }
     else
     {
-      //Math formula used found here: 
-      //https://www.redcrab-software.com/en/Calculator/Algebra/Complex/Log
+      // Math formula used found here:
+      // https://www.redcrab-software.com/en/Calculator/Algebra/Complex/Log
       lnComplexReal = (0.5) * Math.log(Math.pow(dblRegNum, 2) + Math.pow(dblImagNum, 2));
-      lnComplexImag = Math.atan(dblImagNum/dblRegNum);
-      finalString =  String.format("%.2f+%.2fi", lnComplexReal, lnComplexImag);
+      lnComplexImag = Math.atan(dblImagNum / dblRegNum);
+      finalString = String.format("%.2f+%.2fi", lnComplexReal, lnComplexImag);
     }
 
     return finalString;

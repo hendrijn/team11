@@ -12,7 +12,6 @@ import operations.ConjugateOperator;
  */
 class ConjugateOperatorTest
 {
-
   /**
    * tests for Illegal Arguments.
    */

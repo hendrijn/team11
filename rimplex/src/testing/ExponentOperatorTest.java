@@ -1,29 +1,32 @@
 package testing;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
 import operations.ExponentOperator;
 
+/**
+ * Unit tests for the ExponentOperator class.
+ * 
+ * @author pgleb - team 11
+ * @version Sprint 3
+ */
 class ExponentOperatorTest
 {
-
   private final String empty = "Please provide a valid operand";
-
-  private final String three = "3";
-  private final String two = "2";
   private final String zero = "0";
+  private final String two = "2";
+  private final String three = "3";
   private final String four = "4";
-
   private final String complexDecimalOne = "9.00+0.00i";
   private final String complexDecimalTwo = "1.00+0.00i";
   private final String complexDecimalThree = "-1.00+0.00i";
-  
   private final String imagOne = "3i";
   private final String imagTwo = "i";
 
+  /**
+   * tests for valid regular number squared.
+   */
   @Test
   public void validRegularNumSqredTest()
   {
@@ -35,6 +38,9 @@ class ExponentOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
+  /**
+   * tests for regular number to the zero power.
+   */
   @Test
   public void validRegularNumSqredZeroBaseTest()
   {
@@ -46,6 +52,9 @@ class ExponentOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
+  /**
+   *  tests for imaginary number to the zero power.
+   */
   @Test
   public void validImagNumSqredBaseZeroTest()
   {
@@ -57,6 +66,9 @@ class ExponentOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
+  /**
+   * tests for imaginary number to the first power.
+   */
   @Test
   public void validImagNumSqredBase1Test()
   {
@@ -68,6 +80,9 @@ class ExponentOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
+  /**
+   * tests for regular number to the third.
+   */
   @Test
   public void validRegularNumCubedTest()
   {
@@ -79,6 +94,9 @@ class ExponentOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
+  /**
+   * tests for i to the third power.
+   */
   @Test
   public void validiCubedTest()
   {
@@ -89,7 +107,9 @@ class ExponentOperatorTest
     String actualResult = expOp.exponentation(operand, power);
     assertEquals(expectedResult, actualResult);
   }
-
+  /**
+   * test for i to the sixth power.
+   */
   @Test
   public void validiSixthedTest()
   {
@@ -101,6 +121,9 @@ class ExponentOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
+  /**
+   * test for i to the second power.
+   */
   @Test
   public void validiSquaredTest()
   {
@@ -112,6 +135,9 @@ class ExponentOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
+  /**
+   * test complex number raised to real exponent.
+   */
   @Test
   public void validComplexNumTest()
   {
@@ -123,6 +149,9 @@ class ExponentOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
+  /**
+   * test invalid operands.
+   */
   @Test
   public void invalidOperand()
   {
@@ -137,6 +166,9 @@ class ExponentOperatorTest
     assertEquals(expectedMessage, exception.getMessage());
   }
 
+  /**
+   * test invalid base.
+   */
   @Test
   public void invalidBase()
   {
@@ -151,6 +183,9 @@ class ExponentOperatorTest
     assertEquals(expectedMessage, exception.getMessage());
   }
 
+  /**
+   * test invalid real operand.
+   */
   @Test
   public void invalidRealOperandGibbersh()
   {
@@ -165,6 +200,9 @@ class ExponentOperatorTest
     assertEquals(expectedMessage, exception.getMessage());
   }
 
+  /**
+   * test invalid imaginary operand.
+   */
   @Test
   public void invalidOperandImagGibbersh()
   {
@@ -179,6 +217,9 @@ class ExponentOperatorTest
     assertEquals(expectedMessage, exception.getMessage());
   }
 
+  /**
+   * test zero imaginary number.
+   */
   @Test
   public void validImagNegativeZero()
   {
@@ -190,6 +231,9 @@ class ExponentOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
+  /**
+   * tests zero imaginary number.
+   */
   @Test
   public void validImagZero()
   {
@@ -200,5 +244,4 @@ class ExponentOperatorTest
     String actualResult = expOp.exponentation(operand, power);
     assertEquals(expectedResult, actualResult);
   }
-
 }

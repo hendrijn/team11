@@ -1,10 +1,8 @@
 package testing;
 
 import gui.InterfaceController;
-
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-
 import org.junit.jupiter.api.Test;
 
 /**
@@ -15,7 +13,6 @@ import org.junit.jupiter.api.Test;
  */
 public class ParenthesesTest
 {
-
   /**
    * test paren handling.
    */
