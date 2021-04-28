@@ -23,7 +23,6 @@ public class HistoryController implements Finals, ActionListener, ComponentListe
   {
     HistoryDisplay history = HistoryDisplay.getInstance();
     JButton btn = (JButton) e.getSource();
-    NewMainInterface ui = NewMainInterface.getInstance();
 
     switch (btn.getText())
     {
@@ -32,13 +31,13 @@ public class HistoryController implements Finals, ActionListener, ComponentListe
         history.setLocationRelativeTo(btn);
         history.listPane.setVisible(true);
         history.close.setVisible(true);
-        ui.getHistory().setVisible(false);
+        NewMainInterface.getHistory().setVisible(false);
         break;
       case "<":
         history.setSize(1, 1);
         history.listPane.setVisible(false);
         history.close.setVisible(false);
-        ui.getHistory().setVisible(true);
+        NewMainInterface.getHistory().setVisible(true);
         break;
       default:
         break;
