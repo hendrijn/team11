@@ -23,6 +23,7 @@ public class ExponentOperatorTest
   private final String complexDecimalThree = "-1.00+0.00i";
   private final String imagOne = "3i";
   private final String imagTwo = "i";
+  private final String complexOne = "3+2i";
  
   /**
    * tests for valid regular number squared.
@@ -141,7 +142,7 @@ public class ExponentOperatorTest
   @Test
   public void validComplexNumTest()
   {
-    String operand = "3+2i";
+    String operand = complexOne;
     String power = four;
     String expectedResult = "-119.00+120.00i";
     ExponentOperator expOp = new ExponentOperator();
@@ -252,7 +253,7 @@ public class ExponentOperatorTest
   @Test
   public void complexNumbeToNegativeBase()
   {
-    String operand = "3+2i";
+    String operand = complexOne;
     String power = "-2";
     String expectedResult = "0.03-0.07i";
     ExponentOperator expOp = new ExponentOperator();
