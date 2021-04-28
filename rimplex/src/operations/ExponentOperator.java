@@ -88,6 +88,14 @@ public class ExponentOperator
       {
         finalOperand = String.format("%.2f+%.2fi", dblRegNum, dblImagNum);
       }
+      
+      if (powerOf < 0) 
+      {
+        ExponentOperator expOp = new ExponentOperator();
+        DivisionOperator divOp = new DivisionOperator();
+        String dividend = expOp.exponentation(operand, String.valueOf(Math.abs(powerOf)));
+        finalOperand = divOp.evaluate("1", dividend);
+      }
 
       // iterative multiplication
       for (int i = 1; i < powerOf; i++)
