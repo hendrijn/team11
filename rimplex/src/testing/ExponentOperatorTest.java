@@ -244,4 +244,19 @@ public class ExponentOperatorTest
     String actualResult = expOp.exponentation(operand, power);
     assertEquals(expectedResult, actualResult);
   }
+  
+  
+  /**
+   * tests zero imaginary number.
+   */
+  @Test
+  public void complexNumbeToNegativeBase()
+  {
+    String operand = "3+2i";
+    String power = "-2";
+    String expectedResult = "0.03-0.07i";
+    ExponentOperator expOp = new ExponentOperator();
+    String actualResult = expOp.exponentation(operand, power);
+    assertEquals(expectedResult, actualResult);
+  }
 }
