@@ -42,7 +42,7 @@ public class HistoryDisplay extends JWindow implements Finals
         "C:\\Users\\Brooke\\git\\team11\\rimplex\\src\\gui\\iconRimplex.png");
     setIconImage(icon.getImage());
     setVisible(true);
-    setLoc(515, 150);
+    setLoc(655, 125);
   }
 
   void setLoc(final int x, final int y)
