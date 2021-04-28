@@ -219,6 +219,8 @@ public class MenuController implements ActionListener, Finals
   private void stopPlayback(final NewMainInterface ui)
   {
     recorder.stop();
+    calcCount = 0;
+    elementsDisplayed = 0;
     resetDisplay(ui);
     ui.getInputLabel().setText(HTML);
     setButtonsEnabled(ui, true);
