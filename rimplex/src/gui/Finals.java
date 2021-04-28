@@ -23,7 +23,7 @@ public interface Finals
   /**
    * text for the backspace button.
    */
-  static final String BACKSPACE = "←";
+  static final String BACKSPACE = "\u2190";
   /**
    * text for the subtract button.
    */
@@ -55,11 +55,11 @@ public interface Finals
   /**
    * text for the sign change button.
    */
-  static final String SIGN = "±";
+  static final String SIGN = "\u00B1";
   /**
    * text for the real parts button.
    */
-  static final String RPARTS = "ℝ";
+  static final String RPARTS = "\u211D";
   /**
    * text for the imaginary parts button.
    */
