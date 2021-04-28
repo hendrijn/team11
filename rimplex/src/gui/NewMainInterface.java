@@ -21,6 +21,9 @@ public class NewMainInterface extends JFrame implements Finals
   private static final String US = "US";
   private static final String EN = "EN";
   private static final String TIMES_NEW_ROMAN = "Times New Roman";
+  private static final String NIMBUS_BASE= "nimbusBase";
+  private static final String CONTROL= "control";
+  private static final String TEXT= "text";
   private static JButton history;
   private static NewMainInterface ui;
   private static String GUI_STRINGS = "gui.Strings";
@@ -137,28 +140,29 @@ public class NewMainInterface extends JFrame implements Finals
    * Helper method to change color scheme.
    * 
    * @param dark
-   *          dark mode enabled
+   *          dark mode enabled.
    * @param light
-   *          light mode enabled
+   *          light mode enabled.
+   * @param regular the normal mode.
    */
   private void colorSchemeSelection(final boolean dark, final boolean light, final boolean regular)
   {
     if (dark)
     {
-      UIManager.put("nimbusBase", Color.DARK_GRAY);
-      UIManager.put("control", Color.BLACK);
-      UIManager.put("text", Color.WHITE);
+      UIManager.put(NIMBUS_BASE, Color.DARK_GRAY);
+      UIManager.put(CONTROL, Color.BLACK);
+      UIManager.put(TEXT, Color.WHITE);
     }
     else if (light)
     {
-      UIManager.put("nimbusBase", Color.WHITE);
-      UIManager.put("control", Color.WHITE);
-      UIManager.put("text", Color.BLACK);
+      UIManager.put(NIMBUS_BASE, Color.WHITE);
+      UIManager.put(CONTROL, Color.WHITE);
+      UIManager.put(TEXT, Color.BLACK);
     }
-    else if (regular)
+    /*else if (regular)
     {
       // need to find the color that the background is
-    }
+    }*/
   }
 
   /**
@@ -545,17 +549,20 @@ public class NewMainInterface extends JFrame implements Finals
     increaseSize(english);
     increaseSize(french);
     increaseSize(german);
-    english.addActionListener((ActionEvent e) -> {
+    english.addActionListener((ActionEvent e) -> 
+    {
       updateLanguage(new Locale(EN, US));
     });
     langMenu.add(english);
 
-    french.addActionListener((ActionEvent e) -> {
+    french.addActionListener((ActionEvent e) -> 
+    {
       updateLanguage(new Locale("fr", "FR"));
     });
     langMenu.add(french);
 
-    german.addActionListener((ActionEvent e) -> {
+    german.addActionListener((ActionEvent e) -> 
+    {
       updateLanguage(new Locale("de", "DE"));
     });
     langMenu.add(german);

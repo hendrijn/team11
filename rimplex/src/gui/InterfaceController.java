@@ -19,7 +19,7 @@ public class InterfaceController
     implements Finals, ActionListener, KeyListener, FocusListener, ComponentListener
 {
   private static InterfaceController instance;
-  private static HistoryDisplay history = HistoryDisplay.getInstance();
+  private static HistoryDisplay historyDisplay = HistoryDisplay.getInstance();
   private static final String TWO_OPERANDS = "TWO_OPERANDS";
   private TempContext context = null;
   private String operator = EMPTY;
@@ -133,16 +133,16 @@ public class InterfaceController
           handleSquareRoot(ui);
           break;
         case ">":
-          history.setSize(500, 340);
-          history.listPane.setVisible(true);
-          history.close.setVisible(true);
+          historyDisplay.setSize(500, 340);
+          historyDisplay.listPane.setVisible(true);
+          historyDisplay.close.setVisible(true);
           ui.getHistory().setVisible(false);
           // history.open.setVisible(false);
           break;
         case "<":
-          history.setSize(1, 1);
-          history.listPane.setVisible(false);
-          history.close.setVisible(false);
+          historyDisplay.setSize(1, 1);
+          historyDisplay.listPane.setVisible(false);
+          historyDisplay.close.setVisible(false);
           ui.getHistory().setVisible(true);
           // history.open.setVisible(true);
           break;
@@ -596,7 +596,7 @@ public class InterfaceController
   }
 
   /**
-   * Overrites any html formatting with the correct values for storing.
+   * Overwrites any html formatting with the correct values for storing.
    * 
    * @param input
    *          the string to change
@@ -611,7 +611,7 @@ public class InterfaceController
   }
 
   /**
-   * Overrites any html formatting with the correct values for calculations.
+   * Overwrites any html formatting with the correct values for calculations.
    * 
    * @param input
    *          the string to change
@@ -663,6 +663,9 @@ public class InterfaceController
     return false;
   }
 
+  /**
+   * returns the focus of the window.
+   */
   @Override
   public void focusLost(final FocusEvent e)
   {
@@ -670,6 +673,9 @@ public class InterfaceController
     ui.getInputLabel().requestFocusInWindow();
   }
 
+  /**
+   * returns the focus of the window.
+   */
   @Override
   public void focusGained(final FocusEvent e)
   {
@@ -691,14 +697,17 @@ public class InterfaceController
   }
 
   @Override
-  public void componentResized(ComponentEvent e)
+  public void componentResized(final ComponentEvent e)
   {
     // TODO Auto-generated method stub
 
   }
 
+  /**
+   * resets the location of a moved component.
+   */
   @Override
-  public void componentMoved(ComponentEvent e)
+  public void componentMoved(final ComponentEvent e)
   {
     HistoryDisplay history = HistoryDisplay.getInstance();
     Component comp = (Component) e.getSource();
@@ -713,14 +722,14 @@ public class InterfaceController
   }
 
   @Override
-  public void componentShown(ComponentEvent e)
+  public void componentShown(final ComponentEvent e)
   {
     // TODO Auto-generated method stub
 
   }
 
   @Override
-  public void componentHidden(ComponentEvent e)
+  public void componentHidden(final ComponentEvent e)
   {
     // TODO Auto-generated method stub
 
