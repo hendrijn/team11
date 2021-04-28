@@ -248,7 +248,7 @@ public class ExponentOperatorTest
   
   
   /**
-   * tests zero imaginary number.
+   * tests complex number to a negative base.
    */
   @Test
   public void complexNumbeToNegativeBase()
