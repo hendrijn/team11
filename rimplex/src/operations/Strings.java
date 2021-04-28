@@ -19,7 +19,7 @@ public interface Strings
    */
   static final String NO_OPERAND = "NO_OPERAND";
   /**
-   * simplify operand error message
+   * simplify operand error message.
    */
   static final String SIMPLIFY = "VALID_OR_SIMPLIFY";
   /**
