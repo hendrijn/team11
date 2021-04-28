@@ -29,7 +29,7 @@ public class NewMainInterface extends JFrame implements Finals
   private static NewMainInterface ui;
   private static String GUI_STRINGS = "gui.Strings";
   private static ResourceBundle STRINGS = ResourceBundle.getBundle(GUI_STRINGS, LOCALE);
- 
+
   JLabel expressionDisplay, resultDisplay, inputDisplay;
   JMenuBar menuBar;
   JMenu settingsMenu, aboutMenu, fileMenu, langMenu;
@@ -76,6 +76,7 @@ public class NewMainInterface extends JFrame implements Finals
     setVisible(true); // display this
     HistoryController cont = new HistoryController();
     addComponentListener(cont);
+    addWindowListener(cont);
     // System.out.println("current working directory is: " + System.getProperty("user.dir"));
   }
 
@@ -551,20 +552,17 @@ public class NewMainInterface extends JFrame implements Finals
     increaseSize(english);
     increaseSize(french);
     increaseSize(german);
-    english.addActionListener((ActionEvent e) -> 
-    {
+    english.addActionListener((ActionEvent e) -> {
       updateLanguage(new Locale(EN, US));
     });
     langMenu.add(english);
 
-    french.addActionListener((ActionEvent e) -> 
-    {
+    french.addActionListener((ActionEvent e) -> {
       updateLanguage(new Locale("fr", "FR"));
     });
     langMenu.add(french);
 
-    german.addActionListener((ActionEvent e) -> 
-    {
+    german.addActionListener((ActionEvent e) -> {
       updateLanguage(new Locale("de", "DE"));
     });
     langMenu.add(german);
