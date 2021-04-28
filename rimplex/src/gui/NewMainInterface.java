@@ -32,7 +32,7 @@ public class NewMainInterface extends JFrame implements Finals
   JMenuBar menuBar;
   JMenu settingsMenu, aboutMenu, fileMenu, langMenu;
   JMenuItem about, add, start, pause, stop, print, speed;
-  JPanel northPanel, eastPanel, centerPanel, bar;
+  static JPanel northPanel, eastPanel, centerPanel, bar;
   private InterfaceController listener;
 
   /**

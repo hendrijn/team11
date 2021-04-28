@@ -18,12 +18,14 @@ import javax.swing.JButton;
 public class HistoryController implements Finals, ActionListener, ComponentListener
 {
 
+  /**
+   * Performs the actions when necessary.
+   */
   @Override
   public void actionPerformed(final ActionEvent e)
   {
     HistoryDisplay history = HistoryDisplay.getInstance();
     JButton btn = (JButton) e.getSource();
-    NewMainInterface ui = NewMainInterface.getInstance();
 
     switch (btn.getText())
     {
@@ -32,13 +34,13 @@ public class HistoryController implements Finals, ActionListener, ComponentListe
         history.setLocationRelativeTo(btn);
         history.listPane.setVisible(true);
         history.close.setVisible(true);
-        ui.getHistory().setVisible(false);
+        NewMainInterface.getHistory().setVisible(false);
         break;
       case "<":
         history.setSize(1, 1);
         history.listPane.setVisible(false);
         history.close.setVisible(false);
-        ui.getHistory().setVisible(true);
+        NewMainInterface.getHistory().setVisible(true);
         break;
       default:
         break;
@@ -49,35 +51,30 @@ public class HistoryController implements Finals, ActionListener, ComponentListe
   @Override
   public void componentResized(final ComponentEvent e)
   {
-    System.out.println(e.getComponent().getClass().getName() + " Resized");
   }
 
+  /**
+   * Handles movement of the main interface.
+   */
   @Override
   public void componentMoved(final ComponentEvent e)
   {
     HistoryDisplay history = HistoryDisplay.getInstance();
     Component comp = (Component) e.getSource();
     Point shift = comp.getLocationOnScreen();
-    Point og = history.getLocation();
 
-    int newX = (int) (shift.getX() + og.getX());
-    int newY = (int) (shift.getY() + og.getY());
-
-    history.setLoc(newX, newY);
-    System.out.println(e.getComponent().getClass().getName() + " Moved");
+    history.setLocation(shift.x + 662, shift.y + 200);
   }
 
   @Override
   public void componentShown(final ComponentEvent e)
   {
-    System.out.println(e.getComponent().getClass().getName() + " Shown");
 
   }
 
   @Override
   public void componentHidden(final ComponentEvent e)
   {
-    System.out.println(e.getComponent().getClass().getName() + " Hidden");
 
   }
 

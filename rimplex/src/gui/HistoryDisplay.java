@@ -38,16 +38,12 @@ public class HistoryDisplay extends JWindow implements Finals
     ImageIcon icon = new ImageIcon(
         "C:\\Users\\Brooke\\git\\team11\\rimplex\\src\\gui\\iconRimplex.png");
     setIconImage(icon.getImage());
-    setLocationRelativeTo(NewMainInterface.getHistory());
     setVisible(true);
   }
 
-  void setLoc(final int x, final int y)
-  {
-    origin = new Point(x, y);
-    history.setLocation(origin);
-  }
-
+  /**
+   * Sets up the components of the HistoryDisplay.
+   */
   private void setupFrame()
   {
     Container contentPane = getContentPane();
@@ -61,6 +57,9 @@ public class HistoryDisplay extends JWindow implements Finals
     contentPane.addComponentListener(listener);
   }
 
+  /**
+   * Adds the buttons to the display.
+   */
   private void addButtons()
   {
     listener = new HistoryController();
@@ -71,6 +70,9 @@ public class HistoryDisplay extends JWindow implements Finals
     close.setVisible(false);
   }
 
+  /**
+   * Adds the text area to the display.
+   */
   private void addList()
   {
     calcList = new JTextArea();
