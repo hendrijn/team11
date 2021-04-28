@@ -136,14 +136,14 @@ public class InterfaceController
           historyDisplay.setSize(500, 340);
           historyDisplay.listPane.setVisible(true);
           historyDisplay.close.setVisible(true);
-          ui.getHistory().setVisible(false);
+          NewMainInterface.getHistory().setVisible(false);
           // history.open.setVisible(false);
           break;
         case "<":
           historyDisplay.setSize(1, 1);
           historyDisplay.listPane.setVisible(false);
           historyDisplay.close.setVisible(false);
-          ui.getHistory().setVisible(true);
+          NewMainInterface.getHistory().setVisible(true);
           // history.open.setVisible(true);
           break;
         default:
