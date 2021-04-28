@@ -6,6 +6,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 
 import javax.swing.JButton;
 
@@ -15,7 +17,7 @@ import javax.swing.JButton;
  * @author Jacquelyn Hendricks
  * @version Sprint 3
  */
-public class HistoryController implements Finals, ActionListener, ComponentListener
+public class HistoryController implements Finals, ActionListener, ComponentListener, WindowListener
 {
 
   /**
@@ -75,8 +77,52 @@ public class HistoryController implements Finals, ActionListener, ComponentListe
   @Override
   public void componentHidden(final ComponentEvent e)
   {
+
+  }
+
+  @Override
+  public void windowOpened(WindowEvent e)
+  {
+  }
+
+  @Override
+  public void windowClosing(WindowEvent e)
+  {
+  }
+
+  @Override
+  public void windowClosed(WindowEvent e)
+  {
+  }
+
+  /**
+   * Minimizes the history display.
+   */
+  @Override
+  public void windowIconified(WindowEvent e)
+  {
     HistoryDisplay history = HistoryDisplay.getInstance();
     history.setVisible(false);
+  }
+
+  /**
+   * Maximizes the history display.
+   */
+  @Override
+  public void windowDeiconified(WindowEvent e)
+  {
+    HistoryDisplay history = HistoryDisplay.getInstance();
+    history.setVisible(true);
+  }
+
+  @Override
+  public void windowActivated(WindowEvent e)
+  {
+  }
+
+  @Override
+  public void windowDeactivated(WindowEvent e)
+  {
   }
 
 }
