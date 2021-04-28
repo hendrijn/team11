@@ -35,7 +35,7 @@ public interface Finals
   /**
    * text for the inverse button.
    */
-  static final String INVERSE = "<html>ƒ<sup><font size=\"4\">-1</sup></font>";
+  static final String INVERSE = "<html>\u0192<sup><font size=\"4\">-1</sup></font>";
   /**
    * text for keyboard multiplication symbol.
    */
@@ -43,7 +43,7 @@ public interface Finals
   /**
    * text for the division button.
    */
-  static final String DIVIDE = "÷";
+  static final String DIVIDE = "\u00F7";
   /**
    * text for keyboard division symbol.
    */
@@ -111,7 +111,7 @@ public interface Finals
   /**
    * text for French menu option.
    */
-  static final String FRE = "Français";
+  static final String FRE = "Fran\u00E7ais";
   /**
    * text for German menu option.
    */
