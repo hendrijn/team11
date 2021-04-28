@@ -10,7 +10,7 @@ import operations.ConjugateOperator;
  * @author may4sa - team11
  * @version Sprint 3
  */
-class ConjugateOperatorTest
+public class ConjugateOperatorTest
 {
   /**
    * tests for Illegal Arguments.
@@ -21,7 +21,7 @@ class ConjugateOperatorTest
     ConjugateOperator c = new ConjugateOperator();
 
     // null
-    try
+    try 
     {
       c.conjugate(null);
       assertTrue(false);

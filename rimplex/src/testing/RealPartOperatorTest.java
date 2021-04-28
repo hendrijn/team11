@@ -10,7 +10,7 @@ import operations.RealPartOperator;
  * @author may4sa - team 11
  * @version Sprint 3
  */
-class RealPartOperatorTest
+public class RealPartOperatorTest
 {
   private final String decimalZero = "0.00";
   private final String decimalNegTwo = "-2.00";

@@ -10,7 +10,7 @@ import operations.LogarithmOperator;
  * @author may4sa - team 11
  * @version Sprint 3
  */
-class LogarithmOperatorTest
+public class LogarithmOperatorTest
 {
   /**
    * test operands with extra spaces.

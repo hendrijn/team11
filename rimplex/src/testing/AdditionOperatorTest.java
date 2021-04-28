@@ -12,7 +12,7 @@ import operations.TempContext;
  * @author team 11 - pgleb
  * @version Sprint 3
  */
-class AdditionOperatorTest
+public class AdditionOperatorTest
 {
   private final String complexOne = "3 + 2i";
   private final String complexTwo = "4 + 2i";
@@ -29,13 +29,13 @@ class AdditionOperatorTest
   private final String seven = "7";
   private final String invalid = "Please provide two valid operands";
   private final String empty = "Please provide a valid operand";
-  private final String simplify = "Please provide two valid operands, or simplify them";
+  private final String simplify = "Please provide a valid operand, or simplify it";
   private final String iLoveCS345 = "iLoveCS345";
 
   /**
    * Testing for two valid complex numbers.
    */
-  @Test
+  @Test 
   public void twoValidComplexNumbersTest()
   {
     String complexNumberOne = complexOne;

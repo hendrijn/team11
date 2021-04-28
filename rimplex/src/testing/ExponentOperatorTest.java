@@ -11,7 +11,7 @@ import operations.ExponentOperator;
  * @author pgleb - team 11
  * @version Sprint 3
  */
-class ExponentOperatorTest
+public class ExponentOperatorTest
 {
   private final String empty = "Please provide a valid operand";
   private final String zero = "0";
@@ -23,7 +23,7 @@ class ExponentOperatorTest
   private final String complexDecimalThree = "-1.00+0.00i";
   private final String imagOne = "3i";
   private final String imagTwo = "i";
-
+ 
   /**
    * tests for valid regular number squared.
    */

@@ -11,7 +11,7 @@ import operations.InverseOperator;
  * @author pgleb - team 11
  * @version Sprint 2
  */
-class InverseOperatorTest
+public class InverseOperatorTest
 {
   private final String empty =  "Please provide a valid operand";
 

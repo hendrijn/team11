@@ -17,7 +17,7 @@ public class DivisionOperator implements Operator
    * @param rightOperand
    *          the divisor of the division operation.
    * @return the quotient of the division.
-   * @throws IllegalArguemntException
+   * @throws IllegalArgumentException
    *           if the operands are empty, null, or invalid.
    */
   @Override

@@ -95,12 +95,11 @@ public class LogoDisplay extends JWindow implements Finals
   /**
    * Singleton.
    * 
-   * @return the one instance of NewMainInterface
-   * @throws InterruptedException
+   * @return the one instance of NewMainInterface.
+   * @throws InterruptedException if the process is interrupted while it is asleep or waiting.
    */
-  public static LogoDisplay getInstance()
+  public static LogoDisplay getInstance() throws InterruptedException
   {
-
     if (logoDisplay == null)
       logoDisplay = new LogoDisplay();
     return logoDisplay;

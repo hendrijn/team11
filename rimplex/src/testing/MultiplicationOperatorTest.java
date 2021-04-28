@@ -12,10 +12,10 @@ import operations.TempContext;
  * @author pgleb - team 11
  * @version Sprint 3
  */
-class MultiplicationOperatorTest
+public class MultiplicationOperatorTest
 {
   private final String invalid = "Please provide two valid operands";
-  private final String simplify = "Please provide two valid operands, or simplify them";
+  private final String simplify = "Please provide a valid operand, or simplify it";
   private final String empty = "Please provide a valid operand";
   private final String complexZero = "0.00+0.00i";
   private final String complexOne = "3 + 2i";

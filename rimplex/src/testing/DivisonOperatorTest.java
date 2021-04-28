@@ -11,14 +11,14 @@ import operations.TempContext;
  * @author may4sa - team11
  * @version Sprint 3
  */
-class DivisonOperatorTest
+public class DivisonOperatorTest
 {
   private final String complexOne = "-7-8i";
   private final String complexTwo = "2+8i";
   private final String complexThree = "7-4i";
   private final String complexFour = "-12-3i";
   private final String complexFive = "-4+9i";
-  private final String complexSix = "5-4i";
+  private final String complexSix = "5-4i"; 
   private final String complexSeven = "7-2i";
   private final String complexEight = "3+6i";
   private final String complexNine = "-7-5i";
@@ -628,6 +628,9 @@ class DivisonOperatorTest
     assertTrue(actual.equals(expected));
   }
 
+  /**
+   * tests zero operands (tests for divide by zero).
+   */
   @Test
   public void testZeros()
   {

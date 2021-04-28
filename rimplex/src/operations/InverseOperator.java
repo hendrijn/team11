@@ -14,8 +14,8 @@ public class InverseOperator
    * @param operand
    *          The number to be inverted.
    * @return Its inverse
-   * @throws An
-   *           IllegalArgumentExcpetion if invalid operands are provided.
+   * @throws IllegalArgumentException
+   *           if invalid operands are provided.
    */
   public String invert(final String operand) throws IllegalArgumentException
   {

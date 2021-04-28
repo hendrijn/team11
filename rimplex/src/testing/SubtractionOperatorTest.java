@@ -11,7 +11,7 @@ import operations.TempContext;
  * @author team 11 - may4sa
  * @version Sprint 3
  */
-class SubtractionOperatorTest
+public class SubtractionOperatorTest
 {
   private final String imagOne = "5i";
   private final String imagTwo = "3i";

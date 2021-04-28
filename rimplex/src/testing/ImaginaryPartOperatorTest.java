@@ -10,7 +10,7 @@ import operations.ImaginaryPartOperator;
  * @author may4sa - team 11
  * @version Sprint 3
  */
-class ImaginaryPartOperatorTest
+public class ImaginaryPartOperatorTest
 {
   private final String imagZero = "0.00i";
   
@@ -21,7 +21,7 @@ class ImaginaryPartOperatorTest
   public void testSpaces()
   {
     ImaginaryPartOperator i = new ImaginaryPartOperator();
-
+ 
     // complex
     String actual = i.evaluate("8 +     3    i");
     String expected = "3.00i";

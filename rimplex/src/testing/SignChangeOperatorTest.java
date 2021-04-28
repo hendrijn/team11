@@ -10,7 +10,7 @@ import operations.SignChangeOperator;
  * @author may4sa - team11
  * @version Sprint 3
  */
-class SignChangeOperatorTest
+public class SignChangeOperatorTest
 {
   /**
    * test constructor for full coverage.
