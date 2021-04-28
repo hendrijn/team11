@@ -111,7 +111,7 @@ public interface Finals
   /**
    * text for French menu option.
    */
-  static final String FRE = "Français";
+  static final String FRE = "Fran\u00E7ais";
   /**
    * text for German menu option.
    */
