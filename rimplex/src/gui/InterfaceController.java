@@ -1,5 +1,7 @@
 package gui;
 
+import java.awt.Component;
+import java.awt.Point;
 import java.awt.event.*;
 
 import javax.swing.AbstractButton;
@@ -14,9 +16,10 @@ import operations.*;
  * @version v3
  */
 public class InterfaceController
-    implements Finals, ActionListener, KeyListener, MouseListener, FocusListener
+    implements Finals, ActionListener, KeyListener, FocusListener, ComponentListener
 {
   private static InterfaceController instance;
+  private static HistoryDisplay history = HistoryDisplay.getInstance();
   private static final String TWO_OPERANDS = "TWO_OPERANDS";
   private TempContext context = null;
   private String operator = EMPTY;
@@ -128,6 +131,20 @@ public class InterfaceController
           break;
         case SQRT:
           handleSquareRoot(ui);
+          break;
+        case ">":
+          history.setSize(500, 340);
+          history.listPane.setVisible(true);
+          history.close.setVisible(true);
+          ui.getHistory().setVisible(false);
+          // history.open.setVisible(false);
+          break;
+        case "<":
+          history.setSize(1, 1);
+          history.listPane.setVisible(false);
+          history.close.setVisible(false);
+          ui.getHistory().setVisible(true);
+          // history.open.setVisible(true);
           break;
         default:
           closeApplication();
@@ -266,7 +283,8 @@ public class InterfaceController
   /**
    * Backspaces the input field.
    * 
-   * @param ui the user interface to backspace from.
+   * @param ui
+   *          the user interface to backspace from.
    */
   private void handleBackspace(final NewMainInterface ui)
   {
@@ -323,7 +341,8 @@ public class InterfaceController
   /**
    * Adds soft or physical keyboard input to the display.
    * 
-   * @param input the String to add to the display.
+   * @param input
+   *          the String to add to the display.
    */
   private void handleInput(final String input)
   {
@@ -672,35 +691,36 @@ public class InterfaceController
   }
 
   @Override
-  public void mouseClicked(final MouseEvent e)
+  public void componentResized(ComponentEvent e)
   {
     // TODO Auto-generated method stub
 
   }
 
   @Override
-  public void mousePressed(final MouseEvent e)
+  public void componentMoved(ComponentEvent e)
+  {
+    HistoryDisplay history = HistoryDisplay.getInstance();
+    Component comp = (Component) e.getSource();
+    Point shift = comp.getLocationOnScreen();
+    Point og = history.origin;
+
+    int newX = (int) (shift.getX() + og.getX());
+    int newY = (int) (shift.getY() + og.getY());
+
+    history.setLoc(newX, newY);
+
+  }
+
+  @Override
+  public void componentShown(ComponentEvent e)
   {
     // TODO Auto-generated method stub
 
   }
 
   @Override
-  public void mouseReleased(final MouseEvent e)
-  {
-    // TODO Auto-generated method stub
-
-  }
-
-  @Override
-  public void mouseEntered(final MouseEvent e)
-  {
-    // TODO Auto-generated method stub
-
-  }
-
-  @Override
-  public void mouseExited(final MouseEvent e)
+  public void componentHidden(ComponentEvent e)
   {
     // TODO Auto-generated method stub
 

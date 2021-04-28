@@ -64,7 +64,11 @@ public class NewMainInterface extends JFrame implements Finals
 
     setIconImage(icon.getImage());
 
+    setLookAndFeel();
     setupFrame();
+
+    // if both are false, default color scheme is used
+    colorSchemeSelection(false, false, true);
     setVisible(true); // display this
     // System.out.println("current working directory is: " + System.getProperty("user.dir"));
   }
@@ -126,6 +130,76 @@ public class NewMainInterface extends JFrame implements Finals
     contentPane.add(bar, BorderLayout.EAST);
     contentPane.add(eastPanel, BorderLayout.CENTER);
     contentPane.add(centerPanel, BorderLayout.WEST);
+    contentPane.addComponentListener(listener);
+  }
+
+  /**
+   * Helper method to change color scheme.
+   * 
+   * @param dark
+   *          dark mode enabled
+   * @param light
+   *          light mode enabled
+   */
+  private void colorSchemeSelection(final boolean dark, final boolean light, final boolean regular)
+  {
+    if (dark)
+    {
+      UIManager.put("nimbusBase", Color.DARK_GRAY);
+      UIManager.put("control", Color.BLACK);
+      UIManager.put("text", Color.WHITE);
+    }
+    else if (light)
+    {
+      UIManager.put("nimbusBase", Color.WHITE);
+      UIManager.put("control", Color.WHITE);
+      UIManager.put("text", Color.BLACK);
+    }
+    else if (regular)
+    {
+      // need to find the color that the background is
+    }
+  }
+
+  /**
+   * Helper method to make interface look the same across operating systems.
+   */
+  private void setLookAndFeel()
+  {
+    boolean done = false;
+    try
+    {
+      UIManager.LookAndFeelInfo[] lfs = UIManager.getInstalledLookAndFeels();
+      for (int i = 0; i < lfs.length && !done; i++)
+      {
+        if ("Nimbus".equals(lfs[i].getName()))
+        {
+          UIManager.setLookAndFeel(lfs[i].getClassName());
+          done = true;
+        }
+      }
+      if (!done)
+      {
+        String look = UIManager.getSystemLookAndFeelClassName();
+        UIManager.setLookAndFeel(look);
+      }
+    }
+    catch (ClassNotFoundException exp)
+    {
+      // will use default
+    }
+    catch (IllegalAccessException exp)
+    {
+      // will use default
+    }
+    catch (InstantiationException exp)
+    {
+      // will use default
+    }
+    catch (UnsupportedLookAndFeelException exp)
+    {
+      // will use default
+    }
   }
 
   /**
@@ -139,10 +213,8 @@ public class NewMainInterface extends JFrame implements Finals
     bar = new JPanel();
     bar.setLayout(new GridLayout(1, 1));
     history = new JButton(">");
-    HistoryController cont = new HistoryController();
-    history.addActionListener(cont);
+    history.addActionListener(listener);
     bar.add(history);
-    contentPane.addComponentListener(cont);
   }
 
   /**
@@ -371,7 +443,7 @@ public class NewMainInterface extends JFrame implements Finals
   private void setupNorthPanel()
   {
     northPanel = new JPanel(new GridLayout(2, 2));
-    northPanel.setBackground(Color.lightGray);
+    // northPanel.setBackground(Color.lightGray);
     northPanel.setPreferredSize(new Dimension(400, 100));
 
     Border displayB = BorderFactory.createLineBorder(Color.BLUE, 3, true);
@@ -473,20 +545,17 @@ public class NewMainInterface extends JFrame implements Finals
     increaseSize(english);
     increaseSize(french);
     increaseSize(german);
-    english.addActionListener((ActionEvent e) -> 
-    {
+    english.addActionListener((ActionEvent e) -> {
       updateLanguage(new Locale(EN, US));
     });
     langMenu.add(english);
 
-    french.addActionListener((ActionEvent e) -> 
-    {
+    french.addActionListener((ActionEvent e) -> {
       updateLanguage(new Locale("fr", "FR"));
     });
     langMenu.add(french);
 
-    german.addActionListener((ActionEvent e) -> 
-    {
+    german.addActionListener((ActionEvent e) -> {
       updateLanguage(new Locale("de", "DE"));
     });
     langMenu.add(german);
