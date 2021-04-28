@@ -699,7 +699,7 @@ public class InterfaceController
   @Override
   public void componentResized(final ComponentEvent e)
   {
-    // TODO Auto-generated method stub
+    System.out.println(e.getComponent().getClass().getName() + " Resized");
 
   }
 
@@ -718,6 +718,7 @@ public class InterfaceController
     int newY = (int) (shift.getY() + og.getY());
 
     history.setLoc(newX, newY);
+    System.out.println(e.getComponent().getClass().getName() + " Moved");
 
   }
 

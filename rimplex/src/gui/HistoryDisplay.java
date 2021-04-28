@@ -17,13 +17,10 @@ import javax.swing.JWindow;
  * @version Sprint 3
  */
 
-// make component listener on the JFrame
-// implement component moved method
 public class HistoryDisplay extends JWindow implements Finals
 {
   static final long serialVersionUID = -1;
   private static HistoryDisplay history = null;
-  JButton open;
   JButton close;
   JScrollPane listPane;
   Point origin;
@@ -41,38 +38,34 @@ public class HistoryDisplay extends JWindow implements Finals
     ImageIcon icon = new ImageIcon(
         "C:\\Users\\Brooke\\git\\team11\\rimplex\\src\\gui\\iconRimplex.png");
     setIconImage(icon.getImage());
+    setLocationRelativeTo(NewMainInterface.getHistory());
     setVisible(true);
-    setLoc(655, 125);
   }
 
   void setLoc(final int x, final int y)
   {
     origin = new Point(x, y);
-    setLocation(origin);
+    history.setLocation(origin);
   }
 
   private void setupFrame()
   {
     Container contentPane = getContentPane();
-    // setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     contentPane.setLayout(new BorderLayout());
 
     addButtons();
     addList();
 
-    // contentPane.add(open, BorderLayout.WEST);
     contentPane.add(close, BorderLayout.EAST);
     contentPane.add(listPane, BorderLayout.CENTER);
+    contentPane.addComponentListener(listener);
   }
 
   private void addButtons()
   {
     listener = new HistoryController();
 
-    // open = new JButton(">");
     close = new JButton("<");
-
-    // open.addActionListener(listener);
     close.addActionListener(listener);
 
     close.setVisible(false);

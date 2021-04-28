@@ -21,9 +21,9 @@ public class NewMainInterface extends JFrame implements Finals
   private static final String US = "US";
   private static final String EN = "EN";
   private static final String TIMES_NEW_ROMAN = "Times New Roman";
-  private static final String NIMBUS_BASE= "nimbusBase";
-  private static final String CONTROL= "control";
-  private static final String TEXT= "text";
+  private static final String NIMBUS_BASE = "nimbusBase";
+  private static final String CONTROL = "control";
+  private static final String TEXT = "text";
   private static JButton history;
   private static NewMainInterface ui;
   private static String GUI_STRINGS = "gui.Strings";
@@ -73,6 +73,8 @@ public class NewMainInterface extends JFrame implements Finals
     // if both are false, default color scheme is used
     colorSchemeSelection(false, false, true);
     setVisible(true); // display this
+    HistoryController cont = new HistoryController();
+    addComponentListener(cont);
     // System.out.println("current working directory is: " + System.getProperty("user.dir"));
   }
 
@@ -91,7 +93,7 @@ public class NewMainInterface extends JFrame implements Finals
    * 
    * @return the history attribute.
    */
-  public JButton getHistory()
+  public static JButton getHistory()
   {
     return history;
   }
@@ -133,7 +135,6 @@ public class NewMainInterface extends JFrame implements Finals
     contentPane.add(bar, BorderLayout.EAST);
     contentPane.add(eastPanel, BorderLayout.CENTER);
     contentPane.add(centerPanel, BorderLayout.WEST);
-    contentPane.addComponentListener(listener);
   }
 
   /**
@@ -143,7 +144,8 @@ public class NewMainInterface extends JFrame implements Finals
    *          dark mode enabled.
    * @param light
    *          light mode enabled.
-   * @param regular the normal mode.
+   * @param regular
+   *          the normal mode.
    */
   private void colorSchemeSelection(final boolean dark, final boolean light, final boolean regular)
   {
@@ -159,10 +161,9 @@ public class NewMainInterface extends JFrame implements Finals
       UIManager.put(CONTROL, Color.WHITE);
       UIManager.put(TEXT, Color.BLACK);
     }
-    /*else if (regular)
-    {
-      // need to find the color that the background is
-    }*/
+    /*
+     * else if (regular) { // need to find the color that the background is }
+     */
   }
 
   /**
@@ -549,20 +550,17 @@ public class NewMainInterface extends JFrame implements Finals
     increaseSize(english);
     increaseSize(french);
     increaseSize(german);
-    english.addActionListener((ActionEvent e) -> 
-    {
+    english.addActionListener((ActionEvent e) -> {
       updateLanguage(new Locale(EN, US));
     });
     langMenu.add(english);
 
-    french.addActionListener((ActionEvent e) -> 
-    {
+    french.addActionListener((ActionEvent e) -> {
       updateLanguage(new Locale("fr", "FR"));
     });
     langMenu.add(french);
 
-    german.addActionListener((ActionEvent e) -> 
-    {
+    german.addActionListener((ActionEvent e) -> {
       updateLanguage(new Locale("de", "DE"));
     });
     langMenu.add(german);

@@ -29,17 +29,16 @@ public class HistoryController implements Finals, ActionListener, ComponentListe
     {
       case ">":
         history.setSize(500, 340);
+        history.setLocationRelativeTo(btn);
         history.listPane.setVisible(true);
         history.close.setVisible(true);
         ui.getHistory().setVisible(false);
-        // history.open.setVisible(false);
         break;
       case "<":
         history.setSize(1, 1);
         history.listPane.setVisible(false);
         history.close.setVisible(false);
         ui.getHistory().setVisible(true);
-        // history.open.setVisible(true);
         break;
       default:
         break;
@@ -50,7 +49,7 @@ public class HistoryController implements Finals, ActionListener, ComponentListe
   @Override
   public void componentResized(final ComponentEvent e)
   {
-
+    System.out.println(e.getComponent().getClass().getName() + " Resized");
   }
 
   @Override
@@ -59,23 +58,26 @@ public class HistoryController implements Finals, ActionListener, ComponentListe
     HistoryDisplay history = HistoryDisplay.getInstance();
     Component comp = (Component) e.getSource();
     Point shift = comp.getLocationOnScreen();
-    Point og = history.origin;
+    Point og = history.getLocation();
 
     int newX = (int) (shift.getX() + og.getX());
     int newY = (int) (shift.getY() + og.getY());
 
     history.setLoc(newX, newY);
+    System.out.println(e.getComponent().getClass().getName() + " Moved");
   }
 
   @Override
   public void componentShown(final ComponentEvent e)
   {
+    System.out.println(e.getComponent().getClass().getName() + " Shown");
 
   }
 
   @Override
   public void componentHidden(final ComponentEvent e)
   {
+    System.out.println(e.getComponent().getClass().getName() + " Hidden");
 
   }
 
