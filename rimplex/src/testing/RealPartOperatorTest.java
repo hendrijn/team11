@@ -14,6 +14,8 @@ import operations.RealPartOperator;
  */
 class RealPartOperatorTest
 {
+  private final String decimalZero = "0.00";
+  private final String decimalNegTwo = "-2.00";
   /**
    * tests for operands with spaces.
    */
@@ -34,7 +36,7 @@ class RealPartOperatorTest
 
     // imaginary
     actual = r.evaluate("  6  i    ");
-    expected = "0.00";
+    expected = decimalZero;
     assertTrue(actual.equals(expected));
   }
 
@@ -128,7 +130,7 @@ class RealPartOperatorTest
 
     // negative
     actual = r.evaluate("-2");
-    expected = "-2.00";
+    expected = decimalNegTwo;
     assertTrue(actual.equals(expected));
   }
 
@@ -142,12 +144,12 @@ class RealPartOperatorTest
 
     // positive
     String actual = r.evaluate("7i");
-    String expected = "0.00";
+    String expected = decimalZero;
     assertTrue(actual.equals(expected));
 
     // negative
     actual = r.evaluate("-9i");
-    expected = "0.00";
+    expected = decimalZero;
     assertTrue(actual.equals(expected));
   }
 
@@ -166,7 +168,7 @@ class RealPartOperatorTest
 
     // negative
     actual = r.evaluate("-2-6i");
-    expected = "-2.00";
+    expected = decimalNegTwo;
     assertTrue(actual.equals(expected));
 
     // positive real, negative imaginary

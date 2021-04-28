@@ -23,6 +23,7 @@ public class HistoryController implements Finals, ActionListener, ComponentListe
   {
     HistoryDisplay history = HistoryDisplay.getInstance();
     JButton btn = (JButton) e.getSource();
+    NewMainInterface ui = NewMainInterface.getInstance();
 
     switch (btn.getText())
     {
@@ -30,14 +31,14 @@ public class HistoryController implements Finals, ActionListener, ComponentListe
         history.setSize(500, 340);
         history.listPane.setVisible(true);
         history.close.setVisible(true);
-        history.setVisible(false);
+        ui.getHistory().setVisible(false);
         // history.open.setVisible(false);
         break;
       case "<":
         history.setSize(1, 1);
         history.listPane.setVisible(false);
         history.close.setVisible(false);
-        history.setVisible(true);
+        ui.getHistory().setVisible(true);
         // history.open.setVisible(true);
         break;
       default:
@@ -49,7 +50,6 @@ public class HistoryController implements Finals, ActionListener, ComponentListe
   @Override
   public void componentResized(final ComponentEvent e)
   {
-    // TODO Auto-generated method stub
 
   }
 
@@ -70,14 +70,12 @@ public class HistoryController implements Finals, ActionListener, ComponentListe
   @Override
   public void componentShown(final ComponentEvent e)
   {
-    // TODO Auto-generated method stub
 
   }
 
   @Override
   public void componentHidden(final ComponentEvent e)
   {
-    // TODO Auto-generated method stub
 
   }
 

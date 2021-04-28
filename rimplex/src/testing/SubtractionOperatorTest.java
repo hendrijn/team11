@@ -16,6 +16,34 @@ import operations.TempContext;
 class SubtractionOperatorTest
 {
 
+  private final String imagOne = "5i";
+  private final String imagTwo = "3i";
+  private final String imagThree = "15i";
+  private final String imagFour = "45i";
+  private final String imagFive = "2i";
+  private final String imagSix = "-3i";
+  private final String imagSeven = "6i";
+  private final String imagEight = "-2i";
+  private final String imagNine = "-7i";
+  private final String negEight = "-8";
+  private final String negSeven = "-7";
+  private final String negSix = "-6";
+  private final String negFive = "-5";
+  private final String two = "2";
+  private final String three = "3";
+  private final String five = "5";
+  private final String eight  = "8";
+  private final String nine = "9";
+  private final String fifteen = "15";
+  private final String fortyFive = "45";
+  private final String random = "hij+klmn";
+  private final String complexOne = "4+5i";
+  private final String complexTwo = "2+3i";
+  private final String complexThree = "5+2i";
+  private final String complexFive = "-2-3i";
+  private final String complexSix = "5+6i";
+  private final String complexSeven = "-4-2i";
+  private final String complexEight = "-2-7i";
   /**
    * tests for operands with spaces.
    */
@@ -77,7 +105,7 @@ class SubtractionOperatorTest
     // first operand illegal
     try
     {
-      s.evaluate("abc-defg", "5i");
+      s.evaluate("abc-defg", imagOne);
       assertTrue(false);
     }
     catch (IllegalArgumentException e)
@@ -88,7 +116,7 @@ class SubtractionOperatorTest
     // second operand illegal
     try
     {
-      s.evaluate("2", "hij+klmn");
+      s.evaluate(two, random);
       assertTrue(false);
     }
     catch (IllegalArgumentException e)
@@ -99,7 +127,7 @@ class SubtractionOperatorTest
     // test illegal i's
     try
     {
-      s.evaluate("2", "iiiiiiii");
+      s.evaluate(two, "iiiiiiii");
       assertTrue(false);
     }
     catch (IllegalArgumentException e)
@@ -110,7 +138,7 @@ class SubtractionOperatorTest
     // test illegal i's with numbers
     try
     {
-      s.evaluate("2ii", "3");
+      s.evaluate("2ii", three);
       assertTrue(false);
     }
     catch (IllegalArgumentException e)
@@ -121,7 +149,7 @@ class SubtractionOperatorTest
     // single i illegal operand
     try
     {
-      s.evaluate("i love cs", "5i");
+      s.evaluate("i love cs", imagOne);
       assertTrue(false);
     }
     catch (IllegalArgumentException e)
@@ -163,7 +191,7 @@ class SubtractionOperatorTest
     // second operand null
     try
     {
-      s.evaluate("4+5i", null);
+      s.evaluate(complexOne, null);
       assertTrue(false);
     }
     catch (IllegalArgumentException e)
@@ -185,7 +213,7 @@ class SubtractionOperatorTest
     // first operand empty
     try
     {
-      s.evaluate("", "2+3i");
+      s.evaluate("", complexTwo);
       assertTrue(false);
     }
     catch (IllegalArgumentException e)
@@ -205,7 +233,7 @@ class SubtractionOperatorTest
     }
 
     // both positive, positive result
-    String actual = s.evaluate("4+5i", "2+3i");
+    String actual = s.evaluate(complexOne, complexTwo);
     String expected = "2.00+2.00i";
     assertTrue(expected.equals(actual));
 
@@ -251,7 +279,7 @@ class SubtractionOperatorTest
     // first operand null
     try
     {
-      s.evaluate(null, "3i");
+      s.evaluate(null, imagTwo);
       assertTrue(false);
     }
     catch (IllegalArgumentException e)
@@ -262,7 +290,7 @@ class SubtractionOperatorTest
     // second operand null
     try
     {
-      s.evaluate("5i", null);
+      s.evaluate(imagOne, null);
       assertTrue(false);
     }
     catch (IllegalArgumentException e)
@@ -273,7 +301,7 @@ class SubtractionOperatorTest
     // first operand empty
     try
     {
-      s.evaluate("", "3i");
+      s.evaluate("", imagTwo);
       assertTrue(false);
     }
     catch (IllegalArgumentException e)
@@ -284,7 +312,7 @@ class SubtractionOperatorTest
     // second operand empty
     try
     {
-      s.evaluate("5i", "");
+      s.evaluate(imagOne, "");
       assertTrue(false);
     }
     catch (IllegalArgumentException e)
@@ -298,7 +326,7 @@ class SubtractionOperatorTest
     assertTrue(expected.equals(actual));
 
     // both positive, negative result
-    actual = s.evaluate("15i", "45i");
+    actual = s.evaluate(imagThree, imagFour);
     expected = "0.00-30.00i";
     assertTrue(expected.equals(actual));
 
@@ -308,7 +336,7 @@ class SubtractionOperatorTest
     assertTrue(expected.equals(actual));
 
     // negative first operand, negative result
-    actual = s.evaluate("-55i", "15i");
+    actual = s.evaluate("-55i", imagThree);
     expected = "0.00-70.00i";
     assertTrue(expected.equals(actual));
 
@@ -339,7 +367,7 @@ class SubtractionOperatorTest
     // first operand null
     try
     {
-      s.evaluate(null, "3");
+      s.evaluate(null, three);
       assertTrue(false);
     }
     catch (IllegalArgumentException e)
@@ -350,7 +378,7 @@ class SubtractionOperatorTest
     // second operand null
     try
     {
-      s.evaluate("5", null);
+      s.evaluate(five, null);
       assertTrue(false);
     }
     catch (IllegalArgumentException e)
@@ -361,7 +389,7 @@ class SubtractionOperatorTest
     // first operand empty
     try
     {
-      s.evaluate("", "3");
+      s.evaluate("", three);
       assertTrue(false);
     }
     catch (IllegalArgumentException e)
@@ -372,7 +400,7 @@ class SubtractionOperatorTest
     // second operand empty
     try
     {
-      s.evaluate("5", "");
+      s.evaluate(five, "");
       assertTrue(false);
     }
     catch (IllegalArgumentException e)
@@ -386,7 +414,7 @@ class SubtractionOperatorTest
     assertTrue(expected.equals(actual));
 
     // both positive, negative result
-    actual = s.evaluate("15", "45");
+    actual = s.evaluate(fifteen, fortyFive);
     expected = "-30.00+0.00i";
     assertTrue(expected.equals(actual));
 
@@ -396,7 +424,7 @@ class SubtractionOperatorTest
     assertTrue(expected.equals(actual));
 
     // negative first operand, negative result
-    actual = s.evaluate("-55", "15");
+    actual = s.evaluate("-55", fifteen);
     expected = "-70.00+0.00i";
     assertTrue(expected.equals(actual));
 
@@ -425,42 +453,44 @@ class SubtractionOperatorTest
     TempContext s = new TempContext(new SubtractionOperator());
 
     // both positive, first operand complex, second operand real
-    String actual = s.evaluate("5+3i", "3");
+    String actual = s.evaluate("5+3i", three);
     String expected = "2.00+3.00i";
     assertTrue(expected.equals(actual));
 
+    
     // both positive, first operand real, second operand complex
-    actual = s.evaluate("8", "5+2i");
+    actual = s.evaluate(eight, complexThree);
     expected = "3.00-2.00i";
     assertTrue(expected.equals(actual));
 
+ // AHHHHHHHHHHH
     // first operand complex and negative, second operand real and positive
-    actual = s.evaluate("-2-3i", "3");
+    actual = s.evaluate(complexFive, three);
     expected = "-5.00-3.00i";
     assertTrue(expected.equals(actual));
 
     // first operand real and negative, second operand complex and positive
-    actual = s.evaluate("-7", "5+6i");
+    actual = s.evaluate(negSeven, complexSix);
     expected = "-12.00-6.00i";
     assertTrue(expected.equals(actual));
 
     // first operand complex and positive, second operand real and negative
-    actual = s.evaluate("4+6i", "-8");
+    actual = s.evaluate("4+6i", negEight);
     expected = "12.00+6.00i";
     assertTrue(expected.equals(actual));
 
     // first operand real and positive, second operand complex and negative
-    actual = s.evaluate("9", "-4-2i");
+    actual = s.evaluate(nine, complexSeven);
     expected = "13.00+2.00i";
     assertTrue(expected.equals(actual));
 
     // both negative, first operand complex, second operand real
-    actual = s.evaluate("-2-3i", "-5");
+    actual = s.evaluate(complexFive, negFive);
     expected = "3.00-3.00i";
     assertTrue(expected.equals(actual));
 
     // both negative, first operand real, second operand complex
-    actual = s.evaluate("-6", "-2-7i");
+    actual = s.evaluate(negSix, complexEight);
     expected = "-4.00+7.00i";
     assertTrue(expected.equals(actual));
   }
@@ -474,42 +504,42 @@ class SubtractionOperatorTest
     TempContext s = new TempContext(new SubtractionOperator());
 
     // both positive, first operand imaginary, second operand real
-    String actual = s.evaluate("3i", "3");
+    String actual = s.evaluate(imagTwo, three);
     String expected = "-3.00+3.00i";
     assertTrue(expected.equals(actual));
 
     // both positive, first operand real, second operand imaginary
-    actual = s.evaluate("8", "2i");
+    actual = s.evaluate(eight, imagFive);
     expected = "8.00-2.00i";
     assertTrue(expected.equals(actual));
 
     // first operand imaginary and negative, second operand real and positive
-    actual = s.evaluate("-3i", "3");
+    actual = s.evaluate(imagSix, three);
     expected = "-3.00-3.00i";
     assertTrue(expected.equals(actual));
 
     // first operand real and negative, second operand imaginary and positive
-    actual = s.evaluate("-7", "6i");
+    actual = s.evaluate(negSeven, imagSeven);
     expected = "-7.00-6.00i";
     assertTrue(expected.equals(actual));
 
     // first operand imaginary and positive, second operand real and negative
-    actual = s.evaluate("6i", "-8");
+    actual = s.evaluate(imagSeven, negEight);
     expected = "8.00+6.00i";
     assertTrue(expected.equals(actual));
 
     // first operand real and positive, second operand imaginary and negative
-    actual = s.evaluate("9", "-2i");
+    actual = s.evaluate(nine, imagEight);
     expected = "9.00+2.00i";
     assertTrue(expected.equals(actual));
 
     // both negative, first operand imaginary, second operand real
-    actual = s.evaluate("-3i", "-5");
+    actual = s.evaluate(imagSix, negFive);
     expected = "5.00-3.00i";
     assertTrue(expected.equals(actual));
 
     // both negative, first operand real, second operand imaginary
-    actual = s.evaluate("-6", "-7i");
+    actual = s.evaluate(negSix, imagNine);
     expected = "-6.00+7.00i";
     assertTrue(expected.equals(actual));
   }
@@ -523,42 +553,42 @@ class SubtractionOperatorTest
     TempContext s = new TempContext(new SubtractionOperator());
 
     // both positive, first operand imaginary, second operand complex
-    String actual = s.evaluate("3i", "9+6i");
+    String actual = s.evaluate(imagTwo, "9+6i");
     String expected = "-9.00-3.00i";
     assertTrue(expected.equals(actual));
 
     // both positive, first operand complex, second operand imaginary
-    actual = s.evaluate("8+4i", "2i");
+    actual = s.evaluate("8+4i", imagFive);
     expected = "8.00+2.00i";
     assertTrue(expected.equals(actual));
 
     // first operand imaginary and negative, second operand complex and positive
-    actual = s.evaluate("-3i", "3+6i");
+    actual = s.evaluate(imagSix, "3+6i");
     expected = "-3.00-9.00i";
     assertTrue(expected.equals(actual));
 
     // first operand complex and negative, second operand imaginary and positive
-    actual = s.evaluate("-7-5i", "6i");
+    actual = s.evaluate("-7-5i", imagSeven);
     expected = "-7.00-11.00i";
     assertTrue(expected.equals(actual));
 
     // first operand imaginary and positive, second operand complex and negative
-    actual = s.evaluate("6i", "-8-3i");
+    actual = s.evaluate(imagSeven, "-8-3i");
     expected = "8.00+9.00i";
     assertTrue(expected.equals(actual));
 
     // first operand complex and positive, second operand imaginary and negative
-    actual = s.evaluate("9+5i", "-2i");
+    actual = s.evaluate("9+5i", imagEight);
     expected = "9.00+7.00i";
     assertTrue(expected.equals(actual));
 
     // both negative, first operand imaginary, second operand complex
-    actual = s.evaluate("-3i", "-5-9i");
+    actual = s.evaluate(imagSix, "-5-9i");
     expected = "5.00+6.00i";
     assertTrue(expected.equals(actual));
 
     // both negative, first operand complex, second operand imaginary
-    actual = s.evaluate("-6-4i", "-7i");
+    actual = s.evaluate("-6-4i", imagNine);
     expected = "-6.00+3.00i";
     assertTrue(expected.equals(actual));
   }
