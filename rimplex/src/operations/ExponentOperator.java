@@ -51,6 +51,7 @@ public class ExponentOperator
       throw new IllegalArgumentException(ui.getStrings().getString("BASE"));
     }
     
+    //If to the zero power, return 1. Done here to save work
     if (powerOf == 0) 
     {
       return zeroBase; 

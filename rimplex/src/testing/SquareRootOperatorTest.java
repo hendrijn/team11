@@ -10,6 +10,7 @@ import operations.SquareRootOperator;
 public class SquareRootOperatorTest
 {
 
+  //Testing a real number square root
   @Test
   public void validRealNumberTest1()
   {
@@ -21,6 +22,7 @@ public class SquareRootOperatorTest
    assertEquals(expected, actual);
   }
   
+  //Testing another real number square root
   @Test
   public void validRealNumberTest2()
   {
@@ -32,6 +34,7 @@ public class SquareRootOperatorTest
    assertEquals(expected, actual);
   }
   
+  //Testing a null square root
   @Test
   public void invalidOperandNullTest()
   {
@@ -45,8 +48,9 @@ public class SquareRootOperatorTest
    assertEquals(expectedMessage, exception.getMessage());
   }
 
+  //Testing an empty operand
   @Test
-  public void invalidOperanEmptyTest()
+  public void invalidOperandEmptyTest()
   {
     
    SquareRootOperator sqrt = new SquareRootOperator(); 
@@ -58,6 +62,7 @@ public class SquareRootOperatorTest
    assertEquals(expectedMessage, exception.getMessage());
   }
 
+  //Testing a square root with too many is
   @Test
   public void invalidOperandMultiITest()
   {
@@ -71,6 +76,7 @@ public class SquareRootOperatorTest
    assertEquals(expectedMessage, exception.getMessage());
   }
 
+  //Testing a square root with just parenthesises
   @Test
   public void invalidOperandJustParensTest()
   {
@@ -84,6 +90,7 @@ public class SquareRootOperatorTest
    assertEquals(expectedMessage, exception.getMessage());
   }
   
+  //Testing a square root with random letter
   @Test
   public void invalidOperandGibbershTest()
   {
@@ -97,7 +104,7 @@ public class SquareRootOperatorTest
    assertEquals(expectedMessage, exception.getMessage());
   }
   
-  
+  //Testing a square root with a negative number
   @Test
   public void validNegativeRealNumberTest1()
   {
@@ -109,6 +116,7 @@ public class SquareRootOperatorTest
     assertEquals(expected, actual);
   }
   
+  //Testing a square root with negative one
   @Test
   public void validNegativeRealNumberTest2()
   {
@@ -120,7 +128,7 @@ public class SquareRootOperatorTest
     assertEquals(expected, actual);
   }
   
-  
+  //Testing a complex number with a negative
   @Test
   public void validComplexNumberTest1()
   {
@@ -132,7 +140,7 @@ public class SquareRootOperatorTest
     assertEquals(expected, actual);
   }
   
-  
+  //Testing a complex number
   @Test
   public void validComplexNumberTest2()
   {

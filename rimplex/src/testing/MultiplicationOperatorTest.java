@@ -17,6 +17,7 @@ import operations.TempContext;
 class MultiplicationOperatorTest
 {
 
+  //Testing two complex numbers
   @Test
   public void twoValidComplexNumbersTest()
   {
@@ -28,6 +29,7 @@ class MultiplicationOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
+  //Testing two real numbers
   @Test
   public void twoValidRealNumTest()
   {
@@ -39,6 +41,7 @@ class MultiplicationOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
+  //Testing one complex one real
   @Test
   public void twoValidComplexNumMix1Test()
   {
@@ -50,6 +53,7 @@ class MultiplicationOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
+  //Testing one complex one real with mixed formatting
   @Test
   public void twoValidComplexNumMix2Test()
   {
@@ -61,6 +65,7 @@ class MultiplicationOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
+  //Testing times zero with a real number
   @Test
   public void twoValidZero1Test()
   {
@@ -72,6 +77,7 @@ class MultiplicationOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
+  //Testing times zero with a complex number
   @Test
   public void twoValidZero2Test()
   {
@@ -83,6 +89,7 @@ class MultiplicationOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
+  //Testing times zero with just i
   @Test
   public void twoValidZero3Test()
   {
@@ -94,6 +101,7 @@ class MultiplicationOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
+  //Testing i times i
   @Test
   public void twoValidComplexNumI1Test()
   {
@@ -105,6 +113,7 @@ class MultiplicationOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
+  //Testing two imaginary numbers times each other
   @Test
   public void twoValidComplexNumI2Test()
   {
@@ -116,6 +125,7 @@ class MultiplicationOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
+  //Next several tests are invalid or null checking
   @Test
   public void inValidNullLeftOperandTest()
   {
@@ -266,6 +276,7 @@ class MultiplicationOperatorTest
     assertEquals(expectedException, actualException);
   }
 
+  //Testing invalid imaginary unit format
   @Test
   public void tooManyIsLeftTest()
   {
@@ -326,6 +337,7 @@ class MultiplicationOperatorTest
     assertEquals(expectedException, actualException);
   }
 
+  //Testing one positive and one negative number
   @Test
   public void twoValidComplexNumbersNeg1Test()
   {
@@ -359,6 +371,7 @@ class MultiplicationOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
+  //Testing negative numbers
   @Test
   public void twoValidRegNumbersNeg1Test()
   {
@@ -425,6 +438,7 @@ class MultiplicationOperatorTest
     assertEquals(expectedResult, actualResult);
   }
 
+  //Testing decimal operands
   @Test
   public void testDecimalOperands2()
   {

@@ -93,6 +93,8 @@ public class LogarithmOperator
     }
     else
     {
+      //Math formula used found here: 
+      //https://www.redcrab-software.com/en/Calculator/Algebra/Complex/Log
       lnComplexReal = (0.5) * Math.log(Math.pow(dblRegNum, 2) + Math.pow(dblImagNum, 2));
       lnComplexImag = Math.atan(dblImagNum/dblRegNum);
       finalString =  String.format("%.2f+%.2fi", lnComplexReal, lnComplexImag);
