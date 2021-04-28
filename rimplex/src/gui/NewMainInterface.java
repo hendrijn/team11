@@ -16,6 +16,7 @@ import javax.swing.border.Border;
  */
 public class NewMainInterface extends JFrame implements Finals
 {
+  static JPanel northPanel, eastPanel, centerPanel, bar;
   private static final long serialVersionUID = 5691196863267451960L;
   private static final Locale LOCALE = Locale.getDefault();
   private static final String US = "US";
@@ -28,11 +29,11 @@ public class NewMainInterface extends JFrame implements Finals
   private static NewMainInterface ui;
   private static String GUI_STRINGS = "gui.Strings";
   private static ResourceBundle STRINGS = ResourceBundle.getBundle(GUI_STRINGS, LOCALE);
+ 
   JLabel expressionDisplay, resultDisplay, inputDisplay;
   JMenuBar menuBar;
   JMenu settingsMenu, aboutMenu, fileMenu, langMenu;
   JMenuItem about, add, start, pause, stop, print, speed;
-  static JPanel northPanel, eastPanel, centerPanel, bar;
   private InterfaceController listener;
 
   /**

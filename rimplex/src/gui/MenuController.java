@@ -253,9 +253,9 @@ public class MenuController implements ActionListener, Finals
    */
   private void setButtonsEnabled(final NewMainInterface ui, final boolean isEnabled)
   {
-    recorder.setPanelEnabled(ui.bar, isEnabled);
-    recorder.setPanelEnabled(ui.centerPanel, isEnabled);
-    recorder.setPanelEnabled(ui.eastPanel, isEnabled);
+    recorder.setPanelEnabled(NewMainInterface.bar, isEnabled);
+    recorder.setPanelEnabled(NewMainInterface.centerPanel, isEnabled);
+    recorder.setPanelEnabled(NewMainInterface.eastPanel, isEnabled);
   }
 
   /**

@@ -1,7 +1,5 @@
 package gui;
 
-import java.awt.Component;
-import java.awt.Point;
 import java.awt.event.*;
 
 import javax.swing.AbstractButton;
