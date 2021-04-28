@@ -27,7 +27,7 @@ public class NewMainInterface extends JFrame implements Finals
   private static final String TEXT = "text";
   private static JButton history;
   private static NewMainInterface ui;
-  private static String GUI_STRINGS = "gui.Strings";
+  private static String GUI_STRINGS = "Strings";
   private static ResourceBundle STRINGS = ResourceBundle.getBundle(GUI_STRINGS, LOCALE);
  
   JLabel expressionDisplay, resultDisplay, inputDisplay;
