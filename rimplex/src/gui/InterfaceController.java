@@ -16,7 +16,7 @@ import operations.*;
  * @version v3
  */
 public class InterfaceController
-    implements Finals, ActionListener, KeyListener, FocusListener, ComponentListener
+    implements Finals, ActionListener, KeyListener, FocusListener
 {
   private static InterfaceController instance;
   private static HistoryDisplay historyDisplay = HistoryDisplay.getInstance();
@@ -691,46 +691,6 @@ public class InterfaceController
 
   @Override
   public void keyReleased(final KeyEvent e)
-  {
-    // TODO Auto-generated method stub
-
-  }
-
-  @Override
-  public void componentResized(final ComponentEvent e)
-  {
-    System.out.println(e.getComponent().getClass().getName() + " Resized");
-
-  }
-
-  /**
-   * resets the location of a moved component.
-   */
-  @Override
-  public void componentMoved(final ComponentEvent e)
-  {
-    HistoryDisplay history = HistoryDisplay.getInstance();
-    Component comp = (Component) e.getSource();
-    Point shift = comp.getLocationOnScreen();
-    Point og = history.origin;
-
-    int newX = (int) (shift.getX() + og.getX());
-    int newY = (int) (shift.getY() + og.getY());
-
-    history.setLoc(newX, newY);
-    System.out.println(e.getComponent().getClass().getName() + " Moved");
-
-  }
-
-  @Override
-  public void componentShown(final ComponentEvent e)
-  {
-    // TODO Auto-generated method stub
-
-  }
-
-  @Override
-  public void componentHidden(final ComponentEvent e)
   {
     // TODO Auto-generated method stub
 

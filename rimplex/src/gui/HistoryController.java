@@ -75,7 +75,8 @@ public class HistoryController implements Finals, ActionListener, ComponentListe
   @Override
   public void componentHidden(final ComponentEvent e)
   {
-
+    HistoryDisplay history = HistoryDisplay.getInstance();
+    history.setVisible(false);
   }
 
 }
